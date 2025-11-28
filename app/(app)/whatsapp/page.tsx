@@ -13,6 +13,7 @@ import { useWhatsAppCache } from "@/contexts/whatsapp-cache-context"
 import { QuickLeadForm } from "@/components/whatsapp/quick-lead-form"
 import { toast } from "react-toastify"
 import { NewContactDialog } from "@/components/whatsapp/new-contact-dialog"
+import type { Chat } from "@/lib/whatsapp-types"   // 👈 importa o tipo
 
 export default function WhatsAppPage() {
   const { selectedChatId, setSelectedChatId, selectedChatName, setSelectedChatName, invalidateChatsCache } =
@@ -22,9 +23,15 @@ export default function WhatsAppPage() {
   const [showLeadPanel, setShowLeadPanel] = useState(false)
   const chatListRef = useRef<any>(null)
 
-  function handleSelectChat(chatId: string, chatName: string) {
-    setSelectedChatId(chatId)
-    setSelectedChatName(chatName)
+  // agora recebe um Chat (1 argumento), não mais (chatId, chatName)
+  function handleSelectChat(chat: Chat) {
+    setSelectedChatId(chat.id)
+    // usa o melhor nome que existir, com fallback pro id
+    const displayName =
+      (chat as any).name ??
+      (chat as any).pushName ??
+      chat.id
+    setSelectedChatName(displayName)
   }
 
   function handleRefreshChats() {
@@ -69,15 +76,17 @@ export default function WhatsAppPage() {
           )}
           <ChatList
             ref={chatListRef}
-            onSelectChat={handleSelectChat}
+            onSelectChat={handleSelectChat}     // ✅ agora bate com o tipo esperado
             selectedChatId={selectedChatId}
             refreshTrigger={refreshTrigger}
           />
         </Card>
 
-        {/* Container 2: Mensagens do Chat - flex grow que diminui quando o panel abre */}
+        {/* Container 2: Mensagens do Chat */}
         <Card
-          className={`flex flex-col overflow-hidden transition-all duration-300 ease-in-out ${showLeadPanel ? "flex-[0.75]" : "flex-1"}`}
+          className={`flex flex-col overflow-hidden transition-all duration-300 ease-in-out ${
+            showLeadPanel ? "flex-[0.75]" : "flex-1"
+          }`}
         >
           {selectedChatId ? (
             <ChatWindow
@@ -97,7 +106,7 @@ export default function WhatsAppPage() {
           )}
         </Card>
 
-        {/* Container 3: Painel de Lead - flex grow que aumenta quando o panel abre */}
+        {/* Container 3: Painel de Lead */}
         {showLeadPanel && selectedChatId && (
           <Card className="flex-[0.25] flex flex-col overflow-hidden transition-all duration-300 ease-in-out animate-in slide-in-from-right-5 fade-in-0">
             <div className="animate-in fade-in-0 slide-in-from-top-3 duration-500 h-full overflow-y-auto">

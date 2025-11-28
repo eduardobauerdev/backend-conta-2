@@ -16,9 +16,7 @@ import { AssignmentHistoryDialog } from "./assignment-history-dialog"
 import { AssignToUserDialog } from "./assign-to-user-dialog"
 import { getCookie } from "@/lib/auth"
 import { createClient } from "@/lib/supabase/client"
-import {
-  Avatar, AvatarFallback, AvatarImage
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { getRoleColor } from "@/lib/role-colors"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription"
@@ -28,18 +26,25 @@ const SCROLL_THRESHOLD = 100
 
 interface ChatWindowProps {
   chatId: string
-  chatName: string
-  chatPicture: string | null
+  chatName?: string | null
+  chatPicture?: string | null
   onRefresh: () => void
   onToggleLeadPanel: (show: boolean) => void
   showLeadPanel: boolean
 }
 
-export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleLeadPanel, showLeadPanel }: ChatWindowProps) {
+export function ChatWindow({
+  chatId,
+  chatName,
+  chatPicture = null,
+  onRefresh,
+  onToggleLeadPanel,
+  showLeadPanel,
+}: ChatWindowProps) {
   const { getCachedMessages, setCachedMessages, appendMessages, addNewMessage, invalidateMessagesCache } =
     useWhatsAppCache()
 
-     console.log("chatPicture recebido:", chatPicture)
+  console.log("chatPicture recebido:", chatPicture)
 
   const [messages, setMessages] = useState<Message[]>([])
   const [newMessage, setNewMessage] = useState("")
@@ -55,7 +60,7 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
   const [hasAssignmentHistory, setHasAssignmentHistory] = useState(false)
   const [showAssignToUserDialog, setShowAssignToUserDialog] = useState(false)
   const [roleColor, setRoleColor] = useState<string | null>(null)
-  const userDataCache = useRef<Record<string, { nome: string; cargo: string; color: string }>>({})
+  const userDataCache = useRef<Record<string, { nome: string | null; cargo: string | null; color: string | null }>>({})
 
   const userId = getCookie("auth_user_id")
 
@@ -70,9 +75,16 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  // Fallback seguro para nome do chat
+  const safeChatName =
+    chatName && chatName.trim().length > 0
+      ? chatName
+      : chatId && chatId.trim().length > 0
+        ? chatId
+        : "Contato"
 
   // ----------------------------------------------------
-  // --- REALTIME SUBSCRIPTIONS (Atividades e Atribuição) ---
+  // --- REALTIME SUBSCRIPTIONS (Atividades e Atribuição)
   // ----------------------------------------------------
 
   useRealtimeSubscription({
@@ -110,7 +122,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
             setAssignedUserCargo(cachedData.cargo)
             setRoleColor(cachedData.color)
           } else {
-
             const userData = await loadAssignmentUserData(assignment.assigned_to_id)
             userDataCache.current[assignment.assigned_to_id] = userData
             setAssignedUserName(userData.nome)
@@ -149,15 +160,13 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
   })
 
   // ----------------------------------------------------
-  // --- LIFECYCLE & INITIAL LOAD ---
+  // --- LIFECYCLE & INITIAL LOAD
   // ----------------------------------------------------
 
   useEffect(() => {
     loadAssignment()
-
-    loadActivities() // Initial load only
+    loadActivities()
     checkAssignmentHistory()
-
     registerActivity("viewing")
   }, [chatId])
 
@@ -174,7 +183,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
     }
 
     setMessages([])
-
     setOffset(0)
     setHasMore(true)
     setLoading(true)
@@ -184,7 +192,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
     loadMessages(0, true)
   }, [chatId, getCachedMessages])
 
-  // Efeito para rolar para o final na carga inicial
   useEffect(() => {
     if (isInitialLoadRef.current && messages.length > 0 && !loading) {
       setTimeout(() => {
@@ -194,7 +201,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
     }
   }, [messages, loading])
 
-  // Efeito para ajustar a rolagem após carregar mais mensagens (rolagem inversa)
   useEffect(() => {
     if (!loading && !isLoadingRef.current && previousScrollHeightRef.current > 0 && scrollContainerRef.current) {
       const newScrollHeight = scrollContainerRef.current.scrollHeight
@@ -208,7 +214,7 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
   }, [messages, loading])
 
   // ----------------------------------------------------
-  // --- DATA LOADING & CACHING ---
+  // --- DATA LOADING & CACHING
   // ----------------------------------------------------
 
   async function loadAssignmentUserData(userId: string) {
@@ -225,7 +231,7 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
       }
 
       if (perfilData?.cargo) {
-        const { data: cargoData, error: cargoError } = await supabase
+        const { data: cargoData } = await supabase
           .from("cargos")
           .select("cor")
           .eq("nome", perfilData.cargo)
@@ -253,7 +259,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
       if (!response.ok) {
         console.error("[API] Erro ao buscar atribuição:", response.status)
         setAssignment(null)
-
         setAssignedUserName(null)
         setAssignedUserCargo(null)
         setRoleColor(null)
@@ -279,7 +284,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
           if (cachedData) {
             setAssignedUserName(cachedData.nome)
             setAssignedUserCargo(cachedData.cargo)
-
             setRoleColor(cachedData.color)
           } else {
             const userData = await loadAssignmentUserData(data.assignment.assigned_to_id)
@@ -289,18 +293,15 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
             setRoleColor(userData.color)
           }
         } else {
-
           setAssignment(null)
           setAssignedUserName(null)
           setAssignedUserCargo(null)
           setRoleColor(null)
         }
-      } catch (parseError) {
-        // Ignorar erro de parse se o texto for vazio ou inválido (já tratado acima)
+      } catch {
         return
       }
     } catch (error) {
-
       console.error("[v0] Erro ao carregar atribuição:", error)
       setAssignment(null)
       setAssignedUserName(null)
@@ -315,7 +316,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
       if (!response.ok) {
         if (response.status !== 429 && response.status !== 500) {
           console.error("[API] Erro ao buscar atividades:", response.status)
-
         }
         return
       }
@@ -328,8 +328,7 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
         if (data.success) {
           setActivities(data.activities || [])
         }
-      } catch (parseError) {
-        // Ignorar
+      } catch {
         return
       }
     } catch (error) {
@@ -372,7 +371,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
           to: msg.to || chatId,
           fromMe: msg.fromMe || false,
           type: msg.type || "text",
-
           hasMedia: msg.hasMedia || false,
           ack: msg.ack || 0,
           mediaUrl: msg.mediaUrl || null,
@@ -394,7 +392,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
         console.log(
           "[v0] Mensagens carregadas:",
           normalizedMessages.length,
-
           "| Total:",
           currentOffset + normalizedMessages.length,
           "| Tem mais:",
@@ -405,10 +402,10 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "Erro desconhecido"
+      console.error("[v0] Erro ao carregar mensagens:", errorMessage)
       toast.error("Não foi possível conectar ao servidor. Verifique a configuração da API.")
     } finally {
       setLoading(false)
-
       setLoadingMore(false)
       isLoadingRef.current = false
     }
@@ -434,14 +431,13 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
   }
 
   // ----------------------------------------------------
-  // --- UI & USER INTERACTION HANDLERS ---
+  // --- UI & USER INTERACTION HANDLERS
   // ----------------------------------------------------
 
   const handleScroll = useCallback(
     (e: React.UIEvent<HTMLDivElement>) => {
       const target = e.currentTarget
       const scrollTop = target.scrollTop
-
 
       if (scrollTop < SCROLL_THRESHOLD && hasMore && !isLoadingRef.current && !isInitialLoadRef.current) {
         loadMessages(offset, false)
@@ -462,7 +458,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
       })
     } catch (error) {
       console.error("[v0] Erro ao registrar atividade:", error)
-
     }
   }
 
@@ -473,10 +468,9 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chatId,
-          chatName,
+          chatName: safeChatName,
           assignToId: getCookie("auth_user_id"),
           assignToName: decodeURIComponent(getCookie("auth_user_name") || ""),
-
           autoAssign: false,
         }),
       })
@@ -501,7 +495,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
             setAssignedUserName(cachedData.nome)
             setAssignedUserCargo(cachedData.cargo)
             setRoleColor(cachedData.color)
-
           } else {
             const userData = await loadAssignmentUserData(data.assignment.assigned_to_id)
             userDataCache.current[data.assignment.assigned_to_id] = userData
@@ -529,7 +522,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
 
       if (!response.ok) {
         toast.error("Erro ao liberar conversa")
-
         return
       }
       const text = await response.text()
@@ -543,7 +535,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
         setAssignment(null)
         setAssignedUserName(null)
         setAssignedUserCargo(null)
-
         setRoleColor(null)
         toast.success("Conversa liberada")
         setShowAssignToUserDialog(false)
@@ -578,7 +569,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
   async function handleSendMessage() {
     if ((!newMessage.trim() && !selectedFile) || sending) return
 
-
     if (assignment && assignment.assigned_to_id !== getCookie("auth_user_id")) {
       toast.error(`Esta conversa está sendo atendida por ${assignment.assigned_to_name}`)
       return
@@ -591,8 +581,7 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chatId,
-
-          chatName,
+          chatName: safeChatName,
           assignToId: getCookie("auth_user_id"),
           assignToName: decodeURIComponent(getCookie("auth_user_name") || ""),
           autoAssign: true,
@@ -622,14 +611,12 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
         const data = await response.json()
 
         if (data.success) {
-          // Rastreamento (apenas para logs/notificações)
           await fetch("/api/whatsapp/track-message", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               messageId: data.messageId || `temp-${Date.now()}`,
               chatId,
-
               messageBody: newMessage.trim() || null,
               messageType: "media",
             }),
@@ -640,11 +627,9 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
           setSelectedFile(null)
           if (fileInputRef.current) {
             fileInputRef.current.value = ""
-
           }
           toast.success("Mídia enviada")
 
-          // Adiciona a mensagem temporária localmente
           const newMsg: Message = {
             id: `temp-${Date.now()}`,
             body: newMsgBody || "",
@@ -655,8 +640,7 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
             type: "media",
             hasMedia: true,
             ack: 1,
-
-            mediaUrl: null, // A URL real será buscada pelo cliente
+            mediaUrl: null,
             mimeType: selectedFile.type,
             caption: newMsgBody || null,
           }
@@ -669,7 +653,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
         }
       } else {
         // Envio de Texto
-
         const response = await fetch("/api/whatsapp/send", {
           method: "POST",
           headers: {
@@ -678,18 +661,15 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
           body: JSON.stringify({
             chatId: chatId,
             message: newMessage.trim(),
-
           }),
         })
 
         const data = await response.json()
 
         if (data.success) {
-          // Rastreamento (apenas para logs/notificações)
           await fetch("/api/whatsapp/track-message", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-
             body: JSON.stringify({
               messageId: data.messageId || `temp-${Date.now()}`,
               chatId,
@@ -703,7 +683,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
           setNewMessage("")
           toast.success("Mensagem enviada")
 
-          // Adiciona a mensagem temporária localmente
           const newMsg: Message = {
             id: `temp-${Date.now()}`,
             body: messageSent,
@@ -716,7 +695,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
             ack: 1,
             mediaUrl: null,
             mimeType: null,
-
             caption: null,
           }
           setMessages((prev) => [...prev, newMsg])
@@ -739,7 +717,6 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTo({
         top: scrollContainerRef.current.scrollHeight,
-
         behavior: behavior,
       })
     }
@@ -765,25 +742,19 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
     setQuickRepliesOpen(false)
   }
 
-  // CRIAÇÃO DO OBJETO PARA CORRIGIR O TYPECHECK
   const assignmentForDialog = assignment
     ? {
-      // Propriedades requeridas pelo ChatAssignment que estavam faltando/com nome diferente
-      chatId: chatId, // Pegando do prop do ChatWindow
-      chatName: chatName, // Pegando do prop do ChatWindow
-      assignToId: assignment.assigned_to_id, // Mapeando o snake_case para camelCase
-      assignToName: assignment.assigned_to_name, // Mapeando o snake_case para camelCase
-      autoAssign: false, // Valor default para um campo de payload
-
-      // Espalha as propriedades do ChatAssignmentDB para incluir 'id', 'status', 'created_at', etc.
-      ...assignment,
-    }
-    : null;
-
+        chatId: chatId,
+        chatName: safeChatName,
+        assignToId: assignment.assigned_to_id,
+        assignToName: assignment.assigned_to_name,
+        autoAssign: false,
+        ...assignment,
+      }
+    : null
 
   // ----------------------------------------------------
-
-  // --- RENDER ---
+  // --- RENDER
   // ----------------------------------------------------
 
   if (loading) {
@@ -803,15 +774,14 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 flex-1 min-w-0">
             <Avatar className="w-10 h-10 flex-shrink-0">
-              {/* ✅ CORRIGIDO: Renderiza a foto de perfil recebida via prop */}
-              {chatPicture && <AvatarImage src={chatPicture} alt={chatName} />}
+              {chatPicture && <AvatarImage src={chatPicture} alt={safeChatName} />}
               <AvatarFallback className="bg-primary text-primary-foreground">
-                {chatName.charAt(0).toUpperCase()}
+                {safeChatName.charAt(0).toUpperCase()}
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold truncate">{chatName}</h3>
+                <h3 className="font-semibold truncate">{safeChatName}</h3>
                 {assignedUserName && roleColor && (
                   <Badge
                     variant="secondary"
@@ -830,183 +800,183 @@ export function ChatWindow({ chatId, chatName, chatPicture, onRefresh, onToggleL
             </div>
           </div>
 
-<div className="flex items-center gap-2">
-  <TooltipProvider delayDuration={200}>
-    {hasAssignmentHistory && (
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button variant="outline" size="sm" onClick={() => setShowHistoryDialog(true)}>
-            <History className="w-4 h-4" />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent side="bottom">
-          <p>Histórico</p>
-        </TooltipContent>
-      </Tooltip>
-    )}
+          <div className="flex items-center gap-2">
+            <TooltipProvider delayDuration={200}>
+              {hasAssignmentHistory && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="outline" size="sm" onClick={() => setShowHistoryDialog(true)}>
+                      <History className="w-4 h-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom">
+                    <p>Histórico</p>
+                  </TooltipContent>
+                </Tooltip>
+              )}
 
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button variant="outline" size="sm" onClick={() => setShowAssignToUserDialog(true)}>
-          <User className="w-4 h-4 mr-2" />
-          Atribuir
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent side="bottom">
-        <p>Atribuir conversa</p>
-      </TooltipContent>
-    </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size="sm" onClick={() => setShowAssignToUserDialog(true)}>
+                    <User className="w-4 h-4 mr-2" />
+                    Atribuir
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom">
+                  <p>Atribuir conversa</p>
+                </TooltipContent>
+              </Tooltip>
 
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button variant="outline" size="sm" onClick={() => onToggleLeadPanel(!showLeadPanel)}>
-          <UserPlus className="w-4 h-4 mr-2" />
-          Novo Lead
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent side="bottom">
-        <p>Criar lead desta conversa</p>
-      </TooltipContent>
-    </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size="sm" onClick={() => onToggleLeadPanel(!showLeadPanel)}>
+                    <UserPlus className="w-4 h-4 mr-2" />
+                    Novo Lead
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom">
+                  <p>Criar lead desta conversa</p>
+                </TooltipContent>
+              </Tooltip>
 
-
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button variant="outline" size="sm" onClick={onRefresh}>
-          <RefreshCw className="w-4 h-4" />
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent side="bottom">
-        <p>Atualizar</p>
-      </TooltipContent>
-    </Tooltip>
-  </TooltipProvider>
-</div>
-    </div>
-  </div>
-
-  <div className="flex-1 flex overflow-hidden">
-    <div className={`flex flex-col w-full`}>
-      <div
-        ref={scrollContainerRef}
-        onScroll={handleScroll}
-        className="flex-1 overflow-y-auto p-4 space-y-4"
-        style={{
-          overscrollBehavior: "contain",
-          WebkitOverflowScrolling: "touch",
-        }}
-      >
-        {loadingMore && (
-          <div className="flex items-center justify-center gap-2 py-4">
-            <Loader2 className="w-4 h-4 animate-spin" />
-            <p className="text-sm text-muted-foreground">Carregando mensagens antigas...</p>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size="sm" onClick={onRefresh}>
+                    <RefreshCw className="w-4 h-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom">
+                  <p>Atualizar</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
-        )}
-
-        {!hasMore && messages.length > 0 && (
-          <div className="text-center py-4">
-            <p className="text-xs text-muted-foreground">Início da conversa</p>
-          </div>
-        )}
-        <div className="space-y-3">
-          {messages.length === 0 ? (
-            <div className="flex items-center justify-center h-full">
-              <p className="text-muted-foreground">Nenhuma mensagem ainda</p>
-            </div>
-          ) : (
-            messages.map((message) => <MessageBubble key={message.id} message={message} />)
-          )}
-          <div ref={scrollRef} />
         </div>
       </div>
 
-      <div className="border-t p-4 flex-shrink-0 bg-white">
-        {selectedFile && (
-          <div className="mb-2 flex items-center gap-2 p-2 bg-muted rounded-lg">
-            <Paperclip className="w-4 h-4 text-muted-foreground" />
-            <span className="text-sm flex-1 truncate">{selectedFile.name}</span>
-            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={removeSelectedFile}>
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-        )}
-        <div className="flex gap-2">
-          <input
-            ref={fileInputRef}
-            type="file"
-            className="hidden"
-            accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.xls,.xlsx,.txt"
-            onChange={handleFileSelect}
-          />
-          <Button
-            variant="outline"
-            size="icon"
-            className="h-[60px] w-[60px] flex-shrink-0 bg-transparent"
-            onClick={() => fileInputRef.current?.click()}
-            disabled={sending}
-          >
-            <Paperclip className="w-5 h-5" />
-          </Button>
-
-          <Button
-            variant="outline"
-            size="icon"
-            className="h-[60px] w-[60px] flex-shrink-0 bg-transparent"
-            onClick={() => setQuickRepliesOpen(true)}
-          >
-            <Zap className="w-5 h-5" />
-          </Button>
-          <Textarea
-            value={newMessage}
-            onChange={(e) => {
-              setNewMessage(e.target.value)
-              registerActivity("typing")
+      <div className="flex-1 flex overflow-hidden">
+        <div className="flex flex-col w-full">
+          <div
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            className="flex-1 overflow-y-auto p-4 space-y-4"
+            style={{
+              overscrollBehavior: "contain",
+              WebkitOverflowScrolling: "touch",
             }}
-            onKeyDown={handleKeyPress}
-            placeholder="Digite sua mensagem..."
-            className="resize-none min-h-[60px] max-h-[200px]"
-            rows={2}
-          />
-          <Button
-            onClick={handleSendMessage}
-            disabled={(!newMessage.trim() && !selectedFile) || sending}
-            size="icon"
-            className="h-[60px] w-[60px] flex-shrink-0"
           >
-            {sending ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
-          </Button>
+            {loadingMore && (
+              <div className="flex items-center justify-center gap-2 py-4">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <p className="text-sm text-muted-foreground">Carregando mensagens antigas...</p>
+              </div>
+            )}
+
+            {!hasMore && messages.length > 0 && (
+              <div className="text-center py-4">
+                <p className="text-xs text-muted-foreground">Início da conversa</p>
+              </div>
+            )}
+            <div className="space-y-3">
+              {messages.length === 0 ? (
+                <div className="flex items-center justify-center h-full">
+                  <p className="text-muted-foreground">Nenhuma mensagem ainda</p>
+                </div>
+              ) : (
+                messages.map((message) => <MessageBubble key={message.id} message={message} />)
+              )}
+              <div ref={scrollRef} />
+            </div>
+          </div>
+
+          <div className="border-t p-4 flex-shrink-0 bg-white">
+            {selectedFile && (
+              <div className="mb-2 flex items-center gap-2 p-2 bg-muted rounded-lg">
+                <Paperclip className="w-4 h-4 text-muted-foreground" />
+                <span className="text-sm flex-1 truncate">{selectedFile.name}</span>
+                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={removeSelectedFile}>
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+            )}
+            <div className="flex gap-2">
+              <input
+                ref={fileInputRef}
+                type="file"
+                className="hidden"
+                accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.xls,.xlsx,.txt"
+                onChange={handleFileSelect}
+              />
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-[60px] w-[60px] flex-shrink-0 bg-transparent"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={sending}
+              >
+                <Paperclip className="w-5 h-5" />
+              </Button>
+
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-[60px] w-[60px] flex-shrink-0 bg-transparent"
+                onClick={() => setQuickRepliesOpen(true)}
+              >
+                <Zap className="w-5 h-5" />
+              </Button>
+              <Textarea
+                value={newMessage}
+                onChange={(e) => {
+                  setNewMessage(e.target.value)
+                  registerActivity("typing")
+                }}
+                onKeyDown={handleKeyPress}
+                placeholder="Digite sua mensagem..."
+                className="resize-none min-h-[60px] max-h-[200px]"
+                rows={2}
+              />
+              <Button
+                onClick={handleSendMessage}
+                disabled={(!newMessage.trim() && !selectedFile) || sending}
+                size="icon"
+                className="h-[60px] w-[60px] flex-shrink-0"
+              >
+                {sending ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
+
+      <Sheet open={quickRepliesOpen} onOpenChange={setQuickRepliesOpen}>
+        <SheetContent side="right">
+          <SheetHeader>
+            <SheetTitle>Respostas Rápidas</SheetTitle>
+            <SheetDescription>Selecione uma resposta rápida para enviar</SheetDescription>
+          </SheetHeader>
+          <QuickRepliesPanel onSelectReply={handleQuickReply} />
+        </SheetContent>
+      </Sheet>
+
+      <AssignmentHistoryDialog
+        open={showHistoryDialog}
+        onOpenChange={setShowHistoryDialog}
+        chatId={chatId}
+        chatName={safeChatName}
+      />
+
+      <AssignToUserDialog
+        open={showAssignToUserDialog}
+        onOpenChange={setShowAssignToUserDialog}
+        chatId={chatId}
+        chatName={safeChatName}
+        currentUserId={userId}
+        currentAssignment={assignmentForDialog}
+        onAssignSuccess={() => {
+          loadAssignment()
+        }}
+      />
     </div>
-  </div>
-
-  <Sheet open={quickRepliesOpen} onOpenChange={setQuickRepliesOpen}>
-    <SheetContent side="right">
-      <SheetHeader>
-        <SheetTitle>Respostas Rápidas</SheetTitle>
-        <SheetDescription>Selecione uma resposta rápida para enviar</SheetDescription>
-      </SheetHeader>
-      <QuickRepliesPanel onSelectReply={handleQuickReply} />
-    </SheetContent>
-  </Sheet>
-
-  <AssignmentHistoryDialog
-    open={showHistoryDialog}
-    onOpenChange={setShowHistoryDialog}
-    chatId={chatId}
-    chatName={chatName}
-  />
-  <AssignToUserDialog
-    open={showAssignToUserDialog}
-    onOpenChange={setShowAssignToUserDialog}
-    chatId={chatId}
-    chatName={chatName}
-    currentUserId={userId}
-    currentAssignment={assignmentForDialog}
-    onAssignSuccess={() => {
-      loadAssignment()
-    }}
-  />
-</div>
-)
+  )
 }
