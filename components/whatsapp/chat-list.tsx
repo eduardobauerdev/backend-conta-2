@@ -26,7 +26,8 @@ interface ChatListProps {
   initialData?: any
 }
 
-const CHATS_PER_PAGE = 20
+const INITIAL_BATCH_SIZE = 20
+const SUBSEQUENT_BATCH_SIZE = 10
 const SCROLL_THRESHOLD = 100
 
 type ChatListHandle = ElementRef<"div">; 
@@ -51,6 +52,8 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
     const [error, setError] = useState<string | null>(null)
     const [loadingMore, setLoadingMore] = useState(false)
     const [hasMore, setHasMore] = useState(true)
+    
+    // Offset agora funciona estritamente como o "Limiar Visível"
     const [offset, setOffset] = useState(0)
 
     const scrollContainerRef = (ref as React.RefObject<HTMLDivElement>) || useRef<HTMLDivElement>(null); 
@@ -66,12 +69,20 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
       setIsAuthLoaded(true) 
     }, [])
 
+    // ✅ LÓGICA DE CORTE RÍGIDO (IGNORE MESSAGES)
+    // Se chegarem mensagens novas, o cachedChats atualiza.
+    // Este efeito garante que pegamos o cachedChats atualizado, mas cortamos (slice)
+    // exatamente no tamanho que o usuário pediu (offset ou inicial).
     useEffect(() => {
       if (cachedChats && cachedChats.length > 0) {
-        setChats(cachedChats)
+        // Se offset for 0, usa o inicial (20). Se já rolou, usa o offset atual (30, 40...).
+        const strictLimit = offset === 0 ? INITIAL_BATCH_SIZE : offset;
+        
+        // Corta o array. Mensagens novas empurram as antigas para fora deste limite.
+        setChats(cachedChats.slice(0, strictLimit))
         setLoading(false)
       }
-    }, [cachedChats])
+    }, [cachedChats, offset])
 
     useEffect(() => {
       const loadInitialAssignments = async () => {
@@ -201,9 +212,11 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
 
     useEffect(() => {
       if (initialData && refreshTrigger === 0) {
-        setChats(initialData.chats || [])
+        // Inicializa com o limite estrito de 20
+        const initialChats = (initialData.chats || []).slice(0, INITIAL_BATCH_SIZE)
+        setChats(initialChats)
         setHasMore(initialData.hasMore || false)
-        setOffset(initialData.chats?.length || 0)
+        setOffset(INITIAL_BATCH_SIZE) // Define o limite atual como 20
         setLoading(false)
         return
       }
@@ -211,9 +224,11 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
       const cachedData = getCachedChats()
 
       if (cachedData && refreshTrigger === 0) {
-        setChats(cachedData.chats)
+        // Inicializa do cache com o limite estrito de 20
+        const initialCacheChats = cachedData.chats.slice(0, INITIAL_BATCH_SIZE)
+        setChats(initialCacheChats)
         setHasMore(cachedData.hasMore)
-        setOffset(cachedData.totalChats)
+        setOffset(INITIAL_BATCH_SIZE) // Define o limite atual como 20
         setLoading(false)
         return
       }
@@ -258,12 +273,17 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
       if (!isInitial) setLoadingMore(true)
 
       try {
-        const url = `/api/whatsapp/chats?limit=${CHATS_PER_PAGE}&offset=${currentOffset}`
+        const limit = isInitial ? INITIAL_BATCH_SIZE : SUBSEQUENT_BATCH_SIZE
+        const url = `/api/whatsapp/chats?limit=${limit}&offset=${currentOffset}`
+        
         const response = await fetch(url)
         const data = await response.json()
 
         if (data.success) {
           const newChats: Chat[] = data.chats || []
+          
+          // Calcula o novo tamanho total desejado
+          const newTotalSize = currentOffset + newChats.length
 
           if (isInitial) {
             setChats(newChats)
@@ -277,7 +297,15 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
           }
 
           setHasMore(data.hasMore || false)
-          setOffset(currentOffset + newChats.length)
+          
+          // Se for inicial, garante que o offset seja pelo menos o tamanho do lote inicial
+          // Se for scroll, soma o que chegou
+          if (isInitial) {
+             setOffset(newChats.length)
+          } else {
+             setOffset(prev => prev + newChats.length)
+          }
+
         } else {
           const errorMessage = data.message || "Erro ao carregar conversas"
           setError(errorMessage)
@@ -313,6 +341,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
         const distanceFromBottom = scrollHeight - scrollTop - clientHeight
 
         if (distanceFromBottom < SCROLL_THRESHOLD && hasMore && !isLoadingRef.current) {
+          // Usa o offset atual para buscar a próxima página
           loadChats(offset, false)
         }
       },

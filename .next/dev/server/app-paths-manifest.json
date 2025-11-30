@@ -1,8 +1,9 @@
 {
+  "/(app)/ajustes/page": "app/(app)/ajustes/page.js",
+  "/(app)/crm/page": "app/(app)/crm/page.js",
+  "/(app)/usuarios/page": "app/(app)/usuarios/page.js",
   "/(app)/whatsapp/page": "app/(app)/whatsapp/page.js",
-  "/api/whatsapp/activity/route": "app/api/whatsapp/activity/route.js",
-  "/api/whatsapp/assignment-logs/route": "app/api/whatsapp/assignment-logs/route.js",
-  "/api/whatsapp/assignments/route": "app/api/whatsapp/assignments/route.js",
   "/api/whatsapp/chats/route": "app/api/whatsapp/chats/route.js",
+  "/api/whatsapp/config/route": "app/api/whatsapp/config/route.js",
   "/api/whatsapp/status/route": "app/api/whatsapp/status/route.js"
 }

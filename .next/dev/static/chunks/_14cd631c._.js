@@ -198,7 +198,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$di
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase/client.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/swr/dist/index/index.mjs [app-client] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__ = __turbopack_context__.i("[project]/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-client] (ecmascript) <export j as mutate>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__ = __turbopack_context__.i("[project]/node_modules/swr/dist/_internal/config-context-12s-Dh3trQsc.mjs [app-client] (ecmascript) <export j as mutate>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/swr/dist/_internal/index.mjs [app-client] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/swr-config.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth.ts [app-client] (ecmascript)");
@@ -220,7 +220,8 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-const CHATS_PER_PAGE = 20;
+const INITIAL_BATCH_SIZE = 20;
+const SUBSEQUENT_BATCH_SIZE = 10;
 const SCROLL_THRESHOLD = 100;
 const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["forwardRef"])(_c = _s(({ onSelectChat, selectedChatId, refreshTrigger, initialData }, ref)=>{
     _s();
@@ -238,6 +239,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loadingMore, setLoadingMore] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [hasMore, setHasMore] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    // Offset agora funciona estritamente como o "Limiar Visível"
     const [offset, setOffset] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const scrollContainerRef = ref || (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const isLoadingRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
@@ -250,15 +252,23 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
             setIsAuthLoaded(true);
         }
     }["ChatList.useEffect"], []);
+    // ✅ LÓGICA DE CORTE RÍGIDO (IGNORE MESSAGES)
+    // Se chegarem mensagens novas, o cachedChats atualiza.
+    // Este efeito garante que pegamos o cachedChats atualizado, mas cortamos (slice)
+    // exatamente no tamanho que o usuário pediu (offset ou inicial).
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ChatList.useEffect": ()=>{
             if (cachedChats && cachedChats.length > 0) {
-                setChats(cachedChats);
+                // Se offset for 0, usa o inicial (20). Se já rolou, usa o offset atual (30, 40...).
+                const strictLimit = offset === 0 ? INITIAL_BATCH_SIZE : offset;
+                // Corta o array. Mensagens novas empurram as antigas para fora deste limite.
+                setChats(cachedChats.slice(0, strictLimit));
                 setLoading(false);
             }
         }
     }["ChatList.useEffect"], [
-        cachedChats
+        cachedChats,
+        offset
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ChatList.useEffect": ()=>{
@@ -300,7 +310,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                 }
                             }
                         }["ChatList.useEffect.loadInitialAssignments"]);
-                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ATTR_CACHE_KEY"], newAssignmentsMap, false);
+                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ATTR_CACHE_KEY"], newAssignmentsMap, false);
                     } catch (err) {
                         console.error("Erro ao carregar badges:", err);
                     }
@@ -328,7 +338,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                             const { data: cargoData } = await supabase.from("cargos").select("cor").eq("nome", userData.cargo).maybeSingle();
                             cargoColor = cargoData?.cor;
                         }
-                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ATTR_CACHE_KEY"], {
+                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ATTR_CACHE_KEY"], {
                             ...currentMap,
                             [assignment.chat_id]: {
                                 assigned_to_id: assignment.assigned_to_id,
@@ -343,7 +353,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                             ...currentMap
                         };
                         delete newMap[assignment.chat_id];
-                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ATTR_CACHE_KEY"], newMap, false);
+                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ATTR_CACHE_KEY"], newMap, false);
                     }
                 }
             }["ChatList.useEffect.channel"]).subscribe();
@@ -371,17 +381,21 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ChatList.useEffect": ()=>{
             if (initialData && refreshTrigger === 0) {
-                setChats(initialData.chats || []);
+                // Inicializa com o limite estrito de 20
+                const initialChats = (initialData.chats || []).slice(0, INITIAL_BATCH_SIZE);
+                setChats(initialChats);
                 setHasMore(initialData.hasMore || false);
-                setOffset(initialData.chats?.length || 0);
+                setOffset(INITIAL_BATCH_SIZE); // Define o limite atual como 20
                 setLoading(false);
                 return;
             }
             const cachedData = getCachedChats();
             if (cachedData && refreshTrigger === 0) {
-                setChats(cachedData.chats);
+                // Inicializa do cache com o limite estrito de 20
+                const initialCacheChats = cachedData.chats.slice(0, INITIAL_BATCH_SIZE);
+                setChats(initialCacheChats);
                 setHasMore(cachedData.hasMore);
-                setOffset(cachedData.totalChats);
+                setOffset(INITIAL_BATCH_SIZE); // Define o limite atual como 20
                 setLoading(false);
                 return;
             }
@@ -436,15 +450,18 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
         isLoadingRef.current = true;
         if (!isInitial) setLoadingMore(true);
         try {
-            const url = `/api/whatsapp/chats?limit=${CHATS_PER_PAGE}&offset=${currentOffset}`;
+            const limit = isInitial ? INITIAL_BATCH_SIZE : SUBSEQUENT_BATCH_SIZE;
+            const url = `/api/whatsapp/chats?limit=${limit}&offset=${currentOffset}`;
             const response = await fetch(url);
             const data = await response.json();
             if (data.success) {
                 const newChats = data.chats || [];
+                // Calcula o novo tamanho total desejado
+                const newTotalSize = currentOffset + newChats.length;
                 if (isInitial) {
                     setChats(newChats);
                     setCachedChats(newChats, data.hasMore || false, newChats.length);
-                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CHAT_LIST_CACHE_KEY"], newChats, {
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CHAT_LIST_CACHE_KEY"], newChats, {
                         revalidate: false
                     });
                 } else {
@@ -454,12 +471,18 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                     ];
                     setChats(updatedChats);
                     appendChats(newChats, data.hasMore || false);
-                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CHAT_LIST_CACHE_KEY"], updatedChats, {
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CHAT_LIST_CACHE_KEY"], updatedChats, {
                         revalidate: false
                     });
                 }
                 setHasMore(data.hasMore || false);
-                setOffset(currentOffset + newChats.length);
+                // Se for inicial, garante que o offset seja pelo menos o tamanho do lote inicial
+                // Se for scroll, soma o que chegou
+                if (isInitial) {
+                    setOffset(newChats.length);
+                } else {
+                    setOffset((prev)=>prev + newChats.length);
+                }
             } else {
                 const errorMessage = data.message || "Erro ao carregar conversas";
                 setError(errorMessage);
@@ -494,6 +517,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
             const clientHeight = target.clientHeight;
             const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
             if (distanceFromBottom < SCROLL_THRESHOLD && hasMore && !isLoadingRef.current) {
+                // Usa o offset atual para buscar a próxima página
                 loadChats(offset, false);
             }
         }
@@ -528,7 +552,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                     className: "w-6 h-6 animate-spin mr-2 text-primary"
                 }, void 0, false, {
                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                    lineNumber: 338,
+                    lineNumber: 367,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -536,13 +560,13 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                     children: "Carregando conversas..."
                 }, void 0, false, {
                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                    lineNumber: 339,
+                    lineNumber: 368,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/whatsapp/chat-list.tsx",
-            lineNumber: 337,
+            lineNumber: 366,
             columnNumber: 9
         }, ("TURBOPACK compile-time value", void 0));
     }
@@ -557,20 +581,20 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                             className: "h-4 w-4"
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 348,
+                            lineNumber: 377,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDescription"], {
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 349,
+                            lineNumber: 378,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                    lineNumber: 347,
+                    lineNumber: 376,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -587,20 +611,20 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                             className: "w-4 h-4 mr-2"
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 361,
+                            lineNumber: 390,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         "Tentar Novamente"
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                    lineNumber: 351,
+                    lineNumber: 380,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/whatsapp/chat-list.tsx",
-            lineNumber: 346,
+            lineNumber: 375,
             columnNumber: 9
         }, ("TURBOPACK compile-time value", void 0));
     }
@@ -619,7 +643,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                     className: "absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 374,
+                                    lineNumber: 403,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -629,18 +653,18 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                     className: "pl-8 h-9"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 375,
+                                    lineNumber: 404,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 373,
+                            lineNumber: 402,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/whatsapp/chat-list.tsx",
-                        lineNumber: 372,
+                        lineNumber: 401,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -654,7 +678,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                 children: "Todas"
                             }, void 0, false, {
                                 fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                lineNumber: 385,
+                                lineNumber: 414,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -665,19 +689,19 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                 children: "Minhas"
                             }, void 0, false, {
                                 fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                lineNumber: 396,
+                                lineNumber: 425,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/whatsapp/chat-list.tsx",
-                        lineNumber: 384,
+                        lineNumber: 413,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/whatsapp/chat-list.tsx",
-                lineNumber: 371,
+                lineNumber: 400,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -697,7 +721,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                             children: searchQuery ? "Nenhuma conversa encontrada" : filterMode === 'mine' ? "Sem conversas atribuídas" : "Nenhuma conversa disponível"
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 422,
+                            lineNumber: 451,
                             columnNumber: 15
                         }, ("TURBOPACK compile-time value", void 0)),
                         hasMore ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -710,20 +734,20 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                     className: "w-4 h-4 animate-spin mr-2"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 437,
+                                    lineNumber: 466,
                                     columnNumber: 34
                                 }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
                                     className: "w-4 h-4 mr-2"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 437,
+                                    lineNumber: 466,
                                     columnNumber: 86
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 "Buscar mais"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 431,
+                            lineNumber: 460,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                             onClick: ()=>{
@@ -735,13 +759,13 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                             children: "Limpar filtros"
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 441,
+                            lineNumber: 470,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                    lineNumber: 421,
+                    lineNumber: 450,
                     columnNumber: 13
                 }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                     children: [
@@ -762,7 +786,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                                     alt: chat.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                    lineNumber: 473,
+                                                    lineNumber: 502,
                                                     columnNumber: 44
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarFallback"], {
@@ -770,13 +794,13 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                                     children: chat.name.charAt(0).toUpperCase()
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                    lineNumber: 474,
+                                                    lineNumber: 503,
                                                     columnNumber: 25
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                            lineNumber: 472,
+                                            lineNumber: 501,
                                             columnNumber: 23
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -790,7 +814,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                                             children: chat.name
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                            lineNumber: 482,
+                                                            lineNumber: 511,
                                                             columnNumber: 27
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -798,13 +822,13 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                                             children: formatTime(chat.lastMessageTime)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                            lineNumber: 483,
+                                                            lineNumber: 512,
                                                             columnNumber: 27
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                    lineNumber: 481,
+                                                    lineNumber: 510,
                                                     columnNumber: 25
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -823,7 +847,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                                                     className: "w-2.5 h-2.5"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                                    lineNumber: 500,
+                                                                    lineNumber: 529,
                                                                     columnNumber: 31
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -831,20 +855,20 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                                                     children: assignment.assigned_to_name
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                                    lineNumber: 501,
+                                                                    lineNumber: 530,
                                                                     columnNumber: 31
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                            lineNumber: 491,
+                                                            lineNumber: 520,
                                                             columnNumber: 29
                                                         }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                             className: "text-xs text-muted-foreground truncate flex-1 min-w-0",
                                                             children: chat.lastMessage || "Sem mensagens"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                            lineNumber: 504,
+                                                            lineNumber: 533,
                                                             columnNumber: 29
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         chat.unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -852,31 +876,31 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                                             children: chat.unreadCount > 99 ? "99+" : chat.unreadCount
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                            lineNumber: 510,
+                                                            lineNumber: 539,
                                                             columnNumber: 29
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                    lineNumber: 489,
+                                                    lineNumber: 518,
                                                     columnNumber: 25
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                            lineNumber: 479,
+                                            lineNumber: 508,
                                             columnNumber: 23
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, chat.id, true, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 462,
+                                    lineNumber: 491,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0));
                             })
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 456,
+                            lineNumber: 485,
                             columnNumber: 15
                         }, ("TURBOPACK compile-time value", void 0)),
                         loadingMore && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -886,7 +910,7 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                     className: "w-4 h-4 animate-spin"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 523,
+                                    lineNumber: 552,
                                     columnNumber: 19
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -894,13 +918,13 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                     children: "Carregando..."
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 524,
+                                    lineNumber: 553,
                                     columnNumber: 19
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 522,
+                            lineNumber: 551,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0)),
                         !hasMore && filteredChats.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -910,25 +934,25 @@ const ChatList = /*#__PURE__*/ _s((0, __TURBOPACK__imported__module__$5b$project
                                 children: "Fim da lista"
                             }, void 0, false, {
                                 fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                lineNumber: 530,
+                                lineNumber: 559,
                                 columnNumber: 19
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 529,
+                            lineNumber: 558,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true)
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-list.tsx",
-                lineNumber: 410,
+                lineNumber: 439,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/whatsapp/chat-list.tsx",
-        lineNumber: 369,
+        lineNumber: 398,
         columnNumber: 7
     }, ("TURBOPACK compile-time value", void 0));
 }, "U7cSaMgoxOXtM1KFpCzUcN0zcP4=", false, function() {
