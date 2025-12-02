@@ -2008,7 +2008,7 @@ function EditUserDialog({ open, onOpenChange, user, onSuccess }) {
         columnNumber: 5
     }, this);
 }
-_s(EditUserDialog, "WlzyBZUwOgxtQ1RDqduldjDnsYs=");
+_s(EditUserDialog, "+sBNyErnstUWZzqvumOTv6lCf3Q=");
 _c = EditUserDialog;
 var _c;
 __turbopack_context__.k.register(_c, "EditUserDialog");
@@ -2837,7 +2837,7 @@ function CreateUserDialog({ open, onOpenChange, onSuccess }) {
         columnNumber: 5
     }, this);
 }
-_s(CreateUserDialog, "e83Q8NHpNgEpDhIMAI30sb2Eptc=");
+_s(CreateUserDialog, "sIdPp6PVBVci4SRa9Jt2NygHnO4=");
 _c = CreateUserDialog;
 var _c;
 __turbopack_context__.k.register(_c, "CreateUserDialog");
@@ -4138,7 +4138,7 @@ function CreateRoleDialog({ open, onOpenChange, onSuccess }) {
         columnNumber: 5
     }, this);
 }
-_s(CreateRoleDialog, "ZAM7xlEezfFrWF+qY4YUv7/TgoI=", false, function() {
+_s(CreateRoleDialog, "AaH+CwF8jDc01r7Sedz2gVpvEcU=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$user$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useUser"]
     ];
@@ -4291,7 +4291,7 @@ function RoleBadge({ cargo, className }) {
         columnNumber: 5
     }, this);
 }
-_s(RoleBadge, "rYR1xXgXBffzlE4mF4NA3BeMGW8=");
+_s(RoleBadge, "kne6+zlBVjueyxPTdqj28YGXXNo=");
 _c = RoleBadge;
 var _c;
 __turbopack_context__.k.register(_c, "RoleBadge");

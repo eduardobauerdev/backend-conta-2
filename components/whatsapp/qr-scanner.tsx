@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Loader2, RefreshCw, AlertTriangle } from "lucide-react"
+import { Loader2, QrCode, Power } from "lucide-react"
 import { toast } from "sonner"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { createClient } from "@/lib/supabase/client"
 
 interface QRScannerProps {
   onConnected: () => void
@@ -13,200 +13,198 @@ interface QRScannerProps {
 
 export function QRScanner({ onConnected }: QRScannerProps) {
   const [qrImage, setQrImage] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [checkingConnection, setCheckingConnection] = useState(false)
-  const [retryCount, setRetryCount] = useState(0)
-  const [imageLoading, setImageLoading] = useState(false)
-  const [imageError, setImageError] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [sessionActive, setSessionActive] = useState(false)
+  
+  const supabase = createClient()
 
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
-
+  // 1. Escuta Realtime do Status (Mantido em instance_settings onde o backend escreve)
   useEffect(() => {
-    loadQRCode()
+    const fetchInitialState = async () => {
+      try {
+        const { data } = await supabase
+          .from('instance_settings')
+          .select('qr_code, status')
+          .eq('id', 1)
+          .single();
 
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
+        if (data) {
+          if (data.status === 'qr' && data.qr_code) {
+            setQrImage(data.qr_code);
+            setSessionActive(true);
+          } else if (data.status === 'connected') {
+            onConnected();
+          }
+        }
+      } catch (error) {
+        console.error("Erro ao buscar estado inicial:", error);
+      }
+    };
+    
+    fetchInitialState();
 
-    intervalRef.current = setInterval(checkConnection, 3000)
+    const channel = supabase
+      .channel('qr_scanner_updates')
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'instance_settings', filter: 'id=eq.1' },
+        (payload) => {
+          const newData = payload.new;
+          
+          if (newData.status === 'connected') {
+            toast.success("Conectado com sucesso!");
+            onConnected();
+          } else if (newData.status === 'qr' && newData.qr_code) {
+            setQrImage(newData.qr_code);
+            setLoading(false);
+            setSessionActive(true);
+          } else if (newData.status === 'disconnected') {
+            setQrImage(null);
+            setSessionActive(false);
+            setLoading(false);
+          }
+        }
+      )
+      .subscribe();
 
     return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-        intervalRef.current = null
-      }
-    }
-  }, [])
+      supabase.removeChannel(channel);
+    };
+  }, [onConnected, supabase]);
 
-  async function loadQRCode() {
+  // ✅ FUNÇÃO AUXILIAR: Busca a URL na tabela whatsapp_config
+  async function getBackendUrl() {
+    // Pega a primeira linha da configuração
+    const { data, error } = await supabase
+        .from('whatsapp_config')
+        .select('server_url')
+        .limit(1)
+        .single();
+    
+    if (error || !data?.server_url) {
+        throw new Error("URL da API não encontrada em 'whatsapp_config'.");
+    }
+    
+    // Remove barra no final se houver para evitar url mal formada
+    return data.server_url.replace(/\/$/, "");
+  }
+
+  // 2. Iniciar Sessão (Usa a URL do banco)
+  async function startSession() {
     try {
-      setLoading(true)
-      setError(null)
-      setQrImage(null)
-      setImageLoading(false)
-      setImageError(false)
+      setLoading(true);
+      setQrImage(null);
+      
+      const baseUrl = await getBackendUrl();
+      const url = `${baseUrl}/session/connect`;
+      
+      console.log(`[QRScanner] Chamando API em: ${url}`);
 
-      const response = await fetch("/api/whatsapp/qr")
-
-      const data = await response.json()
-
-      if (!response.ok || !data.success) {
-        throw new Error(data.message || "Erro ao carregar QR Code")
+      const response = await fetch(url, { 
+        method: "POST" 
+      });
+      
+      if (!response.ok) {
+          const errorText = await response.text(); 
+          throw new Error(errorText || "Falha ao iniciar");
       }
-
-      if (data.qr) {
-        setImageLoading(true)
-        setQrImage(data.qr)
-        setRetryCount(0)
-        toast.success("QR Code gerado! Escaneie com seu WhatsApp.")
-      } else {
-        throw new Error(data.message || "QR Code não disponível")
-      }
-    } catch (error) {
-      const errorMsg =
-        error instanceof Error ? error.message : "Não foi possível gerar o QR Code. Verifique a configuração da API."
-      console.error("[v0] 💥 Erro ao carregar QR Code:", error)
-      setError(errorMsg)
-      setRetryCount((prev) => prev + 1)
-      toast.error(errorMsg)
-    } finally {
-      setLoading(false)
+      
+      toast.info("Iniciando servidor...", {
+        description: "Aguarde o QR Code aparecer."
+      });
+      
+    } catch (error: any) {
+      console.error("[QRScanner] Erro:", error);
+      toast.error(error.message || "Erro de conexão.");
+      setLoading(false);
     }
   }
 
-  async function checkConnection() {
-    if (checkingConnection) {
-      return
-    }
-
+  // 3. Cancelar Sessão
+  async function stopSession() {
     try {
-      setCheckingConnection(true)
-
-      const response = await fetch("/api/whatsapp/status")
-      const data = await response.json()
-
-      if (data.success && data.connected) {
-        toast.success("WhatsApp conectado com sucesso!")
-        onConnected()
-      }
-    } catch (error) {
-      // Silent error during polling
-    } finally {
-      setCheckingConnection(false)
+        const baseUrl = await getBackendUrl();
+        await fetch(`${baseUrl}/session/disconnect`, { method: "POST" });
+        
+        setSessionActive(false);
+        setQrImage(null);
+        toast.info("Sessão cancelada.");
+    } catch (e) {
+        toast.error("Erro ao cancelar.");
     }
   }
 
-  function handleImageLoad() {
-    setImageLoading(false)
-    setImageError(false)
-  }
+  // --- RENDERIZAÇÃO ---
 
-  function handleImageError() {
-    console.error("[v0] ❌ Erro ao renderizar imagem do QR Code")
-    setImageLoading(false)
-    setImageError(true)
-    setError("Erro ao carregar a imagem do QR Code. Tente gerar um novo.")
-  }
-
-  if (loading) {
+  if (loading && !qrImage) {
     return (
-      <Card className="p-8">
-        <div className="flex flex-col items-center gap-4">
-          <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
-          <p className="text-muted-foreground">Gerando QR Code...</p>
+      <Card className="p-8 flex flex-col items-center justify-center gap-4 min-h-[300px]">
+        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+        <div className="text-center space-y-1">
+          <p className="font-medium">Iniciando servidor WhatsApp...</p>
+          <p className="text-xs text-muted-foreground">Buscando configuração e conectando...</p>
         </div>
       </Card>
     )
   }
 
-  if (error) {
+  if (sessionActive && qrImage) {
     return (
-      <Card className="p-8">
-        <div className="flex flex-col items-center gap-4">
-          <Alert variant="destructive" className="mb-4">
-            <AlertTriangle className="h-4 w-4" />
-            <AlertTitle>Erro ao Gerar QR Code</AlertTitle>
-            <AlertDescription className="space-y-2">
-              <p>{error}</p>
-              {retryCount > 2 && (
-                <p className="text-xs mt-2">
-                  Múltiplas tentativas falharam. Verifique:
-                  <br />• O servidor WhatsApp está ativo no Railway?
-                  <br />• A URL em Ajustes está correta?
-                  <br />• Há erros nos logs do servidor?
-                </p>
-              )}
-            </AlertDescription>
-          </Alert>
-          <Button onClick={loadQRCode} variant="outline">
-            <RefreshCw className="w-4 h-4 mr-2" />
-            Tentar Novamente {retryCount > 0 && `(${retryCount})`}
-          </Button>
+      <Card className="p-8 flex flex-col items-center gap-6">
+        <div className="text-center space-y-2">
+          <h3 className="font-semibold text-lg">Escaneie o QR Code</h3>
+          <p className="text-sm text-muted-foreground max-w-xs mx-auto">
+            Abra o WhatsApp no celular {'>'} Menu {'>'} Aparelhos conectados {'>'} Conectar
+          </p>
         </div>
-      </Card>
-    )
-  }
 
-  if (!qrImage) {
-    return (
-      <Card className="p-8">
-        <div className="flex flex-col items-center gap-4">
-          <p className="text-muted-foreground">Não foi possível gerar o QR Code</p>
-          <Button onClick={loadQRCode} variant="outline">
-            <RefreshCw className="w-4 h-4 mr-2" />
-            Tentar Novamente
-          </Button>
+        <div className="relative bg-white p-2 rounded-lg border shadow-sm">
+          <img
+            src={qrImage}
+            alt="QR Code"
+            className="w-[260px] h-[260px] object-contain"
+          />
+          <div className="absolute bottom-2 right-2 flex items-center gap-1.5 bg-background/80 backdrop-blur px-2 py-1 rounded-full border shadow-sm">
+             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+             <span className="text-[10px] font-medium text-muted-foreground">Ao vivo</span>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3 w-full max-w-xs">
+            <p className="text-xs text-center text-muted-foreground">
+                Este código expira se não for lido em 5 minutos.
+            </p>
+            <Button 
+                variant="destructive" 
+                variant="outline" 
+                className="w-full text-destructive hover:text-destructive hover:bg-destructive/10"
+                onClick={stopSession}
+            >
+                Cancelar Sessão
+            </Button>
         </div>
       </Card>
     )
   }
 
   return (
-    <Card className="p-8">
-      <div className="flex flex-col items-center gap-6">
-        <div className="text-center space-y-2">
-          <h3 className="font-semibold text-lg">Escaneie o QR Code</h3>
-          <p className="text-sm text-muted-foreground max-w-md">
-            Abra o WhatsApp no seu celular, vá em Menu ou Configurações → Aparelhos conectados → Conectar um aparelho
-          </p>
-        </div>
-
-        <div className="relative w-[260px] h-[260px] flex items-center justify-center">
-          {imageLoading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-muted/50 rounded-lg">
-              <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
-            </div>
-          )}
-          {qrImage && !imageError && (
-            <img
-              src={qrImage || "/placeholder.svg"}
-              alt="QR Code do WhatsApp"
-              className="rounded-lg shadow-sm"
-              style={{ width: 260, height: 260, objectFit: "contain" }}
-              onLoad={handleImageLoad}
-              onError={handleImageError}
-            />
-          )}
-          {imageError && (
-            <div className="absolute inset-0 flex items-center justify-center bg-muted rounded-lg">
-              <AlertTriangle className="w-8 h-8 text-destructive" />
-            </div>
-          )}
-        </div>
-
-        <Button onClick={loadQRCode} variant="outline" size="sm">
-          <RefreshCw className="w-4 h-4 mr-2" />
-          Gerar Novo QR Code
-        </Button>
-
-        {checkingConnection && (
-          <p className="text-xs text-muted-foreground flex items-center gap-2">
-            <Loader2 className="w-3 h-3 animate-spin" />
-            Aguardando conexão...
-          </p>
-        )}
+    <Card className="p-8 flex flex-col items-center justify-center gap-6 min-h-[300px]">
+      <div className="p-4 bg-muted/50 rounded-full">
+        <QrCode className="w-12 h-12 text-muted-foreground" />
       </div>
+      
+      <div className="text-center space-y-2 max-w-sm">
+        <h3 className="font-semibold text-lg">WhatsApp Desconectado</h3>
+        <p className="text-sm text-muted-foreground">
+          Para economizar recursos, a conexão é iniciada manualmente. 
+          Clique abaixo para gerar um novo QR Code.
+        </p>
+      </div>
+
+      <Button onClick={startSession} size="lg" className="w-full max-w-xs">
+        <Power className="w-4 h-4 mr-2" />
+        Gerar QR Code
+      </Button>
     </Card>
   )
 }

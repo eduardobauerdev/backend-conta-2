@@ -169,7 +169,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2e
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$whatsapp$2d$cache$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/contexts/whatsapp-cache-context.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/badge.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/sonner/dist/index.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase/client.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/swr/dist/index/index.mjs [app-ssr] (ecmascript) <locals>");
@@ -193,18 +192,21 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2
 ;
 ;
 ;
-;
+// URL do Backend para imagens (Proxy)
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "https://backend-sobt.onrender.com";
 const INITIAL_BATCH_SIZE = 20;
 const SUBSEQUENT_BATCH_SIZE = 10;
 const SCROLL_THRESHOLD = 100;
 const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["forwardRef"])(({ onSelectChat, selectedChatId, refreshTrigger, initialData }, ref)=>{
     const { data: cachedChats = initialData?.chats || [] } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CHAT_LIST_CACHE_KEY"]);
     const { data: assignmentsMap = initialData?.assignmentsMap || {} } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ATTR_CACHE_KEY"]);
-    const { getCachedChats, setCachedChats, appendChats } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$whatsapp$2d$cache$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useWhatsAppCache"])();
+    const { setCachedChats, appendChats } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$whatsapp$2d$cache$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useWhatsAppCache"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const { mutate: globalMutate } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useSWRConfig"])();
+    const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createClient"])();
     const [chats, setChats] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(cachedChats);
     const [searchQuery, setSearchQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [debouncedSearch, setDebouncedSearch] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [filterMode, setFilterMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("all");
     const [currentUserId, setCurrentUserId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [isAuthLoaded, setIsAuthLoaded] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -212,48 +214,101 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loadingMore, setLoadingMore] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [hasMore, setHasMore] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
-    // Offset agora funciona estritamente como o "Limiar Visível"
     const [offset, setOffset] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
     const scrollContainerRef = ref || (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const isLoadingRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    // --- SETUP INICIAL ---
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const userIdFromCookie = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id");
-        if (userIdFromCookie) {
-            setCurrentUserId(userIdFromCookie);
-        }
+        const uid = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id");
+        if (uid) setCurrentUserId(uid);
         setIsAuthLoaded(true);
+        console.log("🛠️ ChatList montado.");
+        // Dispara atualização de avatares em background (não trava a UI)
+        // Isso garante que o backend busque fotos novas para chats que estão sem foto no banco
+        const refreshAvatars = async ()=>{
+            try {
+                // Usamos o caminho da API configurado no next.config.mjs ou URL direta
+                const url = "/api/whatsapp/chats/refresh-avatars";
+                await fetch(url, {
+                    method: 'POST'
+                });
+            } catch (e) {}
+        };
+        // Espera 2s para não concorrer com o carregamento inicial da lista
+        const timer = setTimeout(refreshAvatars, 2000);
+        return ()=>clearTimeout(timer);
     }, []);
-    // ✅ LÓGICA DE CORTE RÍGIDO (IGNORE MESSAGES)
-    // Se chegarem mensagens novas, o cachedChats atualiza.
-    // Este efeito garante que pegamos o cachedChats atualizado, mas cortamos (slice)
-    // exatamente no tamanho que o usuário pediu (offset ou inicial).
+    // --- DEBOUNCE BUSCA ---
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        if (cachedChats && cachedChats.length > 0) {
-            // Se offset for 0, usa o inicial (20). Se já rolou, usa o offset atual (30, 40...).
-            const strictLimit = offset === 0 ? INITIAL_BATCH_SIZE : offset;
-            // Corta o array. Mensagens novas empurram as antigas para fora deste limite.
-            setChats(cachedChats.slice(0, strictLimit));
-            setLoading(false);
-        }
+        const timer = setTimeout(()=>{
+            setDebouncedSearch(searchQuery);
+        }, 500);
+        return ()=>clearTimeout(timer);
     }, [
-        cachedChats,
-        offset
+        searchQuery
     ]);
+    // --- RECARREGAR QUANDO MUDA FILTRO/BUSCA ---
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!isAuthLoaded) return;
+        setChats([]);
+        setOffset(0);
+        setHasMore(true);
+        loadChats(0, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [
+        debouncedSearch,
+        filterMode,
+        isAuthLoaded
+    ]);
+    // --- REALTIME (Ouve mensagens novas e atualiza a lista) ---
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const channel = supabase.channel('public:chats').on('postgres_changes', {
+            event: '*',
+            schema: 'public',
+            table: 'chats'
+        }, (payload)=>{
+            if (payload.eventType === 'UPDATE' || payload.eventType === 'INSERT') {
+                const newChat = payload.new;
+                if (newChat.id.includes("@g.us")) return;
+                setChats((prevChats)=>{
+                    // Remove a versão antiga se existir
+                    const filtered = prevChats.filter((c)=>c.id !== newChat.id);
+                    const formattedChat = {
+                        id: newChat.id,
+                        name: newChat.name || newChat.id.split('@')[0],
+                        lastMessage: newChat.last_message,
+                        lastMessageTime: newChat.last_message_time,
+                        unreadCount: newChat.unread_count || 0,
+                        // Não usamos mais a URL do banco para exibição direta, mas mantemos no objeto
+                        pictureUrl: newChat.image_url
+                    };
+                    // Coloca no topo
+                    return [
+                        formattedChat,
+                        ...filtered
+                    ];
+                });
+            }
+        }).subscribe();
+        return ()=>{
+            supabase.removeChannel(channel);
+        };
+    }, [
+        supabase
+    ]);
+    // --- CARREGAMENTO DE ATRIBUIÇÕES (Mantido) ---
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const loadInitialAssignments = async ()=>{
-            const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createClient"])();
             try {
-                const { data: activeAssignments, error } = await supabase.from("chat_assignments").select("*").eq("status", "active");
-                if (error || !activeAssignments || activeAssignments.length === 0) return;
+                const { data: activeAssignments } = await supabase.from("chat_assignments").select("*").eq("status", "active");
+                if (!activeAssignments || activeAssignments.length === 0) return;
                 const userIds = Array.from(new Set(activeAssignments.map((a)=>a.assigned_to_id)));
                 const { data: profiles } = await supabase.from("perfis").select("id, nome, cargo").in("id", userIds);
                 const cargosUnicos = Array.from(new Set(profiles?.map((p)=>p.cargo).filter(Boolean)));
                 const coresMap = {};
                 if (cargosUnicos.length > 0) {
                     const { data: cargosData } = await supabase.from("cargos").select("nome, cor").in("nome", cargosUnicos);
-                    cargosData?.forEach((c)=>{
-                        coresMap[c.nome] = c.cor;
-                    });
+                    cargosData?.forEach((c)=>coresMap[c.nome] = c.cor);
                 }
                 const newAssignmentsMap = {};
                 activeAssignments.forEach((assignment)=>{
@@ -269,177 +324,63 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                 });
                 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ATTR_CACHE_KEY"], newAssignmentsMap, false);
             } catch (err) {
-                console.error("Erro ao carregar badges:", err);
+                console.error("Erro assignments:", err);
             }
         };
         loadInitialAssignments();
-    }, []);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createClient"])();
-        const channel = supabase.channel("chat_assignments_realtime").on("postgres_changes", {
-            event: "*",
-            schema: "public",
-            table: "chat_assignments",
-            filter: "status=eq.active"
-        }, async (payload)=>{
-            const currentMap = assignmentsMap || {};
-            if (payload.eventType === "INSERT" || payload.eventType === "UPDATE") {
-                const assignment = payload.new;
-                const { data: userData } = await supabase.from("perfis").select("nome, cargo").eq("id", assignment.assigned_to_id).single();
-                let cargoColor;
-                if (userData?.cargo) {
-                    const { data: cargoData } = await supabase.from("cargos").select("cor").eq("nome", userData.cargo).maybeSingle();
-                    cargoColor = cargoData?.cor;
-                }
-                (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ATTR_CACHE_KEY"], {
-                    ...currentMap,
-                    [assignment.chat_id]: {
-                        assigned_to_id: assignment.assigned_to_id,
-                        assigned_to_name: userData?.nome || "",
-                        assigned_to_cargo: userData?.cargo,
-                        assigned_to_color: cargoColor
-                    }
-                }, false);
-            } else if (payload.eventType === "DELETE") {
-                const assignment = payload.old;
-                const newMap = {
-                    ...currentMap
-                };
-                delete newMap[assignment.chat_id];
-                (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ATTR_CACHE_KEY"], newMap, false);
-            }
-        }).subscribe();
-        return ()=>{
-            supabase.removeChannel(channel);
-        };
     }, [
-        assignmentsMap
+        supabase
     ]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        if (initialData?.assignmentsMap) {
-            globalMutate(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ATTR_CACHE_KEY"], initialData.assignmentsMap, {
-                revalidate: false
-            });
-        }
-    }, [
-        initialData,
-        globalMutate
-    ]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        if (initialData && refreshTrigger === 0) {
-            // Inicializa com o limite estrito de 20
-            const initialChats = (initialData.chats || []).slice(0, INITIAL_BATCH_SIZE);
-            setChats(initialChats);
-            setHasMore(initialData.hasMore || false);
-            setOffset(INITIAL_BATCH_SIZE); // Define o limite atual como 20
-            setLoading(false);
-            return;
-        }
-        const cachedData = getCachedChats();
-        if (cachedData && refreshTrigger === 0) {
-            // Inicializa do cache com o limite estrito de 20
-            const initialCacheChats = cachedData.chats.slice(0, INITIAL_BATCH_SIZE);
-            setChats(initialCacheChats);
-            setHasMore(cachedData.hasMore);
-            setOffset(INITIAL_BATCH_SIZE); // Define o limite atual como 20
-            setLoading(false);
-            return;
-        }
-        setChats([]);
-        setOffset(0);
-        setHasMore(true);
-        loadChats(0, true);
-    }, [
-        refreshTrigger,
-        initialData
-    ]);
-    const filteredChats = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
-        let result = [
-            ...chats
-        ];
-        if (searchQuery.trim() !== "") {
-            result = result.filter((chat)=>chat.name.toLowerCase().includes(searchQuery.toLowerCase()));
-        }
-        if (filterMode === "mine") {
-            if (!isAuthLoaded) {
-                return [];
-            } else if (currentUserId && assignmentsMap) {
-                result = result.filter((chat)=>{
-                    const assignment = assignmentsMap[chat.id];
-                    return assignment && assignment.assigned_to_id === currentUserId;
-                });
-            } else if (isAuthLoaded && !currentUserId) {
-                return [];
-            }
-        }
-        result.sort((a, b)=>(b.lastMessageTime || 0) - (a.lastMessageTime || 0));
-        return result;
-    }, [
-        chats,
-        searchQuery,
-        filterMode,
-        assignmentsMap,
-        currentUserId,
-        isAuthLoaded
-    ]);
+    // ✅ FUNÇÃO PRINCIPAL: CARREGAR CHATS DO BANCO
     async function loadChats(currentOffset, isInitial = false) {
         if (isLoadingRef.current) return;
         isLoadingRef.current = true;
         if (!isInitial) setLoadingMore(true);
         try {
             const limit = isInitial ? INITIAL_BATCH_SIZE : SUBSEQUENT_BATCH_SIZE;
-            const url = `/api/whatsapp/chats?limit=${limit}&offset=${currentOffset}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            if (data.success) {
-                const newChats = data.chats || [];
-                // Calcula o novo tamanho total desejado
-                const newTotalSize = currentOffset + newChats.length;
-                if (isInitial) {
-                    setChats(newChats);
-                    setCachedChats(newChats, data.hasMore || false, newChats.length);
-                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CHAT_LIST_CACHE_KEY"], newChats, {
-                        revalidate: false
-                    });
-                } else {
-                    const updatedChats = [
-                        ...chats,
-                        ...newChats
-                    ];
-                    setChats(updatedChats);
-                    appendChats(newChats, data.hasMore || false);
-                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CHAT_LIST_CACHE_KEY"], updatedChats, {
-                        revalidate: false
-                    });
-                }
-                setHasMore(data.hasMore || false);
-                // Se for inicial, garante que o offset seja pelo menos o tamanho do lote inicial
-                // Se for scroll, soma o que chegou
-                if (isInitial) {
-                    setOffset(newChats.length);
-                } else {
-                    setOffset((prev)=>prev + newChats.length);
-                }
-            } else {
-                const errorMessage = data.message || "Erro ao carregar conversas";
-                setError(errorMessage);
-                if (isInitial) {
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("WhatsApp não conectado", {
-                        description: errorMessage,
-                        action: {
-                            label: "Ir para ajustes",
-                            onClick: ()=>router.push("/ajustes?tab=whatsapp")
-                        }
-                    });
-                }
+            const rangeEnd = currentOffset + limit - 1;
+            let query = supabase.from('chats').select('*', {
+                count: 'exact'
+            }).eq('is_archived', false).not('id', 'ilike', '%@g.us').order('last_message_time', {
+                ascending: false
+            }).range(currentOffset, rangeEnd);
+            if (debouncedSearch) {
+                query = query.or(`name.ilike.%${debouncedSearch}%,id.ilike.%${debouncedSearch}%`);
             }
-        } catch (err) {
-            setError("Não foi possível conectar ao servidor.");
+            const { data, error, count } = await query;
+            if (error) throw error;
+            const newChats = (data || []).map((c)=>({
+                    id: c.id,
+                    name: c.name,
+                    lastMessage: c.last_message,
+                    lastMessageTime: c.last_message_time,
+                    unreadCount: c.unread_count,
+                    pictureUrl: c.image_url
+                }));
+            const hasMoreData = count ? currentOffset + newChats.length < count : false;
             if (isInitial) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Erro de conexão", {
-                    description: "Verifique o backend."
+                setChats(newChats);
+                setCachedChats(newChats, hasMoreData, newChats.length);
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CHAT_LIST_CACHE_KEY"], newChats, {
+                    revalidate: false
                 });
+                setOffset(newChats.length);
+            } else {
+                const updatedChats = [
+                    ...chats,
+                    ...newChats
+                ];
+                setChats(updatedChats);
+                appendChats(newChats, hasMoreData);
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$12s$2d$Dh3trQsc$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__j__as__mutate$3e$__["mutate"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$swr$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CHAT_LIST_CACHE_KEY"], updatedChats, {
+                    revalidate: false
+                });
+                setOffset((prev)=>prev + newChats.length);
             }
+            setHasMore(hasMoreData);
+        } catch (err) {
+            console.error("❌ ERRO chats:", err);
+            setError(`Erro ao carregar.`);
         } finally{
             setLoading(false);
             setLoadingMore(false);
@@ -452,17 +393,20 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
         const scrollHeight = target.scrollHeight;
         const clientHeight = target.clientHeight;
         const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
-        if (distanceFromBottom < SCROLL_THRESHOLD && hasMore && !isLoadingRef.current) {
-            // Usa o offset atual para buscar a próxima página
+        if (distanceFromBottom < SCROLL_THRESHOLD && hasMore && !isLoadingRef.current && !loading) {
             loadChats(offset, false);
         }
     }, [
         offset,
-        hasMore
+        hasMore,
+        loading
     ]);
+    // Formatação visual de data
     function formatTime(timestamp) {
-        if (!timestamp) return "";
+        if (!timestamp || timestamp <= 0) return "";
         const date = new Date(timestamp);
+        if (date.getFullYear() < 2000) return "" // Filtra datas inválidas/antigas
+        ;
         const now = new Date();
         const diff = now.getTime() - date.getTime();
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -479,7 +423,22 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
             month: "2-digit"
         });
     }
-    if (loading || filterMode === 'mine' && !isAuthLoaded) {
+    const displayChats = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        if (filterMode === 'all') return chats;
+        if (filterMode === 'mine' && currentUserId && assignmentsMap) {
+            return chats.filter((chat)=>{
+                const assignment = assignmentsMap[chat.id];
+                return assignment && assignment.assigned_to_id === currentUserId;
+            });
+        }
+        return [];
+    }, [
+        chats,
+        filterMode,
+        currentUserId,
+        assignmentsMap
+    ]);
+    if (loading && offset === 0) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex items-center justify-center h-full",
             children: [
@@ -487,27 +446,27 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                     className: "w-6 h-6 animate-spin mr-2 text-primary"
                 }, void 0, false, {
                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                    lineNumber: 367,
+                    lineNumber: 302,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                     className: "text-muted-foreground",
-                    children: "Carregando conversas..."
+                    children: "Carregando..."
                 }, void 0, false, {
                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                    lineNumber: 368,
+                    lineNumber: 303,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/whatsapp/chat-list.tsx",
-            lineNumber: 366,
+            lineNumber: 301,
             columnNumber: 9
         }, ("TURBOPACK compile-time value", void 0));
     }
     if (error) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex flex-col h-full p-4 gap-4",
+            className: "flex flex-col h-full p-4 gap-4 items-center justify-center",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Alert"], {
                     variant: "destructive",
@@ -516,21 +475,21 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                             className: "h-4 w-4"
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 377,
-                            columnNumber: 13
+                            lineNumber: 312,
+                            columnNumber: 15
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AlertDescription"], {
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 378,
-                            columnNumber: 13
+                            lineNumber: 313,
+                            columnNumber: 15
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                    lineNumber: 376,
-                    columnNumber: 11
+                    lineNumber: 311,
+                    columnNumber: 13
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                     onClick: ()=>{
@@ -540,27 +499,26 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                         loadChats(0, true);
                     },
                     variant: "outline",
-                    className: "w-full bg-transparent",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
                             className: "w-4 h-4 mr-2"
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 390,
-                            columnNumber: 13
+                            lineNumber: 324,
+                            columnNumber: 15
                         }, ("TURBOPACK compile-time value", void 0)),
                         "Tentar Novamente"
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                    lineNumber: 380,
-                    columnNumber: 11
+                    lineNumber: 315,
+                    columnNumber: 13
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/whatsapp/chat-list.tsx",
-            lineNumber: 375,
-            columnNumber: 9
+            lineNumber: 310,
+            columnNumber: 11
         }, ("TURBOPACK compile-time value", void 0));
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -578,7 +536,7 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                                     className: "absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 403,
+                                    lineNumber: 337,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -588,18 +546,18 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                                     className: "pl-8 h-9"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 404,
+                                    lineNumber: 338,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 402,
+                            lineNumber: 336,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/whatsapp/chat-list.tsx",
-                        lineNumber: 401,
+                        lineNumber: 335,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -609,34 +567,34 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                                 variant: filterMode === 'all' ? "secondary" : "ghost",
                                 size: "sm",
                                 onClick: ()=>setFilterMode('all'),
-                                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])("flex-1 h-7 text-xs font-medium transition-all", filterMode === 'all' && "bg-secondary hover:bg-secondary/80 shadow-sm"),
+                                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])("flex-1 h-7 text-xs font-medium transition-all", filterMode === 'all' && "bg-secondary shadow-sm"),
                                 children: "Todas"
                             }, void 0, false, {
                                 fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                lineNumber: 414,
+                                lineNumber: 348,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                 variant: filterMode === 'mine' ? "secondary" : "ghost",
                                 size: "sm",
                                 onClick: ()=>setFilterMode('mine'),
-                                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])("flex-1 h-7 text-xs font-medium transition-all", filterMode === 'mine' && "bg-secondary hover:bg-secondary/80 shadow-sm"),
+                                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])("flex-1 h-7 text-xs font-medium transition-all", filterMode === 'mine' && "bg-secondary shadow-sm"),
                                 children: "Minhas"
                             }, void 0, false, {
                                 fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                lineNumber: 425,
+                                lineNumber: 356,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/whatsapp/chat-list.tsx",
-                        lineNumber: 413,
+                        lineNumber: 347,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/whatsapp/chat-list.tsx",
-                lineNumber: 400,
+                lineNumber: 334,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -648,67 +606,29 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                     WebkitOverflowScrolling: "touch",
                     scrollBehavior: "smooth"
                 },
-                children: filteredChats.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                children: displayChats.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "p-6 text-center space-y-3 flex flex-col items-center",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-muted-foreground text-sm",
-                            children: searchQuery ? "Nenhuma conversa encontrada" : filterMode === 'mine' ? "Sem conversas atribuídas" : "Nenhuma conversa disponível"
-                        }, void 0, false, {
-                            fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 451,
-                            columnNumber: 15
-                        }, ("TURBOPACK compile-time value", void 0)),
-                        hasMore ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
-                            onClick: ()=>loadChats(offset, false),
-                            variant: "outline",
-                            size: "sm",
-                            disabled: loadingMore,
-                            children: [
-                                loadingMore ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
-                                    className: "w-4 h-4 animate-spin mr-2"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 466,
-                                    columnNumber: 34
-                                }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
-                                    className: "w-4 h-4 mr-2"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 466,
-                                    columnNumber: 86
-                                }, ("TURBOPACK compile-time value", void 0)),
-                                "Buscar mais"
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 460,
-                            columnNumber: 17
-                        }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
-                            onClick: ()=>{
-                                setFilterMode('all');
-                                setSearchQuery('');
-                            },
-                            variant: "ghost",
-                            size: "sm",
-                            children: "Limpar filtros"
-                        }, void 0, false, {
-                            fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 470,
-                            columnNumber: 17
-                        }, ("TURBOPACK compile-time value", void 0))
-                    ]
-                }, void 0, true, {
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-muted-foreground text-sm",
+                        children: filterMode === 'mine' ? "Você não tem conversas atribuídas" : "Nenhuma conversa encontrada"
+                    }, void 0, false, {
+                        fileName: "[project]/components/whatsapp/chat-list.tsx",
+                        lineNumber: 375,
+                        columnNumber: 15
+                    }, ("TURBOPACK compile-time value", void 0))
+                }, void 0, false, {
                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                    lineNumber: 450,
+                    lineNumber: 374,
                     columnNumber: 13
                 }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "py-1",
-                            children: filteredChats.map((chat)=>{
+                            children: displayChats.map((chat)=>{
                                 const assignment = assignmentsMap?.[chat.id];
-                                const profilePicture = chat.pictureUrl || chat.profilePic || null;
+                                // 🔥 PROXY DE IMAGEM: Aponta para o seu backend no Render
+                                // Isso garante que a imagem carregue mesmo se o link do WA expirar ou tiver CORS
+                                const profilePicture = `${BACKEND_URL}/chats/avatar/${chat.id}`;
                                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>onSelectChat(chat),
                                     className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])("w-full flex items-center gap-2.5 px-3 py-2 transition-colors text-left hover:bg-accent/50", selectedChatId === chat.id && "bg-accent", chat.unreadCount > 0 && "border-l-2 border-primary bg-primary/5"),
@@ -716,26 +636,33 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Avatar"], {
                                             className: "w-10 h-10 flex-shrink-0",
                                             children: [
-                                                profilePicture && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AvatarImage"], {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AvatarImage"], {
                                                     src: profilePicture,
-                                                    alt: chat.name
+                                                    alt: chat.name,
+                                                    className: "object-cover"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                    lineNumber: 502,
-                                                    columnNumber: 44
+                                                    lineNumber: 400,
+                                                    columnNumber: 25
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AvatarFallback"], {
-                                                    className: "bg-primary text-primary-foreground text-sm",
-                                                    children: chat.name.charAt(0).toUpperCase()
+                                                    className: "bg-gray-200 dark:bg-gray-700 flex items-center justify-center",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"], {
+                                                        className: "w-5 h-5 text-gray-500 dark:text-gray-400"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/whatsapp/chat-list.tsx",
+                                                        lineNumber: 407,
+                                                        columnNumber: 27
+                                                    }, ("TURBOPACK compile-time value", void 0))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                    lineNumber: 503,
+                                                    lineNumber: 406,
                                                     columnNumber: 25
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                            lineNumber: 501,
+                                            lineNumber: 399,
                                             columnNumber: 23
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -749,7 +676,7 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                                                             children: chat.name
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                            lineNumber: 511,
+                                                            lineNumber: 413,
                                                             columnNumber: 27
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -757,13 +684,13 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                                                             children: formatTime(chat.lastMessageTime)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                            lineNumber: 512,
+                                                            lineNumber: 414,
                                                             columnNumber: 27
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                    lineNumber: 510,
+                                                    lineNumber: 412,
                                                     columnNumber: 25
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -782,7 +709,7 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                                                                     className: "w-2.5 h-2.5"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                                    lineNumber: 529,
+                                                                    lineNumber: 422,
                                                                     columnNumber: 31
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -790,20 +717,20 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                                                                     children: assignment.assigned_to_name
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                                    lineNumber: 530,
+                                                                    lineNumber: 423,
                                                                     columnNumber: 31
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                            lineNumber: 520,
+                                                            lineNumber: 421,
                                                             columnNumber: 29
                                                         }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                             className: "text-xs text-muted-foreground truncate flex-1 min-w-0",
                                                             children: chat.lastMessage || "Sem mensagens"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                            lineNumber: 533,
+                                                            lineNumber: 426,
                                                             columnNumber: 29
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         chat.unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -811,31 +738,31 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                                                             children: chat.unreadCount > 99 ? "99+" : chat.unreadCount
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                            lineNumber: 539,
+                                                            lineNumber: 432,
                                                             columnNumber: 29
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                                    lineNumber: 518,
+                                                    lineNumber: 419,
                                                     columnNumber: 25
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                            lineNumber: 508,
+                                            lineNumber: 411,
                                             columnNumber: 23
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, chat.id, true, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 491,
+                                    lineNumber: 390,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0));
                             })
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 485,
+                            lineNumber: 381,
                             columnNumber: 15
                         }, ("TURBOPACK compile-time value", void 0)),
                         loadingMore && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -845,49 +772,34 @@ const ChatList = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d
                                     className: "w-4 h-4 animate-spin"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 552,
-                                    columnNumber: 19
+                                    lineNumber: 445,
+                                    columnNumber: 20
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-xs text-muted-foreground",
                                     children: "Carregando..."
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                    lineNumber: 553,
-                                    columnNumber: 19
+                                    lineNumber: 446,
+                                    columnNumber: 20
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 551,
-                            columnNumber: 17
-                        }, ("TURBOPACK compile-time value", void 0)),
-                        !hasMore && filteredChats.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-center py-3",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-[11px] text-muted-foreground",
-                                children: "Fim da lista"
-                            }, void 0, false, {
-                                fileName: "[project]/components/whatsapp/chat-list.tsx",
-                                lineNumber: 559,
-                                columnNumber: 19
-                            }, ("TURBOPACK compile-time value", void 0))
-                        }, void 0, false, {
-                            fileName: "[project]/components/whatsapp/chat-list.tsx",
-                            lineNumber: 558,
-                            columnNumber: 17
+                            lineNumber: 444,
+                            columnNumber: 18
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true)
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-list.tsx",
-                lineNumber: 439,
+                lineNumber: 367,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/whatsapp/chat-list.tsx",
-        lineNumber: 398,
+        lineNumber: 332,
         columnNumber: 7
     }, ("TURBOPACK compile-time value", void 0));
 });
@@ -2418,8 +2330,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e
 ;
 ;
 ;
-function AssignToUserDialog({ open, onOpenChange, chatId, chatName, currentUserId, // ⬅️ [CORREÇÃO 2]: Adição de 'currentAssignment' no destructuring
-currentAssignment, onAssignSuccess, onRelease }) {
+function AssignToUserDialog({ open, onOpenChange, chatId, chatName, currentUserId, currentAssignment, chatAssignment, onAssignSuccess, onRelease }) {
     const [users, setUsers] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [selectedUserId, setSelectedUserId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
@@ -2449,9 +2360,8 @@ currentAssignment, onAssignSuccess, onRelease }) {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (open) {
             loadUsers();
-            // Se já houver atribuição, pré-selecionar o usuário
             if (currentAssignment) {
-                setSelectedUserId(currentAssignment.assignToId);
+                setSelectedUserId(currentAssignment.assigned_to_id);
             } else {
                 setSelectedUserId("");
             }
@@ -2460,7 +2370,7 @@ currentAssignment, onAssignSuccess, onRelease }) {
         open,
         currentAssignment,
         loadUsers
-    ]); // loadUsers adicionado nas dependências
+    ]);
     // Função handleUsers foi substituída por loadUsers
     // async function loadUsers() { ... }
     async function handleAssignToUser() {
@@ -2538,7 +2448,7 @@ currentAssignment, onAssignSuccess, onRelease }) {
             setReleasing(false);
         }
     }
-    const isAssignedToSelectedUser = currentAssignment?.assignToId === selectedUserId;
+    const isAssignedToSelectedUser = currentAssignment?.assigned_to_id === selectedUserId;
     const isAssigned = !!currentAssignment;
     const buttonDisabled = !selectedUserId || assigning || loading || isAssignedToSelectedUser;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -2556,7 +2466,7 @@ currentAssignment, onAssignSuccess, onRelease }) {
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogDescription"], {
-                            children: isAssigned ? `Atualmente atribuída a: ${currentAssignment.assignToName}` : "Selecione um usuário para atribuir a conversa"
+                            children: isAssigned ? `Atualmente atribuída a: ${currentAssignment.assigned_to_name}` : "Selecione um usuário para atribuir a conversa"
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/assign-to-user-dialog.tsx",
                             lineNumber: 187,
@@ -2614,10 +2524,10 @@ currentAssignment, onAssignSuccess, onRelease }) {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
                                         children: users.map((user)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
                                                 value: user.id,
-                                                disabled: isAssigned && currentAssignment?.assignToId === user.id,
+                                                disabled: isAssigned && currentAssignment?.assigned_to_id === user.id,
                                                 children: [
                                                     user.nome,
-                                                    currentAssignment?.assignToId === user.id ? " (Atual)" : ""
+                                                    currentAssignment?.assigned_to_id === user.id ? " (Atual)" : ""
                                                 ]
                                             }, user.id, true, {
                                                 fileName: "[project]/components/whatsapp/assign-to-user-dialog.tsx",
@@ -2904,11 +2814,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$realtime$2d$
 ;
 ;
 ;
-const MESSAGES_PER_PAGE = 10;
+const MESSAGES_PER_PAGE = 20;
 const SCROLL_THRESHOLD = 100;
+// URL do Backend para Proxy de Imagens/Mídia
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "https://backend-sobt.onrender.com";
 function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleLeadPanel, showLeadPanel }) {
-    const { getCachedMessages, setCachedMessages, appendMessages, addNewMessage, invalidateMessagesCache } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$whatsapp$2d$cache$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useWhatsAppCache"])();
-    console.log("chatPicture recebido:", chatPicture);
+    const { getCachedMessages, setCachedMessages, appendMessages, addNewMessage } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$whatsapp$2d$cache$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useWhatsAppCache"])();
+    const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createClient"])();
     const [messages, setMessages] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [newMessage, setNewMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
@@ -2927,89 +2839,110 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
     const userId = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id");
     const scrollContainerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const isLoadingRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    // Ref para guardar a altura antes de carregar mensagens antigas
     const previousScrollHeightRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(0);
-    const previousScrollTopRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(0);
     const isInitialLoadRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(true);
     const [hasMore, setHasMore] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [offset, setOffset] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
     const [loadingMore, setLoadingMore] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [selectedFile, setSelectedFile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const fileInputRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
-    // Fallback seguro para nome do chat
-    const safeChatName = chatName && chatName.trim().length > 0 ? chatName : chatId && chatId.trim().length > 0 ? chatId : "Contato";
+    const safeChatName = chatName && chatName.trim().length > 0 ? chatName : chatId || "Contato";
+    const profilePictureUrl = `${BACKEND_URL}/chats/avatar/${chatId}`;
     // ----------------------------------------------------
-    // --- REALTIME SUBSCRIPTIONS (Atividades e Atribuição)
+    // --- REALTIME SUBSCRIPTIONS
     // ----------------------------------------------------
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$realtime$2d$subscription$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRealtimeSubscription"])({
+        table: "messages",
+        filter: `chat_id=eq.${chatId}`,
+        onInsert: (newMsgRow)=>{
+            const newMessage = {
+                id: newMsgRow.id,
+                body: newMsgRow.content || "",
+                timestamp: Number(newMsgRow.timestamp),
+                from: newMsgRow.sender_id || "Desconhecido",
+                to: newMsgRow.chat_id,
+                fromMe: newMsgRow.from_me,
+                type: newMsgRow.type || "text",
+                hasMedia: newMsgRow.has_media,
+                ack: newMsgRow.ack || 0,
+                mediaUrl: newMsgRow.has_media ? `${BACKEND_URL}/media/${chatId}/${newMsgRow.id}` : null,
+                mimeType: newMsgRow.media_meta?.mimetype,
+                caption: null
+            };
+            setMessages((prev)=>{
+                if (prev.some((m)=>m.id === newMessage.id)) return prev;
+                return [
+                    ...prev,
+                    newMessage
+                ];
+            });
+            if (newMessage.fromMe || isNearBottom()) {
+                setTimeout(()=>scrollToBottom("smooth"), 100);
+            }
+        },
+        onUpdate: (updatedRow)=>{
+            setMessages((prev)=>prev.map((m)=>m.id === updatedRow.id ? {
+                        ...m,
+                        ack: updatedRow.ack
+                    } : m));
+        }
+    });
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$realtime$2d$subscription$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRealtimeSubscription"])({
         table: "chat_activity",
         filter: `chat_id=eq.${chatId}`,
         onInsert: (activity)=>{
             setActivities((prev)=>{
                 const exists = prev.some((a)=>a.user_id === activity.user_id);
-                if (exists) {
-                    return prev.map((a)=>a.user_id === activity.user_id ? activity : a);
-                }
-                return [
+                return exists ? prev.map((a)=>a.user_id === activity.user_id ? activity : a) : [
                     ...prev,
                     activity
                 ];
             });
         },
-        onUpdate: (activity)=>{
-            setActivities((prev)=>prev.map((a)=>a.user_id === activity.user_id ? activity : a));
-        },
-        onDelete: (activity)=>{
-            setActivities((prev)=>prev.filter((a)=>a.user_id !== activity.user_id));
-        }
+        onUpdate: (activity)=>setActivities((prev)=>prev.map((a)=>a.user_id === activity.user_id ? activity : a)),
+        onDelete: (activity)=>setActivities((prev)=>prev.filter((a)=>a.user_id !== activity.user_id))
     });
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$realtime$2d$subscription$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRealtimeSubscription"])({
         table: "chat_assignments",
         filter: `chat_id=eq.${chatId}`,
         onInsert: async (assignment)=>{
-            if (assignment.status === "active") {
-                setAssignment(assignment);
-                if (assignment.assigned_to_name && assignment.assigned_to_id) {
-                    const cachedData = userDataCache.current[assignment.assigned_to_id];
-                    if (cachedData) {
-                        setAssignedUserName(cachedData.nome);
-                        setAssignedUserCargo(cachedData.cargo);
-                        setRoleColor(cachedData.color);
-                    } else {
-                        const userData = await loadAssignmentUserData(assignment.assigned_to_id);
-                        userDataCache.current[assignment.assigned_to_id] = userData;
-                        setAssignedUserName(userData.nome);
-                        setAssignedUserCargo(userData.cargo);
-                        setRoleColor(userData.color);
-                    }
-                }
-            }
+            handleAssignmentUpdate(assignment);
         },
         onUpdate: async (assignment)=>{
-            if (assignment.status === "active") {
-                setAssignment(assignment);
-                const cachedData = userDataCache.current[assignment.assigned_to_id];
-                if (cachedData) {
-                    setAssignedUserName(cachedData.nome);
-                    setAssignedUserCargo(cachedData.cargo);
-                    setRoleColor(cachedData.color);
-                } else if (assignment.assigned_to_id) {
-                    const userData = await loadAssignmentUserData(assignment.assigned_to_id);
-                    userDataCache.current[assignment.assigned_to_id] = userData;
-                    setAssignedUserName(userData.nome);
-                    setAssignedUserCargo(userData.cargo);
-                    setRoleColor(userData.color);
-                }
-            }
+            handleAssignmentUpdate(assignment);
         },
-        onDelete: (assignment)=>{
+        onDelete: ()=>{
             setAssignment(null);
             setAssignedUserName(null);
             setAssignedUserCargo(null);
             setRoleColor(null);
         }
     });
+    const handleAssignmentUpdate = async (assignment)=>{
+        if (assignment.status === "active") {
+            setAssignment(assignment);
+            if (assignment.assigned_to_id) {
+                updateUserDataCache(assignment.assigned_to_id);
+            }
+        }
+    };
+    const updateUserDataCache = async (userId)=>{
+        if (userDataCache.current[userId]) {
+            const cached = userDataCache.current[userId];
+            setAssignedUserName(cached.nome);
+            setAssignedUserCargo(cached.cargo);
+            setRoleColor(cached.color);
+        } else {
+            const userData = await loadAssignmentUserData(userId);
+            userDataCache.current[userId] = userData;
+            setAssignedUserName(userData.nome);
+            setAssignedUserCargo(userData.cargo);
+            setRoleColor(userData.color);
+        }
+    };
     // ----------------------------------------------------
-    // --- LIFECYCLE & INITIAL LOAD
+    // --- LIFECYCLE
     // ----------------------------------------------------
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         loadAssignment();
@@ -3020,245 +2953,159 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
         chatId
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const cachedData = getCachedMessages(chatId);
-        if (cachedData) {
-            setMessages(cachedData.messages);
-            setHasMore(cachedData.hasMore);
-            setOffset(cachedData.totalMessages);
-            setLoading(false);
-            isInitialLoadRef.current = true;
-            return;
-        }
         setMessages([]);
         setOffset(0);
         setHasMore(true);
         setLoading(true);
         isInitialLoadRef.current = true;
         isLoadingRef.current = false;
+        previousScrollHeightRef.current = 0; // Reseta a referência de scroll
         loadMessages(0, true);
     }, [
-        chatId,
-        getCachedMessages
+        chatId
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        // Scroll inicial para o fundo
         if (isInitialLoadRef.current && messages.length > 0 && !loading) {
+            // Pequeno timeout para garantir renderização
             setTimeout(()=>{
                 scrollToBottom("auto");
                 isInitialLoadRef.current = false;
-            }, 100);
+            }, 50);
         }
     }, [
         messages,
         loading
     ]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        if (!loading && !isLoadingRef.current && previousScrollHeightRef.current > 0 && scrollContainerRef.current) {
+    // 🔥 CORREÇÃO DO SCROLL (UseLayoutEffect)
+    // Isso roda SÍNCRONO após a renderização do DOM, mas antes de pintar na tela.
+    // Evita o "pulo" visual quando carregamos mensagens antigas.
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLayoutEffect"])(()=>{
+        if (!loading && previousScrollHeightRef.current > 0 && scrollContainerRef.current) {
             const newScrollHeight = scrollContainerRef.current.scrollHeight;
             const heightDifference = newScrollHeight - previousScrollHeightRef.current;
-            scrollContainerRef.current.scrollTop = previousScrollTopRef.current + heightDifference;
+            // Mantém a posição relativa do scroll
+            scrollContainerRef.current.scrollTop = heightDifference;
+            // Reseta a referência
             previousScrollHeightRef.current = 0;
-            previousScrollTopRef.current = 0;
         }
     }, [
         messages,
         loading
     ]);
     // ----------------------------------------------------
-    // --- DATA LOADING & CACHING
+    // --- DATA LOADING
     // ----------------------------------------------------
-    async function loadAssignmentUserData(userId) {
-        try {
-            const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createClient"])();
-            const { data: perfilData, error: perfilError } = await supabase.from("perfis").select("nome, cargo").eq("id", userId).single();
-            if (perfilError) {
-                return {
-                    nome: null,
-                    cargo: null,
-                    color: null
-                };
-            }
-            if (perfilData?.cargo) {
-                const { data: cargoData } = await supabase.from("cargos").select("cor").eq("nome", perfilData.cargo).maybeSingle();
-                const color = cargoData?.cor || (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$role$2d$colors$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getRoleColor"])(perfilData.cargo);
-                return {
-                    nome: perfilData.nome || null,
-                    cargo: perfilData.cargo || null,
-                    color: color
-                };
-            }
-            return {
-                nome: perfilData?.nome || null,
-                cargo: perfilData?.cargo || null,
-                color: null
-            };
-        } catch (error) {
-            console.error("Erro ao buscar dados do usuário:", error);
-            return {
-                nome: null,
-                cargo: null,
-                color: null
-            };
-        }
-    }
-    async function loadAssignment() {
-        try {
-            const response = await fetch(`/api/whatsapp/assignments?chatId=${chatId}`);
-            if (!response.ok) {
-                console.error("[API] Erro ao buscar atribuição:", response.status);
-                setAssignment(null);
-                setAssignedUserName(null);
-                setAssignedUserCargo(null);
-                setRoleColor(null);
-                return;
-            }
-            const text = await response.text();
-            if (!text) {
-                setAssignment(null);
-                setAssignedUserName(null);
-                setAssignedUserCargo(null);
-                setRoleColor(null);
-                return;
-            }
-            try {
-                const data = JSON.parse(text);
-                if (data.success && data.assignment && data.assignment.assigned_to_id) {
-                    setAssignment(data.assignment);
-                    const cachedData = userDataCache.current[data.assignment.assigned_to_id];
-                    if (cachedData) {
-                        setAssignedUserName(cachedData.nome);
-                        setAssignedUserCargo(cachedData.cargo);
-                        setRoleColor(cachedData.color);
-                    } else {
-                        const userData = await loadAssignmentUserData(data.assignment.assigned_to_id);
-                        userDataCache.current[data.assignment.assigned_to_id] = userData;
-                        setAssignedUserName(userData.nome);
-                        setAssignedUserCargo(userData.cargo);
-                        setRoleColor(userData.color);
-                    }
-                } else {
-                    setAssignment(null);
-                    setAssignedUserName(null);
-                    setAssignedUserCargo(null);
-                    setRoleColor(null);
-                }
-            } catch  {
-                return;
-            }
-        } catch (error) {
-            console.error("[v0] Erro ao carregar atribuição:", error);
-            setAssignment(null);
-            setAssignedUserName(null);
-            setAssignedUserCargo(null);
-            setRoleColor(null);
-        }
-    }
-    async function loadActivities() {
-        try {
-            const response = await fetch(`/api/whatsapp/activity?chatId=${chatId}`);
-            if (!response.ok) {
-                if (response.status !== 429 && response.status !== 500) {
-                    console.error("[API] Erro ao buscar atividades:", response.status);
-                }
-                return;
-            }
-            const text = await response.text();
-            if (!text) return;
-            try {
-                const data = JSON.parse(text);
-                if (data.success) {
-                    setActivities(data.activities || []);
-                }
-            } catch  {
-                return;
-            }
-        } catch (error) {
-            if (error instanceof TypeError && !error.message.includes("Failed to fetch")) {
-                console.error("[v0] Erro ao buscar atividades:", error);
-            }
-        }
-    }
     async function loadMessages(currentOffset, isInitial = false) {
-        if (isLoadingRef.current) {
-            return;
-        }
+        if (isLoadingRef.current) return;
         isLoadingRef.current = true;
-        if (!isInitial && scrollContainerRef.current) {
-            previousScrollHeightRef.current = scrollContainerRef.current.scrollHeight;
-            previousScrollTopRef.current = scrollContainerRef.current.scrollTop;
-        }
         try {
-            if (isInitial) {
-                setLoading(true);
-            } else {
-                setLoadingMore(true);
-            }
-            const url = `/api/whatsapp/messages/${chatId}?limit=${MESSAGES_PER_PAGE}&offset=${currentOffset}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            if (data.success) {
-                const normalizedMessages = (data.messages || []).map((msg)=>({
+            if (isInitial) setLoading(true);
+            else setLoadingMore(true);
+            const rangeEnd = currentOffset + MESSAGES_PER_PAGE - 1;
+            const { data, error, count } = await supabase.from('messages').select('*', {
+                count: 'exact'
+            }).eq('chat_id', chatId).order('timestamp', {
+                ascending: false
+            }).range(currentOffset, rangeEnd);
+            if (error) throw error;
+            if (data) {
+                const normalizedMessages = data.map((msg)=>({
                         id: msg.id,
-                        body: msg.text || msg.body || "",
-                        timestamp: msg.timestamp,
-                        from: msg.senderName || msg.from || "Desconhecido",
-                        to: msg.to || chatId,
-                        fromMe: msg.fromMe || false,
+                        body: msg.content || "",
+                        timestamp: Number(msg.timestamp),
+                        from: msg.sender_id || "Desconhecido",
+                        to: msg.chat_id,
+                        fromMe: msg.from_me,
                         type: msg.type || "text",
-                        hasMedia: msg.hasMedia || false,
+                        hasMedia: msg.has_media,
                         ack: msg.ack || 0,
-                        mediaUrl: msg.mediaUrl || null,
-                        mimeType: msg.mimeType || null,
-                        caption: msg.caption || null
-                    }));
+                        mediaUrl: msg.has_media ? `${BACKEND_URL}/media/${chatId}/${msg.id}` : null,
+                        mimeType: msg.media_meta?.mimetype || null,
+                        caption: null
+                    })).reverse();
                 if (isInitial) {
                     setMessages(normalizedMessages);
-                    setCachedMessages(chatId, normalizedMessages, data.hasMore || false, normalizedMessages.length);
                 } else {
+                    // 🛑 AQUI É O TRUQUE:
+                    // Antes de atualizar o estado, salvamos a altura atual do container
+                    if (scrollContainerRef.current) {
+                        previousScrollHeightRef.current = scrollContainerRef.current.scrollHeight;
+                    }
                     setMessages((prev)=>[
                             ...normalizedMessages,
                             ...prev
                         ]);
-                    appendMessages(chatId, normalizedMessages, data.hasMore || false);
                 }
-                setHasMore(data.hasMore || false);
-                setOffset(currentOffset + normalizedMessages.length);
-                console.log("[v0] Mensagens carregadas:", normalizedMessages.length, "| Total:", currentOffset + normalizedMessages.length, "| Tem mais:", data.hasMore || false);
-            } else {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao carregar mensagens");
+                const hasMoreData = count ? currentOffset + data.length < count : false;
+                setHasMore(hasMoreData);
+                setOffset((prev)=>prev + data.length);
             }
         } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : "Erro desconhecido";
-            console.error("[v0] Erro ao carregar mensagens:", errorMessage);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Não foi possível conectar ao servidor. Verifique a configuração da API.");
+            console.error("Erro msgs:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Erro ao carregar.");
         } finally{
             setLoading(false);
             setLoadingMore(false);
             isLoadingRef.current = false;
         }
     }
+    async function loadAssignmentUserData(userId) {
+        const { data } = await supabase.from("perfis").select("nome, cargo").eq("id", userId).single();
+        if (data?.cargo) {
+            const { data: cargo } = await supabase.from("cargos").select("cor").eq("nome", data.cargo).maybeSingle();
+            return {
+                nome: data.nome,
+                cargo: data.cargo,
+                color: cargo?.cor || (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$role$2d$colors$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getRoleColor"])(data.cargo)
+            };
+        }
+        return {
+            nome: data?.nome || null,
+            cargo: null,
+            color: null
+        };
+    }
+    async function loadAssignment() {
+        try {
+            const res = await fetch(`/api/whatsapp/assignments?chatId=${chatId}`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success && data.assignment) handleAssignmentUpdate(data.assignment);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
+    async function loadActivities() {
+        try {
+            const res = await fetch(`/api/whatsapp/activity?chatId=${chatId}`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success) setActivities(data.activities || []);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
     async function checkAssignmentHistory() {
         try {
-            const response = await fetch(`/api/whatsapp/assignment-logs?chatId=${chatId}`);
-            if (!response.ok) {
-                console.error("[API] Erro ao buscar logs:", response.status);
-                return;
+            const res = await fetch(`/api/whatsapp/assignment-logs?chatId=${chatId}`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success && data.logs?.length > 0) setHasAssignmentHistory(true);
             }
-            const text = await response.text();
-            if (!text) return;
-            const data = JSON.parse(text);
-            if (data.success) {
-                setHasAssignmentHistory((data.logs || []).length > 0);
-            }
-        } catch (error) {
-            console.error("[v0] Erro ao verificar histórico:", error);
+        } catch (e) {
+            console.error(e);
         }
     }
     // ----------------------------------------------------
-    // --- UI & USER INTERACTION HANDLERS
+    // --- UI HANDLERS
     // ----------------------------------------------------
     const handleScroll = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((e)=>{
         const target = e.currentTarget;
         const scrollTop = target.scrollTop;
+        // Se chegou no topo e tem mais mensagens, carrega mais
         if (scrollTop < SCROLL_THRESHOLD && hasMore && !isLoadingRef.current && !isInitialLoadRef.current) {
             loadMessages(offset, false);
         }
@@ -3266,6 +3113,79 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
         offset,
         hasMore
     ]);
+    function isNearBottom() {
+        if (!scrollContainerRef.current) return false;
+        const { scrollTop, scrollHeight, clientHeight } = scrollContainerRef.current;
+        return scrollHeight - scrollTop - clientHeight < 150;
+    }
+    function scrollToBottom(behavior = "smooth") {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollTo({
+                top: scrollContainerRef.current.scrollHeight,
+                behavior: behavior
+            });
+        }
+    }
+    async function handleSendMessage() {
+        if (!newMessage.trim() && !selectedFile || sending) return;
+        if (assignment && assignment.assigned_to_id !== userId) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(`Conversa atribuída a ${assignment.assigned_to_name}`);
+            return;
+        }
+        setSending(true);
+        try {
+            let response;
+            if (selectedFile) {
+                const formData = new FormData();
+                formData.append("chatId", chatId);
+                formData.append("file", selectedFile);
+                if (newMessage.trim()) formData.append("caption", newMessage.trim());
+                response = await fetch("/api/whatsapp/send-media", {
+                    method: "POST",
+                    body: formData
+                });
+            } else {
+                response = await fetch("/api/whatsapp/send", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        chatId,
+                        message: newMessage.trim()
+                    })
+                });
+            }
+            const data = await response.json();
+            if (data.success) {
+                setNewMessage("");
+                setSelectedFile(null);
+                if (fileInputRef.current) fileInputRef.current.value = "";
+                setTimeout(()=>scrollToBottom("smooth"), 100);
+            } else {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao enviar");
+            }
+        } catch (err) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Erro de conexão");
+        } finally{
+            setSending(false);
+        }
+    }
+    function handleFileSelect(e) {
+        const file = e.target.files?.[0];
+        if (file) {
+            if (file.size > 16 * 1024 * 1024) return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Máximo 16MB");
+            setSelectedFile(file);
+        }
+    }
+    function handleQuickReply(msg) {
+        setNewMessage(msg);
+        setQuickRepliesOpen(false);
+    }
+    function removeSelectedFile() {
+        setSelectedFile(null);
+        if (fileInputRef.current) fileInputRef.current.value = "";
+    }
     async function registerActivity(type) {
         try {
             await fetch("/api/whatsapp/activity", {
@@ -3278,256 +3198,7 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                     activityType: type
                 })
             });
-        } catch (error) {
-            console.error("[v0] Erro ao registrar atividade:", error);
-        }
-    }
-    async function handleAssignToMe() {
-        try {
-            const response = await fetch("/api/whatsapp/assignments", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    chatId,
-                    chatName: safeChatName,
-                    assignToId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id"),
-                    assignToName: decodeURIComponent((0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_name") || ""),
-                    autoAssign: false
-                })
-            });
-            if (!response.ok) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Erro ao atribuir conversa");
-                return;
-            }
-            const text = await response.text();
-            if (!text) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Resposta vazia do servidor");
-                return;
-            }
-            const data = JSON.parse(text);
-            if (data.success) {
-                setAssignment(data.assignment);
-                if (data.assignment.assigned_to_id) {
-                    const cachedData = userDataCache.current[data.assignment.assigned_to_id];
-                    if (cachedData) {
-                        setAssignedUserName(cachedData.nome);
-                        setAssignedUserCargo(cachedData.cargo);
-                        setRoleColor(cachedData.color);
-                    } else {
-                        const userData = await loadAssignmentUserData(data.assignment.assigned_to_id);
-                        userDataCache.current[data.assignment.assigned_to_id] = userData;
-                        setAssignedUserName(userData.nome);
-                        setAssignedUserCargo(userData.cargo);
-                        setRoleColor(userData.color);
-                    }
-                }
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Conversa atribuída para você");
-                checkAssignmentHistory();
-            } else {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao atribuir conversa");
-            }
-        } catch (error) {
-            console.error("[v0] Erro ao atribuir conversa:", error);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Erro ao atribuir conversa");
-        }
-    }
-    async function handleReleaseChat() {
-        try {
-            const response = await fetch(`/api/whatsapp/assignments?chatId=${chatId}`, {
-                method: "DELETE"
-            });
-            if (!response.ok) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Erro ao liberar conversa");
-                return;
-            }
-            const text = await response.text();
-            if (!text) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Resposta vazia do servidor");
-                return;
-            }
-            const data = JSON.parse(text);
-            if (data.success) {
-                setAssignment(null);
-                setAssignedUserName(null);
-                setAssignedUserCargo(null);
-                setRoleColor(null);
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Conversa liberada");
-                setShowAssignToUserDialog(false);
-                checkAssignmentHistory();
-            } else {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao liberar conversa");
-            }
-        } catch (error) {
-            console.error("[v0] Erro ao liberar conversa:", error);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Erro ao liberar conversa");
-        }
-    }
-    function handleFileSelect(e) {
-        const file = e.target.files?.[0];
-        if (file) {
-            if (file.size > 16 * 1024 * 1024) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Arquivo muito grande. Máximo 16MB.");
-                return;
-            }
-            setSelectedFile(file);
-        }
-    }
-    function removeSelectedFile() {
-        setSelectedFile(null);
-        if (fileInputRef.current) {
-            fileInputRef.current.value = "";
-        }
-    }
-    async function handleSendMessage() {
-        if (!newMessage.trim() && !selectedFile || sending) return;
-        if (assignment && assignment.assigned_to_id !== (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id")) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(`Esta conversa está sendo atendida por ${assignment.assigned_to_name}`);
-            return;
-        }
-        // Auto-atribuição se não houver atribuição ativa
-        if (!assignment && (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id") && (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_name")) {
-            await fetch("/api/whatsapp/assignments", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    chatId,
-                    chatName: safeChatName,
-                    assignToId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id"),
-                    assignToName: decodeURIComponent((0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_name") || ""),
-                    autoAssign: true
-                })
-            });
-            loadAssignment();
-        }
-        setSending(true);
-        try {
-            if (selectedFile) {
-                // Envio de Mídia
-                const formData = new FormData();
-                formData.append("chatId", chatId);
-                formData.append("file", selectedFile);
-                if (newMessage.trim()) {
-                    formData.append("caption", newMessage.trim());
-                }
-                const response = await fetch("/api/whatsapp/send-media", {
-                    method: "POST",
-                    body: formData
-                });
-                const data = await response.json();
-                if (data.success) {
-                    await fetch("/api/whatsapp/track-message", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            messageId: data.messageId || `temp-${Date.now()}`,
-                            chatId,
-                            messageBody: newMessage.trim() || null,
-                            messageType: "media"
-                        })
-                    });
-                    const newMsgBody = newMessage.trim();
-                    setNewMessage("");
-                    setSelectedFile(null);
-                    if (fileInputRef.current) {
-                        fileInputRef.current.value = "";
-                    }
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Mídia enviada");
-                    const newMsg = {
-                        id: `temp-${Date.now()}`,
-                        body: newMsgBody || "",
-                        timestamp: Date.now(),
-                        from: "Você",
-                        to: chatId,
-                        fromMe: true,
-                        type: "media",
-                        hasMedia: true,
-                        ack: 1,
-                        mediaUrl: null,
-                        mimeType: selectedFile.type,
-                        caption: newMsgBody || null
-                    };
-                    setMessages((prev)=>[
-                            ...prev,
-                            newMsg
-                        ]);
-                    addNewMessage(chatId, newMsg);
-                    setTimeout(()=>scrollToBottom("smooth"), 100);
-                } else {
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao enviar mídia");
-                }
-            } else {
-                // Envio de Texto
-                const response = await fetch("/api/whatsapp/send", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        chatId: chatId,
-                        message: newMessage.trim()
-                    })
-                });
-                const data = await response.json();
-                if (data.success) {
-                    await fetch("/api/whatsapp/track-message", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            messageId: data.messageId || `temp-${Date.now()}`,
-                            chatId,
-                            messageBody: newMessage.trim(),
-                            messageType: "text"
-                        })
-                    });
-                    const messageSent = newMessage.trim();
-                    setNewMessage("");
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Mensagem enviada");
-                    const newMsg = {
-                        id: `temp-${Date.now()}`,
-                        body: messageSent,
-                        timestamp: Date.now(),
-                        from: "Você",
-                        to: chatId,
-                        fromMe: true,
-                        type: "text",
-                        hasMedia: false,
-                        ack: 1,
-                        mediaUrl: null,
-                        mimeType: null,
-                        caption: null
-                    };
-                    setMessages((prev)=>[
-                            ...prev,
-                            newMsg
-                        ]);
-                    addNewMessage(chatId, newMsg);
-                    setTimeout(()=>scrollToBottom("smooth"), 100);
-                } else {
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao enviar mensagem");
-                }
-            }
-        } catch (error) {
-            console.error("[v0] ❌ Erro ao enviar mensagem:", error);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Não foi possível enviar a mensagem. Verifique a conexão com o servidor.");
-        } finally{
-            setSending(false);
-        }
-    }
-    function scrollToBottom(behavior = "smooth") {
-        if (scrollContainerRef.current) {
-            scrollContainerRef.current.scrollTo({
-                top: scrollContainerRef.current.scrollHeight,
-                behavior: behavior
-            });
-        }
+        } catch  {}
     }
     function handleKeyPress(e) {
         if (e.key === "Enter" && !e.shiftKey) {
@@ -3535,45 +3206,25 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
             handleSendMessage();
         }
     }
-    function handleMessageChange(value) {
-        setNewMessage(value);
-        if (value.trim()) {
-            registerActivity("typing");
-        }
-    }
-    function handleQuickReply(message) {
-        setNewMessage(message);
-        setQuickRepliesOpen(false);
-    }
-    const assignmentForDialog = assignment ? {
-        chatId: chatId,
-        chatName: safeChatName,
-        assignToId: assignment.assigned_to_id,
-        assignToName: assignment.assigned_to_name,
-        autoAssign: false,
-        ...assignment
-    } : null;
     // ----------------------------------------------------
     // --- RENDER
     // ----------------------------------------------------
-    if (loading) {
+    if (loading && offset === 0) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex items-center justify-center h-full",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
                 className: "w-6 h-6 animate-spin text-muted-foreground"
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 763,
+                lineNumber: 426,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/whatsapp/chat-window.tsx",
-            lineNumber: 762,
+            lineNumber: 425,
             columnNumber: 7
         }, this);
     }
-    const viewingUsers = activities.filter((a)=>a.activity_type === "viewing");
-    const typingUsers = activities.filter((a)=>a.activity_type === "typing");
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex flex-col h-full bg-white relative",
         children: [
@@ -3588,26 +3239,27 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Avatar"], {
                                     className: "w-10 h-10 flex-shrink-0",
                                     children: [
-                                        chatPicture && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AvatarImage"], {
-                                            src: chatPicture,
-                                            alt: safeChatName
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AvatarImage"], {
+                                            src: profilePictureUrl,
+                                            alt: safeChatName,
+                                            className: "object-cover"
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 777,
-                                            columnNumber: 31
+                                            lineNumber: 438,
+                                            columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AvatarFallback"], {
                                             className: "bg-primary text-primary-foreground",
                                             children: safeChatName.charAt(0).toUpperCase()
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 778,
+                                            lineNumber: 443,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 776,
+                                    lineNumber: 437,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3620,7 +3272,7 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                 children: safeChatName
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 784,
+                                                lineNumber: 447,
                                                 columnNumber: 17
                                             }, this),
                                             assignedUserName && roleColor && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
@@ -3636,37 +3288,36 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                         className: "w-3 h-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 795,
+                                                        lineNumber: 450,
                                                         columnNumber: 21
                                                     }, this),
                                                     assignedUserName
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 786,
+                                                lineNumber: 449,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 783,
+                                        lineNumber: 446,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 782,
+                                    lineNumber: 445,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 775,
+                            lineNumber: 436,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "flex items-center gap-2",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipProvider"], {
-                                delayDuration: 200,
                                 children: [
                                     hasAssignmentHistory && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
                                         children: [
@@ -3680,38 +3331,37 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 809,
-                                                        columnNumber: 23
+                                                        lineNumber: 460,
+                                                        columnNumber: 133
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 808,
-                                                    columnNumber: 21
+                                                    lineNumber: 460,
+                                                    columnNumber: 54
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 807,
-                                                columnNumber: 19
+                                                lineNumber: 460,
+                                                columnNumber: 30
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
-                                                side: "bottom",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     children: "Histórico"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 813,
-                                                    columnNumber: 21
+                                                    lineNumber: 460,
+                                                    columnNumber: 206
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 812,
-                                                columnNumber: 19
+                                                lineNumber: 460,
+                                                columnNumber: 190
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 806,
-                                        columnNumber: 17
+                                        lineNumber: 460,
+                                        columnNumber: 21
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
                                         children: [
@@ -3726,40 +3376,39 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 821,
-                                                            columnNumber: 21
+                                                            lineNumber: 462,
+                                                            columnNumber: 135
                                                         }, this),
-                                                        "Atribuir"
+                                                        " Atribuir"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 820,
-                                                    columnNumber: 19
+                                                    lineNumber: 462,
+                                                    columnNumber: 51
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 819,
-                                                columnNumber: 17
+                                                lineNumber: 462,
+                                                columnNumber: 27
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
-                                                side: "bottom",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    children: "Atribuir conversa"
+                                                    children: "Atribuir"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 826,
-                                                    columnNumber: 19
+                                                    lineNumber: 462,
+                                                    columnNumber: 219
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 825,
-                                                columnNumber: 17
+                                                lineNumber: 462,
+                                                columnNumber: 203
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 818,
-                                        columnNumber: 15
+                                        lineNumber: 462,
+                                        columnNumber: 18
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
                                         children: [
@@ -3774,40 +3423,39 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 833,
-                                                            columnNumber: 21
+                                                            lineNumber: 463,
+                                                            columnNumber: 137
                                                         }, this),
-                                                        "Novo Lead"
+                                                        " Novo Lead"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 832,
-                                                    columnNumber: 19
+                                                    lineNumber: 463,
+                                                    columnNumber: 51
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 831,
-                                                columnNumber: 17
+                                                lineNumber: 463,
+                                                columnNumber: 27
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
-                                                side: "bottom",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    children: "Criar lead desta conversa"
+                                                    children: "Criar Lead"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 838,
-                                                    columnNumber: 19
+                                                    lineNumber: 463,
+                                                    columnNumber: 226
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 837,
-                                                columnNumber: 17
+                                                lineNumber: 463,
+                                                columnNumber: 210
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 830,
-                                        columnNumber: 15
+                                        lineNumber: 463,
+                                        columnNumber: 18
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
                                         children: [
@@ -3821,59 +3469,58 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 845,
-                                                        columnNumber: 21
+                                                        lineNumber: 464,
+                                                        columnNumber: 107
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 844,
-                                                    columnNumber: 19
+                                                    lineNumber: 464,
+                                                    columnNumber: 51
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 843,
-                                                columnNumber: 17
+                                                lineNumber: 464,
+                                                columnNumber: 27
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
-                                                side: "bottom",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     children: "Atualizar"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 849,
-                                                    columnNumber: 19
+                                                    lineNumber: 464,
+                                                    columnNumber: 182
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 848,
-                                                columnNumber: 17
+                                                lineNumber: 464,
+                                                columnNumber: 166
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 842,
-                                        columnNumber: 15
+                                        lineNumber: 464,
+                                        columnNumber: 18
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                lineNumber: 804,
-                                columnNumber: 13
+                                lineNumber: 458,
+                                columnNumber: 14
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 803,
+                            lineNumber: 457,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                    lineNumber: 774,
+                    lineNumber: 435,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 773,
+                lineNumber: 434,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3897,21 +3544,21 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                             className: "w-4 h-4 animate-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 870,
+                                            lineNumber: 481,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-sm text-muted-foreground",
-                                            children: "Carregando mensagens antigas..."
+                                            children: "Carregando antigas..."
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 871,
+                                            lineNumber: 482,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 869,
+                                    lineNumber: 480,
                                     columnNumber: 15
                                 }, this),
                                 !hasMore && messages.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3921,12 +3568,12 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                         children: "Início da conversa"
                                     }, void 0, false, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 877,
-                                        columnNumber: 17
+                                        lineNumber: 487,
+                                        columnNumber: 49
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 876,
+                                    lineNumber: 487,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3939,37 +3586,37 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                 children: "Nenhuma mensagem ainda"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 883,
-                                                columnNumber: 19
+                                                lineNumber: 492,
+                                                columnNumber: 74
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 882,
+                                            lineNumber: 492,
                                             columnNumber: 17
                                         }, this) : messages.map((message)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$message$2d$bubble$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MessageBubble"], {
                                                 message: message
                                             }, message.id, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 886,
+                                                lineNumber: 494,
                                                 columnNumber: 43
                                             }, this)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             ref: scrollRef
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 888,
+                                            lineNumber: 496,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 880,
+                                    lineNumber: 490,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 859,
+                            lineNumber: 473,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3982,7 +3629,7 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                             className: "w-4 h-4 text-muted-foreground"
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 895,
+                                            lineNumber: 504,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3990,7 +3637,7 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                             children: selectedFile.name
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 896,
+                                            lineNumber: 505,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4002,18 +3649,18 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 898,
-                                                columnNumber: 19
+                                                lineNumber: 506,
+                                                columnNumber: 102
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 897,
+                                            lineNumber: 506,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 894,
+                                    lineNumber: 503,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4023,46 +3670,45 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                             ref: fileInputRef,
                                             type: "file",
                                             className: "hidden",
-                                            accept: "image/*,video/*,audio/*,.pdf,.doc,.docx,.xls,.xlsx,.txt",
                                             onChange: handleFileSelect
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 903,
+                                            lineNumber: 510,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                             variant: "outline",
                                             size: "icon",
-                                            className: "h-[60px] w-[60px] flex-shrink-0 bg-transparent",
+                                            className: "h-[60px] w-[60px] flex-shrink-0",
                                             onClick: ()=>fileInputRef.current?.click(),
                                             disabled: sending,
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$paperclip$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Paperclip$3e$__["Paperclip"], {
                                                 className: "w-5 h-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 917,
-                                                columnNumber: 17
+                                                lineNumber: 511,
+                                                columnNumber: 162
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 910,
+                                            lineNumber: 511,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                             variant: "outline",
                                             size: "icon",
-                                            className: "h-[60px] w-[60px] flex-shrink-0 bg-transparent",
+                                            className: "h-[60px] w-[60px] flex-shrink-0",
                                             onClick: ()=>setQuickRepliesOpen(true),
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"], {
                                                 className: "w-5 h-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 926,
-                                                columnNumber: 17
+                                                lineNumber: 512,
+                                                columnNumber: 139
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 920,
+                                            lineNumber: 512,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -4073,11 +3719,10 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                             },
                                             onKeyDown: handleKeyPress,
                                             placeholder: "Digite sua mensagem...",
-                                            className: "resize-none min-h-[60px] max-h-[200px]",
-                                            rows: 2
+                                            className: "resize-none min-h-[60px] max-h-[200px]"
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 928,
+                                            lineNumber: 513,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4089,41 +3734,41 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                 className: "w-5 h-5 animate-spin"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 945,
+                                                lineNumber: 521,
                                                 columnNumber: 28
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"], {
                                                 className: "w-5 h-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 945,
+                                                lineNumber: 521,
                                                 columnNumber: 75
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 939,
+                                            lineNumber: 520,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 902,
+                                    lineNumber: 509,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 892,
+                            lineNumber: 501,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                    lineNumber: 858,
+                    lineNumber: 472,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 857,
+                lineNumber: 471,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Sheet"], {
@@ -4138,38 +3783,38 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                     children: "Respostas Rápidas"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 955,
-                                    columnNumber: 13
+                                    lineNumber: 531,
+                                    columnNumber: 24
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SheetDescription"], {
-                                    children: "Selecione uma resposta rápida para enviar"
+                                    children: "Selecione para enviar"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 956,
-                                    columnNumber: 13
+                                    lineNumber: 531,
+                                    columnNumber: 66
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 954,
+                            lineNumber: 531,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$quick$2d$replies$2d$panel$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["QuickRepliesPanel"], {
                             onSelectReply: handleQuickReply
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 958,
+                            lineNumber: 532,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                    lineNumber: 953,
+                    lineNumber: 530,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 952,
+                lineNumber: 529,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$assignment$2d$history$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AssignmentHistoryDialog"], {
@@ -4179,7 +3824,7 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                 chatName: safeChatName
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 962,
+                lineNumber: 536,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$assign$2d$to$2d$user$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AssignToUserDialog"], {
@@ -4188,19 +3833,18 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                 chatId: chatId,
                 chatName: safeChatName,
                 currentUserId: userId,
-                currentAssignment: assignmentForDialog,
-                onAssignSuccess: ()=>{
-                    loadAssignment();
-                }
+                currentAssignment: assignment,
+                chatAssignment: assignment,
+                onAssignSuccess: loadAssignment
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 969,
+                lineNumber: 538,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/whatsapp/chat-window.tsx",
-        lineNumber: 772,
+        lineNumber: 432,
         columnNumber: 5
     }, this);
 }
@@ -4217,274 +3861,123 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/badge.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$unplug$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Unplug$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/unplug.js [app-ssr] (ecmascript) <export default as Unplug>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-check.js [app-ssr] (ecmascript) <export default as CheckCircle2>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$x$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__XCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-x.js [app-ssr] (ecmascript) <export default as XCircle>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/triangle-alert.js [app-ssr] (ecmascript) <export default as AlertTriangle>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/check.js [app-ssr] (ecmascript) <export default as Check>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$qr$2d$code$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__QrCode$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/qr-code.js [app-ssr] (ecmascript) <export default as QrCode>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/loader-circle.js [app-ssr] (ecmascript) <export default as Loader2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/tooltip.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase/client.ts [app-ssr] (ecmascript)");
 "use client";
 ;
 ;
 ;
 ;
 ;
+;
+// Função auxiliar de formatação de telefone
 function formatPhoneNumber(phone) {
-    // Remove caracteres especiais como :23@s.whatsapp.net
+    if (!phone) return "";
+    // Remove sufixos do WhatsApp (ex: :12@s.whatsapp.net)
     const cleanPhone = phone.replace(/@.*$/, "").replace(/:\d+$/, "");
     if (cleanPhone.startsWith("55")) {
         const withoutCountryCode = cleanPhone.substring(2);
         if (withoutCountryCode.length === 10) {
-            // Número com 10 dígitos após o 55: DDD (2) + número (8)
-            // Exemplo: 555193498226 -> adiciona 9 após 51 -> 5551993498226
-            const ddd = withoutCountryCode.substring(0, 2) // 51
-            ;
-            const number = withoutCountryCode.substring(2) // 93498226
-            ;
-            // Insere o 9 após o DDD
-            const fullNumber = "9" + number // 993498226
-            ;
-            const firstPart = fullNumber.substring(0, 5) // 99349
-            ;
-            const secondPart = fullNumber.substring(5) // 8226
-            ;
-            return `+55 (${ddd}) ${firstPart}-${secondPart}` // +55 (51) 99349-8226
-            ;
-        } else if (withoutCountryCode.length === 11) {
-            // Número já com 11 dígitos após o 55: DDD (2) + 9 (1) + número (8)
             const ddd = withoutCountryCode.substring(0, 2);
-            const firstPart = withoutCountryCode.substring(2, 7) // 5 dígitos (9XXXX)
-            ;
-            const secondPart = withoutCountryCode.substring(7) // 4 dígitos
-            ;
-            return `+55 (${ddd}) ${firstPart}-${secondPart}`;
-        } else if (withoutCountryCode.length === 8) {
-            // Número fixo com 8 dígitos: XXXX-XXXX
-            const ddd = "00" // DDD desconhecido
-            ;
-            const firstPart = withoutCountryCode.substring(0, 4);
-            const secondPart = withoutCountryCode.substring(4);
-            return `+55 (${ddd}) ${firstPart}-${secondPart}`;
+            const number = withoutCountryCode.substring(2);
+            return `+55 (${ddd}) 9${number.substring(0, 4)}-${number.substring(4)}`;
+        } else if (withoutCountryCode.length === 11) {
+            const ddd = withoutCountryCode.substring(0, 2);
+            return `+55 (${ddd}) ${withoutCountryCode.substring(2, 7)}-${withoutCountryCode.substring(7)}`;
         }
     }
-    // Se não for formato brasileiro, retorna com + na frente
     return `+${cleanPhone}`;
 }
 function ConnectionStatus({ onStatusChange }) {
-    const [status, setStatus] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
+    const [state, setState] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
         connected: false,
         phone: null,
-        qr: null,
+        status: "disconnected",
         loading: true
     });
-    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [needsConfiguration, setNeedsConfiguration] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    const intervalRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createClient"])();
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const handleConfigChange = ()=>{
-            // Recarregar status quando houver mudança na config
-            checkStatus();
-        };
-        window.addEventListener("whatsapp:config", handleConfigChange);
-        return ()=>{
-            window.removeEventListener("whatsapp:config", handleConfigChange);
-        };
-    }, []);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        checkStatus();
-        // Limpar interval anterior
-        if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-            intervalRef.current = null;
-        }
-        // Só fazer polling se NÃO estiver conectado
-        if (!status.connected) {
-            intervalRef.current = setInterval(checkStatus, 30000);
-        }
-        return ()=>{
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
-                intervalRef.current = null;
-            }
-        };
-    }, [
-        status.connected
-    ]); // Re-executar quando status.connected mudar
-    async function checkStatus() {
-        try {
-            setError(null);
-            const response = await fetch("/api/whatsapp/status");
-            const data = await response.json();
-            if (data.success) {
-                setStatus({
-                    connected: data.connected,
-                    phone: data.phone,
-                    qr: data.qr,
-                    status: data.status,
-                    device: data.device,
-                    loading: false
-                });
-                setNeedsConfiguration(false);
-                onStatusChange?.(data.connected);
-            } else {
-                setError(data.message || "Erro ao verificar status");
-                setNeedsConfiguration(data.needsConfiguration || false);
-                setStatus((prev)=>({
+        // 1. Busca o status inicial no banco
+        const fetchInitialStatus = async ()=>{
+            try {
+                const { data } = await supabase.from("instance_settings").select("*").eq("id", 1).single();
+                if (data) {
+                    updateState(data);
+                } else {
+                    setState((prev)=>({
+                            ...prev,
+                            loading: false
+                        }));
+                }
+            } catch (error) {
+                console.error("Erro ao buscar status:", error);
+                setState((prev)=>({
                         ...prev,
                         loading: false
                     }));
             }
-        } catch (err) {
-            console.error("[v0] 💥 Erro:", err);
-            setError("Não foi possível conectar ao servidor");
-            setNeedsConfiguration(true);
-            setStatus((prev)=>({
-                    ...prev,
-                    loading: false,
-                    connected: false
-                }));
-            onStatusChange?.(false);
-        }
-    }
-    if (status.loading) {
+        };
+        fetchInitialStatus();
+        // 2. Inscreve-se para atualizações em tempo real
+        const channel = supabase.channel("connection_status_badge").on("postgres_changes", {
+            event: "UPDATE",
+            schema: "public",
+            table: "instance_settings",
+            filter: "id=eq.1"
+        }, (payload)=>{
+            const newData = payload.new;
+            updateState(newData);
+        }).subscribe();
+        return ()=>{
+            supabase.removeChannel(channel);
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    // Atualiza o estado local com base nos dados do banco
+    const updateState = (data)=>{
+        const isConnected = data.status === "connected";
+        setState({
+            connected: isConnected,
+            phone: data.phone,
+            status: data.status,
+            loading: false
+        });
+        // Notifica componente pai se necessário
+        if (onStatusChange) onStatusChange(isConnected);
+    };
+    // --- RENDERIZAÇÃO ---
+    if (state.loading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
-            variant: "secondary",
-            children: "Verificando..."
-        }, void 0, false, {
-            fileName: "[project]/components/whatsapp/connection-status.tsx",
-            lineNumber: 131,
-            columnNumber: 12
-        }, this);
-    }
-    if (error) {
-        if (needsConfiguration) {
-            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipProvider"], {
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipTrigger"], {
-                            asChild: true,
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
-                                variant: "destructive",
-                                className: "gap-1 cursor-help",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__["AlertTriangle"], {
-                                        className: "w-3 h-3"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/whatsapp/connection-status.tsx",
-                                        lineNumber: 141,
-                                        columnNumber: 17
-                                    }, this),
-                                    "Servidor Offline"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/whatsapp/connection-status.tsx",
-                                lineNumber: 140,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/components/whatsapp/connection-status.tsx",
-                            lineNumber: 139,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
-                            className: "max-w-xs",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "space-y-2",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm font-medium",
-                                        children: error
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/whatsapp/connection-status.tsx",
-                                        lineNumber: 147,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-xs text-muted-foreground",
-                                        children: "Verifique em Ajustes se a URL do servidor está correta e se o serviço está ativo no Railway."
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/whatsapp/connection-status.tsx",
-                                        lineNumber: 148,
-                                        columnNumber: 17
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/whatsapp/connection-status.tsx",
-                                lineNumber: 146,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/components/whatsapp/connection-status.tsx",
-                            lineNumber: 145,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true, {
+            variant: "outline",
+            className: "gap-1 text-muted-foreground border-muted",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
+                    className: "w-3 h-3 animate-spin"
+                }, void 0, false, {
                     fileName: "[project]/components/whatsapp/connection-status.tsx",
-                    lineNumber: 138,
-                    columnNumber: 11
+                    lineNumber: 116,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                    className: "hidden sm:inline",
+                    children: "Verificando..."
+                }, void 0, false, {
+                    fileName: "[project]/components/whatsapp/connection-status.tsx",
+                    lineNumber: 117,
+                    columnNumber: 9
                 }, this)
-            }, void 0, false, {
-                fileName: "[project]/components/whatsapp/connection-status.tsx",
-                lineNumber: 137,
-                columnNumber: 9
-            }, this);
-        }
-        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipProvider"], {
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipTrigger"], {
-                        asChild: true,
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
-                            variant: "destructive",
-                            className: "gap-1 cursor-help",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$x$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__XCircle$3e$__["XCircle"], {
-                                    className: "w-3 h-3"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/whatsapp/connection-status.tsx",
-                                    lineNumber: 163,
-                                    columnNumber: 15
-                                }, this),
-                                "Erro de Conexão"
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/components/whatsapp/connection-status.tsx",
-                            lineNumber: 162,
-                            columnNumber: 13
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/components/whatsapp/connection-status.tsx",
-                        lineNumber: 161,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
-                        className: "max-w-xs",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-sm",
-                            children: error
-                        }, void 0, false, {
-                            fileName: "[project]/components/whatsapp/connection-status.tsx",
-                            lineNumber: 168,
-                            columnNumber: 13
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/components/whatsapp/connection-status.tsx",
-                        lineNumber: 167,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/whatsapp/connection-status.tsx",
-                lineNumber: 160,
-                columnNumber: 9
-            }, this)
-        }, void 0, false, {
+            ]
+        }, void 0, true, {
             fileName: "[project]/components/whatsapp/connection-status.tsx",
-            lineNumber: 159,
+            lineNumber: 115,
             columnNumber: 7
         }, this);
     }
-    if (status.connected) {
-        const formattedPhone = status.phone ? formatPhoneNumber(status.phone) : null;
+    // CASO 1: CONECTADO
+    if (state.connected) {
+        const formattedPhone = state.phone ? formatPhoneNumber(state.phone) : "Online";
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipProvider"], {
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
                 children: [
@@ -4492,125 +3985,189 @@ function ConnectionStatus({ onStatusChange }) {
                         asChild: true,
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
                             variant: "default",
-                            className: "gap-2 cursor-help bg-green-600 hover:bg-green-700 px-4 py-2 text-sm",
+                            className: "gap-2 cursor-help bg-green-600 hover:bg-green-700 px-3 py-1 text-xs font-medium",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
-                                    className: "w-4 h-4"
+                                    className: "w-3.5 h-3.5"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/connection-status.tsx",
-                                    lineNumber: 183,
+                                    lineNumber: 131,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: [
-                                        "Conectado ",
-                                        formattedPhone
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/whatsapp/connection-status.tsx",
-                                    lineNumber: 184,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
-                                    className: "w-4 h-4 ml-1"
+                                    className: "hidden sm:inline",
+                                    children: formattedPhone
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/connection-status.tsx",
-                                    lineNumber: 185,
+                                    lineNumber: 132,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "sm:hidden",
+                                    children: "Online"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/whatsapp/connection-status.tsx",
+                                    lineNumber: 133,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/connection-status.tsx",
-                            lineNumber: 182,
+                            lineNumber: 130,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/whatsapp/connection-status.tsx",
-                        lineNumber: 181,
+                        lineNumber: 129,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
-                        className: "max-w-xs",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "text-sm",
-                            children: [
-                                "WhatsApp conectado e funcionando",
-                                status.device && ` • ${status.device.name || status.device.platform}`
-                            ]
-                        }, void 0, true, {
+                            children: "WhatsApp conectado e sincronizado"
+                        }, void 0, false, {
                             fileName: "[project]/components/whatsapp/connection-status.tsx",
-                            lineNumber: 189,
+                            lineNumber: 137,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/whatsapp/connection-status.tsx",
-                        lineNumber: 188,
+                        lineNumber: 136,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/whatsapp/connection-status.tsx",
-                lineNumber: 180,
+                lineNumber: 128,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/whatsapp/connection-status.tsx",
-            lineNumber: 179,
+            lineNumber: 127,
             columnNumber: 7
         }, this);
     }
+    // CASO 2: AGUARDANDO LEITURA (QR)
+    if (state.status === "qr") {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipProvider"], {
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipTrigger"], {
+                        asChild: true,
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
+                            variant: "outline",
+                            className: "gap-2 cursor-help border-yellow-500 text-yellow-600 bg-yellow-50 text-xs",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$qr$2d$code$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__QrCode$3e$__["QrCode"], {
+                                    className: "w-3.5 h-3.5"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/whatsapp/connection-status.tsx",
+                                    lineNumber: 151,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    children: "Aguardando Leitura"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/whatsapp/connection-status.tsx",
+                                    lineNumber: 152,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/whatsapp/connection-status.tsx",
+                            lineNumber: 150,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/whatsapp/connection-status.tsx",
+                        lineNumber: 149,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-sm",
+                            children: "Novo QR Code gerado. Vá em Ajustes para escanear."
+                        }, void 0, false, {
+                            fileName: "[project]/components/whatsapp/connection-status.tsx",
+                            lineNumber: 156,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/whatsapp/connection-status.tsx",
+                        lineNumber: 155,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/whatsapp/connection-status.tsx",
+                lineNumber: 148,
+                columnNumber: 9
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/components/whatsapp/connection-status.tsx",
+            lineNumber: 147,
+            columnNumber: 7
+        }, this);
+    }
+    // CASO 3: DESCONECTADO (Padrão)
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipProvider"], {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipTrigger"], {
                     asChild: true,
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
-                        variant: "secondary",
-                        className: "gap-1 cursor-help",
+                        variant: "destructive",
+                        className: "gap-1.5 cursor-help text-xs",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$unplug$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Unplug$3e$__["Unplug"], {
-                                className: "w-3 h-3"
+                                className: "w-3.5 h-3.5"
                             }, void 0, false, {
                                 fileName: "[project]/components/whatsapp/connection-status.tsx",
-                                lineNumber: 204,
+                                lineNumber: 169,
                                 columnNumber: 13
                             }, this),
-                            "Desconectado"
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                children: "Desconectado"
+                            }, void 0, false, {
+                                fileName: "[project]/components/whatsapp/connection-status.tsx",
+                                lineNumber: 170,
+                                columnNumber: 13
+                            }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/whatsapp/connection-status.tsx",
-                        lineNumber: 203,
+                        lineNumber: 168,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/whatsapp/connection-status.tsx",
-                    lineNumber: 202,
+                    lineNumber: 167,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
                     className: "max-w-xs",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "text-sm",
-                        children: "WhatsApp não está conectado. Configure o servidor e escaneie o QR Code."
+                        children: "O servidor está parado ou sem conexão. Vá em Ajustes para conectar."
                     }, void 0, false, {
                         fileName: "[project]/components/whatsapp/connection-status.tsx",
-                        lineNumber: 209,
+                        lineNumber: 174,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/whatsapp/connection-status.tsx",
-                    lineNumber: 208,
+                    lineNumber: 173,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/whatsapp/connection-status.tsx",
-            lineNumber: 201,
+            lineNumber: 166,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/whatsapp/connection-status.tsx",
-        lineNumber: 200,
+        lineNumber: 165,
         columnNumber: 5
     }, this);
 }
@@ -6656,13 +6213,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$ch
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$connection$2d$status$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/whatsapp/connection-status.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/card.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$square$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageSquare$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/message-square.js [app-ssr] (ecmascript) <export default as MessageSquare>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$unplug$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Unplug$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/unplug.js [app-ssr] (ecmascript) <export default as Unplug>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$settings$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Settings$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/settings.js [app-ssr] (ecmascript) <export default as Settings>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/alert.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-alert.js [app-ssr] (ecmascript) <export default as AlertCircle>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$whatsapp$2d$cache$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/contexts/whatsapp-cache-context.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$quick$2d$lead$2d$form$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/whatsapp/quick-lead-form.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-toastify/dist/index.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/sonner/dist/index.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$new$2d$contact$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/whatsapp/new-contact-dialog.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase/client.ts [app-ssr] (ecmascript)");
 "use client";
 ;
 ;
@@ -6678,22 +6237,51 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$ne
 ;
 ;
 ;
+// URL do Backend (Proxy de Imagens)
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "https://backend-sobt.onrender.com";
 function WhatsAppPage() {
     const { selectedChatId, setSelectedChatId, selectedChatName, setSelectedChatName, invalidateChatsCache } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$whatsapp$2d$cache$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useWhatsAppCache"])();
     const [refreshTrigger, setRefreshTrigger] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
     const [isConnected, setIsConnected] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isChecking, setIsChecking] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     const [showLeadPanel, setShowLeadPanel] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const chatListRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
-    // agora recebe um Chat (1 argumento), não mais (chatId, chatName)
+    const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createClient"])();
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const checkStatus = async ()=>{
+            const { data } = await supabase.from('instance_settings').select('status').eq('id', 1).single();
+            setIsConnected(data?.status === 'connected');
+            setIsChecking(false);
+        };
+        checkStatus();
+    }, [
+        supabase
+    ]);
     function handleSelectChat(chat) {
         setSelectedChatId(chat.id);
-        // usa o melhor nome que existir, com fallback pro id
         const displayName = chat.name ?? chat.pushName ?? chat.id;
         setSelectedChatName(displayName);
     }
     function handleRefreshChats() {
         invalidateChatsCache();
         setRefreshTrigger((prev)=>prev + 1);
+    }
+    if (isChecking) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "h-screen flex items-center justify-center bg-neutral-50",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                className: "text-neutral-500 animate-pulse",
+                children: "Verificando conexão..."
+            }, void 0, false, {
+                fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                lineNumber: 52,
+                columnNumber: 87
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/app/(app)/whatsapp/page.tsx",
+            lineNumber: 52,
+            columnNumber: 14
+        }, this);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "p-6 h-screen flex flex-col",
@@ -6708,7 +6296,7 @@ function WhatsAppPage() {
                                 children: "WhatsApp Business"
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                lineNumber: 46,
+                                lineNumber: 59,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6716,24 +6304,24 @@ function WhatsAppPage() {
                                 children: "Gerencie suas conversas do WhatsApp"
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                lineNumber: 47,
+                                lineNumber: 60,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                        lineNumber: 45,
+                        lineNumber: 58,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    isConnected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex flex-col gap-2",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$connection$2d$status$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ConnectionStatus"], {
                                 onStatusChange: setIsConnected
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                lineNumber: 50,
-                                columnNumber: 11
+                                lineNumber: 65,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$new$2d$contact$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["NewContactDialog"], {
                                 onContactCreated: (chatId)=>{
@@ -6741,95 +6329,152 @@ function WhatsAppPage() {
                                     setTimeout(()=>{
                                         setSelectedChatId(chatId);
                                     }, 500);
-                                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Conversa iniciada com sucesso!");
+                                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Conversa iniciada com sucesso!");
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                lineNumber: 51,
-                                columnNumber: 11
+                                lineNumber: 66,
+                                columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                        lineNumber: 49,
-                        columnNumber: 9
+                        lineNumber: 64,
+                        columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                lineNumber: 44,
+                lineNumber: 57,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            !isConnected ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex-1 flex items-center justify-center",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
+                    className: "w-full max-w-md p-12 flex flex-col items-center text-center gap-6 border-2 border-dashed border-neutral-300 bg-neutral-50/50",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "p-6 bg-white rounded-full shadow-sm border border-neutral-200",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$unplug$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Unplug$3e$__["Unplug"], {
+                                className: "w-12 h-12 text-neutral-400"
+                            }, void 0, false, {
+                                fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                                lineNumber: 83,
+                                columnNumber: 21
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                            lineNumber: 82,
+                            columnNumber: 17
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "space-y-2",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                    className: "text-xl font-semibold text-neutral-900",
+                                    children: "WhatsApp Desconectado"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                                    lineNumber: 87,
+                                    columnNumber: 21
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-sm text-neutral-500 max-w-xs mx-auto",
+                                    children: "Para visualizar suas conversas e enviar mensagens, você precisa conectar seu aparelho."
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                                    lineNumber: 88,
+                                    columnNumber: 21
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                            lineNumber: 86,
+                            columnNumber: 17
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                            href: "/ajustes?tab=whatsapp",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                                size: "lg",
+                                className: "gap-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$settings$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Settings$3e$__["Settings"], {
+                                        className: "w-4 h-4"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                                        lineNumber: 95,
+                                        columnNumber: 25
+                                    }, this),
+                                    "Ir para Configurações"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                                lineNumber: 94,
+                                columnNumber: 21
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                            lineNumber: 93,
+                            columnNumber: 17
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "hidden",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$connection$2d$status$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ConnectionStatus"], {
+                                onStatusChange: setIsConnected
+                            }, void 0, false, {
+                                fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                                lineNumber: 101,
+                                columnNumber: 21
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                            lineNumber: 100,
+                            columnNumber: 17
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                    lineNumber: 81,
+                    columnNumber: 13
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                lineNumber: 80,
+                columnNumber: 9
+            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex-1 flex gap-4 min-h-0",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
                         className: "flex flex-col overflow-hidden w-[380px] flex-shrink-0",
-                        children: [
-                            !isConnected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Alert"], {
-                                variant: "destructive",
-                                className: "m-4 mb-0",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__["AlertCircle"], {
-                                        className: "h-4 w-4"
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                        lineNumber: 68,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AlertDescription"], {
-                                        children: [
-                                            "WhatsApp desconectado.",
-                                            " ",
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                href: "/ajustes",
-                                                className: "underline font-medium",
-                                                children: "Configure em Ajustes"
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                                lineNumber: 71,
-                                                columnNumber: 17
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                        lineNumber: 69,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                lineNumber: 67,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$chat$2d$list$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ChatList"], {
-                                ref: chatListRef,
-                                onSelectChat: handleSelectChat,
-                                selectedChatId: selectedChatId,
-                                refreshTrigger: refreshTrigger
-                            }, void 0, false, {
-                                fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                lineNumber: 77,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$chat$2d$list$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ChatList"], {
+                            ref: chatListRef,
+                            onSelectChat: handleSelectChat,
+                            selectedChatId: selectedChatId,
+                            refreshTrigger: refreshTrigger
+                        }, void 0, false, {
+                            fileName: "[project]/app/(app)/whatsapp/page.tsx",
+                            lineNumber: 109,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
                         fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                        lineNumber: 65,
-                        columnNumber: 9
+                        lineNumber: 108,
+                        columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
                         className: `flex flex-col overflow-hidden transition-all duration-300 ease-in-out ${showLeadPanel ? "flex-[0.75]" : "flex-1"}`,
                         children: selectedChatId ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$chat$2d$window$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ChatWindow"], {
                             chatId: selectedChatId,
                             chatName: selectedChatName,
+                            // 🔥 AQUI: Passamos a URL do proxy diretamente para o filho
+                            chatPicture: `${BACKEND_URL}/chats/avatar/${selectedChatId}`,
                             onRefresh: handleRefreshChats,
                             onToggleLeadPanel: setShowLeadPanel,
                             showLeadPanel: showLeadPanel
                         }, void 0, false, {
                             fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                            lineNumber: 92,
-                            columnNumber: 13
+                            lineNumber: 124,
+                            columnNumber: 17
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "flex items-center justify-center h-full",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6839,32 +6484,32 @@ function WhatsAppPage() {
                                         className: "w-12 h-12 mx-auto text-muted-foreground"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                        lineNumber: 102,
-                                        columnNumber: 17
+                                        lineNumber: 136,
+                                        columnNumber: 21
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "text-muted-foreground",
                                         children: "Selecione uma conversa para começar"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                        lineNumber: 103,
-                                        columnNumber: 17
+                                        lineNumber: 137,
+                                        columnNumber: 21
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                lineNumber: 101,
-                                columnNumber: 15
+                                lineNumber: 135,
+                                columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                            lineNumber: 100,
-                            columnNumber: 13
+                            lineNumber: 134,
+                            columnNumber: 17
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                        lineNumber: 86,
-                        columnNumber: 9
+                        lineNumber: 118,
+                        columnNumber: 13
                     }, this),
                     showLeadPanel && selectedChatId && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
                         className: "flex-[0.25] flex flex-col overflow-hidden transition-all duration-300 ease-in-out animate-in slide-in-from-right-5 fade-in-0",
@@ -6875,36 +6520,36 @@ function WhatsAppPage() {
                                 chatName: selectedChatName,
                                 onSuccess: ()=>{
                                     setShowLeadPanel(false);
-                                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Lead criado com sucesso!");
+                                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Lead criado com sucesso!");
                                 },
                                 onCancel: ()=>{
                                     setShowLeadPanel(false);
                                 }
                             }, selectedChatId, false, {
                                 fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                                lineNumber: 113,
-                                columnNumber: 15
+                                lineNumber: 147,
+                                columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                            lineNumber: 112,
-                            columnNumber: 13
+                            lineNumber: 146,
+                            columnNumber: 17
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                        lineNumber: 111,
-                        columnNumber: 11
+                        lineNumber: 145,
+                        columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(app)/whatsapp/page.tsx",
-                lineNumber: 63,
-                columnNumber: 7
+                lineNumber: 106,
+                columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/(app)/whatsapp/page.tsx",
-        lineNumber: 43,
+        lineNumber: 56,
         columnNumber: 5
     }, this);
 }

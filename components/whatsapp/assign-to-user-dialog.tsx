@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner"
 import { Loader2, UserMinus } from "lucide-react" 
 import { createClient } from "@/lib/supabase/client"
+import type { ChatAssignmentDB } from "@/lib/whatsapp-types"
 
 interface User {
   id: string
@@ -35,10 +36,10 @@ export interface AssignToUserDialogProps {
   chatId: string
   chatName: string
   currentUserId: string | null
-  // ⬅️ [CORREÇÃO 1]: Adição da propriedade 'currentAssignment'
-  currentAssignment: ChatAssignment | null
+  currentAssignment: ChatAssignmentDB | null
+  chatAssignment?: ChatAssignmentDB | null
   onAssignSuccess?: () => void
-  onRelease?: (chatId: string) => Promise<void> // Adicionado para lidar com desatribuição
+  onRelease?: (chatId: string) => Promise<void>
 }
 
 export function AssignToUserDialog({
@@ -47,8 +48,8 @@ export function AssignToUserDialog({
   chatId,
   chatName,
   currentUserId,
-  // ⬅️ [CORREÇÃO 2]: Adição de 'currentAssignment' no destructuring
   currentAssignment,
+  chatAssignment,
   onAssignSuccess,
   onRelease,
 }: AssignToUserDialogProps) {
@@ -81,14 +82,13 @@ export function AssignToUserDialog({
   useEffect(() => {
     if (open) {
       loadUsers()
-      // Se já houver atribuição, pré-selecionar o usuário
       if (currentAssignment) {
-        setSelectedUserId(currentAssignment.assignToId)
+        setSelectedUserId(currentAssignment.assigned_to_id)
       } else {
         setSelectedUserId("")
       }
     }
-  }, [open, currentAssignment, loadUsers]) // loadUsers adicionado nas dependências
+  }, [open, currentAssignment, loadUsers])
 
   // Função handleUsers foi substituída por loadUsers
   // async function loadUsers() { ... }
@@ -175,7 +175,7 @@ export function AssignToUserDialog({
     }
   }
 
-  const isAssignedToSelectedUser = currentAssignment?.assignToId === selectedUserId
+  const isAssignedToSelectedUser = currentAssignment?.assigned_to_id === selectedUserId
   const isAssigned = !!currentAssignment
   const buttonDisabled = !selectedUserId || assigning || loading || isAssignedToSelectedUser
 
@@ -186,7 +186,7 @@ export function AssignToUserDialog({
           <DialogTitle>Atribuir conversa</DialogTitle>
           <DialogDescription>
             {isAssigned 
-              ? `Atualmente atribuída a: ${currentAssignment.assignToName}` 
+              ? `Atualmente atribuída a: ${currentAssignment.assigned_to_name}` 
               : "Selecione um usuário para atribuir a conversa"}
           </DialogDescription>
         </DialogHeader>
@@ -208,10 +208,10 @@ export function AssignToUserDialog({
                     <SelectItem 
                       key={user.id} 
                       value={user.id}
-                      disabled={isAssigned && currentAssignment?.assignToId === user.id} // Impede re-atribuição para o mesmo usuário
+                      disabled={isAssigned && currentAssignment?.assigned_to_id === user.id}
                     >
                       {user.nome}
-                      {currentAssignment?.assignToId === user.id ? " (Atual)" : ""}
+                      {currentAssignment?.assigned_to_id === user.id ? " (Atual)" : ""}
                     </SelectItem>
                   ))}
                 </SelectContent>

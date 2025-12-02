@@ -6043,7 +6043,7 @@ function FilterPanel({ vendedores, acoes, onFiltersChange }) {
         columnNumber: 5
     }, this);
 }
-_s(FilterPanel, "hpBdbKYMyYequSvKua9z8OthCWY=");
+_s(FilterPanel, "2/VQd08VrWrdJrnFIz66S7LeGiM=");
 _c = FilterPanel;
 var _c;
 __turbopack_context__.k.register(_c, "FilterPanel");

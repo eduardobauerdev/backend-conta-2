@@ -2,7 +2,7 @@ var R=require("../../../../../chunks/[turbopack]_runtime.js")("server/app/api/wh
 R.c("server/chunks/node_modules_next_c61f5fd4._.js")
 R.c("server/chunks/node_modules_@supabase_storage-js_dist_module_829f4f3c._.js")
 R.c("server/chunks/node_modules_@supabase_auth-js_dist_module_02e1b12e._.js")
-R.c("server/chunks/node_modules_6a002b03._.js")
+R.c("server/chunks/node_modules_fccfbb27._.js")
 R.c("server/chunks/[root-of-the-server]__77dace47._.js")
 R.c("server/chunks/_next-internal_server_app_api_whatsapp_messages_[chatId]_route_actions_4f7d12a4.js")
 R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/whatsapp/messages/[chatId]/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")

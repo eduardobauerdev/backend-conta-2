@@ -13,7 +13,7 @@ import { useWhatsAppCache } from "@/contexts/whatsapp-cache-context"
 import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
-import { createClient } from "@/lib/supabase/client"
+import { createClient } from "@/lib/supabase/client" 
 import useSWR, { mutate, useSWRConfig } from "swr"
 import { ATTR_CACHE_KEY, CHAT_LIST_CACHE_KEY } from "@/lib/swr-config"
 import type { AtribuicoesMap } from "@/lib/swr-config"
@@ -26,6 +26,9 @@ interface ChatListProps {
   initialData?: any
 }
 
+// URL do Backend para imagens (Proxy)
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "https://backend-sobt.onrender.com";
+
 const INITIAL_BATCH_SIZE = 20
 const SUBSEQUENT_BATCH_SIZE = 10
 const SCROLL_THRESHOLD = 100
@@ -37,12 +40,14 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
     const { data: cachedChats = initialData?.chats || [] } = useSWR(CHAT_LIST_CACHE_KEY)
     const { data: assignmentsMap = initialData?.assignmentsMap || {} } = useSWR<AtribuicoesMap>(ATTR_CACHE_KEY)
     
-    const { getCachedChats, setCachedChats, appendChats } = useWhatsAppCache()
+    const { setCachedChats, appendChats } = useWhatsAppCache()
     const router = useRouter()
     const { mutate: globalMutate } = useSWRConfig()
+    const supabase = createClient() 
 
     const [chats, setChats] = useState<Chat[]>(cachedChats)
     const [searchQuery, setSearchQuery] = useState("")
+    const [debouncedSearch, setDebouncedSearch] = useState("") 
     
     const [filterMode, setFilterMode] = useState<"all" | "mine">("all")
     const [currentUserId, setCurrentUserId] = useState<string | null>(null)
@@ -53,48 +58,97 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
     const [loadingMore, setLoadingMore] = useState(false)
     const [hasMore, setHasMore] = useState(true)
     
-    // Offset agora funciona estritamente como o "Limiar Visível"
     const [offset, setOffset] = useState(0)
 
     const scrollContainerRef = (ref as React.RefObject<HTMLDivElement>) || useRef<HTMLDivElement>(null); 
     const isLoadingRef = useRef(false)
 
+    // --- SETUP INICIAL ---
     useEffect(() => {
-      const userIdFromCookie = getCookie("auth_user_id")
+        const uid = getCookie("auth_user_id");
+        if (uid) setCurrentUserId(uid);
+        setIsAuthLoaded(true);
+        console.log("🛠️ ChatList montado.");
 
-      if (userIdFromCookie) {
-        setCurrentUserId(userIdFromCookie) 
-      }
-      
-      setIsAuthLoaded(true) 
-    }, [])
+        // Dispara atualização de avatares em background (não trava a UI)
+        // Isso garante que o backend busque fotos novas para chats que estão sem foto no banco
+        const refreshAvatars = async () => {
+            try {
+                // Usamos o caminho da API configurado no next.config.mjs ou URL direta
+                const url = "/api/whatsapp/chats/refresh-avatars"; 
+                await fetch(url, { method: 'POST' });
+            } catch (e) { /* silêncio */ }
+        };
+        // Espera 2s para não concorrer com o carregamento inicial da lista
+        const timer = setTimeout(refreshAvatars, 2000);
+        return () => clearTimeout(timer);
+    }, []);
 
-    // ✅ LÓGICA DE CORTE RÍGIDO (IGNORE MESSAGES)
-    // Se chegarem mensagens novas, o cachedChats atualiza.
-    // Este efeito garante que pegamos o cachedChats atualizado, mas cortamos (slice)
-    // exatamente no tamanho que o usuário pediu (offset ou inicial).
+    // --- DEBOUNCE BUSCA ---
     useEffect(() => {
-      if (cachedChats && cachedChats.length > 0) {
-        // Se offset for 0, usa o inicial (20). Se já rolou, usa o offset atual (30, 40...).
-        const strictLimit = offset === 0 ? INITIAL_BATCH_SIZE : offset;
-        
-        // Corta o array. Mensagens novas empurram as antigas para fora deste limite.
-        setChats(cachedChats.slice(0, strictLimit))
-        setLoading(false)
-      }
-    }, [cachedChats, offset])
+        const timer = setTimeout(() => {
+            setDebouncedSearch(searchQuery)
+        }, 500)
+        return () => clearTimeout(timer)
+    }, [searchQuery])
 
+    // --- RECARREGAR QUANDO MUDA FILTRO/BUSCA ---
+    useEffect(() => {
+        if (!isAuthLoaded) return;
+        setChats([])
+        setOffset(0)
+        setHasMore(true)
+        loadChats(0, true) 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [debouncedSearch, filterMode, isAuthLoaded]) 
+
+
+    // --- REALTIME (Ouve mensagens novas e atualiza a lista) ---
+    useEffect(() => {
+        const channel = supabase
+            .channel('public:chats')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'chats' }, (payload) => {
+                if (payload.eventType === 'UPDATE' || payload.eventType === 'INSERT') {
+                    const newChat = payload.new as any;
+                    
+                    if (newChat.id.includes("@g.us")) return;
+
+                    setChats((prevChats) => {
+                        // Remove a versão antiga se existir
+                        const filtered = prevChats.filter(c => c.id !== newChat.id);
+                        
+                        const formattedChat: Chat = {
+                            id: newChat.id,
+                            name: newChat.name || newChat.id.split('@')[0],
+                            lastMessage: newChat.last_message,
+                            lastMessageTime: newChat.last_message_time,
+                            unreadCount: newChat.unread_count || 0,
+                            // Não usamos mais a URL do banco para exibição direta, mas mantemos no objeto
+                            pictureUrl: newChat.image_url, 
+                        };
+
+                        // Coloca no topo
+                        return [formattedChat, ...filtered];
+                    });
+                }
+            })
+            .subscribe();
+
+        return () => {
+            supabase.removeChannel(channel);
+        };
+    }, [supabase]);
+
+    // --- CARREGAMENTO DE ATRIBUIÇÕES (Mantido) ---
     useEffect(() => {
       const loadInitialAssignments = async () => {
-        const supabase = createClient()
-
         try {
-          const { data: activeAssignments, error } = await supabase
+          const { data: activeAssignments } = await supabase
             .from("chat_assignments")
             .select("*")
             .eq("status", "active")
 
-          if (error || !activeAssignments || activeAssignments.length === 0) return
+          if (!activeAssignments || activeAssignments.length === 0) return
 
           const userIds = Array.from(new Set(activeAssignments.map((a) => a.assigned_to_id)))
           
@@ -111,14 +165,10 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
               .from("cargos")
               .select("nome, cor")
               .in("nome", cargosUnicos)
-              
-            cargosData?.forEach((c) => {
-              coresMap[c.nome] = c.cor
-            })
+            cargosData?.forEach((c) => coresMap[c.nome] = c.cor)
           }
 
           const newAssignmentsMap: AtribuicoesMap = {}
-          
           activeAssignments.forEach((assignment) => {
             const profile = profiles?.find((p) => p.id === assignment.assigned_to_id)
             if (profile) {
@@ -130,142 +180,16 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
               }
             }
           })
-
           mutate(ATTR_CACHE_KEY, newAssignmentsMap, false)
         } catch (err) {
-          console.error("Erro ao carregar badges:", err)
+          console.error("Erro assignments:", err)
         }
       }
-
       loadInitialAssignments()
-    }, [])
+    }, [supabase])
 
-    useEffect(() => {
-      const supabase = createClient()
 
-      const channel = supabase
-        .channel("chat_assignments_realtime")
-        .on(
-          "postgres_changes",
-          {
-            event: "*",
-            schema: "public",
-            table: "chat_assignments",
-            filter: "status=eq.active",
-          },
-          async (payload) => {
-            const currentMap = assignmentsMap || {}
-
-            if (payload.eventType === "INSERT" || payload.eventType === "UPDATE") {
-              const assignment = payload.new as any
-
-              const { data: userData } = await supabase
-                .from("perfis")
-                .select("nome, cargo")
-                .eq("id", assignment.assigned_to_id)
-                .single()
-
-              let cargoColor: string | undefined
-              if (userData?.cargo) {
-                const { data: cargoData } = await supabase
-                  .from("cargos")
-                  .select("cor")
-                  .eq("nome", userData.cargo)
-                  .maybeSingle()
-                cargoColor = cargoData?.cor
-              }
-
-              mutate(
-                ATTR_CACHE_KEY,
-                {
-                  ...currentMap,
-                  [assignment.chat_id]: {
-                    assigned_to_id: assignment.assigned_to_id,
-                    assigned_to_name: userData?.nome || "",
-                    assigned_to_cargo: userData?.cargo,
-                    assigned_to_color: cargoColor,
-                  },
-                },
-                false,
-              )
-            } else if (payload.eventType === "DELETE") {
-              const assignment = payload.old as any
-              const newMap = { ...currentMap }
-              delete newMap[assignment.chat_id]
-
-              mutate(ATTR_CACHE_KEY, newMap, false)
-            }
-          },
-        )
-        .subscribe()
-
-      return () => {
-        supabase.removeChannel(channel)
-      }
-    }, [assignmentsMap])
-
-    useEffect(() => {
-      if (initialData?.assignmentsMap) {
-        globalMutate(ATTR_CACHE_KEY, initialData.assignmentsMap, { revalidate: false })
-      }
-    }, [initialData, globalMutate])
-
-    useEffect(() => {
-      if (initialData && refreshTrigger === 0) {
-        // Inicializa com o limite estrito de 20
-        const initialChats = (initialData.chats || []).slice(0, INITIAL_BATCH_SIZE)
-        setChats(initialChats)
-        setHasMore(initialData.hasMore || false)
-        setOffset(INITIAL_BATCH_SIZE) // Define o limite atual como 20
-        setLoading(false)
-        return
-      }
-
-      const cachedData = getCachedChats()
-
-      if (cachedData && refreshTrigger === 0) {
-        // Inicializa do cache com o limite estrito de 20
-        const initialCacheChats = cachedData.chats.slice(0, INITIAL_BATCH_SIZE)
-        setChats(initialCacheChats)
-        setHasMore(cachedData.hasMore)
-        setOffset(INITIAL_BATCH_SIZE) // Define o limite atual como 20
-        setLoading(false)
-        return
-      }
-
-      setChats([])
-      setOffset(0)
-      setHasMore(true)
-      loadChats(0, true)
-    }, [refreshTrigger, initialData])
-
-    const filteredChats = useMemo(() => {
-      let result = [...chats];
-
-      if (searchQuery.trim() !== "") {
-        result = result.filter((chat) => 
-          chat.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      }
-
-      if (filterMode === "mine") {
-        if (!isAuthLoaded) {
-          return [];
-        } else if (currentUserId && assignmentsMap) {
-          result = result.filter((chat) => {
-            const assignment = assignmentsMap[chat.id];
-            return assignment && assignment.assigned_to_id === currentUserId;
-          });
-        } else if (isAuthLoaded && !currentUserId) {
-          return [];
-        }
-      }
-      
-      result.sort((a, b) => (b.lastMessageTime || 0) - (a.lastMessageTime || 0))
-
-      return result;
-    }, [chats, searchQuery, filterMode, assignmentsMap, currentUserId, isAuthLoaded]);
-
+    // ✅ FUNÇÃO PRINCIPAL: CARREGAR CHATS DO BANCO
     async function loadChats(currentOffset: number, isInitial = false) {
       if (isLoadingRef.current) return
       isLoadingRef.current = true
@@ -274,57 +198,53 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
 
       try {
         const limit = isInitial ? INITIAL_BATCH_SIZE : SUBSEQUENT_BATCH_SIZE
-        const url = `/api/whatsapp/chats?limit=${limit}&offset=${currentOffset}`
-        
-        const response = await fetch(url)
-        const data = await response.json()
+        const rangeEnd = currentOffset + limit - 1
 
-        if (data.success) {
-          const newChats: Chat[] = data.chats || []
-          
-          // Calcula o novo tamanho total desejado
-          const newTotalSize = currentOffset + newChats.length
+        let query = supabase
+            .from('chats')
+            .select('*', { count: 'exact' })
+            .eq('is_archived', false)
+            .not('id', 'ilike', '%@g.us') 
+            .order('last_message_time', { ascending: false })
+            .range(currentOffset, rangeEnd)
 
-          if (isInitial) {
+        if (debouncedSearch) {
+            query = query.or(`name.ilike.%${debouncedSearch}%,id.ilike.%${debouncedSearch}%`)
+        }
+
+        const { data, error, count } = await query
+
+        if (error) throw error
+
+        const newChats: Chat[] = (data || []).map(c => ({
+            id: c.id,
+            name: c.name,
+            lastMessage: c.last_message,
+            lastMessageTime: c.last_message_time,
+            unreadCount: c.unread_count,
+            pictureUrl: c.image_url,
+        }))
+
+        const hasMoreData = count ? (currentOffset + newChats.length) < count : false
+
+        if (isInitial) {
             setChats(newChats)
-            setCachedChats(newChats, data.hasMore || false, newChats.length)
+            setCachedChats(newChats, hasMoreData, newChats.length)
             mutate(CHAT_LIST_CACHE_KEY, newChats, { revalidate: false })
-          } else {
+            setOffset(newChats.length)
+        } else {
             const updatedChats = [...chats, ...newChats]
             setChats(updatedChats)
-            appendChats(newChats, data.hasMore || false)
+            appendChats(newChats, hasMoreData)
             mutate(CHAT_LIST_CACHE_KEY, updatedChats, { revalidate: false })
-          }
-
-          setHasMore(data.hasMore || false)
-          
-          // Se for inicial, garante que o offset seja pelo menos o tamanho do lote inicial
-          // Se for scroll, soma o que chegou
-          if (isInitial) {
-             setOffset(newChats.length)
-          } else {
-             setOffset(prev => prev + newChats.length)
-          }
-
-        } else {
-          const errorMessage = data.message || "Erro ao carregar conversas"
-          setError(errorMessage)
-          
-          if(isInitial) {
-            toast.error("WhatsApp não conectado", {
-              description: errorMessage,
-              action: {
-                label: "Ir para ajustes",
-                onClick: () => router.push("/ajustes?tab=whatsapp"),
-              },
-            })
-          }
+            setOffset(prev => prev + newChats.length)
         }
-      } catch (err) {
-        setError("Não foi possível conectar ao servidor.")
-        if (isInitial) {
-          toast.error("Erro de conexão", { description: "Verifique o backend." })
-        }
+
+        setHasMore(hasMoreData)
+
+      } catch (err: any) {
+        console.error("❌ ERRO chats:", err);
+        setError(`Erro ao carregar.`);
       } finally {
         setLoading(false)
         setLoadingMore(false)
@@ -340,17 +260,20 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
         const clientHeight = target.clientHeight
         const distanceFromBottom = scrollHeight - scrollTop - clientHeight
 
-        if (distanceFromBottom < SCROLL_THRESHOLD && hasMore && !isLoadingRef.current) {
-          // Usa o offset atual para buscar a próxima página
+        if (distanceFromBottom < SCROLL_THRESHOLD && hasMore && !isLoadingRef.current && !loading) {
           loadChats(offset, false)
         }
       },
-      [offset, hasMore],
+      [offset, hasMore, loading]
     )
 
+    // Formatação visual de data
     function formatTime(timestamp: number | null) {
-      if (!timestamp) return ""
+      if (!timestamp || timestamp <= 0) return ""
+      
       const date = new Date(timestamp)
+      if (date.getFullYear() < 2000) return "" // Filtra datas inválidas/antigas
+
       const now = new Date()
       const diff = now.getTime() - date.getTime()
       const days = Math.floor(diff / (1000 * 60 * 60 * 24))
@@ -361,42 +284,53 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
       return date.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" })
     }
 
-    if (loading || (filterMode === 'mine' && !isAuthLoaded)) {
+    const displayChats = useMemo(() => {
+        if (filterMode === 'all') return chats;
+
+        if (filterMode === 'mine' && currentUserId && assignmentsMap) {
+            return chats.filter(chat => {
+                const assignment = assignmentsMap[chat.id];
+                return assignment && assignment.assigned_to_id === currentUserId;
+            })
+        }
+        return [];
+    }, [chats, filterMode, currentUserId, assignmentsMap]);
+
+    if (loading && offset === 0) {
       return (
         <div className="flex items-center justify-center h-full">
           <Loader2 className="w-6 h-6 animate-spin mr-2 text-primary" />
-          <p className="text-muted-foreground">Carregando conversas...</p>
+          <p className="text-muted-foreground">Carregando...</p>
         </div>
       )
     }
 
     if (error) {
-      return (
-        <div className="flex flex-col h-full p-4 gap-4">
-          <Alert variant="destructive">
-            <AlertCircle className="h-4 w-4" />
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-          <Button
-            onClick={() => {
-              setChats([])
-              setOffset(0)
-              setHasMore(true)
-              loadChats(0, true)
-            }}
-            variant="outline"
-            className="w-full bg-transparent"
-          >
-            <RefreshCw className="w-4 h-4 mr-2" />
-            Tentar Novamente
-          </Button>
-        </div>
-      )
-    }
+        return (
+          <div className="flex flex-col h-full p-4 gap-4 items-center justify-center">
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+            <Button
+              onClick={() => {
+                setChats([])
+                setOffset(0)
+                setHasMore(true)
+                loadChats(0, true)
+              }}
+              variant="outline"
+            >
+              <RefreshCw className="w-4 h-4 mr-2" />
+              Tentar Novamente
+            </Button>
+          </div>
+        )
+      }
 
     return (
       <div className="flex flex-col h-full bg-background border-r"> 
-        {/* ✅ HEADER COMPACTO */}
+        {/* HEADER */}
         <div className="flex flex-col border-b bg-background z-10 sticky top-0">
           <div className="p-3 pb-2">
             <div className="relative">
@@ -415,10 +349,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
               variant={filterMode === 'all' ? "secondary" : "ghost"} 
               size="sm" 
               onClick={() => setFilterMode('all')}
-              className={cn(
-                "flex-1 h-7 text-xs font-medium transition-all",
-                filterMode === 'all' && "bg-secondary hover:bg-secondary/80 shadow-sm"
-              )}
+              className={cn("flex-1 h-7 text-xs font-medium transition-all", filterMode === 'all' && "bg-secondary shadow-sm")}
             >
               Todas
             </Button>
@@ -426,10 +357,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
               variant={filterMode === 'mine' ? "secondary" : "ghost"} 
               size="sm" 
               onClick={() => setFilterMode('mine')}
-              className={cn(
-                "flex-1 h-7 text-xs font-medium transition-all",
-                filterMode === 'mine' && "bg-secondary hover:bg-secondary/80 shadow-sm"
-              )}
+              className={cn("flex-1 h-7 text-xs font-medium transition-all", filterMode === 'mine' && "bg-secondary shadow-sm")}
             >
               Minhas
             </Button>
@@ -440,52 +368,23 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
           ref={scrollContainerRef} 
           onScroll={handleScroll}
           className="flex-1 overflow-y-auto" 
-          style={{
-            overscrollBehavior: "contain",
-            WebkitOverflowScrolling: "touch",
-            scrollBehavior: "smooth",
-          }}
+          style={{ overscrollBehavior: "contain", WebkitOverflowScrolling: "touch", scrollBehavior: "smooth" }}
         >
-          {filteredChats.length === 0 ? (
+          {displayChats.length === 0 ? (
             <div className="p-6 text-center space-y-3 flex flex-col items-center">
               <p className="text-muted-foreground text-sm">
-                {searchQuery 
-                  ? "Nenhuma conversa encontrada" 
-                  : filterMode === 'mine' 
-                  ? "Sem conversas atribuídas" 
-                  : "Nenhuma conversa disponível"}
+                {filterMode === 'mine' ? "Você não tem conversas atribuídas" : "Nenhuma conversa encontrada"}
               </p>
-              
-              {hasMore ? (
-                <Button
-                  onClick={() => loadChats(offset, false)}
-                  variant="outline"
-                  size="sm"
-                  disabled={loadingMore}
-                >
-                  {loadingMore ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <RefreshCw className="w-4 h-4 mr-2" />}
-                  Buscar mais
-                </Button>
-              ) : (
-                <Button
-                  onClick={() => {
-                    setFilterMode('all')
-                    setSearchQuery('')
-                  }}
-                  variant="ghost"
-                  size="sm"
-                >
-                  Limpar filtros
-                </Button>
-              )}
             </div>
           ) : (
             <>
-              {/* ✅ LISTA COMPACTA DE CHATS */}
               <div className="py-1">
-                {filteredChats.map((chat) => {
+                {displayChats.map((chat) => {
                   const assignment = assignmentsMap?.[chat.id]
-                  const profilePicture = chat.pictureUrl || chat.profilePic || null
+                  
+                  // 🔥 PROXY DE IMAGEM: Aponta para o seu backend no Render
+                  // Isso garante que a imagem carregue mesmo se o link do WA expirar ou tiver CORS
+                  const profilePicture = `${BACKEND_URL}/chats/avatar/${chat.id}`
 
                   return (
                     <button
@@ -497,16 +396,19 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                         chat.unreadCount > 0 && "border-l-2 border-primary bg-primary/5"
                       )}
                     >
-                      {/* ✅ AVATAR MENOR (40x40) */}
                       <Avatar className="w-10 h-10 flex-shrink-0">
-                        {profilePicture && <AvatarImage src={profilePicture} alt={chat.name} />}
-                        <AvatarFallback className="bg-primary text-primary-foreground text-sm">
-                          {chat.name.charAt(0).toUpperCase()}
+                        <AvatarImage 
+                            src={profilePicture} 
+                            alt={chat.name} 
+                            className="object-cover" 
+                        />
+                        {/* ✅ CORRIGIDO: Fallback com fundo cinza e ícone de User */}
+                        <AvatarFallback className="bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                          <User className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                         </AvatarFallback>
                       </Avatar>
 
                       <div className="flex-1 min-w-0">
-                        {/* ✅ NOME + HORA (uma linha) */}
                         <div className="flex items-center justify-between gap-2 mb-0.5">
                           <p className="font-medium truncate text-sm">{chat.name}</p>
                           <span className="text-[11px] text-muted-foreground flex-shrink-0">
@@ -514,18 +416,9 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                           </span>
                         </div>
 
-                        {/* ✅ MENSAGEM/BADGE + CONTADOR */}
                         <div className="flex items-center justify-between gap-1.5">
                           {assignment ? (
-                            <Badge
-                              variant="secondary"
-                              className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border"
-                              style={{
-                                backgroundColor: assignment.assigned_to_color || "#6366f1",
-                                color: "#ffffff",
-                                borderColor: assignment.assigned_to_color || "#6366f1",
-                              }}
-                            >
+                            <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border" style={{ backgroundColor: assignment.assigned_to_color || "#6366f1", color: "#ffffff", borderColor: assignment.assigned_to_color || "#6366f1" }}>
                               <User className="w-2.5 h-2.5" />
                               <span className="max-w-[100px] truncate">{assignment.assigned_to_name}</span>
                             </Badge>
@@ -546,18 +439,12 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                   )
                 })}
               </div>
-
+              
               {loadingMore && (
-                <div className="flex items-center justify-center gap-2 py-3">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <p className="text-xs text-muted-foreground">Carregando...</p>
-                </div>
-              )}
-
-              {!hasMore && filteredChats.length > 0 && (
-                <div className="text-center py-3">
-                  <p className="text-[11px] text-muted-foreground">Fim da lista</p>
-                </div>
+                 <div className="flex items-center justify-center gap-2 py-3">
+                   <Loader2 className="w-4 h-4 animate-spin" />
+                   <p className="text-xs text-muted-foreground">Carregando...</p>
+                 </div>
               )}
             </>
           )}

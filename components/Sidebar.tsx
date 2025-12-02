@@ -7,10 +7,11 @@ import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useUser } from "@/contexts/user-context"
 import { useSidebar } from "@/contexts/sidebar-context"
-import { useWhatsApp } from "@/contexts/whatsapp-context"
-import React from "react"
+// import { useWhatsApp } from "@/contexts/whatsapp-context" // Removido para usar direto do banco
+import React, { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { createClient } from "@/lib/supabase/client" // ✅ Importando Supabase
 
 const FolderClosedIcon = () => (
   <svg
@@ -79,6 +80,7 @@ const DatabaseIcon = () => (
   </svg>
 )
 
+// Ícone Verde para Conectado
 const WhatsAppIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +88,7 @@ const WhatsAppIcon = () => (
     height="20"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor"
+    stroke="#22c55e" // Verde
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -95,6 +97,7 @@ const WhatsAppIcon = () => (
   </svg>
 )
 
+// Ícone Vermelho/Padrão para Desconectado
 const WhatsAppDisconnectedIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +105,7 @@ const WhatsAppDisconnectedIcon = () => (
     height="20"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor"
+    stroke="currentColor" // Usa a cor do texto (cinza/branco)
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -201,7 +204,44 @@ export function Sidebar() {
   const pathname = usePathname()
   const { user } = useUser()
   const { isCollapsed, toggleCollapse } = useSidebar()
-  const { isConnected: isWhatsAppConnected } = useWhatsApp()
+  
+  // ✅ ESTADO LOCAL PARA CONEXÃO (Substituindo o contexto antigo)
+  const [isWhatsAppConnected, setIsWhatsAppConnected] = useState(false)
+  const supabase = createClient()
+
+  // ✅ EFEITO: Escuta o status do banco em tempo real
+  useEffect(() => {
+    // 1. Busca status inicial
+    const fetchStatus = async () => {
+        const { data } = await supabase
+            .from("instance_settings")
+            .select("status")
+            .eq("id", 1)
+            .single()
+        
+        setIsWhatsAppConnected(data?.status === "connected")
+    }
+    fetchStatus()
+
+    // 2. Escuta mudanças
+    const channel = supabase
+        .channel("sidebar_status")
+        .on(
+            "postgres_changes",
+            { event: "UPDATE", schema: "public", table: "instance_settings", filter: "id=eq.1" },
+            (payload) => {
+                const status = payload.new.status
+                setIsWhatsAppConnected(status === "connected")
+            }
+        )
+        .subscribe()
+
+    return () => {
+        supabase.removeChannel(channel)
+    }
+  }, [supabase])
+
+
   const isInDocumentosSection = documentosSubmenu.some((sub) => pathname === sub.href)
   const [isDocumentosOpen, setIsDocumentosOpen] = React.useState(isInDocumentosSection)
   const [isDocumentosHovered, setIsDocumentosHovered] = React.useState(false)

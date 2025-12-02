@@ -32,7 +32,7 @@ import { toast } from "sonner"
 import { deleteCookie } from "@/lib/auth"
 import { QRScanner } from "@/components/whatsapp/qr-scanner"
 import { ConnectionStatus } from "@/components/whatsapp/connection-status"
-import { useWhatsApp } from "@/contexts/whatsapp-context"
+// import { useWhatsApp } from "@/contexts/whatsapp-context" // Removido (Contexto antigo)
 import {
   Dialog,
   DialogContent,
@@ -73,11 +73,52 @@ interface Category {
 
 type SettingsTab = "usuario" | "whatsapp" | "links" | "respostas-rapidas"
 
+// URL do Backend (para logout) - O ideal é buscar do banco, mas usaremos ENV/Hardcoded por consistência com ChatList
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "https://backend-sobt.onrender.com";
+
 export default function AjustesPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { user, refreshUser } = useUser()
-  const { isConnected: isWhatsAppConnectedFromContext, setIsConnected } = useWhatsApp()
+  const supabase = createClient()
+
+  // ✅ ESTADO DE CONEXÃO LOCAL (Lendo do Banco)
+  const [isWhatsAppConnected, setIsWhatsAppConnected] = useState(false)
+  
+  // ✅ LISTENERS DE REALTIME
+  useEffect(() => {
+      // 1. Busca status inicial
+      const fetchStatus = async () => {
+          const { data } = await supabase
+              .from("instance_settings")
+              .select("status")
+              .eq("id", 1)
+              .single()
+          
+          setIsWhatsAppConnected(data?.status === "connected")
+      }
+      fetchStatus()
+
+      // 2. Escuta mudanças em tempo real
+      const channel = supabase
+          .channel("settings_page_status")
+          .on(
+              "postgres_changes",
+              { event: "UPDATE", schema: "public", table: "instance_settings", filter: "id=eq.1" },
+              (payload) => {
+                  const status = payload.new.status
+                  setIsWhatsAppConnected(status === "connected")
+                  // Se conectar, fecha o QR automaticamente
+                  if (status === "connected") setShowQR(false)
+              }
+          )
+          .subscribe()
+
+      return () => {
+          supabase.removeChannel(channel)
+      }
+  }, [supabase])
+
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
   const [loading, setLoading] = useState(true)
   const [nome, setNome] = useState("")
@@ -88,7 +129,6 @@ export default function AjustesPage() {
   const [loadingWhatsApp, setLoadingWhatsApp] = useState(true)
   const [urlSaved, setUrlSaved] = useState(false)
   const [showQR, setShowQR] = useState(false)
-  const isWhatsAppConnected = isWhatsAppConnectedFromContext
   const [disconnectingWhatsApp, setDisconnectingWhatsApp] = useState(false)
 
   const [activeTab, setActiveTab] = useState<SettingsTab>("usuario")
@@ -107,8 +147,6 @@ export default function AjustesPage() {
   const [newCategoryName, setNewCategoryName] = useState("")
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
 
-  const supabase = createClient()
-
   useEffect(() => {
     const tabParam = searchParams.get("tab")
     if (tabParam && ["usuario", "whatsapp", "links", "respostas-rapidas"].includes(tabParam)) {
@@ -118,7 +156,7 @@ export default function AjustesPage() {
 
   useEffect(() => {
     loadUserProfile()
-    loadWhatsAppConfig()
+    loadWhatsAppConfig() // Carrega URL da API do banco
     if (activeTab === "respostas-rapidas") {
       loadQuickReplies()
       loadCategories()
@@ -146,26 +184,23 @@ export default function AjustesPage() {
     }
   }
 
+  // Carrega a URL da API salva no banco (whatsapp_config)
   async function loadWhatsAppConfig() {
     try {
       setLoadingWhatsApp(true)
-      const response = await fetch("/api/whatsapp/config")
-      if (!response.ok) {
-        console.error("Erro ao carregar configuração:", response.status)
-        return
-      }
-      const text = await response.text()
-      if (!text) return
-      const data = JSON.parse(text)
+      
+      const { data, error } = await supabase
+          .from("whatsapp_config")
+          .select("server_url")
+          .limit(1)
+          .single()
 
-      if (data.success && data.config) {
-        setWhatsappServerUrl(data.config.server_url || "")
-        if (data.config.server_url) {
-          setUrlSaved(true)
-        }
+      if (data?.server_url) {
+        setWhatsappServerUrl(data.server_url)
+        setUrlSaved(true)
       }
     } catch (error) {
-      console.error("Erro ao carregar configuração WhatsApp:", error)
+      console.error("Erro config:", error)
     } finally {
       setLoadingWhatsApp(false)
     }
@@ -203,76 +238,64 @@ export default function AjustesPage() {
     }
   }
 
+  // Salva a URL no Banco (whatsapp_config)
   async function handleWhatsappUrlChange(value: string) {
     setWhatsappServerUrl(value)
     setUrlSaved(false)
 
-    if (!value.trim()) {
-      return
-    }
+    if (!value.trim()) return
 
     const cleanedUrl = value.trim().replace(/\/+$/, "")
 
     try {
-      const response = await fetch("/api/whatsapp/config", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ server_url: cleanedUrl }),
-      })
+        // Upsert na tabela de config (assume ID 1 ou cria novo)
+        // Nota: Se sua tabela não tem ID fixo, talvez precise ajustar a lógica de insert
+        // Aqui assumimos que a rota da API faz o upsert ou insert corretamente
+        const response = await fetch("/api/whatsapp/config", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ server_url: cleanedUrl }),
+        })
 
-      const data = await response.json()
-
-      if (data.success) {
-        setWhatsappServerUrl(cleanedUrl)
-        setUrlSaved(true)
-        toast.success("URL API salva")
-      } else {
-        toast.error(data.message || "Erro ao salvar URL")
-      }
+        if (response.ok) {
+            setUrlSaved(true)
+            toast.success("URL salva")
+        }
     } catch (error) {
-      console.error("Erro ao salvar:", error)
       toast.error("Erro ao salvar URL")
-    } finally {
-      setDisconnectingWhatsApp(false)
     }
   }
 
+  // Desconectar: Chama o Backend via Proxy ou URL direta
   async function handleDisconnectWhatsApp() {
     setDisconnectingWhatsApp(true)
     try {
-      const response = await fetch("/api/whatsapp/logout", {
+      // Usa a URL configurada ou fallback
+      const baseUrl = whatsappServerUrl || BACKEND_URL;
+      
+      const response = await fetch(`${baseUrl}/session/disconnect`, {
         method: "POST",
       })
 
-      if (!response.ok) {
-        console.error("Erro na resposta:", response.status)
-        toast.error("Erro ao desconectar WhatsApp. Tente novamente.")
-        return
-      }
-
-      const data = await response.json()
-
-      if (data.success === true) {
-        toast.success("WhatsApp desconectado com sucesso")
-        setShowQR(false)
-        setIsConnected(false)
+      if (response.ok) {
+        toast.success("Solicitação enviada")
+        // O Realtime vai atualizar o estado para desconectado automaticamente
       } else {
-        toast.error(data.message || "Erro ao desconectar WhatsApp. Tente novamente.")
+        toast.error("Erro ao desconectar")
       }
     } catch (error) {
       console.error("Erro ao desconectar:", error)
-      toast.error("Erro ao desconectar do WhatsApp. Tente novamente.")
+      toast.error("Erro de conexão")
     } finally {
       setDisconnectingWhatsApp(false)
     }
   }
 
   function handleWhatsAppConnected() {
+    // Callback do QRScanner
+    // O Realtime já cuida disso, mas mantemos para feedback imediato
     setShowQR(false)
-    toast.success("WhatsApp conectado!")
-    setIsConnected(true)
+    toast.success("Conectado!")
   }
 
   const handleSaveProfile = async () => {
@@ -483,53 +506,7 @@ export default function AjustesPage() {
     }
   }
 
-  async function handleWhatsappSave() {
-    if (!whatsappServerUrl.trim()) {
-      toast.error("Digite a URL da API")
-      return
-    }
-
-    setDisconnectingWhatsApp(true)
-
-    let cleanedUrl = whatsappServerUrl.trim()
-    if (cleanedUrl.endsWith("/")) {
-      cleanedUrl = cleanedUrl.slice(0, -1)
-    }
-
-    try {
-      const response = await fetch("/api/whatsapp/config", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ server_url: cleanedUrl }),
-      })
-
-      if (!response.ok) {
-        toast.error("Erro ao salvar URL")
-        return
-      }
-      const text = await response.text()
-      if (!text) {
-        toast.error("Resposta vazia do servidor")
-        return
-      }
-      const data = JSON.parse(text)
-
-      if (data.success) {
-        setWhatsappServerUrl(cleanedUrl)
-        setUrlSaved(true)
-        toast.success("URL API salva")
-      } else {
-        toast.error(data.message || "Erro ao salvar URL")
-      }
-    } catch (error) {
-      console.error("Erro ao salvar configuração:", error)
-      toast.error("Erro ao salvar URL")
-    } finally {
-      setDisconnectingWhatsApp(false)
-    }
-  }
+  // O handleWhatsappSave já foi coberto pela função handleWhatsappUrlChange acima
 
   return (
     <div className="flex h-screen bg-neutral-100">
@@ -559,8 +536,9 @@ export default function AjustesPage() {
                 : "text-neutral-700 hover:bg-neutral-100"
             }`}
           >
+            {/* Ícone Dinâmico (Verde/Cinza) baseado no Realtime */}
             {isWhatsAppConnected ? (
-              <MessageSquare className="w-5 h-5 flex-shrink-0" />
+              <MessageSquare className="w-5 h-5 flex-shrink-0 text-green-500" />
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -734,18 +712,6 @@ export default function AjustesPage() {
                         <MessageSquare className="w-5 h-5 mr-2" />
                         Conectar WhatsApp
                       </Button>
-                      <p className="text-xs text-neutral-500">
-                        ou{" "}
-                        <button
-                          onClick={() => {
-                            setActiveTab("whatsapp")
-                            window.scrollTo({ top: 0, behavior: "smooth" })
-                          }}
-                          className="text-neutral-700 underline hover:text-neutral-900"
-                        >
-                          configure a URL da API acima
-                        </button>
-                      </p>
                     </div>
                   )}
 
@@ -821,7 +787,6 @@ export default function AjustesPage() {
                   </Button>
                 </Card>
               ) : (
-                /* Organizar por categorias com expansão */
                 <div className="space-y-4">
                   {categories.map((category) => {
                     const categoryReplies = quickReplies.filter((r) => r.category?.id === category.id)

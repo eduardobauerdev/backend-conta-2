@@ -254,7 +254,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sonner$2
 ;
 ;
 const metadata = {
-    title: "Sistema de Ordem de Serviço",
+    title: "Sistema",
     description: "Sistema de gestão de ordens de serviço",
     generator: "v0.app",
     icons: {

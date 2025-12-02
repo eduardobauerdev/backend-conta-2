@@ -1145,8 +1145,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function AssignToUserDialog({ open, onOpenChange, chatId, chatName, currentUserId, // ⬅️ [CORREÇÃO 2]: Adição de 'currentAssignment' no destructuring
-currentAssignment, onAssignSuccess, onRelease }) {
+function AssignToUserDialog({ open, onOpenChange, chatId, chatName, currentUserId, currentAssignment, chatAssignment, onAssignSuccess, onRelease }) {
     _s();
     const [users, setUsers] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [selectedUserId, setSelectedUserId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
@@ -1180,9 +1179,8 @@ currentAssignment, onAssignSuccess, onRelease }) {
         "AssignToUserDialog.useEffect": ()=>{
             if (open) {
                 loadUsers();
-                // Se já houver atribuição, pré-selecionar o usuário
                 if (currentAssignment) {
-                    setSelectedUserId(currentAssignment.assignToId);
+                    setSelectedUserId(currentAssignment.assigned_to_id);
                 } else {
                     setSelectedUserId("");
                 }
@@ -1192,7 +1190,7 @@ currentAssignment, onAssignSuccess, onRelease }) {
         open,
         currentAssignment,
         loadUsers
-    ]); // loadUsers adicionado nas dependências
+    ]);
     // Função handleUsers foi substituída por loadUsers
     // async function loadUsers() { ... }
     async function handleAssignToUser() {
@@ -1270,7 +1268,7 @@ currentAssignment, onAssignSuccess, onRelease }) {
             setReleasing(false);
         }
     }
-    const isAssignedToSelectedUser = currentAssignment?.assignToId === selectedUserId;
+    const isAssignedToSelectedUser = currentAssignment?.assigned_to_id === selectedUserId;
     const isAssigned = !!currentAssignment;
     const buttonDisabled = !selectedUserId || assigning || loading || isAssignedToSelectedUser;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -1288,7 +1286,7 @@ currentAssignment, onAssignSuccess, onRelease }) {
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogDescription"], {
-                            children: isAssigned ? `Atualmente atribuída a: ${currentAssignment.assignToName}` : "Selecione um usuário para atribuir a conversa"
+                            children: isAssigned ? `Atualmente atribuída a: ${currentAssignment.assigned_to_name}` : "Selecione um usuário para atribuir a conversa"
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/assign-to-user-dialog.tsx",
                             lineNumber: 187,
@@ -1346,10 +1344,10 @@ currentAssignment, onAssignSuccess, onRelease }) {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
                                         children: users.map((user)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
                                                 value: user.id,
-                                                disabled: isAssigned && currentAssignment?.assignToId === user.id,
+                                                disabled: isAssigned && currentAssignment?.assigned_to_id === user.id,
                                                 children: [
                                                     user.nome,
-                                                    currentAssignment?.assignToId === user.id ? " (Atual)" : ""
+                                                    currentAssignment?.assigned_to_id === user.id ? " (Atual)" : ""
                                                 ]
                                             }, user.id, true, {
                                                 fileName: "[project]/components/whatsapp/assign-to-user-dialog.tsx",
@@ -1613,6 +1611,7 @@ __turbopack_context__.s([
     "ChatWindow",
     ()=>ChatWindow
 ]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-client] (ecmascript)");
@@ -1661,12 +1660,14 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-const MESSAGES_PER_PAGE = 10;
+const MESSAGES_PER_PAGE = 20;
 const SCROLL_THRESHOLD = 100;
+// URL do Backend para Proxy de Imagens/Mídia
+const BACKEND_URL = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].env.NEXT_PUBLIC_API_URL || "https://backend-sobt.onrender.com";
 function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleLeadPanel, showLeadPanel }) {
     _s();
-    const { getCachedMessages, setCachedMessages, appendMessages, addNewMessage, invalidateMessagesCache } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$whatsapp$2d$cache$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useWhatsAppCache"])();
-    console.log("chatPicture recebido:", chatPicture);
+    const { getCachedMessages, setCachedMessages, appendMessages, addNewMessage } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$whatsapp$2d$cache$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useWhatsAppCache"])();
+    const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createClient"])();
     const [messages, setMessages] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [newMessage, setNewMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
@@ -1685,19 +1686,69 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
     const userId = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id");
     const scrollContainerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const isLoadingRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
+    // Ref para guardar a altura antes de carregar mensagens antigas
     const previousScrollHeightRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(0);
-    const previousScrollTopRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(0);
     const isInitialLoadRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(true);
     const [hasMore, setHasMore] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [offset, setOffset] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [loadingMore, setLoadingMore] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [selectedFile, setSelectedFile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const fileInputRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    // Fallback seguro para nome do chat
-    const safeChatName = chatName && chatName.trim().length > 0 ? chatName : chatId && chatId.trim().length > 0 ? chatId : "Contato";
+    const safeChatName = chatName && chatName.trim().length > 0 ? chatName : chatId || "Contato";
+    const profilePictureUrl = `${BACKEND_URL}/chats/avatar/${chatId}`;
     // ----------------------------------------------------
-    // --- REALTIME SUBSCRIPTIONS (Atividades e Atribuição)
+    // --- REALTIME SUBSCRIPTIONS
     // ----------------------------------------------------
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$realtime$2d$subscription$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRealtimeSubscription"])({
+        table: "messages",
+        filter: `chat_id=eq.${chatId}`,
+        onInsert: {
+            "ChatWindow.useRealtimeSubscription": (newMsgRow)=>{
+                const newMessage = {
+                    id: newMsgRow.id,
+                    body: newMsgRow.content || "",
+                    timestamp: Number(newMsgRow.timestamp),
+                    from: newMsgRow.sender_id || "Desconhecido",
+                    to: newMsgRow.chat_id,
+                    fromMe: newMsgRow.from_me,
+                    type: newMsgRow.type || "text",
+                    hasMedia: newMsgRow.has_media,
+                    ack: newMsgRow.ack || 0,
+                    mediaUrl: newMsgRow.has_media ? `${BACKEND_URL}/media/${chatId}/${newMsgRow.id}` : null,
+                    mimeType: newMsgRow.media_meta?.mimetype,
+                    caption: null
+                };
+                setMessages({
+                    "ChatWindow.useRealtimeSubscription": (prev)=>{
+                        if (prev.some({
+                            "ChatWindow.useRealtimeSubscription": (m)=>m.id === newMessage.id
+                        }["ChatWindow.useRealtimeSubscription"])) return prev;
+                        return [
+                            ...prev,
+                            newMessage
+                        ];
+                    }
+                }["ChatWindow.useRealtimeSubscription"]);
+                if (newMessage.fromMe || isNearBottom()) {
+                    setTimeout({
+                        "ChatWindow.useRealtimeSubscription": ()=>scrollToBottom("smooth")
+                    }["ChatWindow.useRealtimeSubscription"], 100);
+                }
+            }
+        }["ChatWindow.useRealtimeSubscription"],
+        onUpdate: {
+            "ChatWindow.useRealtimeSubscription": (updatedRow)=>{
+                setMessages({
+                    "ChatWindow.useRealtimeSubscription": (prev)=>prev.map({
+                            "ChatWindow.useRealtimeSubscription": (m)=>m.id === updatedRow.id ? {
+                                    ...m,
+                                    ack: updatedRow.ack
+                                } : m
+                        }["ChatWindow.useRealtimeSubscription"])
+                }["ChatWindow.useRealtimeSubscription"]);
+            }
+        }["ChatWindow.useRealtimeSubscription"]
+    });
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$realtime$2d$subscription$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRealtimeSubscription"])({
         table: "chat_activity",
         filter: `chat_id=eq.${chatId}`,
@@ -1708,12 +1759,9 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                         const exists = prev.some({
                             "ChatWindow.useRealtimeSubscription.exists": (a)=>a.user_id === activity.user_id
                         }["ChatWindow.useRealtimeSubscription.exists"]);
-                        if (exists) {
-                            return prev.map({
-                                "ChatWindow.useRealtimeSubscription": (a)=>a.user_id === activity.user_id ? activity : a
-                            }["ChatWindow.useRealtimeSubscription"]);
-                        }
-                        return [
+                        return exists ? prev.map({
+                            "ChatWindow.useRealtimeSubscription": (a)=>a.user_id === activity.user_id ? activity : a
+                        }["ChatWindow.useRealtimeSubscription"]) : [
                             ...prev,
                             activity
                         ];
@@ -1722,22 +1770,18 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
             }
         }["ChatWindow.useRealtimeSubscription"],
         onUpdate: {
-            "ChatWindow.useRealtimeSubscription": (activity)=>{
-                setActivities({
+            "ChatWindow.useRealtimeSubscription": (activity)=>setActivities({
                     "ChatWindow.useRealtimeSubscription": (prev)=>prev.map({
                             "ChatWindow.useRealtimeSubscription": (a)=>a.user_id === activity.user_id ? activity : a
                         }["ChatWindow.useRealtimeSubscription"])
-                }["ChatWindow.useRealtimeSubscription"]);
-            }
+                }["ChatWindow.useRealtimeSubscription"])
         }["ChatWindow.useRealtimeSubscription"],
         onDelete: {
-            "ChatWindow.useRealtimeSubscription": (activity)=>{
-                setActivities({
+            "ChatWindow.useRealtimeSubscription": (activity)=>setActivities({
                     "ChatWindow.useRealtimeSubscription": (prev)=>prev.filter({
                             "ChatWindow.useRealtimeSubscription": (a)=>a.user_id !== activity.user_id
                         }["ChatWindow.useRealtimeSubscription"])
-                }["ChatWindow.useRealtimeSubscription"]);
-            }
+                }["ChatWindow.useRealtimeSubscription"])
         }["ChatWindow.useRealtimeSubscription"]
     });
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$realtime$2d$subscription$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRealtimeSubscription"])({
@@ -1745,46 +1789,16 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
         filter: `chat_id=eq.${chatId}`,
         onInsert: {
             "ChatWindow.useRealtimeSubscription": async (assignment)=>{
-                if (assignment.status === "active") {
-                    setAssignment(assignment);
-                    if (assignment.assigned_to_name && assignment.assigned_to_id) {
-                        const cachedData = userDataCache.current[assignment.assigned_to_id];
-                        if (cachedData) {
-                            setAssignedUserName(cachedData.nome);
-                            setAssignedUserCargo(cachedData.cargo);
-                            setRoleColor(cachedData.color);
-                        } else {
-                            const userData = await loadAssignmentUserData(assignment.assigned_to_id);
-                            userDataCache.current[assignment.assigned_to_id] = userData;
-                            setAssignedUserName(userData.nome);
-                            setAssignedUserCargo(userData.cargo);
-                            setRoleColor(userData.color);
-                        }
-                    }
-                }
+                handleAssignmentUpdate(assignment);
             }
         }["ChatWindow.useRealtimeSubscription"],
         onUpdate: {
             "ChatWindow.useRealtimeSubscription": async (assignment)=>{
-                if (assignment.status === "active") {
-                    setAssignment(assignment);
-                    const cachedData = userDataCache.current[assignment.assigned_to_id];
-                    if (cachedData) {
-                        setAssignedUserName(cachedData.nome);
-                        setAssignedUserCargo(cachedData.cargo);
-                        setRoleColor(cachedData.color);
-                    } else if (assignment.assigned_to_id) {
-                        const userData = await loadAssignmentUserData(assignment.assigned_to_id);
-                        userDataCache.current[assignment.assigned_to_id] = userData;
-                        setAssignedUserName(userData.nome);
-                        setAssignedUserCargo(userData.cargo);
-                        setRoleColor(userData.color);
-                    }
-                }
+                handleAssignmentUpdate(assignment);
             }
         }["ChatWindow.useRealtimeSubscription"],
         onDelete: {
-            "ChatWindow.useRealtimeSubscription": (assignment)=>{
+            "ChatWindow.useRealtimeSubscription": ()=>{
                 setAssignment(null);
                 setAssignedUserName(null);
                 setAssignedUserCargo(null);
@@ -1792,8 +1806,30 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
             }
         }["ChatWindow.useRealtimeSubscription"]
     });
+    const handleAssignmentUpdate = async (assignment)=>{
+        if (assignment.status === "active") {
+            setAssignment(assignment);
+            if (assignment.assigned_to_id) {
+                updateUserDataCache(assignment.assigned_to_id);
+            }
+        }
+    };
+    const updateUserDataCache = async (userId)=>{
+        if (userDataCache.current[userId]) {
+            const cached = userDataCache.current[userId];
+            setAssignedUserName(cached.nome);
+            setAssignedUserCargo(cached.cargo);
+            setRoleColor(cached.color);
+        } else {
+            const userData = await loadAssignmentUserData(userId);
+            userDataCache.current[userId] = userData;
+            setAssignedUserName(userData.nome);
+            setAssignedUserCargo(userData.cargo);
+            setRoleColor(userData.color);
+        }
+    };
     // ----------------------------------------------------
-    // --- LIFECYCLE & INITIAL LOAD
+    // --- LIFECYCLE
     // ----------------------------------------------------
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ChatWindow.useEffect": ()=>{
@@ -1807,253 +1843,167 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ChatWindow.useEffect": ()=>{
-            const cachedData = getCachedMessages(chatId);
-            if (cachedData) {
-                setMessages(cachedData.messages);
-                setHasMore(cachedData.hasMore);
-                setOffset(cachedData.totalMessages);
-                setLoading(false);
-                isInitialLoadRef.current = true;
-                return;
-            }
             setMessages([]);
             setOffset(0);
             setHasMore(true);
             setLoading(true);
             isInitialLoadRef.current = true;
             isLoadingRef.current = false;
+            previousScrollHeightRef.current = 0; // Reseta a referência de scroll
             loadMessages(0, true);
         }
     }["ChatWindow.useEffect"], [
-        chatId,
-        getCachedMessages
+        chatId
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ChatWindow.useEffect": ()=>{
+            // Scroll inicial para o fundo
             if (isInitialLoadRef.current && messages.length > 0 && !loading) {
+                // Pequeno timeout para garantir renderização
                 setTimeout({
                     "ChatWindow.useEffect": ()=>{
                         scrollToBottom("auto");
                         isInitialLoadRef.current = false;
                     }
-                }["ChatWindow.useEffect"], 100);
+                }["ChatWindow.useEffect"], 50);
             }
         }
     }["ChatWindow.useEffect"], [
         messages,
         loading
     ]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "ChatWindow.useEffect": ()=>{
-            if (!loading && !isLoadingRef.current && previousScrollHeightRef.current > 0 && scrollContainerRef.current) {
+    // 🔥 CORREÇÃO DO SCROLL (UseLayoutEffect)
+    // Isso roda SÍNCRONO após a renderização do DOM, mas antes de pintar na tela.
+    // Evita o "pulo" visual quando carregamos mensagens antigas.
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLayoutEffect"])({
+        "ChatWindow.useLayoutEffect": ()=>{
+            if (!loading && previousScrollHeightRef.current > 0 && scrollContainerRef.current) {
                 const newScrollHeight = scrollContainerRef.current.scrollHeight;
                 const heightDifference = newScrollHeight - previousScrollHeightRef.current;
-                scrollContainerRef.current.scrollTop = previousScrollTopRef.current + heightDifference;
+                // Mantém a posição relativa do scroll
+                scrollContainerRef.current.scrollTop = heightDifference;
+                // Reseta a referência
                 previousScrollHeightRef.current = 0;
-                previousScrollTopRef.current = 0;
             }
         }
-    }["ChatWindow.useEffect"], [
+    }["ChatWindow.useLayoutEffect"], [
         messages,
         loading
     ]);
     // ----------------------------------------------------
-    // --- DATA LOADING & CACHING
+    // --- DATA LOADING
     // ----------------------------------------------------
-    async function loadAssignmentUserData(userId) {
-        try {
-            const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createClient"])();
-            const { data: perfilData, error: perfilError } = await supabase.from("perfis").select("nome, cargo").eq("id", userId).single();
-            if (perfilError) {
-                return {
-                    nome: null,
-                    cargo: null,
-                    color: null
-                };
-            }
-            if (perfilData?.cargo) {
-                const { data: cargoData } = await supabase.from("cargos").select("cor").eq("nome", perfilData.cargo).maybeSingle();
-                const color = cargoData?.cor || (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$role$2d$colors$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getRoleColor"])(perfilData.cargo);
-                return {
-                    nome: perfilData.nome || null,
-                    cargo: perfilData.cargo || null,
-                    color: color
-                };
-            }
-            return {
-                nome: perfilData?.nome || null,
-                cargo: perfilData?.cargo || null,
-                color: null
-            };
-        } catch (error) {
-            console.error("Erro ao buscar dados do usuário:", error);
-            return {
-                nome: null,
-                cargo: null,
-                color: null
-            };
-        }
-    }
-    async function loadAssignment() {
-        try {
-            const response = await fetch(`/api/whatsapp/assignments?chatId=${chatId}`);
-            if (!response.ok) {
-                console.error("[API] Erro ao buscar atribuição:", response.status);
-                setAssignment(null);
-                setAssignedUserName(null);
-                setAssignedUserCargo(null);
-                setRoleColor(null);
-                return;
-            }
-            const text = await response.text();
-            if (!text) {
-                setAssignment(null);
-                setAssignedUserName(null);
-                setAssignedUserCargo(null);
-                setRoleColor(null);
-                return;
-            }
-            try {
-                const data = JSON.parse(text);
-                if (data.success && data.assignment && data.assignment.assigned_to_id) {
-                    setAssignment(data.assignment);
-                    const cachedData = userDataCache.current[data.assignment.assigned_to_id];
-                    if (cachedData) {
-                        setAssignedUserName(cachedData.nome);
-                        setAssignedUserCargo(cachedData.cargo);
-                        setRoleColor(cachedData.color);
-                    } else {
-                        const userData = await loadAssignmentUserData(data.assignment.assigned_to_id);
-                        userDataCache.current[data.assignment.assigned_to_id] = userData;
-                        setAssignedUserName(userData.nome);
-                        setAssignedUserCargo(userData.cargo);
-                        setRoleColor(userData.color);
-                    }
-                } else {
-                    setAssignment(null);
-                    setAssignedUserName(null);
-                    setAssignedUserCargo(null);
-                    setRoleColor(null);
-                }
-            } catch  {
-                return;
-            }
-        } catch (error) {
-            console.error("[v0] Erro ao carregar atribuição:", error);
-            setAssignment(null);
-            setAssignedUserName(null);
-            setAssignedUserCargo(null);
-            setRoleColor(null);
-        }
-    }
-    async function loadActivities() {
-        try {
-            const response = await fetch(`/api/whatsapp/activity?chatId=${chatId}`);
-            if (!response.ok) {
-                if (response.status !== 429 && response.status !== 500) {
-                    console.error("[API] Erro ao buscar atividades:", response.status);
-                }
-                return;
-            }
-            const text = await response.text();
-            if (!text) return;
-            try {
-                const data = JSON.parse(text);
-                if (data.success) {
-                    setActivities(data.activities || []);
-                }
-            } catch  {
-                return;
-            }
-        } catch (error) {
-            if (error instanceof TypeError && !error.message.includes("Failed to fetch")) {
-                console.error("[v0] Erro ao buscar atividades:", error);
-            }
-        }
-    }
     async function loadMessages(currentOffset, isInitial = false) {
-        if (isLoadingRef.current) {
-            return;
-        }
+        if (isLoadingRef.current) return;
         isLoadingRef.current = true;
-        if (!isInitial && scrollContainerRef.current) {
-            previousScrollHeightRef.current = scrollContainerRef.current.scrollHeight;
-            previousScrollTopRef.current = scrollContainerRef.current.scrollTop;
-        }
         try {
-            if (isInitial) {
-                setLoading(true);
-            } else {
-                setLoadingMore(true);
-            }
-            const url = `/api/whatsapp/messages/${chatId}?limit=${MESSAGES_PER_PAGE}&offset=${currentOffset}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            if (data.success) {
-                const normalizedMessages = (data.messages || []).map((msg)=>({
+            if (isInitial) setLoading(true);
+            else setLoadingMore(true);
+            const rangeEnd = currentOffset + MESSAGES_PER_PAGE - 1;
+            const { data, error, count } = await supabase.from('messages').select('*', {
+                count: 'exact'
+            }).eq('chat_id', chatId).order('timestamp', {
+                ascending: false
+            }).range(currentOffset, rangeEnd);
+            if (error) throw error;
+            if (data) {
+                const normalizedMessages = data.map((msg)=>({
                         id: msg.id,
-                        body: msg.text || msg.body || "",
-                        timestamp: msg.timestamp,
-                        from: msg.senderName || msg.from || "Desconhecido",
-                        to: msg.to || chatId,
-                        fromMe: msg.fromMe || false,
+                        body: msg.content || "",
+                        timestamp: Number(msg.timestamp),
+                        from: msg.sender_id || "Desconhecido",
+                        to: msg.chat_id,
+                        fromMe: msg.from_me,
                         type: msg.type || "text",
-                        hasMedia: msg.hasMedia || false,
+                        hasMedia: msg.has_media,
                         ack: msg.ack || 0,
-                        mediaUrl: msg.mediaUrl || null,
-                        mimeType: msg.mimeType || null,
-                        caption: msg.caption || null
-                    }));
+                        mediaUrl: msg.has_media ? `${BACKEND_URL}/media/${chatId}/${msg.id}` : null,
+                        mimeType: msg.media_meta?.mimetype || null,
+                        caption: null
+                    })).reverse();
                 if (isInitial) {
                     setMessages(normalizedMessages);
-                    setCachedMessages(chatId, normalizedMessages, data.hasMore || false, normalizedMessages.length);
                 } else {
+                    // 🛑 AQUI É O TRUQUE:
+                    // Antes de atualizar o estado, salvamos a altura atual do container
+                    if (scrollContainerRef.current) {
+                        previousScrollHeightRef.current = scrollContainerRef.current.scrollHeight;
+                    }
                     setMessages((prev)=>[
                             ...normalizedMessages,
                             ...prev
                         ]);
-                    appendMessages(chatId, normalizedMessages, data.hasMore || false);
                 }
-                setHasMore(data.hasMore || false);
-                setOffset(currentOffset + normalizedMessages.length);
-                console.log("[v0] Mensagens carregadas:", normalizedMessages.length, "| Total:", currentOffset + normalizedMessages.length, "| Tem mais:", data.hasMore || false);
-            } else {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao carregar mensagens");
+                const hasMoreData = count ? currentOffset + data.length < count : false;
+                setHasMore(hasMoreData);
+                setOffset((prev)=>prev + data.length);
             }
         } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : "Erro desconhecido";
-            console.error("[v0] Erro ao carregar mensagens:", errorMessage);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Não foi possível conectar ao servidor. Verifique a configuração da API.");
+            console.error("Erro msgs:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao carregar.");
         } finally{
             setLoading(false);
             setLoadingMore(false);
             isLoadingRef.current = false;
         }
     }
+    async function loadAssignmentUserData(userId) {
+        const { data } = await supabase.from("perfis").select("nome, cargo").eq("id", userId).single();
+        if (data?.cargo) {
+            const { data: cargo } = await supabase.from("cargos").select("cor").eq("nome", data.cargo).maybeSingle();
+            return {
+                nome: data.nome,
+                cargo: data.cargo,
+                color: cargo?.cor || (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$role$2d$colors$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getRoleColor"])(data.cargo)
+            };
+        }
+        return {
+            nome: data?.nome || null,
+            cargo: null,
+            color: null
+        };
+    }
+    async function loadAssignment() {
+        try {
+            const res = await fetch(`/api/whatsapp/assignments?chatId=${chatId}`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success && data.assignment) handleAssignmentUpdate(data.assignment);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
+    async function loadActivities() {
+        try {
+            const res = await fetch(`/api/whatsapp/activity?chatId=${chatId}`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success) setActivities(data.activities || []);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
     async function checkAssignmentHistory() {
         try {
-            const response = await fetch(`/api/whatsapp/assignment-logs?chatId=${chatId}`);
-            if (!response.ok) {
-                console.error("[API] Erro ao buscar logs:", response.status);
-                return;
+            const res = await fetch(`/api/whatsapp/assignment-logs?chatId=${chatId}`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success && data.logs?.length > 0) setHasAssignmentHistory(true);
             }
-            const text = await response.text();
-            if (!text) return;
-            const data = JSON.parse(text);
-            if (data.success) {
-                setHasAssignmentHistory((data.logs || []).length > 0);
-            }
-        } catch (error) {
-            console.error("[v0] Erro ao verificar histórico:", error);
+        } catch (e) {
+            console.error(e);
         }
     }
     // ----------------------------------------------------
-    // --- UI & USER INTERACTION HANDLERS
+    // --- UI HANDLERS
     // ----------------------------------------------------
     const handleScroll = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "ChatWindow.useCallback[handleScroll]": (e)=>{
             const target = e.currentTarget;
             const scrollTop = target.scrollTop;
+            // Se chegou no topo e tem mais mensagens, carrega mais
             if (scrollTop < SCROLL_THRESHOLD && hasMore && !isLoadingRef.current && !isInitialLoadRef.current) {
                 loadMessages(offset, false);
             }
@@ -2062,6 +2012,79 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
         offset,
         hasMore
     ]);
+    function isNearBottom() {
+        if (!scrollContainerRef.current) return false;
+        const { scrollTop, scrollHeight, clientHeight } = scrollContainerRef.current;
+        return scrollHeight - scrollTop - clientHeight < 150;
+    }
+    function scrollToBottom(behavior = "smooth") {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollTo({
+                top: scrollContainerRef.current.scrollHeight,
+                behavior: behavior
+            });
+        }
+    }
+    async function handleSendMessage() {
+        if (!newMessage.trim() && !selectedFile || sending) return;
+        if (assignment && assignment.assigned_to_id !== userId) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(`Conversa atribuída a ${assignment.assigned_to_name}`);
+            return;
+        }
+        setSending(true);
+        try {
+            let response;
+            if (selectedFile) {
+                const formData = new FormData();
+                formData.append("chatId", chatId);
+                formData.append("file", selectedFile);
+                if (newMessage.trim()) formData.append("caption", newMessage.trim());
+                response = await fetch("/api/whatsapp/send-media", {
+                    method: "POST",
+                    body: formData
+                });
+            } else {
+                response = await fetch("/api/whatsapp/send", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        chatId,
+                        message: newMessage.trim()
+                    })
+                });
+            }
+            const data = await response.json();
+            if (data.success) {
+                setNewMessage("");
+                setSelectedFile(null);
+                if (fileInputRef.current) fileInputRef.current.value = "";
+                setTimeout(()=>scrollToBottom("smooth"), 100);
+            } else {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao enviar");
+            }
+        } catch (err) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro de conexão");
+        } finally{
+            setSending(false);
+        }
+    }
+    function handleFileSelect(e) {
+        const file = e.target.files?.[0];
+        if (file) {
+            if (file.size > 16 * 1024 * 1024) return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Máximo 16MB");
+            setSelectedFile(file);
+        }
+    }
+    function handleQuickReply(msg) {
+        setNewMessage(msg);
+        setQuickRepliesOpen(false);
+    }
+    function removeSelectedFile() {
+        setSelectedFile(null);
+        if (fileInputRef.current) fileInputRef.current.value = "";
+    }
     async function registerActivity(type) {
         try {
             await fetch("/api/whatsapp/activity", {
@@ -2074,256 +2097,7 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                     activityType: type
                 })
             });
-        } catch (error) {
-            console.error("[v0] Erro ao registrar atividade:", error);
-        }
-    }
-    async function handleAssignToMe() {
-        try {
-            const response = await fetch("/api/whatsapp/assignments", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    chatId,
-                    chatName: safeChatName,
-                    assignToId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id"),
-                    assignToName: decodeURIComponent((0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_name") || ""),
-                    autoAssign: false
-                })
-            });
-            if (!response.ok) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao atribuir conversa");
-                return;
-            }
-            const text = await response.text();
-            if (!text) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Resposta vazia do servidor");
-                return;
-            }
-            const data = JSON.parse(text);
-            if (data.success) {
-                setAssignment(data.assignment);
-                if (data.assignment.assigned_to_id) {
-                    const cachedData = userDataCache.current[data.assignment.assigned_to_id];
-                    if (cachedData) {
-                        setAssignedUserName(cachedData.nome);
-                        setAssignedUserCargo(cachedData.cargo);
-                        setRoleColor(cachedData.color);
-                    } else {
-                        const userData = await loadAssignmentUserData(data.assignment.assigned_to_id);
-                        userDataCache.current[data.assignment.assigned_to_id] = userData;
-                        setAssignedUserName(userData.nome);
-                        setAssignedUserCargo(userData.cargo);
-                        setRoleColor(userData.color);
-                    }
-                }
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Conversa atribuída para você");
-                checkAssignmentHistory();
-            } else {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao atribuir conversa");
-            }
-        } catch (error) {
-            console.error("[v0] Erro ao atribuir conversa:", error);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao atribuir conversa");
-        }
-    }
-    async function handleReleaseChat() {
-        try {
-            const response = await fetch(`/api/whatsapp/assignments?chatId=${chatId}`, {
-                method: "DELETE"
-            });
-            if (!response.ok) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao liberar conversa");
-                return;
-            }
-            const text = await response.text();
-            if (!text) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Resposta vazia do servidor");
-                return;
-            }
-            const data = JSON.parse(text);
-            if (data.success) {
-                setAssignment(null);
-                setAssignedUserName(null);
-                setAssignedUserCargo(null);
-                setRoleColor(null);
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Conversa liberada");
-                setShowAssignToUserDialog(false);
-                checkAssignmentHistory();
-            } else {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao liberar conversa");
-            }
-        } catch (error) {
-            console.error("[v0] Erro ao liberar conversa:", error);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao liberar conversa");
-        }
-    }
-    function handleFileSelect(e) {
-        const file = e.target.files?.[0];
-        if (file) {
-            if (file.size > 16 * 1024 * 1024) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Arquivo muito grande. Máximo 16MB.");
-                return;
-            }
-            setSelectedFile(file);
-        }
-    }
-    function removeSelectedFile() {
-        setSelectedFile(null);
-        if (fileInputRef.current) {
-            fileInputRef.current.value = "";
-        }
-    }
-    async function handleSendMessage() {
-        if (!newMessage.trim() && !selectedFile || sending) return;
-        if (assignment && assignment.assigned_to_id !== (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id")) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(`Esta conversa está sendo atendida por ${assignment.assigned_to_name}`);
-            return;
-        }
-        // Auto-atribuição se não houver atribuição ativa
-        if (!assignment && (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id") && (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_name")) {
-            await fetch("/api/whatsapp/assignments", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    chatId,
-                    chatName: safeChatName,
-                    assignToId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_id"),
-                    assignToName: decodeURIComponent((0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getCookie"])("auth_user_name") || ""),
-                    autoAssign: true
-                })
-            });
-            loadAssignment();
-        }
-        setSending(true);
-        try {
-            if (selectedFile) {
-                // Envio de Mídia
-                const formData = new FormData();
-                formData.append("chatId", chatId);
-                formData.append("file", selectedFile);
-                if (newMessage.trim()) {
-                    formData.append("caption", newMessage.trim());
-                }
-                const response = await fetch("/api/whatsapp/send-media", {
-                    method: "POST",
-                    body: formData
-                });
-                const data = await response.json();
-                if (data.success) {
-                    await fetch("/api/whatsapp/track-message", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            messageId: data.messageId || `temp-${Date.now()}`,
-                            chatId,
-                            messageBody: newMessage.trim() || null,
-                            messageType: "media"
-                        })
-                    });
-                    const newMsgBody = newMessage.trim();
-                    setNewMessage("");
-                    setSelectedFile(null);
-                    if (fileInputRef.current) {
-                        fileInputRef.current.value = "";
-                    }
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Mídia enviada");
-                    const newMsg = {
-                        id: `temp-${Date.now()}`,
-                        body: newMsgBody || "",
-                        timestamp: Date.now(),
-                        from: "Você",
-                        to: chatId,
-                        fromMe: true,
-                        type: "media",
-                        hasMedia: true,
-                        ack: 1,
-                        mediaUrl: null,
-                        mimeType: selectedFile.type,
-                        caption: newMsgBody || null
-                    };
-                    setMessages((prev)=>[
-                            ...prev,
-                            newMsg
-                        ]);
-                    addNewMessage(chatId, newMsg);
-                    setTimeout(()=>scrollToBottom("smooth"), 100);
-                } else {
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao enviar mídia");
-                }
-            } else {
-                // Envio de Texto
-                const response = await fetch("/api/whatsapp/send", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        chatId: chatId,
-                        message: newMessage.trim()
-                    })
-                });
-                const data = await response.json();
-                if (data.success) {
-                    await fetch("/api/whatsapp/track-message", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            messageId: data.messageId || `temp-${Date.now()}`,
-                            chatId,
-                            messageBody: newMessage.trim(),
-                            messageType: "text"
-                        })
-                    });
-                    const messageSent = newMessage.trim();
-                    setNewMessage("");
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Mensagem enviada");
-                    const newMsg = {
-                        id: `temp-${Date.now()}`,
-                        body: messageSent,
-                        timestamp: Date.now(),
-                        from: "Você",
-                        to: chatId,
-                        fromMe: true,
-                        type: "text",
-                        hasMedia: false,
-                        ack: 1,
-                        mediaUrl: null,
-                        mimeType: null,
-                        caption: null
-                    };
-                    setMessages((prev)=>[
-                            ...prev,
-                            newMsg
-                        ]);
-                    addNewMessage(chatId, newMsg);
-                    setTimeout(()=>scrollToBottom("smooth"), 100);
-                } else {
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao enviar mensagem");
-                }
-            }
-        } catch (error) {
-            console.error("[v0] ❌ Erro ao enviar mensagem:", error);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Não foi possível enviar a mensagem. Verifique a conexão com o servidor.");
-        } finally{
-            setSending(false);
-        }
-    }
-    function scrollToBottom(behavior = "smooth") {
-        if (scrollContainerRef.current) {
-            scrollContainerRef.current.scrollTo({
-                top: scrollContainerRef.current.scrollHeight,
-                behavior: behavior
-            });
-        }
+        } catch  {}
     }
     function handleKeyPress(e) {
         if (e.key === "Enter" && !e.shiftKey) {
@@ -2331,45 +2105,25 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
             handleSendMessage();
         }
     }
-    function handleMessageChange(value) {
-        setNewMessage(value);
-        if (value.trim()) {
-            registerActivity("typing");
-        }
-    }
-    function handleQuickReply(message) {
-        setNewMessage(message);
-        setQuickRepliesOpen(false);
-    }
-    const assignmentForDialog = assignment ? {
-        chatId: chatId,
-        chatName: safeChatName,
-        assignToId: assignment.assigned_to_id,
-        assignToName: assignment.assigned_to_name,
-        autoAssign: false,
-        ...assignment
-    } : null;
     // ----------------------------------------------------
     // --- RENDER
     // ----------------------------------------------------
-    if (loading) {
+    if (loading && offset === 0) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex items-center justify-center h-full",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
                 className: "w-6 h-6 animate-spin text-muted-foreground"
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 763,
+                lineNumber: 426,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/whatsapp/chat-window.tsx",
-            lineNumber: 762,
+            lineNumber: 425,
             columnNumber: 7
         }, this);
     }
-    const viewingUsers = activities.filter((a)=>a.activity_type === "viewing");
-    const typingUsers = activities.filter((a)=>a.activity_type === "typing");
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex flex-col h-full bg-white relative",
         children: [
@@ -2384,26 +2138,27 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Avatar"], {
                                     className: "w-10 h-10 flex-shrink-0",
                                     children: [
-                                        chatPicture && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarImage"], {
-                                            src: chatPicture,
-                                            alt: safeChatName
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarImage"], {
+                                            src: profilePictureUrl,
+                                            alt: safeChatName,
+                                            className: "object-cover"
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 777,
-                                            columnNumber: 31
+                                            lineNumber: 438,
+                                            columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarFallback"], {
                                             className: "bg-primary text-primary-foreground",
                                             children: safeChatName.charAt(0).toUpperCase()
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 778,
+                                            lineNumber: 443,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 776,
+                                    lineNumber: 437,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2416,7 +2171,7 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                 children: safeChatName
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 784,
+                                                lineNumber: 447,
                                                 columnNumber: 17
                                             }, this),
                                             assignedUserName && roleColor && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -2432,37 +2187,36 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                         className: "w-3 h-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 795,
+                                                        lineNumber: 450,
                                                         columnNumber: 21
                                                     }, this),
                                                     assignedUserName
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 786,
+                                                lineNumber: 449,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 783,
+                                        lineNumber: 446,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 782,
+                                    lineNumber: 445,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 775,
+                            lineNumber: 436,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "flex items-center gap-2",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipProvider"], {
-                                delayDuration: 200,
                                 children: [
                                     hasAssignmentHistory && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
                                         children: [
@@ -2476,38 +2230,37 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 809,
-                                                        columnNumber: 23
+                                                        lineNumber: 460,
+                                                        columnNumber: 133
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 808,
-                                                    columnNumber: 21
+                                                    lineNumber: 460,
+                                                    columnNumber: 54
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 807,
-                                                columnNumber: 19
+                                                lineNumber: 460,
+                                                columnNumber: 30
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
-                                                side: "bottom",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     children: "Histórico"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 813,
-                                                    columnNumber: 21
+                                                    lineNumber: 460,
+                                                    columnNumber: 206
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 812,
-                                                columnNumber: 19
+                                                lineNumber: 460,
+                                                columnNumber: 190
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 806,
-                                        columnNumber: 17
+                                        lineNumber: 460,
+                                        columnNumber: 21
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
                                         children: [
@@ -2522,40 +2275,39 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 821,
-                                                            columnNumber: 21
+                                                            lineNumber: 462,
+                                                            columnNumber: 135
                                                         }, this),
-                                                        "Atribuir"
+                                                        " Atribuir"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 820,
-                                                    columnNumber: 19
+                                                    lineNumber: 462,
+                                                    columnNumber: 51
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 819,
-                                                columnNumber: 17
+                                                lineNumber: 462,
+                                                columnNumber: 27
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
-                                                side: "bottom",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    children: "Atribuir conversa"
+                                                    children: "Atribuir"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 826,
-                                                    columnNumber: 19
+                                                    lineNumber: 462,
+                                                    columnNumber: 219
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 825,
-                                                columnNumber: 17
+                                                lineNumber: 462,
+                                                columnNumber: 203
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 818,
-                                        columnNumber: 15
+                                        lineNumber: 462,
+                                        columnNumber: 18
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
                                         children: [
@@ -2570,40 +2322,39 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 833,
-                                                            columnNumber: 21
+                                                            lineNumber: 463,
+                                                            columnNumber: 137
                                                         }, this),
-                                                        "Novo Lead"
+                                                        " Novo Lead"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 832,
-                                                    columnNumber: 19
+                                                    lineNumber: 463,
+                                                    columnNumber: 51
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 831,
-                                                columnNumber: 17
+                                                lineNumber: 463,
+                                                columnNumber: 27
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
-                                                side: "bottom",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    children: "Criar lead desta conversa"
+                                                    children: "Criar Lead"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 838,
-                                                    columnNumber: 19
+                                                    lineNumber: 463,
+                                                    columnNumber: 226
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 837,
-                                                columnNumber: 17
+                                                lineNumber: 463,
+                                                columnNumber: 210
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 830,
-                                        columnNumber: 15
+                                        lineNumber: 463,
+                                        columnNumber: 18
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
                                         children: [
@@ -2617,59 +2368,58 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 845,
-                                                        columnNumber: 21
+                                                        lineNumber: 464,
+                                                        columnNumber: 107
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 844,
-                                                    columnNumber: 19
+                                                    lineNumber: 464,
+                                                    columnNumber: 51
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 843,
-                                                columnNumber: 17
+                                                lineNumber: 464,
+                                                columnNumber: 27
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
-                                                side: "bottom",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     children: "Atualizar"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 849,
-                                                    columnNumber: 19
+                                                    lineNumber: 464,
+                                                    columnNumber: 182
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 848,
-                                                columnNumber: 17
+                                                lineNumber: 464,
+                                                columnNumber: 166
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 842,
-                                        columnNumber: 15
+                                        lineNumber: 464,
+                                        columnNumber: 18
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                lineNumber: 804,
-                                columnNumber: 13
+                                lineNumber: 458,
+                                columnNumber: 14
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 803,
+                            lineNumber: 457,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                    lineNumber: 774,
+                    lineNumber: 435,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 773,
+                lineNumber: 434,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2693,21 +2443,21 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                             className: "w-4 h-4 animate-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 870,
+                                            lineNumber: 481,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-sm text-muted-foreground",
-                                            children: "Carregando mensagens antigas..."
+                                            children: "Carregando antigas..."
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 871,
+                                            lineNumber: 482,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 869,
+                                    lineNumber: 480,
                                     columnNumber: 15
                                 }, this),
                                 !hasMore && messages.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2717,12 +2467,12 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                         children: "Início da conversa"
                                     }, void 0, false, {
                                         fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 877,
-                                        columnNumber: 17
+                                        lineNumber: 487,
+                                        columnNumber: 49
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 876,
+                                    lineNumber: 487,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2735,37 +2485,37 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                 children: "Nenhuma mensagem ainda"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 883,
-                                                columnNumber: 19
+                                                lineNumber: 492,
+                                                columnNumber: 74
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 882,
+                                            lineNumber: 492,
                                             columnNumber: 17
                                         }, this) : messages.map((message)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$message$2d$bubble$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MessageBubble"], {
                                                 message: message
                                             }, message.id, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 886,
+                                                lineNumber: 494,
                                                 columnNumber: 43
                                             }, this)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             ref: scrollRef
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 888,
+                                            lineNumber: 496,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 880,
+                                    lineNumber: 490,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 859,
+                            lineNumber: 473,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2778,7 +2528,7 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                             className: "w-4 h-4 text-muted-foreground"
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 895,
+                                            lineNumber: 504,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2786,7 +2536,7 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                             children: selectedFile.name
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 896,
+                                            lineNumber: 505,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2798,18 +2548,18 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 898,
-                                                columnNumber: 19
+                                                lineNumber: 506,
+                                                columnNumber: 102
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 897,
+                                            lineNumber: 506,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 894,
+                                    lineNumber: 503,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2819,46 +2569,45 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                             ref: fileInputRef,
                                             type: "file",
                                             className: "hidden",
-                                            accept: "image/*,video/*,audio/*,.pdf,.doc,.docx,.xls,.xlsx,.txt",
                                             onChange: handleFileSelect
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 903,
+                                            lineNumber: 510,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                             variant: "outline",
                                             size: "icon",
-                                            className: "h-[60px] w-[60px] flex-shrink-0 bg-transparent",
+                                            className: "h-[60px] w-[60px] flex-shrink-0",
                                             onClick: ()=>fileInputRef.current?.click(),
                                             disabled: sending,
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$paperclip$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Paperclip$3e$__["Paperclip"], {
                                                 className: "w-5 h-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 917,
-                                                columnNumber: 17
+                                                lineNumber: 511,
+                                                columnNumber: 162
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 910,
+                                            lineNumber: 511,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                             variant: "outline",
                                             size: "icon",
-                                            className: "h-[60px] w-[60px] flex-shrink-0 bg-transparent",
+                                            className: "h-[60px] w-[60px] flex-shrink-0",
                                             onClick: ()=>setQuickRepliesOpen(true),
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"], {
                                                 className: "w-5 h-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 926,
-                                                columnNumber: 17
+                                                lineNumber: 512,
+                                                columnNumber: 139
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 920,
+                                            lineNumber: 512,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -2869,11 +2618,10 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                             },
                                             onKeyDown: handleKeyPress,
                                             placeholder: "Digite sua mensagem...",
-                                            className: "resize-none min-h-[60px] max-h-[200px]",
-                                            rows: 2
+                                            className: "resize-none min-h-[60px] max-h-[200px]"
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 928,
+                                            lineNumber: 513,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2885,41 +2633,41 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                                 className: "w-5 h-5 animate-spin"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 945,
+                                                lineNumber: 521,
                                                 columnNumber: 28
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"], {
                                                 className: "w-5 h-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 945,
+                                                lineNumber: 521,
                                                 columnNumber: 75
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 939,
+                                            lineNumber: 520,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 902,
+                                    lineNumber: 509,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 892,
+                            lineNumber: 501,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                    lineNumber: 858,
+                    lineNumber: 472,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 857,
+                lineNumber: 471,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Sheet"], {
@@ -2934,38 +2682,38 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                                     children: "Respostas Rápidas"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 955,
-                                    columnNumber: 13
+                                    lineNumber: 531,
+                                    columnNumber: 24
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SheetDescription"], {
-                                    children: "Selecione uma resposta rápida para enviar"
+                                    children: "Selecione para enviar"
                                 }, void 0, false, {
                                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 956,
-                                    columnNumber: 13
+                                    lineNumber: 531,
+                                    columnNumber: 66
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 954,
+                            lineNumber: 531,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$quick$2d$replies$2d$panel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["QuickRepliesPanel"], {
                             onSelectReply: handleQuickReply
                         }, void 0, false, {
                             fileName: "[project]/components/whatsapp/chat-window.tsx",
-                            lineNumber: 958,
+                            lineNumber: 532,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/whatsapp/chat-window.tsx",
-                    lineNumber: 953,
+                    lineNumber: 530,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 952,
+                lineNumber: 529,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$assignment$2d$history$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AssignmentHistoryDialog"], {
@@ -2975,7 +2723,7 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                 chatName: safeChatName
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 962,
+                lineNumber: 536,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$assign$2d$to$2d$user$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AssignToUserDialog"], {
@@ -2984,25 +2732,25 @@ function ChatWindow({ chatId, chatName, chatPicture = null, onRefresh, onToggleL
                 chatId: chatId,
                 chatName: safeChatName,
                 currentUserId: userId,
-                currentAssignment: assignmentForDialog,
-                onAssignSuccess: ()=>{
-                    loadAssignment();
-                }
+                currentAssignment: assignment,
+                chatAssignment: assignment,
+                onAssignSuccess: loadAssignment
             }, void 0, false, {
                 fileName: "[project]/components/whatsapp/chat-window.tsx",
-                lineNumber: 969,
+                lineNumber: 538,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/whatsapp/chat-window.tsx",
-        lineNumber: 772,
+        lineNumber: 432,
         columnNumber: 5
     }, this);
 }
-_s(ChatWindow, "b854rWELPQGKEwZN1LGG2hzdAkU=", false, function() {
+_s(ChatWindow, "9L/sHQCP6Oyun3rmZzNs8hy3CXk=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$whatsapp$2d$cache$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useWhatsAppCache"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$realtime$2d$subscription$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRealtimeSubscription"],
         __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$realtime$2d$subscription$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRealtimeSubscription"],
         __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$realtime$2d$subscription$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRealtimeSubscription"]
     ];
