@@ -8,7 +8,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
 import { toast } from "sonner"
 import type { Etiqueta } from "@/lib/whatsapp-types"
@@ -16,10 +15,11 @@ import type { Etiqueta } from "@/lib/whatsapp-types"
 interface TagSelectorProps {
   chatId: string
   currentEtiquetaId?: string | null
+  currentEtiquetaIds?: string[]
   onTagAssigned?: () => void
 }
 
-export function TagSelector({ chatId, currentEtiquetaId, onTagAssigned }: TagSelectorProps) {
+export function TagSelector({ chatId, currentEtiquetaId, currentEtiquetaIds = [], onTagAssigned }: TagSelectorProps) {
   const [etiquetas, setEtiquetas] = useState<Etiqueta[]>([])
   const [loading, setLoading] = useState(false)
   const [assigning, setAssigning] = useState(false)
@@ -44,31 +44,52 @@ export function TagSelector({ chatId, currentEtiquetaId, onTagAssigned }: TagSel
     }
   }
 
-  async function handleAssignTag(etiquetaId: string | null) {
+  async function handleAssignTag(etiquetaId: string | null, isCurrentlySelected: boolean = false) {
     try {
       setAssigning(true)
-      console.log("🏷️ Atribuindo etiqueta:", { chatId, etiquetaId })
       
-      const response = await fetch("/api/whatsapp/assign-tag", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chatId, etiquetaId }),
-      })
-
-      console.log("📡 Response status:", response.status)
-      
-      const data = await response.json()
-      console.log("📦 Response data:", data)
-
-      if (data.success) {
-        toast.success(etiquetaId ? "Etiqueta atribuída" : "Etiqueta removida")
-        onTagAssigned?.()
+      // Se a etiqueta clicada já está selecionada, remove ela (toggle)
+      if (isCurrentlySelected && etiquetaId) {
+        console.log("🏷️ Removendo etiqueta (toggle):", { chatId, etiquetaId })
+        
+        const response = await fetch("/api/whatsapp/assign-tag", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chatId, etiquetaId }),
+        })
+        
+        const data = await response.json()
+        
+        if (data.success) {
+          toast.success("Etiqueta removida")
+          onTagAssigned?.()
+        } else {
+          toast.error(data.message || "Erro ao remover etiqueta")
+        }
       } else {
-        toast.error(data.message || "Erro ao atribuir etiqueta")
+        console.log("🏷️ Atribuindo etiqueta:", { chatId, etiquetaId })
+        
+        const response = await fetch("/api/whatsapp/assign-tag", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chatId, etiquetaId }),
+        })
+
+        console.log("📡 Response status:", response.status)
+        
+        const data = await response.json()
+        console.log("📦 Response data:", data)
+
+        if (data.success) {
+          toast.success(etiquetaId ? "Etiqueta atribuída" : "Etiqueta removida")
+          onTagAssigned?.()
+        } else {
+          toast.error(data.message || "Erro ao atribuir etiqueta")
+        }
       }
     } catch (error) {
-      console.error("❌ Erro ao atribuir etiqueta:", error)
-      toast.error("Erro ao atribuir etiqueta")
+      console.error("❌ Erro ao atribuir/remover etiqueta:", error)
+      toast.error("Erro ao processar etiqueta")
     } finally {
       setAssigning(false)
     }
@@ -90,35 +111,27 @@ export function TagSelector({ chatId, currentEtiquetaId, onTagAssigned }: TagSel
           </div>
         ) : (
           <>
-            {etiquetas.map((etiqueta) => (
-              <DropdownMenuItem
-                key={etiqueta.id}
-                onClick={() => handleAssignTag(etiqueta.id)}
-                className="cursor-pointer"
-              >
-                <div className="flex items-center gap-2 w-full">
-                  <div
-                    className="w-4 h-4 rounded"
-                    style={{ backgroundColor: etiqueta.cor }}
-                  />
-                  <span className="flex-1">{etiqueta.nome}</span>
-                  {currentEtiquetaId === etiqueta.id && (
-                    <span className="text-xs text-neutral-500">✓</span>
-                  )}
-                </div>
-              </DropdownMenuItem>
-            ))}
-            {currentEtiquetaId && (
-              <>
-                <DropdownMenuSeparator />
+            {etiquetas.map((etiqueta) => {
+              const isSelected = currentEtiquetaIds.includes(etiqueta.id) || currentEtiquetaId === etiqueta.id
+              return (
                 <DropdownMenuItem
-                  onClick={() => handleAssignTag(null)}
-                  className="cursor-pointer text-red-600"
+                  key={etiqueta.id}
+                  onClick={() => handleAssignTag(etiqueta.id, isSelected)}
+                  className={`cursor-pointer ${isSelected ? 'bg-accent' : ''}`}
                 >
-                  Remover etiqueta
+                  <div className="flex items-center gap-2 w-full">
+                    <div
+                      className="w-4 h-4 rounded"
+                      style={{ backgroundColor: etiqueta.cor }}
+                    />
+                    <span className="flex-1">{etiqueta.nome}</span>
+                    {isSelected && (
+                      <span className="text-xs text-green-600 font-medium">✓</span>
+                    )}
+                  </div>
                 </DropdownMenuItem>
-              </>
-            )}
+              )
+            })}
           </>
         )}
       </DropdownMenuContent>

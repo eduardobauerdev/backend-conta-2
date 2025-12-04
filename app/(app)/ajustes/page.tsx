@@ -713,7 +713,13 @@ export default function AjustesPage() {
       setLoadingCatalogos(true)
       const response = await fetch("/api/catalogo")
       const data = await response.json()
-      setCatalogos(data || [])
+      // Verifica se é um array antes de setar (API pode retornar { error: ... } em caso de erro)
+      if (Array.isArray(data)) {
+        setCatalogos(data)
+      } else {
+        console.error("API retornou formato inválido:", data)
+        setCatalogos([])
+      }
     } catch (error) {
       console.error("Erro ao carregar catálogos:", error)
       toast.error("Erro ao carregar catálogos")

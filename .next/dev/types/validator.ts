@@ -335,6 +335,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/api/whatsapp/chat-history/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/whatsapp/chat-history">> = Specific
+  const handler = {} as typeof import("../../../app/api/whatsapp/chat-history/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/api/whatsapp/chats/[chatId]/info/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/whatsapp/chats/[chatId]/info">> = Specific
@@ -402,6 +411,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/whatsapp/messages/[chatId]">> = Specific
   const handler = {} as typeof import("../../../app/api/whatsapp/messages/[chatId]/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/whatsapp/notes-history/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/whatsapp/notes-history">> = Specific
+  const handler = {} as typeof import("../../../app/api/whatsapp/notes-history/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/whatsapp/notes/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/whatsapp/notes">> = Specific
+  const handler = {} as typeof import("../../../app/api/whatsapp/notes/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

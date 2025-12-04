@@ -918,7 +918,7 @@ function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, onUnconv
                                 className: "text-orange-600 focus:text-orange-600 focus:bg-orange-50",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__XCircle$3e$__["XCircle"], {
-                                        className: "w-4 h-4 mr-2"
+                                        className: "w-4 h-4 mr-2 text-orange-600"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/crm/lead-card.tsx",
                                         lineNumber: 229,
@@ -938,13 +938,13 @@ function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, onUnconv
                                 className: "text-green-600 focus:text-green-600 focus:bg-green-50",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2d$big$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle$3e$__["CheckCircle"], {
-                                        className: "w-4 h-4 mr-2"
+                                        className: "w-4 h-4 mr-2 text-green-600"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/crm/lead-card.tsx",
                                         lineNumber: 240,
                                         columnNumber: 17
                                     }, this),
-                                    "Convertido"
+                                    "Converter"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend-ii/components/crm/lead-card.tsx",
@@ -956,10 +956,10 @@ function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, onUnconv
                                     e.preventDefault();
                                     onDelete?.();
                                 },
-                                className: "text-red-600 focus:text-red-600",
+                                className: "text-red-600 focus:text-red-600 focus:bg-red-50",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
-                                        className: "w-4 h-4 mr-2"
+                                        className: "w-4 h-4 mr-2 text-red-600"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/crm/lead-card.tsx",
                                         lineNumber: 251,
@@ -6281,6 +6281,8 @@ function CRMPage() {
     const [viewingLead, setViewingLead] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [movingLead, setMovingLead] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [deletingLead, setDeletingLead] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [convertingLead, setConvertingLead] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [unconvertingLead, setUnconvertingLead] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [mousePosition, setMousePosition] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
         x: 0,
         y: 0
@@ -6572,23 +6574,7 @@ function CRMPage() {
             __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Você não tem permissão para converter este lead");
             return;
         }
-        const { error } = await supabase.from("leads").update({
-            status: "convertido"
-        }).eq("id", lead.id);
-        if (error) {
-            console.error("Error converting lead:", error);
-            __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao converter lead");
-            return;
-        }
-        await supabase.from("lead_logs").insert({
-            lead_id: lead.id,
-            usuario_id: user.id,
-            usuario_nome: user.nome,
-            acao: "convertido",
-            detalhes: `Lead "${lead.nome}" marcado como convertido`
-        });
-        __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Lead convertido com sucesso!");
-        fetchLeads();
+        setConvertingLead(lead);
     };
     const handleUnconvertLead = async (lead)=>{
         if (!user) return;
@@ -6597,23 +6583,7 @@ function CRMPage() {
             __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Você não tem permissão para desconverter este lead");
             return;
         }
-        const { error } = await supabase.from("leads").update({
-            status: "ativo"
-        }).eq("id", lead.id);
-        if (error) {
-            console.error("Error unconverting lead:", error);
-            __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao desconverter lead");
-            return;
-        }
-        await supabase.from("lead_logs").insert({
-            lead_id: lead.id,
-            usuario_id: user.id,
-            usuario_nome: user.nome,
-            acao: "desconvertido",
-            detalhes: `Lead "${lead.nome}" marcado como ativo novamente`
-        });
-        __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Lead desconvertido com sucesso!");
-        fetchLeads();
+        setUnconvertingLead(lead);
     };
     const activeLead = activeId ? leads.find((l)=>l.id === activeId) : null;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6629,7 +6599,7 @@ function CRMPage() {
                                 children: "CRM"
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                                lineNumber: 411,
+                                lineNumber: 381,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6637,13 +6607,13 @@ function CRMPage() {
                                 children: "Gerenciamento de leads semanais"
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                                lineNumber: 412,
+                                lineNumber: 382,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                        lineNumber: 410,
+                        lineNumber: 380,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6655,7 +6625,7 @@ function CRMPage() {
                                 onFiltersChange: setActiveFilters
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                                lineNumber: 415,
+                                lineNumber: 385,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -6666,26 +6636,26 @@ function CRMPage() {
                                         className: "w-4 h-4"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                                        lineNumber: 417,
+                                        lineNumber: 387,
                                         columnNumber: 13
                                     }, this),
                                     "Novo Lead"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                                lineNumber: 416,
+                                lineNumber: 386,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                        lineNumber: 414,
+                        lineNumber: 384,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                lineNumber: 409,
+                lineNumber: 379,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6700,14 +6670,14 @@ function CRMPage() {
                                 className: "w-4 h-4"
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                                lineNumber: 429,
+                                lineNumber: 399,
                                 columnNumber: 11
                             }, this),
                             "Semana Anterior"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                        lineNumber: 424,
+                        lineNumber: 394,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -6719,7 +6689,7 @@ function CRMPage() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                        lineNumber: 432,
+                        lineNumber: 402,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -6732,19 +6702,19 @@ function CRMPage() {
                                 className: "w-4 h-4"
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                                lineNumber: 441,
+                                lineNumber: 411,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                        lineNumber: 435,
+                        lineNumber: 405,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                lineNumber: 423,
+                lineNumber: 393,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DndContext"], {
@@ -6770,13 +6740,13 @@ function CRMPage() {
                                 onLeadUnconvert: handleUnconvertLead
                             }, dateStr, false, {
                                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                                lineNumber: 455,
+                                lineNumber: 425,
                                 columnNumber: 15
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                        lineNumber: 451,
+                        lineNumber: 421,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DragOverlay"], {
@@ -6786,23 +6756,23 @@ function CRMPage() {
                                 lead: activeLead
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                                lineNumber: 474,
+                                lineNumber: 444,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                            lineNumber: 473,
+                            lineNumber: 443,
                             columnNumber: 13
                         }, this) : null
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                        lineNumber: 471,
+                        lineNumber: 441,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                lineNumber: 445,
+                lineNumber: 415,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$crm$2f$new$2d$lead$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["NewLeadDialog"], {
@@ -6812,7 +6782,7 @@ function CRMPage() {
                 weekStart: currentWeekStart
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                lineNumber: 480,
+                lineNumber: 450,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$crm$2f$edit$2d$lead$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["EditLeadDialog"], {
@@ -6822,7 +6792,7 @@ function CRMPage() {
                 onSuccess: fetchLeads
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                lineNumber: 487,
+                lineNumber: 457,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$crm$2f$view$2d$lead$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ViewLeadDialog"], {
@@ -6831,7 +6801,7 @@ function CRMPage() {
                 lead: viewingLead
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                lineNumber: 494,
+                lineNumber: 464,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$crm$2f$move$2d$lead$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MoveLeadDialog"], {
@@ -6841,7 +6811,7 @@ function CRMPage() {
                 onSuccess: fetchLeads
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                lineNumber: 496,
+                lineNumber: 466,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$crm$2f$delete$2d$lead$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DeleteLeadDialog"], {
@@ -6851,17 +6821,17 @@ function CRMPage() {
                 onSuccess: fetchLeads
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-                lineNumber: 503,
+                lineNumber: 473,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend-ii/app/(app)/crm/page.tsx",
-        lineNumber: 408,
+        lineNumber: 378,
         columnNumber: 5
     }, this);
 }
-_s(CRMPage, "AF8awG1hFiGw2f6HyQc7mNDEKOg=", false, function() {
+_s(CRMPage, "+SnzzguWp9VL0YXt5wTCoIuQDGw=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$contexts$2f$user$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useUser"],
         __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSensors"],

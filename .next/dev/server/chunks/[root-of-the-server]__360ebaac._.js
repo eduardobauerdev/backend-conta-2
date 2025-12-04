@@ -87,11 +87,16 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/next/server.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/lib/supabase/server.ts [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/next/headers.js [app-route] (ecmascript)");
+;
 ;
 ;
 async function POST(request) {
     try {
         const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
+        const cookieStore = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["cookies"])();
+        const userId = cookieStore.get("auth_user_id")?.value;
+        const userName = cookieStore.get("auth_user_name")?.value;
         const body = await request.json();
         const { chatId, etiquetaId } = body;
         console.log("📌 [ASSIGN-TAG] Início:", {
@@ -166,6 +171,23 @@ async function POST(request) {
             }
             console.log("✅ [ASSIGN-TAG] Etiqueta adicionada ao array");
         }
+        // Busca dados da etiqueta para o histórico
+        const { data: etiquetaData } = await supabase.from("whatsapp_etiquetas").select("nome, cor").eq("id", etiquetaId).maybeSingle();
+        // Registra no histórico unificado
+        if (userId && userName) {
+            await supabase.from("chat_history").insert({
+                chat_id: chatId,
+                chat_name: chatExists?.name || chatId,
+                event_type: "etiqueta_added",
+                event_data: {
+                    etiqueta_id: etiquetaId,
+                    etiqueta_nome: etiquetaData?.nome || "Etiqueta",
+                    etiqueta_cor: etiquetaData?.cor || "#888888"
+                },
+                performed_by_id: userId,
+                performed_by_name: userName
+            });
+        }
         return __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: true,
             message: "Etiqueta atribuída com sucesso"
@@ -185,6 +207,9 @@ async function POST(request) {
 async function DELETE(request) {
     try {
         const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
+        const cookieStore = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["cookies"])();
+        const userId = cookieStore.get("auth_user_id")?.value;
+        const userName = cookieStore.get("auth_user_name")?.value;
         const body = await request.json();
         const { chatId, etiquetaId } = body;
         console.log("🗑️ [REMOVE-TAG] Início:", {
@@ -199,6 +224,15 @@ async function DELETE(request) {
                 status: 400
             });
         }
+        // Busca dados da etiqueta e do chat para o histórico
+        let etiquetaData = null;
+        let chatData = null;
+        if (etiquetaId) {
+            const { data: etiqueta } = await supabase.from("whatsapp_etiquetas").select("nome, cor").eq("id", etiquetaId).maybeSingle();
+            etiquetaData = etiqueta;
+        }
+        const { data: chat } = await supabase.from("chats").select("name, etiqueta_ids").eq("id", chatId).maybeSingle();
+        chatData = chat;
         // Se etiquetaId específico, remove apenas essa do array
         if (etiquetaId) {
             // Usa array_remove do PostgreSQL para remover do array
@@ -223,6 +257,21 @@ async function DELETE(request) {
                 etiqueta_ids: []
             }).eq("id", chatId);
             if (error) throw error;
+        }
+        // Registra no histórico unificado
+        if (userId && userName && etiquetaId) {
+            await supabase.from("chat_history").insert({
+                chat_id: chatId,
+                chat_name: chatData?.name || chatId,
+                event_type: "etiqueta_removed",
+                event_data: {
+                    etiqueta_id: etiquetaId,
+                    etiqueta_nome: etiquetaData?.nome || "Etiqueta",
+                    etiqueta_cor: etiquetaData?.cor || "#888888"
+                },
+                performed_by_id: userId,
+                performed_by_name: userName
+            });
         }
         return __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: true,

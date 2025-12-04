@@ -1,632 +1,336 @@
-[00:00:01.153] Server  LOG      ✓ Ready in 801ms
-[00:00:06.087] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:07.663] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:07.663] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:07.663] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/visao-geral","route":"/visao-geral"}
-[00:00:07.663] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764766772459}
-[00:00:07.663] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764766772459}
-[00:00:11.316] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764766776131}
-[00:00:48.982] Browser LOG     🛠️ ChatList montado.
-[00:00:48.982] Browser LOG     🛠️ ChatList montado.
-[00:12:51.924] Server  LOG      ✓ Compiled in 291ms
-[00:12:54.017] Server  LOG      ✓ Compiled in 303ms
-[00:12:55.925] Server  LOG      ✓ Compiled in 277ms
-[00:12:57.892] Server  LOG      ✓ Compiled in 188ms
-[00:14:56.797] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:14:57.054] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:14:57.054] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:14:57.054] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764767661861}
-[00:14:57.387] Browser LOG     🛠️ ChatList montado.
-[00:14:57.387] Browser LOG     🛠️ ChatList montado.
-[00:16:20.111] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764767744930}
-[00:16:22.492] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:16:29.379] Server  LOG      ✓ Compiled in 313ms
-[00:16:40.352] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764767765164}
-[00:17:05.487] Server  LOG      ✓ Compiled in 206ms
-[00:17:07.431] Server  LOG      ✓ Compiled in 148ms
-[00:17:09.434] Server  LOG      ✓ Compiled in 118ms
-[00:17:11.514] Server  LOG      ✓ Compiled in 174ms
-[00:17:13.780] Server  LOG      ✓ Compiled in 393ms
-[00:17:17.147] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764767801961}
-[00:17:17.392] Browser LOG     🛠️ ChatList montado.
-[00:17:17.392] Browser LOG     🛠️ ChatList montado.
-[00:17:17.955] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:17:18.127] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:17:36.842] Server  LOG      ✓ Compiled in 155ms
-[00:17:37.285] Browser LOG     🛠️ ChatList montado.
-[00:17:37.285] Browser LOG     🛠️ ChatList montado.
-[00:17:37.442] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:17:37.637] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:17:38.793] Server  LOG      ✓ Compiled in 99ms
-[00:18:19.897] Server  LOG      ✓ Compiled in 152ms
-[00:18:21.853] Server  LOG      ✓ Compiled in 89ms
-[00:19:05.660] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764767910477}
-[00:19:08.143] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764767912948}
-[00:19:08.329] Browser LOG     🛠️ ChatList montado.
-[00:19:08.329] Browser LOG     🛠️ ChatList montado.
-[00:19:08.924] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:19:09.041] Browser ERROR   ❌ ERRO chats: {"code":"PGRST200","details":"Searched for a foreign key relationship between 'chats' and 'whatsapp_etiquetas' in the schema 'public', but no matches were found.","hint":null,"message":"Could not find a relationship between 'chats' and 'whatsapp_etiquetas' in the schema cache"}
-[00:19:09.106] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:19:12.724] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:19:12.908] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:19:12.908] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:19:12.908] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764767917724}
-[00:19:13.248] Browser LOG     🛠️ ChatList montado.
-[00:19:13.248] Browser LOG     🛠️ ChatList montado.
-[00:19:13.476] Browser ERROR   ❌ ERRO chats: {"code":"PGRST200","details":"Searched for a foreign key relationship between 'chats' and 'whatsapp_etiquetas' in the schema 'public', but no matches were found.","hint":null,"message":"Could not find a relationship between 'chats' and 'whatsapp_etiquetas' in the schema cache"}
-[00:20:20.402] Server  LOG      ✓ Compiled in 118ms
-[00:20:22.434] Server  LOG      ✓ Compiled in 99ms
-[00:21:19.064] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:21:19.253] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:21:19.253] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:21:19.253] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764768044061}
-[00:21:19.669] Browser LOG     🛠️ ChatList montado.
-[00:21:19.669] Browser LOG     🛠️ ChatList montado.
-[00:21:20.121] Browser ERROR   ❌ ERRO chats: {"code":"PGRST200","details":"Searched for a foreign key relationship between 'chats' and 'whatsapp_etiquetas' in the schema 'public', but no matches were found.","hint":null,"message":"Could not find a relationship between 'chats' and 'whatsapp_etiquetas' in the schema cache"}
-[00:21:22.135] Browser ERROR   ❌ ERRO chats: {"code":"PGRST200","details":"Searched for a foreign key relationship between 'chats' and 'whatsapp_etiquetas' in the schema 'public', but no matches were found.","hint":null,"message":"Could not find a relationship between 'chats' and 'whatsapp_etiquetas' in the schema cache"}
-[00:21:23.034] Browser ERROR   ❌ ERRO chats: {"code":"PGRST200","details":"Searched for a foreign key relationship between 'chats' and 'whatsapp_etiquetas' in the schema 'public', but no matches were found.","hint":null,"message":"Could not find a relationship between 'chats' and 'whatsapp_etiquetas' in the schema cache"}
-[00:21:57.223] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:21:57.400] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:21:57.400] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:21:57.400] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764768082218}
-[00:21:58.233] Browser LOG     🛠️ ChatList montado.
-[00:21:58.233] Browser LOG     🛠️ ChatList montado.
-[00:21:58.518] Browser ERROR   ❌ ERRO chats: {"code":"PGRST200","details":"Searched for a foreign key relationship between 'chats' and 'whatsapp_etiquetas' in the schema 'public', but no matches were found.","hint":null,"message":"Could not find a relationship between 'chats' and 'whatsapp_etiquetas' in the schema cache"}
-[00:22:41.065] Server  LOG      ✓ Compiled in 204ms
-[00:22:43.033] Server  LOG      ✓ Compiled in 129ms
-[00:22:51.831] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/gerar-documento color: rgb(120, 120, 120) color: inherit {"dp":"/gerar-documento","o":"http://localhost:3000/gerar-documento","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764768136627}
-[00:22:52.183] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764768136995}
-[00:22:52.481] Browser LOG     🛠️ ChatList montado.
-[00:22:52.481] Browser LOG     🛠️ ChatList montado.
-[00:22:52.709] Browser ERROR   ❌ ERRO Supabase: {"code":"PGRST200","details":"Searched for a foreign key relationship between 'chats' and 'whatsapp_etiquetas' in the schema 'public', but no matches were found.","hint":null,"message":"Could not find a relationship between 'chats' and 'whatsapp_etiquetas' in the schema cache"}
-[00:22:52.709] Browser ERROR   ❌ ERRO chats: {"code":"PGRST200","details":"Searched for a foreign key relationship between 'chats' and 'whatsapp_etiquetas' in the schema 'public', but no matches were found.","hint":null,"message":"Could not find a relationship between 'chats' and 'whatsapp_etiquetas' in the schema cache"}
-[00:22:52.709] Browser ERROR   ❌ ERRO details: {
-  "code": "PGRST200",
-  "details": "Searched for a foreign key relationship between 'chats' and 'whatsapp_etiquetas' in the schema 'public', but no matches were found.",
-  "hint": null,
-  "message": "Could not find a relationship between 'chats' and 'whatsapp_etiquetas' in the schema cache"
-}
-[00:22:56.016] Server  LOG      ✓ Compiled in 108ms
-[00:22:58.113] Server  LOG      ✓ Compiled in 168ms
-[00:23:00.496] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:23:00.715] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:23:00.715] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:23:00.715] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764768145533}
-[00:23:01.099] Browser LOG     🛠️ ChatList montado.
-[00:23:01.099] Browser LOG     🛠️ ChatList montado.
-[00:23:04.559] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:23:04.736] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:23:05.594] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:23:05.786] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:23:06.635] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:23:06.817] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:23:08.482] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:23:08.678] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:23:14.147] Server  LOG      ✓ Compiled in 105ms
-[00:23:16.214] Server  LOG      ✓ Compiled in 124ms
-[00:23:21.234] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:23:21.480] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:23:21.481] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:23:21.481] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764768166290}
-[00:23:21.833] Browser LOG     🛠️ ChatList montado.
-[00:23:21.833] Browser LOG     🛠️ ChatList montado.
-[00:28:32.240] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:28:32.418] Server  ERROR   Erro ao carregar etiquetas: {}
-[00:31:50.026] Server  LOG      ✓ Compiled in 159ms
-[00:31:51.975] Server  LOG      ✓ Compiled in 141ms
-[00:32:06.569] Server  LOG      ✓ Compiled in 93ms
-[00:32:08.601] Server  LOG      ✓ Compiled in 85ms
-[00:32:50.683] Server  LOG      ✓ Compiled in 108ms
-[00:32:52.716] Server  LOG      ✓ Compiled in 113ms
-[00:33:36.900] Browser ERROR   Erro ao atualizar nome: {"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"chats\""}
-[00:34:49.981] Server  LOG      ✓ Compiled in 98ms
-[00:34:51.608] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:34:51.832] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:34:51.832] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:34:51.832] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764768856640}
-[00:34:52.198] Browser LOG     🛠️ ChatList montado.
-[00:34:52.198] Browser LOG     🛠️ ChatList montado.
-[00:36:52.523] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:36:52.709] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:36:52.709] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:36:52.709] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764768977529}
-[00:36:53.125] Browser LOG     🛠️ ChatList montado.
-[00:36:53.125] Browser LOG     🛠️ ChatList montado.
-[00:37:03.438] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:37:03.607] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:37:03.607] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:37:03.607] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764768988427}
-[00:37:03.960] Browser LOG     🛠️ ChatList montado.
-[00:37:03.960] Browser LOG     🛠️ ChatList montado.
-[00:37:39.743] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764769024557}
-[00:38:03.681] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764769048497}
-[00:38:05.921] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764769050739}
-[00:38:06.291] Browser LOG     🛠️ ChatList montado.
-[00:38:06.291] Browser LOG     🛠️ ChatList montado.
-[00:38:11.483] Server  ERROR   Erro ao atribuir etiqueta: {}
-[00:38:17.319] Server  ERROR   Erro ao atribuir etiqueta: {}
-[00:38:33.761] Server  ERROR   Erro ao atribuir etiqueta: {}
-[00:41:13.395] Server  LOG     📌 Atribuindo etiqueta: {}
-[00:41:13.627] Server  LOG     🔍 Chat existe? {}
-[00:41:13.870] Server  ERROR   ❌ Erro ao atualizar etiqueta: {}
-[00:41:13.871] Server  ERROR   ❌ Erro ao atribuir etiqueta: {}
-[00:41:13.872] Server  ERROR   📋 Detalhes: "{\n  \"code\": \"PGRST204\",\n  \"details\": null,\n  \"hint\": null,\n  \"message\": \"Could not find the 'etiqueta_id' column of 'chats' in the schema cache\"\n}"
-[00:42:06.727] Server  LOG      ✓ Compiled in 109ms
-[00:44:22.970] Browser ERROR   [Realtime] Erro em messages: CHANNEL_ERROR
-[00:44:22.970] Browser ERROR   [Realtime] Erro em chat_activity: CHANNEL_ERROR
-[00:44:22.970] Browser ERROR   [Realtime] Erro em chat_assignments: CHANNEL_ERROR
-[00:44:56.378] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[00:44:56.402] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555192653211@s.whatsapp.net","etiquetaId":"0448fb9d-4668-434f-aae4-614df4370619"}
-[00:44:56.647] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
-[00:44:56.647] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
-[00:44:56.842] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta atualizada
-[00:44:56.951] Browser LOG     📡 Response status: 200
-[00:44:56.951] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
-[00:47:21.997] Server  LOG      ✓ Compiled in 254ms
-[00:48:12.257] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:48:12.461] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:48:12.461] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:48:12.461] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764769657279}
-[00:48:12.893] Browser LOG     🛠️ ChatList montado.
-[00:48:12.894] Browser LOG     🛠️ ChatList montado.
-[00:51:06.305] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:51:06.501] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:51:06.501] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:51:06.501] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764769831311}
-[00:51:06.868] Browser LOG     🛠️ ChatList montado.
-[00:51:06.868] Browser LOG     🛠️ ChatList montado.
-[00:51:13.584] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[00:51:13.668] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"0448fb9d-4668-434f-aae4-614df4370619"}
-[00:51:13.776] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
-[00:51:13.777] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
-[00:51:13.942] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta atualizada
-[00:51:14.051] Browser LOG     📡 Response status: 200
-[00:51:14.051] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
-[00:51:16.794] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:51:16.984] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:51:16.984] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:51:16.984] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764769841796}
-[00:51:17.317] Browser LOG     🛠️ ChatList montado.
-[00:51:17.317] Browser LOG     🛠️ ChatList montado.
-[00:51:57.060] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:51:57.317] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:51:57.317] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[00:51:57.317] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764769882136}
-[00:51:57.669] Browser LOG     🛠️ ChatList montado.
-[00:51:57.669] Browser LOG     🛠️ ChatList montado.
-[01:02:20.896] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764770505620}
-[01:04:06.027] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764770610847}
-[01:04:06.415] Browser LOG     🛠️ ChatList montado.
-[01:04:06.415] Browser LOG     🛠️ ChatList montado.
-[01:07:46.000] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764770830813}
-[01:08:05.421] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764770850239}
-[01:08:05.617] Browser LOG     🛠️ ChatList montado.
-[01:08:05.617] Browser LOG     🛠️ ChatList montado.
-[01:08:08.320] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[01:08:08.404] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555192653211@s.whatsapp.net","etiquetaId":"03e5a281-aa3d-4d8e-8cd0-4620af7cdc27"}
-[01:08:08.567] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
-[01:08:08.568] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
-[01:08:08.769] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta atualizada
-[01:08:08.876] Browser LOG     📡 Response status: 200
-[01:08:08.876] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
-[01:08:13.064] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:13.280] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[01:08:13.280] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[01:08:13.280] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764770858098}
-[01:08:13.620] Browser LOG     🛠️ ChatList montado.
-[01:08:13.620] Browser LOG     🛠️ ChatList montado.
-[01:08:26.070] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[01:08:26.154] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555192653211@s.whatsapp.net","etiquetaId":"0448fb9d-4668-434f-aae4-614df4370619"}
-[01:08:26.283] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
-[01:08:26.283] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
-[01:08:26.485] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta atualizada
-[01:08:26.614] Browser LOG     📡 Response status: 200
-[01:08:26.614] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
-[01:08:28.534] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:28.703] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[01:08:28.703] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[01:08:28.703] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764770873522}
-[01:08:29.127] Browser LOG     🛠️ ChatList montado.
-[01:08:29.127] Browser LOG     🛠️ ChatList montado.
-[01:11:39.229] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764771064034}
-[01:18:02.655] Server  LOG      ✓ Compiled in 751ms
-[01:18:25.723] Server  LOG      ✓ Compiled in 142ms
-[01:18:33.118] Server  LOG      ✓ Compiled in 151ms
-[01:18:54.101] Server  LOG      ✓ Compiled in 151ms
-[01:19:15.968] Server  LOG      ✓ Compiled in 139ms
-[01:19:27.534] Server  LOG      ✓ Compiled in 113ms
-[01:19:36.003] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764771540762}
-[01:19:36.198] Browser LOG     🛠️ ChatList montado.
-[01:19:36.198] Browser LOG     🛠️ ChatList montado.
-[01:19:41.326] Server  LOG      ✓ Compiled in 196ms
-[01:19:57.303] Server  LOG      ✓ Compiled in 443ms
-[01:20:56.032] Server  LOG      ✓ Compiled in 404ms
-[01:21:15.384] Server  LOG      ✓ Compiled in 248ms
-[01:23:42.442] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:23:42.709] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[01:23:42.709] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[01:23:42.709] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764771787526}
-[01:23:43.209] Browser LOG     🛠️ ChatList montado.
-[01:23:43.209] Browser LOG     🛠️ ChatList montado.
-[01:25:14.291] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764771879090}
-[01:25:17.602] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764771882413}
-[01:25:17.820] Browser LOG     🛠️ ChatList montado.
-[01:25:17.820] Browser LOG     🛠️ ChatList montado.
-[01:25:31.757] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:25:31.948] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[01:25:31.948] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[01:25:31.948] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764771896758}
-[01:25:32.288] Browser LOG     🛠️ ChatList montado.
-[01:25:32.288] Browser LOG     🛠️ ChatList montado.
-[01:27:40.270] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[01:27:40.274] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"03e5a281-aa3d-4d8e-8cd0-4620af7cdc27"}
-[01:27:40.649] Server  ERROR   ❌ [ASSIGN-TAG] Erro ao verificar chat: {}
-[01:27:40.649] Server  ERROR   ❌ [ASSIGN-TAG] Erro geral: {}
-[01:27:40.650] Server  ERROR   📋 [ASSIGN-TAG] Stack: undefined
-[01:27:40.651] Server  ERROR   📋 [ASSIGN-TAG] Details: null
-[01:27:40.651] Server  ERROR   📋 [ASSIGN-TAG] Hint: null
-[01:27:40.652] Server  ERROR   📋 [ASSIGN-TAG] Message: "column chats.etiqueta_id_1 does not exist"
-[01:27:40.762] Browser LOG     📡 Response status: 500
-[01:27:40.762] Browser LOG     📦 Response data: {"details":null,"hint":null,"message":"column chats.etiqueta_id_1 does not exist","success":false}
-[03:33:53.686] Server  LOG      ✓ Compiled in 1255ms
-[03:34:18.053] Server  LOG      ✓ Compiled in 989ms
-[03:34:32.833] Server  LOG      ✓ Compiled in 327ms
-[03:34:49.365] Server  LOG      ✓ Compiled in 524ms
-[03:38:39.076] Server  LOG      ✓ Compiled in 203ms
-[03:38:59.135] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:38:59.892] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[03:38:59.892] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[03:38:59.892] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764779904707}
-[03:39:00.426] Browser LOG     🛠️ ChatList montado.
-[03:39:00.426] Browser LOG     🛠️ ChatList montado.
-[03:39:05.371] Server  LOG      ✓ Compiled in 213ms
-[03:39:18.968] Server  LOG      ✓ Compiled in 174ms
-[03:40:06.427] Server  LOG      ✓ Compiled in 118ms
-[03:40:36.653] Server  LOG      ✓ Compiled in 195ms
-[03:40:47.911] Server  LOG      ✓ Compiled in 243ms
-[03:40:54.461] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
-[03:40:54.790] Server  ERROR   ❌ [REMOVE-TAG] Erro: {}
-[03:40:59.400] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:40:59.654] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[03:40:59.654] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[03:40:59.654] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764780024467}
-[03:41:00.004] Browser LOG     🛠️ ChatList montado.
-[03:41:00.004] Browser LOG     🛠️ ChatList montado.
-[03:46:06.084] Server  LOG      ✓ Compiled in 224ms
-[03:46:30.703] Server  LOG      ✓ Compiled in 262ms
-[03:46:41.885] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[03:46:41.972] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555192089043@s.whatsapp.net","etiquetaId":"03e5a281-aa3d-4d8e-8cd0-4620af7cdc27"}
-[03:46:42.135] Server  ERROR   ❌ [ASSIGN-TAG] Erro ao verificar chat: {}
-[03:46:42.135] Server  ERROR   ❌ [ASSIGN-TAG] Erro geral: {}
-[03:46:42.136] Server  ERROR   📋 [ASSIGN-TAG] Stack: undefined
-[03:46:42.136] Server  ERROR   📋 [ASSIGN-TAG] Details: null
-[03:46:42.137] Server  ERROR   📋 [ASSIGN-TAG] Hint: null
-[03:46:42.137] Server  ERROR   📋 [ASSIGN-TAG] Message: "column chats.etiqueta_id does not exist"
-[03:46:42.249] Browser LOG     📡 Response status: 500
-[03:46:42.249] Browser LOG     📦 Response data: {"details":null,"hint":null,"message":"column chats.etiqueta_id does not exist","success":false}
-[03:46:42.689] Server  LOG      ✓ Compiled in 137ms
-[03:46:57.133] Server  LOG      ✓ Compiled in 241ms
-[03:47:24.345] Server  LOG      ✓ Compiled in 156ms
-[03:48:32.054] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:48:32.331] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[03:48:32.331] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[03:48:32.331] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764780477141}
-[03:48:33.032] Browser LOG     🛠️ ChatList montado.
-[03:48:33.032] Browser LOG     🛠️ ChatList montado.
-[03:49:06.530] Server  LOG      ✓ Compiled in 451ms
-[03:49:06.982] Browser ERROR   uncaughtError: ReferenceError: chatEtiqueta is not defined
-[03:49:24.885] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[03:49:25.273] Server  LOG      ✓ Compiled in 196ms
-[03:49:25.511] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:49:25.985] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[03:49:25.985] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[03:49:25.985] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764780530576}
-[03:49:26.972] Browser LOG     🛠️ ChatList montado.
-[03:49:26.972] Browser LOG     🛠️ ChatList montado.
-[03:49:39.825] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:49:40.551] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:49:40.551] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:49:40.551] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:49:40.551] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:49:40.551] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:49:40.551] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:49:40.551] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:49:40.551] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:49:40.551] Browser ERROR   uncaughtError: ReferenceError: chatEtiqueta is not defined
-[03:50:10.399] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[03:50:10.763] Server  LOG      ✓ Compiled in 292ms
-[03:50:10.936] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:50:12.971] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[03:50:12.971] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[03:50:12.971] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764780575982}
-[03:50:12.971] Browser LOG     🛠️ ChatList montado.
-[03:50:12.971] Browser LOG     🛠️ ChatList montado.
-[03:50:30.948] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:50:30.948] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:50:30.948] Browser ERROR   uncaughtError: ReferenceError: chatEtiquetaId is not defined
-[03:50:47.449] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[03:50:47.782] Server  LOG      ✓ Compiled in 195ms
-[03:50:47.916] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:50:48.981] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[03:50:48.981] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[03:50:48.981] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764780612980}
-[03:50:48.981] Browser LOG     🛠️ ChatList montado.
-[03:50:48.981] Browser LOG     🛠️ ChatList montado.
-[03:50:55.079] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:50:55.080] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:50:55.080] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:50:55.080] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:50:55.080] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:50:55.080] Browser ERROR   uncaughtError: Error: Maximum update depth exceeded. This can happen when a component repeatedly calls setState inside componentWillUpdate or componentDidUpdate. React limits the number of nested updates to prevent infinite loops.
-[03:52:27.982] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:52:28.589] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[03:52:28.589] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[03:52:28.589] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764780713409}
-[03:52:29.289] Browser LOG     🛠️ ChatList montado.
-[03:52:29.289] Browser LOG     🛠️ ChatList montado.
-[03:52:31.133] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:52:31.133] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:52:31.133] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:52:31.133] Browser ERROR   Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-[03:52:31.133] Browser ERROR   uncaughtError: Error: Maximum update depth exceeded. This can happen when a component repeatedly calls setState inside componentWillUpdate or componentDidUpdate. React limits the number of nested updates to prevent infinite loops.
-[03:52:50.563] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[03:52:50.577] Server  LOG      ✓ Compiled in 2.2s
-[03:52:53.184] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:52:53.975] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[03:52:53.975] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[03:52:53.975] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764780738354}
-[03:52:53.975] Browser LOG     🛠️ ChatList montado.
-[03:52:53.975] Browser LOG     🛠️ ChatList montado.
-[03:54:55.080] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555192653211@s.whatsapp.net","etiquetaId":"03e5a281-aa3d-4d8e-8cd0-4620af7cdc27"}
-[03:54:55.698] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[03:54:55.888] Server  ERROR   ❌ [ASSIGN-TAG] Erro ao verificar chat: {}
-[03:54:55.889] Server  ERROR   ❌ [ASSIGN-TAG] Erro geral: {}
-[03:54:55.889] Server  ERROR   📋 [ASSIGN-TAG] Stack: undefined
-[03:54:55.890] Server  ERROR   📋 [ASSIGN-TAG] Details: null
-[03:54:55.891] Server  ERROR   📋 [ASSIGN-TAG] Hint: null
-[03:54:55.892] Server  ERROR   📋 [ASSIGN-TAG] Message: "column chats.etiqueta_id does not exist"
-[03:54:56.014] Browser LOG     📡 Response status: 500
-[03:54:56.014] Browser LOG     📦 Response data: {"details":null,"hint":null,"message":"column chats.etiqueta_id does not exist","success":false}
-[03:59:19.551] Server  LOG      ○ Compiling /banco-de-dados ...
-[03:59:28.979] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados","o":"http://localhost:3000/banco-de-dados","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764781133201}
-[03:59:31.298] Server  LOG      ○ Compiling /banco-de-dados/leads ...
-[03:59:38.973] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados/leads color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados/leads","o":"http://localhost:3000/banco-de-dados/leads","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764781142903}
-[04:00:16.021] Server  LOG      ✓ Compiled in 275ms
-[04:00:37.569] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764781202378}
-[04:00:39.895] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[04:00:39.895] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[04:00:40.058] Server  LOG      ✓ Compiled in 207ms
-[04:00:49.993] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764781214806}
-[04:00:50.185] Browser LOG     🛠️ ChatList montado.
-[04:00:50.185] Browser LOG     🛠️ ChatList montado.
-[04:01:07.063] Server  LOG      ✓ Compiled in 180ms
-[04:04:34.873] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:04:35.105] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[04:04:35.105] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[04:04:35.105] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764781439920}
-[04:04:35.530] Browser LOG     🛠️ ChatList montado.
-[04:04:35.530] Browser LOG     🛠️ ChatList montado.
-[04:04:42.797] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"03e5a281-aa3d-4d8e-8cd0-4620af7cdc27"}
-[04:04:42.813] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[04:04:43.178] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
-[04:04:43.179] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
-[04:04:43.380] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta adicionada ao array
-[04:04:43.486] Browser LOG     📡 Response status: 200
-[04:04:43.486] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
-[04:07:07.464] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
-[04:07:11.631] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
-[04:11:48.820] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764781873623}
-[04:13:25.721] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764781970535}
-[04:13:26.063] Browser LOG     🛠️ ChatList montado.
-[04:13:26.063] Browser LOG     🛠️ ChatList montado.
-[04:13:27.493] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/gerar-documento color: rgb(120, 120, 120) color: inherit {"dp":"/gerar-documento","o":"http://localhost:3000/gerar-documento","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764781972303}
-[04:13:45.896] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764781990714}
-[04:13:46.096] Browser LOG     🛠️ ChatList montado.
-[04:13:46.096] Browser LOG     🛠️ ChatList montado.
-[04:19:01.647] Server  LOG      ✓ Compiled in 183ms
-[04:19:01.749] Browser LOG     🛠️ ChatList montado.
-[04:19:05.930] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ordens color: rgb(120, 120, 120) color: inherit {"dp":"/ordens","o":"http://localhost:3000/ordens","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764782310746}
-[04:19:28.777] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/gerar-documento color: rgb(120, 120, 120) color: inherit {"dp":"/gerar-documento","o":"http://localhost:3000/gerar-documento","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764782333575}
-[04:19:35.044] Server  LOG      ○ Compiling /contratos ...
-[04:19:40.096] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/contratos color: rgb(120, 120, 120) color: inherit {"dp":"/contratos","o":"http://localhost:3000/contratos","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764782344915}
-[04:19:42.993] Server  LOG      ✓ Compiled in 10.9s
-[04:19:47.196] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764782352012}
-[04:19:47.466] Browser LOG     🛠️ ChatList montado.
-[04:19:47.466] Browser LOG     🛠️ ChatList montado.
-[04:19:58.759] Server  LOG      ✓ Compiled in 266ms
-[04:20:20.382] Server  LOG      ✓ Compiled in 1335ms
-[04:20:35.582] Server  LOG      ✓ Compiled in 708ms
-[04:20:47.205] Server  LOG      ✓ Compiled in 224ms
-[04:21:25.439] Server  LOG      ✓ Compiled in 2.6s
-[04:21:38.376] Server  LOG      ✓ Compiled in 285ms
-[04:22:10.037] Server  LOG      ✓ Compiled in 4s
-[04:22:43.874] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:22:44.586] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[04:22:44.586] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[04:22:44.586] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764782529399}
-[04:22:44.821] Browser LOG     🛠️ ChatList montado.
-[04:22:44.821] Browser LOG     🛠️ ChatList montado.
-[04:23:24.972] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:23:25.149] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[04:23:25.149] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[04:23:25.149] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764782569964}
-[04:23:25.634] Browser LOG     🛠️ ChatList montado.
-[04:23:25.634] Browser LOG     🛠️ ChatList montado.
-[04:23:48.189] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[04:23:48.283] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"03e5a281-aa3d-4d8e-8cd0-4620af7cdc27"}
-[04:23:48.393] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
-[04:23:48.393] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
-[04:23:48.601] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta adicionada ao array
-[04:23:48.708] Browser LOG     📡 Response status: 200
-[04:23:48.708] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
-[04:24:02.711] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
-[04:24:16.441] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[04:24:16.544] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"0448fb9d-4668-434f-aae4-614df4370619"}
-[04:24:16.625] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
-[04:24:16.626] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
-[04:24:16.815] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta adicionada ao array
-[04:24:16.918] Browser LOG     📡 Response status: 200
-[04:24:16.918] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
-[04:24:28.829] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:24:29.057] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[04:24:29.057] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[04:24:29.057] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764782633871}
-[04:24:29.413] Browser LOG     🛠️ ChatList montado.
-[04:24:29.413] Browser LOG     🛠️ ChatList montado.
-[04:25:07.125] Server  LOG      ✓ Compiled in 431ms
-[04:25:34.075] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764782698869}
-[04:25:58.142] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764782722958}
-[04:25:58.343] Browser LOG     🛠️ ChatList montado.
-[04:25:58.343] Browser LOG     🛠️ ChatList montado.
-[04:28:09.971] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[04:28:10.054] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"03e5a281-aa3d-4d8e-8cd0-4620af7cdc27"}
-[04:28:10.226] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
-[04:28:10.226] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
-[04:28:10.407] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta adicionada ao array
-[04:28:10.521] Browser LOG     📡 Response status: 200
-[04:28:10.521] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
-[04:28:14.370] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
-[04:28:22.888] Server  LOG     📌 [ASSIGN-TAG] Início: {}
-[04:28:22.978] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555192653211@s.whatsapp.net","etiquetaId":"03e5a281-aa3d-4d8e-8cd0-4620af7cdc27"}
-[04:28:23.073] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
-[04:28:23.074] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
-[04:28:23.237] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta adicionada ao array
-[04:28:23.351] Browser LOG     📡 Response status: 200
-[04:28:23.351] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
-[04:30:05.646] Server  LOG      ✓ Compiled in 261ms
-[04:30:17.314] Server  LOG      ✓ Compiled in 260ms
-[04:31:17.023] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:31:17.228] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[04:31:17.228] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[04:31:17.228] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783042041}
-[04:31:17.662] Browser LOG     🛠️ ChatList montado.
-[04:31:17.662] Browser LOG     🛠️ ChatList montado.
-[04:31:33.165] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:31:33.344] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[04:31:33.344] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[04:31:33.344] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783058165}
-[04:31:34.077] Browser LOG     🛠️ ChatList montado.
-[04:31:34.077] Browser LOG     🛠️ ChatList montado.
-[04:31:53.675] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:31:53.864] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[04:31:53.864] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[04:31:53.864] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783078684}
-[04:31:54.263] Browser LOG     🛠️ ChatList montado.
-[04:31:54.263] Browser LOG     🛠️ ChatList montado.
-[04:34:21.828] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:34:22.020] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[04:34:22.020] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[04:34:22.020] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783226837}
-[04:34:22.448] Browser LOG     🛠️ ChatList montado.
-[04:34:22.448] Browser LOG     🛠️ ChatList montado.
-[04:38:18.840] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783463650}
-[04:38:28.473] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783473286}
-[04:38:33.759] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783478572}
-[04:38:40.228] Browser ERROR   [v0] Error fetching roles: {"code":"PGRST205","details":null,"hint":"Perhaps you meant the table 'public.chats'","message":"Could not find the table 'public.cargos' in the schema cache"}
-[04:39:07.588] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783512407}
-[04:39:10.073] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783514883}
-[04:39:10.404] Browser LOG     🛠️ ChatList montado.
-[04:39:10.404] Browser LOG     🛠️ ChatList montado.
-[04:39:15.390] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783520207}
-[04:39:16.158] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783520970}
-[04:39:16.372] Browser LOG     🛠️ ChatList montado.
-[04:39:16.372] Browser LOG     🛠️ ChatList montado.
-[04:39:18.220] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783523036}
-[04:39:18.937] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783523756}
-[04:39:19.171] Browser LOG     🛠️ ChatList montado.
-[04:39:19.171] Browser LOG     🛠️ ChatList montado.
-[04:40:53.615] Server  LOG      ✓ Compiled in 770ms
-[04:40:53.977] Browser LOG     🛠️ ChatList montado.
-[04:41:30.658] Server  LOG      ✓ Compiled in 195ms
-[04:41:30.972] Browser LOG     [Chat 122183347077279@lid] Assignment: Usuário
-[04:41:30.972] Browser LOG     [Chat 122183347077279@lid] Assignment: Usuário
-[04:41:30.972] Browser LOG     [Chat 122183347077279@lid] Assignment: Usuário
-[04:41:30.972] Browser LOG     [Chat 122183347077279@lid] Assignment: Usuário
-[04:41:41.310] Server  LOG      ✓ Compiled in 161ms
-[04:41:41.981] Browser LOG     [Chat 122183347077279@lid] Assignment: Usuário
-[04:41:41.981] Browser LOG     [Chat 122183347077279@lid] Assignment: Usuário
-[04:41:50.520] Server  LOG      ✓ Compiled in 349ms
-[04:41:50.971] Browser LOG     [Chat 122183347077279@lid] Assignment: Usuário
-[04:41:50.971] Browser LOG     [Chat 122183347077279@lid] Assignment: Usuário
-[04:41:56.729] Server  LOG      ✓ Compiled in 231ms
-[04:44:51.338] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783856154}
-[04:45:48.919] Server  LOG      ✓ Compiled in 300ms
-[04:46:00.339] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764783925149}
-[04:46:00.534] Browser LOG     🛠️ ChatList montado.
-[04:46:00.534] Browser LOG     🛠️ ChatList montado.
-[04:46:00.697] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
-[04:46:00.958] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
-[04:46:01.068] Browser LOG     [Atribuições] 122183347077279@lid => Usuário
-[04:46:01.068] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
-[04:46:01.068] Browser LOG     [Atribuições] Mapa construído com 2 chats
-[04:46:01.285] Browser LOG     [Atribuições] 122183347077279@lid => Usuário
-[04:46:01.285] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
-[04:46:01.286] Browser LOG     [Atribuições] Mapa construído com 2 chats
-[04:48:19.962] Browser LOG     [Realtime] Mudança em chat_assignments: INSERT {"assigned_at":"2025-12-03T17:47:44.519+00:00","assigned_by_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_by_name":"Edu Bauer ","assigned_to_id":"6cc7968a-7d31-47d7-80ca-50ead7ed686e","assigned_to_name":"Usuário","chat_id":"555184480235@s.whatsapp.net","chat_name":"Mãe ❤️","created_at":"2025-12-03T17:47:44.519+00:00","id":"8dc4e9a2-a3a4-4671-b309-af1086df3c4c","notes":null,"status":"active","updated_at":"2025-12-03T17:47:44.519+00:00"}
-[04:48:20.218] Browser LOG     [Atribuições] Construindo mapa para 3 atribuições
-[04:48:20.570] Browser LOG     [Atribuições] 122183347077279@lid => Usuário
-[04:48:20.570] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
-[04:48:20.570] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Usuário
-[04:48:20.570] Browser LOG     [Atribuições] Mapa construído com 3 chats
-[04:48:20.570] Browser LOG     [Realtime] Atualizando atribuições map com: ["122183347077279@lid","555189269053@s.whatsapp.net","555184480235@s.whatsapp.net"]
-[04:48:32.552] Browser LOG     [Realtime] Mudança em chat_assignments: UPDATE {"assigned_at":"2025-12-03T17:33:56.121+00:00","assigned_by_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_by_name":"Edu Bauer ","assigned_to_id":"6cc7968a-7d31-47d7-80ca-50ead7ed686e","assigned_to_name":"Usuário","chat_id":"122183347077279@lid","chat_name":"122183347077279","created_at":"2025-12-03T17:33:56.121+00:00","id":"090301be-7e89-45bc-8b3f-d17f24c5426a","notes":null,"status":"completed","updated_at":"2025-12-03T17:47:57.019+00:00"}
-[04:48:32.662] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
-[04:48:33.044] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
-[04:48:33.044] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Usuário
-[04:48:33.044] Browser LOG     [Atribuições] Mapa construído com 2 chats
-[04:48:33.044] Browser LOG     [Realtime] Atualizando atribuições map com: ["555189269053@s.whatsapp.net","555184480235@s.whatsapp.net"]
-[04:48:35.644] Browser LOG     [Realtime] Mudança em chat_assignments: UPDATE {"assigned_at":"2025-12-03T17:47:44.519+00:00","assigned_by_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_by_name":"Edu Bauer ","assigned_to_id":"6cc7968a-7d31-47d7-80ca-50ead7ed686e","assigned_to_name":"Usuário","chat_id":"555184480235@s.whatsapp.net","chat_name":"Mãe ❤️","created_at":"2025-12-03T17:47:44.519+00:00","id":"8dc4e9a2-a3a4-4671-b309-af1086df3c4c","notes":null,"status":"completed","updated_at":"2025-12-03T17:48:00.219+00:00"}
-[04:48:35.810] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
-[04:48:36.195] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
-[04:48:36.195] Browser LOG     [Atribuições] Mapa construído com 1 chats
-[04:48:36.195] Browser LOG     [Realtime] Atualizando atribuições map com: ["555189269053@s.whatsapp.net"]
-[04:48:37.178] Browser LOG     [Realtime] Mudança em chat_assignments: UPDATE {"assigned_at":"2025-12-03T17:42:08.528+00:00","assigned_by_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_by_name":"Edu Bauer ","assigned_to_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_to_name":"Edu Bauer ","chat_id":"555189269053@s.whatsapp.net","chat_name":"Edu Bauer Maciel","created_at":"2025-12-03T17:42:08.528+00:00","id":"3561561a-7d66-4baa-81fe-d2fae3ebdb73","notes":null,"status":"completed","updated_at":"2025-12-03T17:48:01.774+00:00"}
-[04:48:37.394] Browser LOG     [Atribuições] Sem atribuições, retornando mapa vazio
-[04:48:37.395] Browser LOG     [Realtime] Atualizando atribuições map com: []
-[04:48:39.541] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
-[04:48:41.288] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
-[04:49:37.642] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764784142452}
-[04:49:40.561] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764784145377}
-[04:49:41.011] Browser LOG     🛠️ ChatList montado.
-[04:49:41.011] Browser LOG     🛠️ ChatList montado.
-[04:59:40.777] Server  LOG      ✓ Compiled in 2.1s
-[05:01:20.253] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:01:21.105] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[05:01:21.105] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
-[05:01:21.105] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764784845925}
-[05:01:21.459] Browser LOG     🛠️ ChatList montado.
-[05:01:21.459] Browser LOG     🛠️ ChatList montado.
-[05:01:22.949] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764784847762}
-[05:03:36.980] Server  LOG      ✓ Compiled in 5.8s
-[05:03:53.694] Server  LOG      ✓ Compiled in 7.4s
-[05:03:57.681] Server  LOG      ✓ Compiled in 267ms
-[05:04:10.646] Server  LOG      ✓ Compiled in 791ms
-[05:04:17.946] Server  LOG      ✓ Compiled in 799ms
-[05:04:24.853] Server  LOG      ✓ Compiled in 883ms
-[05:05:17.545] Server  LOG      ✓ Compiled in 339ms
-[05:05:53.874] Server  LOG      ✓ Compiled in 23.1s
-[05:06:57.061] Server  LOG      ○ Compiling /api/catalogo ...
-[05:07:03.937] Server  ERROR   Erro ao buscar catálogos: {}
-[05:07:04.094] Browser ERROR   uncaughtError: TypeError: catalogos.map is not a function
-[05:07:14.294] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:07:14.981] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[05:07:14.981] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/ajustes","route":"/ajustes"}
-[05:07:14.981] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764785199752}
-[05:07:40.138] Server  ERROR   Erro ao buscar catálogos: {}
-[05:07:40.282] Browser ERROR   uncaughtError: TypeError: catalogos.map is not a function
-[05:07:56.149] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[05:07:56.150] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[05:07:56.151] Server  LOG      ✓ Compiled in 607ms
-[05:07:57.019] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:07:57.973] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[05:07:57.973] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/ajustes","route":"/ajustes"}
-[05:07:57.973] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764785242155}
-[05:09:10.622] Server  ERROR   Erro ao buscar catálogos: {}
-[05:09:10.769] Browser ERROR   uncaughtError: TypeError: catalogos.map is not a function
-[05:09:24.868] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:09:25.085] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[05:09:25.085] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/ajustes","route":"/ajustes"}
-[05:09:25.085] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764785329902}
-[05:09:28.019] Server  LOG      ✓ Compiled in 1109ms
-[05:09:30.155] Server  ERROR   Erro ao buscar catálogos: {}
-[05:09:30.301] Browser ERROR   uncaughtError: TypeError: catalogos.map is not a function
+[00:00:31.398] Server  LOG      ✓ Ready in 23.5s
+[00:00:34.503] Server  LOG      ○ Compiling / ...
+[00:01:25.920] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:29.383] Server  LOG      ○ Compiling /visao-geral ...
+[00:01:33.670] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:01:33.671] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:01:33.671] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/visao-geral","route":"/visao-geral"}
+[00:01:33.671] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844183908}
+[00:01:33.671] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844183908}
+[00:01:52.530] Server  LOG      ○ Compiling /crm ...
+[00:02:02.667] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844213481}
+[00:02:05.081] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844215892}
+[00:02:07.697] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/gerar-documento color: rgb(120, 120, 120) color: inherit {"dp":"/gerar-documento","o":"http://localhost:3000/gerar-documento","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844218507}
+[00:02:13.899] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844224713}
+[00:02:18.732] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ordens color: rgb(120, 120, 120) color: inherit {"dp":"/ordens","o":"http://localhost:3000/ordens","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844229543}
+[00:02:22.030] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/contratos color: rgb(120, 120, 120) color: inherit {"dp":"/contratos","o":"http://localhost:3000/contratos","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844232841}
+[00:02:23.365] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados","o":"http://localhost:3000/banco-de-dados","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844234187}
+[00:02:26.280] Server  LOG      ○ Compiling /banco-de-dados/leads ...
+[00:02:26.614] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados/leads color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados/leads","o":"http://localhost:3000/banco-de-dados/leads","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844237434}
+[00:02:29.145] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/contratos color: rgb(120, 120, 120) color: inherit {"dp":"/contratos","o":"http://localhost:3000/contratos","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844239960}
+[00:02:34.334] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844245154}
+[00:02:36.563] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844247385}
+[00:02:45.428] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844256243}
+[00:02:50.430] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844261251}
+[00:04:52.622] Browser LOG     🛠️ ChatList montado.
+[00:04:52.622] Browser LOG     🛠️ ChatList montado.
+[00:04:52.622] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:04:52.622] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:04:53.540] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:04:53.540] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:04:53.540] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:04:53.540] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:05:19.405] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"0448fb9d-4668-434f-aae4-614df4370619"}
+[00:05:20.519] Server  LOG     📌 [ASSIGN-TAG] Início: {}
+[00:05:21.222] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
+[00:05:21.222] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
+[00:05:21.337] Browser LOG     📡 Response status: 200
+[00:05:21.337] Browser LOG     📦 Response data: {"message":"Etiqueta já atribuída","success":true}
+[00:05:31.359] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:31.571] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:05:31.571] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
+[00:05:31.571] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764844422392}
+[00:05:31.955] Browser LOG     🛠️ ChatList montado.
+[00:05:31.955] Browser LOG     🛠️ ChatList montado.
+[00:05:32.137] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:05:32.287] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:05:32.470] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:05:32.470] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:05:32.616] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:05:32.616] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:05:41.931] Browser LOG     [Realtime] Mudança em chat_assignments: DELETE {}
+[00:05:42.153] Browser LOG     [Atribuições] Sem atribuições, retornando mapa vazio
+[00:05:42.153] Browser LOG     [Realtime] Atualizando atribuições map com: []
+[00:05:46.664] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
+[00:15:40.637] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:15:40.874] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:15:40.875] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
+[00:15:40.875] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764845031689}
+[00:15:41.609] Browser LOG     🛠️ ChatList montado.
+[00:15:41.609] Browser LOG     🛠️ ChatList montado.
+[00:16:08.691] Server  LOG      ✓ Compiled in 1152ms
+[00:16:32.093] Server  LOG      ✓ Compiled in 203ms
+[00:16:38.563] Server  LOG      ✓ Compiled in 172ms
+[00:23:10.183] Server  LOG      ✓ Compiled in 390ms
+[00:23:37.269] Server  LOG      ✓ Compiled in 501ms
+[00:24:13.127] Server  LOG      ✓ Compiled in 131ms
+[00:24:54.201] Server  LOG     📌 [ASSIGN-TAG] Início: {}
+[00:24:54.290] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555184480235@s.whatsapp.net","etiquetaId":"03e5a281-aa3d-4d8e-8cd0-4620af7cdc27"}
+[00:24:54.708] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
+[00:24:54.708] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
+[00:24:54.894] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta adicionada ao array
+[00:24:55.384] Browser LOG     📡 Response status: 200
+[00:24:55.384] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
+[00:25:01.249] Browser LOG     [Realtime] Mudança em chat_assignments: INSERT {"assigned_at":"2025-12-04T10:53:11.753+00:00","assigned_by_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_by_name":"Edu Bauer ","assigned_to_id":"6cc7968a-7d31-47d7-80ca-50ead7ed686e","assigned_to_name":"Usuário","chat_id":"555184480235@s.whatsapp.net","chat_name":"Melnick","created_at":"2025-12-04T10:53:11.753+00:00","id":"26da752b-a164-492d-819a-e23538c29326","notes":null,"status":"active","updated_at":"2025-12-04T10:53:11.753+00:00"}
+[00:25:01.473] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:25:02.271] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Usuário
+[00:25:02.271] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:25:02.271] Browser LOG     [Realtime] Atualizando atribuições map com: ["555184480235@s.whatsapp.net"]
+[00:25:31.428] Server  LOG     📌 [ASSIGN-TAG] Início: {}
+[00:25:31.513] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"122183347077279@lid","etiquetaId":"03e5a281-aa3d-4d8e-8cd0-4620af7cdc27"}
+[00:25:31.661] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
+[00:25:31.662] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
+[00:25:31.872] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta adicionada ao array
+[00:25:32.445] Browser LOG     📡 Response status: 200
+[00:25:32.445] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
+[00:25:38.498] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:25:38.996] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:25:38.996] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
+[00:25:38.996] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764845629817}
+[00:25:39.374] Browser LOG     🛠️ ChatList montado.
+[00:25:39.374] Browser LOG     🛠️ ChatList montado.
+[00:25:39.562] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:25:39.747] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:25:39.982] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Usuário
+[00:25:39.982] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:25:40.128] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Usuário
+[00:25:40.128] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:32:39.612] Server  LOG      ✓ Compiled in 208ms
+[00:34:10.327] Server  LOG      ✓ Compiled in 206ms
+[00:34:29.976] Server  LOG      ✓ Compiled in 209ms
+[00:34:52.418] Server  LOG      ✓ Compiled in 137ms
+[00:35:45.717] Server  LOG      ✓ Compiled in 238ms
+[00:35:45.800] Browser LOG     🛠️ ChatList montado.
+[00:35:46.033] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:35:46.467] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Usuário
+[00:35:46.467] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:36:12.251] Server  LOG      ✓ Compiled in 131ms
+[00:36:12.349] Browser LOG     🛠️ ChatList montado.
+[00:36:12.517] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:36:12.855] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Usuário
+[00:36:12.855] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:36:33.627] Server  LOG      ✓ Compiled in 102ms
+[00:37:15.728] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:37:15.947] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:37:15.947] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
+[00:37:15.947] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764846326770}
+[00:37:16.329] Browser LOG     🛠️ ChatList montado.
+[00:37:16.329] Browser LOG     🛠️ ChatList montado.
+[00:37:16.529] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:37:16.695] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:37:16.860] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Usuário
+[00:37:16.860] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:37:17.019] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Usuário
+[00:37:17.019] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:37:23.739] Server  LOG      ✓ Compiled in 167ms
+[00:37:46.945] Server  LOG      ✓ Compiled in 134ms
+[00:38:32.703] Browser LOG     [Realtime] Mudança em chat_assignments: DELETE {}
+[00:38:33.041] Browser LOG     [Atribuições] Sem atribuições, retornando mapa vazio
+[00:38:33.042] Browser LOG     [Realtime] Atualizando atribuições map com: []
+[00:39:34.171] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764846464986}
+[00:39:36.276] Server  ERROR   Erro ao buscar catálogos: {}
+[00:39:36.420] Browser ERROR   uncaughtError: TypeError: catalogos.map is not a function
+[00:39:43.476] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:43.673] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:39:43.673] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/whatsapp","route":"/whatsapp"}
+[00:39:43.673] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764846474495}
+[00:39:44.057] Browser LOG     🛠️ ChatList montado.
+[00:39:44.057] Browser LOG     🛠️ ChatList montado.
+[00:45:44.989] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
+[00:45:45.088] Browser LOG     🏷️ Removendo etiqueta (toggle): {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"0448fb9d-4668-434f-aae4-614df4370619"}
+[00:45:50.687] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
+[00:45:50.770] Browser LOG     🏷️ Removendo etiqueta (toggle): {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"708669fe-d60e-4b3d-a322-c44ba5767d16"}
+[00:54:01.577] Server  LOG      ✓ Compiled in 152ms
+[00:54:01.968] Server  LOG      ✓ Compiled in 208ms
+[00:54:25.580] Server  LOG      ✓ Compiled in 128ms
+[00:54:49.317] Server  LOG      ✓ Compiled in 144ms
+[00:55:08.810] Server  LOG      ✓ Compiled in 261ms
+[00:55:30.493] Server  LOG      ✓ Compiled in 110ms
+[00:55:48.224] Server  LOG      ✓ Compiled in 113ms
+[00:56:16.689] Server  LOG      ✓ Compiled in 103ms
+[00:58:17.928] Server  LOG      ✓ Compiled in 183ms
+[00:58:58.651] Server  LOG      ✓ Compiled in 172ms
+[00:59:31.664] Server  LOG      ✓ Compiled in 191ms
+[01:04:33.384] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764847964192}
+[01:04:34.675] Server  ERROR   Erro ao buscar catálogos: {}
+[01:04:34.803] Browser ERROR   uncaughtError: TypeError: catalogos.map is not a function
+[01:05:06.017] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:05:06.232] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:05:06.232] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/ajustes","route":"/ajustes"}
+[01:05:06.232] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764847997058}
+[01:06:30.263] Server  LOG      ✓ Compiled in 257ms
+[01:17:19.400] Server  ERROR   Erro ao buscar catálogos: {}
+[01:17:19.532] Browser ERROR   API retornou formato inválido: {"error":"Erro ao buscar catálogos"}
+[01:17:23.250] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764848734074}
+[01:17:23.497] Browser LOG     🛠️ ChatList montado.
+[01:17:23.497] Browser LOG     🛠️ ChatList montado.
+[01:18:55.142] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
+[01:22:50.618] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849061437}
+[01:22:56.105] Server  ERROR   Erro ao buscar catálogos: {}
+[01:22:56.213] Browser ERROR   API retornou formato inválido: {"error":"Erro ao buscar catálogos"}
+[01:24:06.947] Server  ERROR   Erro ao gerar slug: {}
+[01:24:07.106] Server  ERROR   Erro ao criar catálogo: {}
+[01:24:07.531] Server  ERROR   Erro ao gerar slug: {}
+[01:24:07.691] Server  ERROR   Erro ao criar catálogo: {}
+[01:24:28.493] Server  ERROR   Erro ao buscar catálogos: {}
+[01:24:28.608] Browser ERROR   API retornou formato inválido: {"error":"Erro ao buscar catálogos"}
+[01:24:31.679] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849162498}
+[01:24:33.626] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/gerar-documento color: rgb(120, 120, 120) color: inherit {"dp":"/gerar-documento","o":"http://localhost:3000/gerar-documento","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849164443}
+[01:24:36.178] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados","o":"http://localhost:3000/banco-de-dados","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849166991}
+[01:24:37.355] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados/leads color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados/leads","o":"http://localhost:3000/banco-de-dados/leads","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849168170}
+[01:24:40.247] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849171066}
+[01:24:41.459] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849172276}
+[01:31:19.393] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849570211}
+[01:31:20.826] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849571651}
+[01:31:22.092] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849572914}
+[01:31:22.589] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849573412}
+[01:31:22.867] Browser LOG     🛠️ ChatList montado.
+[01:31:22.867] Browser LOG     🛠️ ChatList montado.
+[01:34:46.427] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764849777241}
+[01:34:57.461] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[01:34:57.461] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[01:49:03.873] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764850634684}
+[01:49:04.223] Browser LOG     🛠️ ChatList montado.
+[01:49:04.223] Browser LOG     🛠️ ChatList montado.
+[01:49:15.104] Server  LOG     📌 [ASSIGN-TAG] Início: {}
+[01:49:15.190] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"03e5a281-aa3d-4d8e-8cd0-4620af7cdc27"}
+[01:49:15.279] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
+[01:49:15.279] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
+[01:49:15.449] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta adicionada ao array
+[01:49:15.898] Browser LOG     📡 Response status: 200
+[01:49:15.898] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
+[01:49:22.171] Server  LOG     🗑️ [REMOVE-TAG] Início: {}
+[02:41:12.333] Browser LOG     [Realtime] Mudança em chat_assignments: INSERT {"assigned_at":"2025-12-04T13:09:22.61+00:00","assigned_by_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_by_name":"Edu Bauer ","assigned_to_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_to_name":"Edu Bauer ","chat_id":"555189269053@s.whatsapp.net","chat_name":"Edu Bauer Maciel","created_at":"2025-12-04T13:09:22.61+00:00","id":"1cc85e19-be9f-4b8a-b120-059a0ad5448d","notes":null,"status":"active","updated_at":"2025-12-04T13:09:22.61+00:00"}
+[02:41:12.905] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[02:41:13.539] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[02:41:13.539] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[02:41:13.539] Browser LOG     [Realtime] Atualizando atribuições map com: ["555189269053@s.whatsapp.net"]
+[02:41:27.055] Browser LOG     [Realtime] Mudança em chat_assignments: DELETE {}
+[02:41:27.309] Browser LOG     [Atribuições] Sem atribuições, retornando mapa vazio
+[02:41:27.309] Browser LOG     [Realtime] Atualizando atribuições map com: []
+[02:41:27.309] Browser LOG     [Realtime] Mudança em chat_assignments: INSERT {"assigned_at":"2025-12-04T13:09:37.866+00:00","assigned_by_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_by_name":"Edu Bauer ","assigned_to_id":"6cc7968a-7d31-47d7-80ca-50ead7ed686e","assigned_to_name":"Usuário","chat_id":"555189269053@s.whatsapp.net","chat_name":"Edu Bauer Maciel","created_at":"2025-12-04T13:09:37.866+00:00","id":"a7807614-0e4b-421e-aa71-7c86687af6b2","notes":null,"status":"active","updated_at":"2025-12-04T13:09:37.866+00:00"}
+[02:41:27.615] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[02:41:28.054] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Usuário
+[02:41:28.054] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[02:41:28.054] Browser LOG     [Realtime] Atualizando atribuições map com: ["555189269053@s.whatsapp.net"]
+[02:41:41.657] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764853792480}
+[02:42:09.656] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764853820481}
+[02:42:10.030] Browser LOG     🛠️ ChatList montado.
+[02:42:10.030] Browser LOG     🛠️ ChatList montado.
+[02:42:10.164] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[02:42:10.626] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Usuário
+[02:42:10.626] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[02:42:10.626] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[02:42:10.969] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Usuário
+[02:42:10.969] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[02:42:27.217] Server  LOG     📌 [ASSIGN-TAG] Início: {}
+[02:42:27.315] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"0448fb9d-4668-434f-aae4-614df4370619"}
+[02:42:27.579] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
+[02:42:27.579] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
+[02:42:27.777] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta adicionada ao array
+[02:42:28.373] Browser LOG     📡 Response status: 200
+[02:42:28.373] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
+[02:42:30.511] Server  LOG     📌 [ASSIGN-TAG] Início: {}
+[02:42:30.598] Browser LOG     🏷️ Atribuindo etiqueta: {"chatId":"555189269053@s.whatsapp.net","etiquetaId":"708669fe-d60e-4b3d-a322-c44ba5767d16"}
+[02:42:30.728] Server  LOG     🔍 [ASSIGN-TAG] Chat existe? {}
+[02:42:30.729] Server  LOG     🔄 [ASSIGN-TAG] Atualizando etiqueta do chat...
+[02:42:30.892] Server  LOG     ✅ [ASSIGN-TAG] Etiqueta adicionada ao array
+[02:42:31.377] Browser LOG     📡 Response status: 200
+[02:42:31.377] Browser LOG     📦 Response data: {"message":"Etiqueta atribuída com sucesso","success":true}
+[02:43:18.727] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764853889545}
+[02:43:22.060] Browser ERROR   [v0] Error fetching roles: {"code":"PGRST205","details":null,"hint":"Perhaps you meant the table 'public.chat_notes'","message":"Could not find the table 'public.cargos' in the schema cache"}
+[02:43:28.014] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764853898838}
+[02:43:28.217] Browser LOG     🛠️ ChatList montado.
+[02:43:28.217] Browser LOG     🛠️ ChatList montado.
+[02:43:28.680] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[02:43:28.859] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[02:43:29.365] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Igor
+[02:43:29.365] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[02:43:29.555] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Igor
+[02:43:29.555] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[02:43:37.117] Browser LOG     [Realtime] Mudança em chat_assignments: DELETE {}
+[02:43:37.117] Browser LOG     [Realtime] Mudança em chat_assignments: INSERT {"assigned_at":"2025-12-04T13:11:47.619+00:00","assigned_by_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_by_name":"Edu Bauer ","assigned_to_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_to_name":"Edu Bauer ","chat_id":"555189269053@s.whatsapp.net","chat_name":"Edu Bauer Maciel","created_at":"2025-12-04T13:11:47.619+00:00","id":"6f4def50-2fb5-4047-aed2-17ce9f82b41f","notes":null,"status":"active","updated_at":"2025-12-04T13:11:47.619+00:00"}
+[02:43:37.117] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[02:43:37.275] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[02:43:37.439] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[02:43:37.439] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[02:43:37.439] Browser LOG     [Realtime] Atualizando atribuições map com: ["555189269053@s.whatsapp.net"]
+[02:43:37.617] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[02:43:37.617] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[02:43:37.617] Browser LOG     [Realtime] Atualizando atribuições map com: ["555189269053@s.whatsapp.net"]
+[02:44:49.990] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/gerar-documento color: rgb(120, 120, 120) color: inherit {"dp":"/gerar-documento","o":"http://localhost:3000/gerar-documento","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764853980803}
+[02:45:09.309] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854000124}
+[02:45:48.959] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ordens color: rgb(120, 120, 120) color: inherit {"dp":"/ordens","o":"http://localhost:3000/ordens","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854039775}
+[02:46:28.372] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/contratos color: rgb(120, 120, 120) color: inherit {"dp":"/contratos","o":"http://localhost:3000/contratos","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854079195}
+[02:46:31.393] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ordens color: rgb(120, 120, 120) color: inherit {"dp":"/ordens","o":"http://localhost:3000/ordens","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854082218}
+[02:46:44.037] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/gerar-documento color: rgb(120, 120, 120) color: inherit {"dp":"/gerar-documento","o":"http://localhost:3000/gerar-documento","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854094852}
+[02:46:59.167] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854109987}
+[02:47:20.603] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[02:47:20.603] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[02:47:45.269] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854156092}
+[02:47:55.888] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854166709}
+[02:47:57.399] Browser ERROR   [v0] Error fetching roles: {"code":"PGRST205","details":null,"hint":"Perhaps you meant the table 'public.chat_notes'","message":"Could not find the table 'public.cargos' in the schema cache"}
+[02:48:28.313] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados","o":"http://localhost:3000/banco-de-dados","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854199132}
+[02:48:28.664] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados/leads color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados/leads","o":"http://localhost:3000/banco-de-dados/leads","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854199479}
+[02:49:00.863] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854231682}
+[02:49:35.268] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ordens color: rgb(120, 120, 120) color: inherit {"dp":"/ordens","o":"http://localhost:3000/ordens","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854266090}
+[02:50:19.811] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/contratos color: rgb(120, 120, 120) color: inherit {"dp":"/contratos","o":"http://localhost:3000/contratos","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764854310631}
+[03:09:32.906] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/gerar-documento color: rgb(120, 120, 120) color: inherit {"dp":"/gerar-documento","o":"http://localhost:3000/gerar-documento","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855463718}
+[03:09:33.804] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855464629}
+[03:09:34.146] Browser LOG     🛠️ ChatList montado.
+[03:09:34.146] Browser LOG     🛠️ ChatList montado.
+[03:09:34.626] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[03:09:35.046] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[03:09:35.181] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[03:09:35.181] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[03:09:35.417] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[03:09:35.417] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[03:09:38.482] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855469304}
+[03:09:39.071] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855469889}
+[03:09:39.276] Browser LOG     🛠️ ChatList montado.
+[03:09:39.276] Browser LOG     🛠️ ChatList montado.
+[03:09:39.440] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[03:09:39.620] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[03:09:39.796] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[03:09:39.796] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[03:09:40.004] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[03:09:40.004] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[03:11:39.490] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados","o":"http://localhost:3000/banco-de-dados","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855590235}
+[03:11:39.490] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados/leads color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados/leads","o":"http://localhost:3000/banco-de-dados/leads","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855590314}
+[03:11:41.233] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855592056}
+[03:11:43.419] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/gerar-documento color: rgb(120, 120, 120) color: inherit {"dp":"/gerar-documento","o":"http://localhost:3000/gerar-documento","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855594237}
+[03:11:44.114] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855594930}
+[03:11:44.287] Browser LOG     🛠️ ChatList montado.
+[03:11:44.287] Browser LOG     🛠️ ChatList montado.
+[03:11:44.937] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[03:11:44.937] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855595714}
+[03:11:44.937] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[03:11:45.181] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[03:11:45.181] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[03:11:45.804] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[03:11:45.804] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[03:11:46.449] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855597267}
+[03:11:47.682] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855598504}
+[03:12:43.295] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855654110}
+[03:12:43.776] Browser LOG     🛠️ ChatList montado.
+[03:12:43.776] Browser LOG     🛠️ ChatList montado.
+[03:12:44.176] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[03:12:44.655] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[03:12:44.938] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[03:12:44.938] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[03:12:45.075] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[03:12:45.075] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[03:12:48.606] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados","o":"http://localhost:3000/banco-de-dados","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855659399}
+[03:12:48.744] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados/leads color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados/leads","o":"http://localhost:3000/banco-de-dados/leads","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855659563}
+[03:12:49.680] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855660501}
+[03:12:58.025] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855668849}
+[03:13:02.442] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855673266}
+[03:13:04.245] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764855675064}
+[03:13:04.461] Browser LOG     🛠️ ChatList montado.
+[03:13:04.461] Browser LOG     🛠️ ChatList montado.
+[03:13:04.689] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[03:13:04.884] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[03:13:05.163] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[03:13:05.163] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[03:13:05.321] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[03:13:05.321] Browser LOG     [Atribuições] Mapa construído com 1 chats

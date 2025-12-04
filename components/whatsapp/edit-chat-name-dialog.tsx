@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { createClient } from "@/lib/supabase/client"
+import { getCookie } from "@/lib/auth"
 
 interface EditChatNameDialogProps {
   open: boolean
@@ -76,6 +77,24 @@ export function EditChatNameDialog({
       if (error) {
         console.error("Erro Supabase detalhado:", error)
         throw error
+      }
+
+      // Registra no histórico unificado
+      const userId = getCookie("auth_user_id")
+      const userName = getCookie("auth_user_name")
+      
+      if (userId && userName && currentName !== name.trim()) {
+        await supabase.from("chat_history").insert({
+          chat_id: chatId,
+          chat_name: name.trim(),
+          event_type: "name_changed",
+          event_data: {
+            previous_name: currentName || chatId,
+            new_name: name.trim(),
+          },
+          performed_by_id: userId,
+          performed_by_name: userName,
+        })
       }
 
       toast.success("Nome atualizado com sucesso!")

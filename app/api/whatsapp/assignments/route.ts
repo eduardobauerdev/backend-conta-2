@@ -98,25 +98,20 @@ export async function POST(request: NextRequest) {
     }
 
     if (previousAssignment) {
-      const logData = {
+      // Histórico unificado - transferência
+      await supabase.from("chat_history").insert({
         chat_id: chatId,
         chat_name: chatName,
-        action: "transferred",
-        from_user_id: previousAssignment.assigned_to_id,
-        from_user_name: previousAssignment.assigned_to_name,
-        to_user_id: assignToId,
-        to_user_name: assignToName,
+        event_type: "assignment_transferred",
+        event_data: {
+          from_user_id: previousAssignment.assigned_to_id,
+          from_user_name: previousAssignment.assigned_to_name,
+          to_user_id: assignToId,
+          to_user_name: assignToName,
+        },
         performed_by_id: userId,
         performed_by_name: userName,
-        notes: notes || null,
-        created_at: new Date().toISOString(),
-      }
-
-      const { error: logError } = await supabase.from("assignment_logs").insert(logData)
-
-      if (logError) {
-        console.error("Erro ao criar log de transferência:", logError)
-      }
+      })
 
       const { error: deleteError } = await supabase
         .from("chat_assignments")
@@ -168,25 +163,18 @@ export async function POST(request: NextRequest) {
     }
 
     if (!previousAssignment) {
-      const logData = {
+      // Histórico unificado - nova atribuição
+      await supabase.from("chat_history").insert({
         chat_id: chatId,
         chat_name: chatName,
-        action: "assigned",
-        from_user_id: null,
-        from_user_name: null,
-        to_user_id: assignToId,
-        to_user_name: assignToName,
+        event_type: "assignment_created",
+        event_data: {
+          assigned_to_id: assignToId,
+          assigned_to_name: assignToName,
+        },
         performed_by_id: userId,
         performed_by_name: userName,
-        notes: notes || null,
-        created_at: new Date().toISOString(),
-      }
-
-      const { error: logError } = await supabase.from("assignment_logs").insert(logData)
-
-      if (logError) {
-        console.error("Erro ao criar log de auditoria:", logError)
-      }
+      })
     }
 
     return NextResponse.json({
@@ -273,17 +261,17 @@ export async function DELETE(request: NextRequest) {
         )
       }
 
-      await supabase.from("assignment_logs").insert({
+      // Histórico unificado - liberação
+      await supabase.from("chat_history").insert({
         chat_id: activeAssignment.chat_id,
         chat_name: activeAssignment.chat_name,
-        action: "released",
-        from_user_id: activeAssignment.assigned_to_id,
-        from_user_name: activeAssignment.assigned_to_name,
-        to_user_id: null,
-        to_user_name: null,
+        event_type: "assignment_removed",
+        event_data: {
+          removed_user_id: activeAssignment.assigned_to_id,
+          removed_user_name: activeAssignment.assigned_to_name,
+        },
         performed_by_id: activeAssignment.assigned_to_id,
         performed_by_name: activeAssignment.assigned_to_name,
-        notes: null,
       })
     }
 

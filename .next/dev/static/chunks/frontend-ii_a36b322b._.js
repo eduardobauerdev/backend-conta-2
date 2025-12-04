@@ -5787,6 +5787,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modul
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tag$3e$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/lucide-react/dist/esm/icons/tag.js [app-client] (ecmascript) <export default as Tag>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pencil$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Pencil$3e$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/lucide-react/dist/esm/icons/pencil.js [app-client] (ecmascript) <export default as Pencil>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tags$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tags$3e$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/lucide-react/dist/esm/icons/tags.js [app-client] (ecmascript) <export default as Tags>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sticky$2d$note$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__StickyNote$3e$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/lucide-react/dist/esm/icons/sticky-note.js [app-client] (ecmascript) <export default as StickyNote>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$whatsapp$2f$quick$2d$replies$2d$panel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/components/whatsapp/quick-replies-panel.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/components/ui/sheet.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/components/ui/context-menu.tsx [app-client] (ecmascript)");
@@ -5853,6 +5854,10 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
     const [showAssignToUserDialog, setShowAssignToUserDialog] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [showEditNameDialog, setShowEditNameDialog] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [showEtiquetasDialog, setShowEtiquetasDialog] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [showNotesDialog, setShowNotesDialog] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [showNotesHistoryDialog, setShowNotesHistoryDialog] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [hasNotes, setHasNotes] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [hasNotesHistory, setHasNotesHistory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [roleColor, setRoleColor] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const userDataCache = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])({});
     // Estados locais para nome e etiquetas (atualizados via realtime)
@@ -6071,9 +6076,12 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
             setAssignedUserCargo(null);
             setRoleColor(null);
             setHasAssignmentHistory(false);
+            setHasNotes(false);
+            setHasNotesHistory(false);
             loadAssignment();
             loadActivities();
             checkAssignmentHistory();
+            checkNotes();
             registerActivity("viewing");
         }
     }["ChatWindow.useEffect"], [
@@ -6234,6 +6242,25 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
             console.error(e);
         }
     }
+    async function checkNotes() {
+        try {
+            const res = await fetch(`/api/whatsapp/notes?chatId=${chatId}`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success && data.note) {
+                    setHasNotes(true);
+                    // Verificar se tem histórico
+                    const histRes = await fetch(`/api/whatsapp/notes-history?chatId=${chatId}`);
+                    if (histRes.ok) {
+                        const histData = await histRes.json();
+                        if (histData.success && histData.history?.length > 0) setHasNotesHistory(true);
+                    }
+                }
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
     // ----------------------------------------------------
     // --- UI HANDLERS
     // ----------------------------------------------------
@@ -6353,12 +6380,12 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                 className: "w-6 h-6 animate-spin text-muted-foreground"
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                lineNumber: 498,
+                lineNumber: 525,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-            lineNumber: 497,
+            lineNumber: 524,
             columnNumber: 7
         }, this);
     }
@@ -6382,7 +6409,7 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                             className: "object-cover"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 510,
+                                            lineNumber: 537,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarFallback"], {
@@ -6390,13 +6417,13 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                             children: safeChatName.charAt(0).toUpperCase()
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 515,
+                                            lineNumber: 542,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 509,
+                                    lineNumber: 536,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6409,7 +6436,7 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                 children: safeChatName
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 519,
+                                                lineNumber: 546,
                                                 columnNumber: 17
                                             }, this),
                                             chatName && chatName.trim() ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipProvider"], {
@@ -6426,17 +6453,17 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                                     className: "w-3 h-3"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                    lineNumber: 530,
+                                                                    lineNumber: 557,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                lineNumber: 524,
+                                                                lineNumber: 551,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 523,
+                                                            lineNumber: 550,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -6444,23 +6471,23 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                                 children: "Editar nome"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                lineNumber: 534,
+                                                                lineNumber: 561,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 533,
+                                                            lineNumber: 560,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 522,
+                                                    lineNumber: 549,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 521,
+                                                lineNumber: 548,
                                                 columnNumber: 19
                                             }, this) : null,
                                             assignedUserName && roleColor && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ContextMenu"], {
@@ -6486,19 +6513,19 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                                                         className: "w-3 h-3"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                                        lineNumber: 549,
+                                                                                        lineNumber: 576,
                                                                                         columnNumber: 33
                                                                                     }, this),
                                                                                     assignedUserName
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                                lineNumber: 548,
+                                                                                lineNumber: 575,
                                                                                 columnNumber: 31
                                                                             }, this)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                            lineNumber: 547,
+                                                                            lineNumber: 574,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -6506,33 +6533,33 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                                                 children: "Atribuição"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                                lineNumber: 554,
+                                                                                lineNumber: 581,
                                                                                 columnNumber: 31
                                                                             }, this)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                            lineNumber: 553,
+                                                                            lineNumber: 580,
                                                                             columnNumber: 29
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                    lineNumber: 546,
+                                                                    lineNumber: 573,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                lineNumber: 545,
+                                                                lineNumber: 572,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 544,
+                                                            lineNumber: 571,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 543,
+                                                        lineNumber: 570,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ContextMenuContent"], {
@@ -6566,25 +6593,25 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                                     className: "w-4 h-4 mr-2"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                    lineNumber: 582,
+                                                                    lineNumber: 609,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 "Remover atribuição"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 561,
+                                                            lineNumber: 588,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 560,
+                                                        lineNumber: 587,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 542,
+                                                lineNumber: 569,
                                                 columnNumber: 19
                                             }, this),
                                             chatEtiquetas && chatEtiquetas.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6613,18 +6640,18 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                                                                     className: "w-3 h-3"
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                                                    lineNumber: 605,
+                                                                                                    lineNumber: 632,
                                                                                                     columnNumber: 37
                                                                                                 }, this)
                                                                                             ]
                                                                                         }, void 0, true, {
                                                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                                            lineNumber: 599,
+                                                                                            lineNumber: 626,
                                                                                             columnNumber: 35
                                                                                         }, this)
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                                        lineNumber: 598,
+                                                                                        lineNumber: 625,
                                                                                         columnNumber: 33
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -6632,33 +6659,33 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                                                             children: etiqueta.descricao || etiqueta.nome
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                                            lineNumber: 609,
+                                                                                            lineNumber: 636,
                                                                                             columnNumber: 35
                                                                                         }, this)
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                                        lineNumber: 608,
+                                                                                        lineNumber: 635,
                                                                                         columnNumber: 33
                                                                                     }, this)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                                lineNumber: 597,
+                                                                                lineNumber: 624,
                                                                                 columnNumber: 31
                                                                             }, this)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                            lineNumber: 596,
+                                                                            lineNumber: 623,
                                                                             columnNumber: 29
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                        lineNumber: 595,
+                                                                        lineNumber: 622,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                    lineNumber: 594,
+                                                                    lineNumber: 621,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ContextMenuContent"], {
@@ -6692,19 +6719,19 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                                                     className: "w-4 h-4 mr-2"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                                    lineNumber: 635,
+                                                                                    lineNumber: 662,
                                                                                     columnNumber: 29
                                                                                 }, this),
                                                                                 "Remover essa etiqueta"
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                            lineNumber: 616,
+                                                                            lineNumber: 643,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ContextMenuSeparator"], {}, void 0, false, {
                                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                            lineNumber: 638,
+                                                                            lineNumber: 665,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ContextMenuItem"], {
@@ -6714,26 +6741,26 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                                                     className: "w-4 h-4 mr-2"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                                    lineNumber: 640,
+                                                                                    lineNumber: 667,
                                                                                     columnNumber: 29
                                                                                 }, this),
                                                                                 "Ver todas etiquetas"
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                            lineNumber: 639,
+                                                                            lineNumber: 666,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                                    lineNumber: 615,
+                                                                    lineNumber: 642,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, etiqueta.id, true, {
                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 593,
+                                                            lineNumber: 620,
                                                             columnNumber: 23
                                                         }, this)),
                                                     chatEtiquetas.length > 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -6746,30 +6773,30 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 647,
+                                                        lineNumber: 674,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 591,
+                                                lineNumber: 618,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 518,
+                                        lineNumber: 545,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 517,
+                                    lineNumber: 544,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                            lineNumber: 508,
+                            lineNumber: 535,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6788,17 +6815,17 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 663,
+                                                        lineNumber: 690,
                                                         columnNumber: 133
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 663,
+                                                    lineNumber: 690,
                                                     columnNumber: 54
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 663,
+                                                lineNumber: 690,
                                                 columnNumber: 30
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -6806,18 +6833,18 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                     children: "Histórico"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 663,
+                                                    lineNumber: 690,
                                                     columnNumber: 206
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 663,
+                                                lineNumber: 690,
                                                 columnNumber: 190
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 663,
+                                        lineNumber: 690,
                                         columnNumber: 21
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
@@ -6833,19 +6860,19 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 665,
+                                                            lineNumber: 692,
                                                             columnNumber: 135
                                                         }, this),
                                                         " Atribuir"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 665,
+                                                    lineNumber: 692,
                                                     columnNumber: 51
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 665,
+                                                lineNumber: 692,
                                                 columnNumber: 27
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -6853,18 +6880,18 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                     children: "Atribuir"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 665,
+                                                    lineNumber: 692,
                                                     columnNumber: 219
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 665,
+                                                lineNumber: 692,
                                                 columnNumber: 203
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 665,
+                                        lineNumber: 692,
                                         columnNumber: 18
                                     }, this),
                                     !chatName || !chatName.trim() ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
@@ -6880,19 +6907,19 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 670,
+                                                            lineNumber: 697,
                                                             columnNumber: 26
                                                         }, this),
                                                         " Adicionar Nome"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 669,
+                                                    lineNumber: 696,
                                                     columnNumber: 24
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 668,
+                                                lineNumber: 695,
                                                 columnNumber: 22
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -6900,18 +6927,18 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                     children: "Adicionar nome ao contato"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 673,
+                                                    lineNumber: 700,
                                                     columnNumber: 38
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 673,
+                                                lineNumber: 700,
                                                 columnNumber: 22
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 667,
+                                        lineNumber: 694,
                                         columnNumber: 20
                                     }, this) : null,
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
@@ -6927,19 +6954,19 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                            lineNumber: 676,
+                                                            lineNumber: 703,
                                                             columnNumber: 137
                                                         }, this),
                                                         " Novo Lead"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 676,
+                                                    lineNumber: 703,
                                                     columnNumber: 51
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 676,
+                                                lineNumber: 703,
                                                 columnNumber: 27
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -6947,18 +6974,18 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                     children: "Criar Lead"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 676,
+                                                    lineNumber: 703,
                                                     columnNumber: 226
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 676,
+                                                lineNumber: 703,
                                                 columnNumber: 210
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 676,
+                                        lineNumber: 703,
                                         columnNumber: 18
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
@@ -6972,17 +6999,17 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                         onTagAssigned: onRefresh
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 680,
+                                                        lineNumber: 707,
                                                         columnNumber: 24
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 679,
+                                                    lineNumber: 706,
                                                     columnNumber: 22
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 678,
+                                                lineNumber: 705,
                                                 columnNumber: 20
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -6990,19 +7017,117 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                     children: "Adicionar etiqueta"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 683,
+                                                    lineNumber: 710,
                                                     columnNumber: 36
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 683,
+                                                lineNumber: 710,
                                                 columnNumber: 20
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 677,
+                                        lineNumber: 704,
                                         columnNumber: 18
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipTrigger"], {
+                                                asChild: true,
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                    variant: hasNotes ? "default" : "outline",
+                                                    size: "sm",
+                                                    onClick: ()=>setShowNotesDialog(true),
+                                                    className: hasNotes ? "bg-amber-500 hover:bg-amber-600" : "",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sticky$2d$note$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__StickyNote$3e$__["StickyNote"], {
+                                                        className: "w-4 h-4"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                                        lineNumber: 720,
+                                                        columnNumber: 24
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                                    lineNumber: 714,
+                                                    columnNumber: 22
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                                lineNumber: 713,
+                                                columnNumber: 20
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    children: hasNotes ? "Ver notas" : "Adicionar nota"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                                    lineNumber: 723,
+                                                    columnNumber: 36
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                                lineNumber: 723,
+                                                columnNumber: 20
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                        lineNumber: 712,
+                                        columnNumber: 18
+                                    }, this),
+                                    hasNotesHistory && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipTrigger"], {
+                                                asChild: true,
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                    variant: "outline",
+                                                    size: "sm",
+                                                    onClick: ()=>setShowNotesHistoryDialog(true),
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$history$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__History$3e$__["History"], {
+                                                            className: "w-4 h-4"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                                            lineNumber: 729,
+                                                            columnNumber: 26
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sticky$2d$note$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__StickyNote$3e$__["StickyNote"], {
+                                                            className: "w-3 h-3 ml-1"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                                            lineNumber: 730,
+                                                            columnNumber: 26
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                                    lineNumber: 728,
+                                                    columnNumber: 24
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                                lineNumber: 727,
+                                                columnNumber: 22
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    children: "Histórico de notas"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                                    lineNumber: 733,
+                                                    columnNumber: 38
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                                lineNumber: 733,
+                                                columnNumber: 22
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
+                                        lineNumber: 726,
+                                        columnNumber: 20
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
                                         children: [
@@ -7016,17 +7141,17 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                        lineNumber: 685,
+                                                        lineNumber: 736,
                                                         columnNumber: 107
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 685,
+                                                    lineNumber: 736,
                                                     columnNumber: 51
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 685,
+                                                lineNumber: 736,
                                                 columnNumber: 27
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -7034,40 +7159,40 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                     children: "Atualizar"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                    lineNumber: 685,
+                                                    lineNumber: 736,
                                                     columnNumber: 182
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 685,
+                                                lineNumber: 736,
                                                 columnNumber: 166
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 685,
+                                        lineNumber: 736,
                                         columnNumber: 18
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                lineNumber: 661,
+                                lineNumber: 688,
                                 columnNumber: 14
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                            lineNumber: 660,
+                            lineNumber: 687,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                    lineNumber: 507,
+                    lineNumber: 534,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                lineNumber: 506,
+                lineNumber: 533,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7091,7 +7216,7 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                             className: "w-4 h-4 animate-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 702,
+                                            lineNumber: 753,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -7099,13 +7224,13 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                             children: "Carregando antigas..."
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 703,
+                                            lineNumber: 754,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 701,
+                                    lineNumber: 752,
                                     columnNumber: 15
                                 }, this),
                                 !hasMore && messages.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7115,12 +7240,12 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                         children: "Início da conversa"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                        lineNumber: 708,
+                                        lineNumber: 759,
                                         columnNumber: 49
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 708,
+                                    lineNumber: 759,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7133,37 +7258,37 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                 children: "Nenhuma mensagem ainda"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 713,
+                                                lineNumber: 764,
                                                 columnNumber: 74
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 713,
+                                            lineNumber: 764,
                                             columnNumber: 17
                                         }, this) : messages.map((message)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$whatsapp$2f$message$2d$bubble$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MessageBubble"], {
                                                 message: message
                                             }, message.id, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 715,
+                                                lineNumber: 766,
                                                 columnNumber: 43
                                             }, this)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             ref: scrollRef
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 717,
+                                            lineNumber: 768,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 711,
+                                    lineNumber: 762,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                            lineNumber: 694,
+                            lineNumber: 745,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7176,7 +7301,7 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                             className: "w-4 h-4 text-muted-foreground"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 725,
+                                            lineNumber: 776,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -7184,7 +7309,7 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                             children: selectedFile.name
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 726,
+                                            lineNumber: 777,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -7196,18 +7321,18 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 727,
+                                                lineNumber: 778,
                                                 columnNumber: 102
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 727,
+                                            lineNumber: 778,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 724,
+                                    lineNumber: 775,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7220,7 +7345,7 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                             onChange: handleFileSelect
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 731,
+                                            lineNumber: 782,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -7233,12 +7358,12 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                 className: "w-5 h-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 732,
+                                                lineNumber: 783,
                                                 columnNumber: 162
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 732,
+                                            lineNumber: 783,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -7250,12 +7375,12 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                 className: "w-5 h-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 733,
+                                                lineNumber: 784,
                                                 columnNumber: 139
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 733,
+                                            lineNumber: 784,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -7269,7 +7394,7 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                             className: "resize-none min-h-[60px] max-h-[200px]"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 734,
+                                            lineNumber: 785,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -7281,41 +7406,41 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                                 className: "w-5 h-5 animate-spin"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 742,
+                                                lineNumber: 793,
                                                 columnNumber: 28
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"], {
                                                 className: "w-5 h-5"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                                lineNumber: 742,
+                                                lineNumber: 793,
                                                 columnNumber: 75
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                            lineNumber: 741,
+                                            lineNumber: 792,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 730,
+                                    lineNumber: 781,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                            lineNumber: 722,
+                            lineNumber: 773,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                    lineNumber: 693,
+                    lineNumber: 744,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                lineNumber: 692,
+                lineNumber: 743,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Sheet"], {
@@ -7330,38 +7455,38 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                                     children: "Respostas Rápidas"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 752,
+                                    lineNumber: 803,
                                     columnNumber: 24
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SheetDescription"], {
                                     children: "Selecione para enviar"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                                    lineNumber: 752,
+                                    lineNumber: 803,
                                     columnNumber: 66
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                            lineNumber: 752,
+                            lineNumber: 803,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$whatsapp$2f$quick$2d$replies$2d$panel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["QuickRepliesPanel"], {
                             onSelectReply: handleQuickReply
                         }, void 0, false, {
                             fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                            lineNumber: 753,
+                            lineNumber: 804,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                    lineNumber: 751,
+                    lineNumber: 802,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                lineNumber: 750,
+                lineNumber: 801,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$whatsapp$2f$assignment$2d$history$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AssignmentHistoryDialog"], {
@@ -7371,7 +7496,7 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                 chatName: safeChatName
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                lineNumber: 757,
+                lineNumber: 808,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$whatsapp$2f$assign$2d$to$2d$user$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AssignToUserDialog"], {
@@ -7385,7 +7510,7 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                 onAssignSuccess: loadAssignment
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                lineNumber: 759,
+                lineNumber: 810,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$whatsapp$2f$edit$2d$chat$2d$name$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["EditChatNameDialog"], {
@@ -7396,7 +7521,7 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                 onSuccess: onRefresh
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                lineNumber: 770,
+                lineNumber: 821,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$whatsapp$2f$chat$2d$etiquetas$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ChatEtiquetasDialog"], {
@@ -7409,17 +7534,17 @@ function ChatWindow({ chatId, chatName: initialChatName, chatPicture = null, cha
                 }
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-                lineNumber: 778,
+                lineNumber: 829,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend-ii/components/whatsapp/chat-window.tsx",
-        lineNumber: 504,
+        lineNumber: 531,
         columnNumber: 5
     }, this);
 }
-_s(ChatWindow, "5r3B6tOcX7fWEp2IVmDQ2vkS/Y4=", false, function() {
+_s(ChatWindow, "U8OhhY/AP4pizlNHPsyjpaPy0+s=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$contexts$2f$whatsapp$2d$cache$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useWhatsAppCache"],
         __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$hooks$2f$use$2d$realtime$2d$subscription$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRealtimeSubscription"],

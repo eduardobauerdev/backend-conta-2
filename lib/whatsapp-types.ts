@@ -15,6 +15,7 @@ export interface Chat {
   unreadCount: number
   pictureUrl?: string | null
   profilePic?: string | null
+  telefone?: string | null
   // IDs das etiquetas (do banco - array de UUIDs)
   etiqueta_ids?: string[]
   // Array de etiquetas resolvidas (com nome e cor)

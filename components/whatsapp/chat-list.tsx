@@ -4,10 +4,11 @@ import type React from "react"
 import { useState, useEffect, useRef, useCallback, useMemo, forwardRef, type ElementRef } from "react" 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
-import { Search, AlertCircle, RefreshCw, Loader2, User, Tag, Pencil, UserPlus, X, Tags } from "lucide-react"
+import { Search, AlertCircle, RefreshCw, Loader2, User, Tag, Pencil, UserPlus, X, Tags, Copy, Phone } from "lucide-react"
 import { cn } from "@/lib/utils"
 import type { Chat, EtiquetaSimple } from "@/lib/whatsapp-types"
 import { ChatEtiquetasDialog } from "./chat-etiquetas-dialog"
+import { NoteBadge } from "./note-badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { useWhatsAppCache } from "@/contexts/whatsapp-cache-context"
@@ -79,9 +80,34 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
     const [showTagSelector, setShowTagSelector] = useState(false)
     const [showEtiquetasDialog, setShowEtiquetasDialog] = useState(false)
     const [contextMenuEtiqueta, setContextMenuEtiqueta] = useState<EtiquetaSimple | null>(null)
+    
+    // Estado para chats com notas (mapa de chatId -> conteúdo da nota)
+    const [chatNotes, setChatNotes] = useState<Record<string, string>>({})
 
     const scrollContainerRef = (ref as React.RefObject<HTMLDivElement>) || useRef<HTMLDivElement>(null); 
     const isLoadingRef = useRef(false)
+
+    // --- CARREGAR NOTAS DOS CHATS ---
+    const loadChatNotes = useCallback(async (chatIds: string[]) => {
+        if (chatIds.length === 0) return;
+        
+        try {
+            const { data: notes } = await supabase
+                .from('chat_notes')
+                .select('chat_id, content')
+                .in('chat_id', chatIds);
+            
+            if (notes && notes.length > 0) {
+                const notesMap: Record<string, string> = {};
+                notes.forEach(note => {
+                    notesMap[note.chat_id] = note.content || '';
+                });
+                setChatNotes(prev => ({ ...prev, ...notesMap }));
+            }
+        } catch (e) {
+            console.error("Erro ao carregar notas:", e);
+        }
+    }, [supabase]);
 
     // --- SETUP INICIAL ---
     useEffect(() => {
@@ -103,6 +129,14 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
         const timer = setTimeout(refreshAvatars, 2000);
         return () => clearTimeout(timer);
     }, []);
+
+    // --- CARREGAR NOTAS QUANDO CHATS MUDAM ---
+    useEffect(() => {
+        if (chats.length > 0) {
+            const chatIds = chats.map(c => c.id);
+            loadChatNotes(chatIds);
+        }
+    }, [chats, loadChatNotes]);
 
     // --- DEBOUNCE BUSCA ---
     useEffect(() => {
@@ -346,6 +380,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
               lastMessageTime: c.last_message_time,
               unreadCount: c.unread_count,
               pictureUrl: c.image_url,
+              telefone: c.telefone || c.id.split('@')[0],
               etiquetas: etiquetas,
             };
         });
@@ -547,6 +582,10 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
 
                   // Determina se tem etiquetas
                   const hasEtiquetas = chat.etiquetas && chat.etiquetas.length > 0
+                  
+                  // Verifica se tem nota
+                  const hasNote = !!chatNotes[chat.id]
+                  const noteContent = chatNotes[chat.id] || null
 
                   return (
                     <ContextMenu key={chat.id}>
@@ -555,7 +594,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                           onClick={() => onSelectChat(chat)} 
                           className={cn(
                             "w-full flex items-center gap-2.5 px-3 py-2 transition-colors text-left hover:bg-accent/50",
-                            selectedChatId === chat.id && "bg-accent",
+                            selectedChatId === chat.id && "bg-accent/80 dark:bg-accent",
                             chat.unreadCount > 0 && "border-l-2 border-primary bg-primary/5"
                           )}
                         >
@@ -585,11 +624,11 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                                 {assignment && (
                                   <ContextMenu>
                                     <ContextMenuTrigger asChild>
-                                      <div onClick={(e) => e.stopPropagation()}>
+                                      <div onClick={(e) => { e.stopPropagation(); onSelectChat(chat); }}>
                                         <TooltipProvider>
                                           <Tooltip>
                                             <TooltipTrigger asChild>
-                                              <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border flex-shrink-0 cursor-context-menu" style={{ backgroundColor: assignment.assigned_to_color || "#6366f1", color: "#ffffff", borderColor: assignment.assigned_to_color || "#6366f1" }}>
+                                              <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border flex-shrink-0 cursor-pointer" style={{ backgroundColor: assignment.assigned_to_color || "#6366f1", color: "#ffffff", borderColor: assignment.assigned_to_color || "#6366f1" }}>
                                                 <User className="w-2.5 h-2.5" />
                                                 <span className="max-w-[80px] truncate">{assignment.assigned_to_name}</span>
                                               </Badge>
@@ -641,13 +680,13 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                                     {chat.etiquetas!.slice(0, 3).map((etiqueta) => (
                                       <ContextMenu key={etiqueta.id}>
                                         <ContextMenuTrigger asChild>
-                                          <div onClick={(e) => e.stopPropagation()}>
+                                          <div onClick={(e) => { e.stopPropagation(); onSelectChat(chat); }}>
                                             <TooltipProvider>
                                               <Tooltip>
                                                 <TooltipTrigger asChild>
                                                   <Badge
                                                     variant="secondary"
-                                                    className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border text-white cursor-context-menu"
+                                                    className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border text-white cursor-pointer"
                                                     style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor }}
                                                   >
                                                     <Tag className="w-2.5 h-2.5" />
@@ -716,6 +755,19 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                                       </Badge>
                                     )}
                                   </div>
+                                )}
+                                
+                                {/* Badge de Nota quando tem assignment */}
+                                {hasNote && assignment && (
+                                  <NoteBadge
+                                    chatId={chat.id}
+                                    chatName={chat.name}
+                                    hasNote={hasNote}
+                                    noteContent={noteContent}
+                                    size="sm"
+                                    onClick={(e) => e.stopPropagation()}
+                                    onSelectChat={() => onSelectChat(chat)}
+                                  />
                                 )}
                                 
                                 {/* Mensagem quando não tem atribuição */}
@@ -814,6 +866,34 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                                     +{chat.etiquetas!.length - 4}
                                   </Badge>
                                 )}
+                                
+                                {/* Badge de Nota quando não tem assignment */}
+                                {hasNote && (
+                                  <NoteBadge
+                                    chatId={chat.id}
+                                    chatName={chat.name}
+                                    hasNote={hasNote}
+                                    noteContent={noteContent}
+                                    size="sm"
+                                    onClick={(e) => e.stopPropagation()}
+                                    onSelectChat={() => onSelectChat(chat)}
+                                  />
+                                )}
+                              </div>
+                            )}
+                            
+                            {/* Badge de nota sozinho quando não tem etiquetas nem atribuição */}
+                            {hasNote && !hasEtiquetas && !assignment && (
+                              <div className="flex items-center gap-1 mt-1">
+                                <NoteBadge
+                                  chatId={chat.id}
+                                  chatName={chat.name}
+                                  hasNote={hasNote}
+                                  noteContent={noteContent}
+                                  size="sm"
+                                  onClick={(e) => e.stopPropagation()}
+                                  onSelectChat={() => onSelectChat(chat)}
+                                />
                               </div>
                             )}
                           </div>
@@ -877,6 +957,17 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                             </ContextMenuItem>
                           </>
                         )}
+                        <ContextMenuSeparator />
+                        <ContextMenuItem 
+                          onClick={() => {
+                            const telefone = chat.telefone || chat.id.split('@')[0]
+                            navigator.clipboard.writeText(telefone)
+                            toast.success("Telefone copiado!")
+                          }}
+                        >
+                          <Copy className="w-4 h-4 mr-2" />
+                          Copiar telefone
+                        </ContextMenuItem>
                       </ContextMenuContent>
                     </ContextMenu>
                   )

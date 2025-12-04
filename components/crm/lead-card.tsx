@@ -226,7 +226,7 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                 }}
                 className="text-orange-600 focus:text-orange-600 focus:bg-orange-50"
               >
-                <XCircle className="w-4 h-4 mr-2" />
+                <XCircle className="w-4 h-4 mr-2 text-orange-600" />
                 Desconverter
               </ContextMenuItem>
             ) : (
@@ -237,8 +237,8 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                 }}
                 className="text-green-600 focus:text-green-600 focus:bg-green-50"
               >
-                <CheckCircle className="w-4 h-4 mr-2" />
-                Convertido
+                <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
+                Converter
               </ContextMenuItem>
             )}
             <ContextMenuItem 
@@ -246,9 +246,9 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                 e.preventDefault()
                 onDelete?.()
               }}
-              className="text-red-600 focus:text-red-600"
+              className="text-red-600 focus:text-red-600 focus:bg-red-50"
             >
-              <Trash2 className="w-4 h-4 mr-2" />
+              <Trash2 className="w-4 h-4 mr-2 text-red-600" />
               Excluir
             </ContextMenuItem>
           </>

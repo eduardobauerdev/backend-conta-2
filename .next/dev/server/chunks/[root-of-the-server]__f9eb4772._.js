@@ -87,6 +87,8 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/next/server.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/lib/supabase/server.ts [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/next/headers.js [app-route] (ecmascript)");
+;
 ;
 ;
 async function GET(request) {
@@ -129,6 +131,9 @@ async function GET(request) {
 async function DELETE(request) {
     try {
         const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createServerClient"])();
+        const cookieStore = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["cookies"])();
+        const userId = cookieStore.get("auth_user_id")?.value;
+        const userName = cookieStore.get("auth_user_name")?.value;
         const body = await request.json();
         const { assignmentId, chatId } = body;
         if (!assignmentId && !chatId) {
@@ -142,10 +147,16 @@ async function DELETE(request) {
         let activeAssignment = null;
         // Se assignmentId foi fornecido, busca por ID
         if (assignmentId) {
-            const { data } = await supabase.from("chat_assignments").select("*").eq("id", assignmentId).maybeSingle();
+            const { data, error } = await supabase.from("chat_assignments").select("*").eq("id", assignmentId).maybeSingle();
+            if (error) {
+                console.error("[API] Erro ao buscar atribuição por ID:", error);
+            }
             activeAssignment = data;
         } else if (chatId) {
-            const { data } = await supabase.from("chat_assignments").select("*").eq("chat_id", chatId).eq("status", "active").maybeSingle();
+            const { data, error } = await supabase.from("chat_assignments").select("*").eq("chat_id", chatId).eq("status", "active").maybeSingle();
+            if (error) {
+                console.error("[API] Erro ao buscar atribuição por chatId:", error);
+            }
             activeAssignment = data;
         }
         if (!activeAssignment) {
@@ -156,12 +167,10 @@ async function DELETE(request) {
                 status: 404
             });
         }
-        const { error } = await supabase.from("chat_assignments").update({
-            status: "completed",
-            updated_at: new Date().toISOString()
-        }).eq("id", activeAssignment.id);
-        if (error) {
-            console.error("[API] Erro ao remover atribuição:", error);
+        // Deleta o registro da tabela
+        const { error: deleteError } = await supabase.from("chat_assignments").delete().eq("id", activeAssignment.id);
+        if (deleteError) {
+            console.error("[API] Erro ao deletar atribuição:", deleteError);
             return __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 success: false,
                 message: "Erro ao remover atribuição"
@@ -169,19 +178,23 @@ async function DELETE(request) {
                 status: 500
             });
         }
-        // Registra o log de auditoria
-        await supabase.from("assignment_logs").insert({
-            chat_id: activeAssignment.chat_id,
-            chat_name: activeAssignment.chat_name,
-            action: "released",
-            from_user_id: activeAssignment.assigned_to_id,
-            from_user_name: activeAssignment.assigned_to_name,
-            to_user_id: null,
-            to_user_name: null,
-            performed_by_id: activeAssignment.assigned_to_id,
-            performed_by_name: activeAssignment.assigned_to_name,
-            notes: null
-        });
+        // Registra o log de auditoria (não bloqueia se falhar)
+        try {
+            // Histórico unificado
+            await supabase.from("chat_history").insert({
+                chat_id: activeAssignment.chat_id,
+                chat_name: activeAssignment.chat_name,
+                event_type: "assignment_removed",
+                event_data: {
+                    removed_user_id: activeAssignment.assigned_to_id,
+                    removed_user_name: activeAssignment.assigned_to_name
+                },
+                performed_by_id: userId || activeAssignment.assigned_to_id,
+                performed_by_name: userName || activeAssignment.assigned_to_name
+            });
+        } catch (logError) {
+            console.error("[API] Erro ao registrar log:", logError);
+        }
         return __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: true,
             message: "Atribuição removida com sucesso"

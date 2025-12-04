@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase/server"
+import { cookies } from "next/headers"
 
 export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient()
+    const cookieStore = await cookies()
+    
+    const userId = cookieStore.get("auth_user_id")?.value
+    const userName = cookieStore.get("auth_user_name")?.value
+    
     const body = await request.json()
     const { chatId, etiquetaId } = body
 
@@ -85,6 +91,29 @@ export async function POST(request: NextRequest) {
       console.log("✅ [ASSIGN-TAG] Etiqueta adicionada ao array")
     }
 
+    // Busca dados da etiqueta para o histórico
+    const { data: etiquetaData } = await supabase
+      .from("whatsapp_etiquetas")
+      .select("nome, cor")
+      .eq("id", etiquetaId)
+      .maybeSingle()
+
+    // Registra no histórico unificado
+    if (userId && userName) {
+      await supabase.from("chat_history").insert({
+        chat_id: chatId,
+        chat_name: chatExists?.name || chatId,
+        event_type: "etiqueta_added",
+        event_data: {
+          etiqueta_id: etiquetaId,
+          etiqueta_nome: etiquetaData?.nome || "Etiqueta",
+          etiqueta_cor: etiquetaData?.cor || "#888888",
+        },
+        performed_by_id: userId,
+        performed_by_name: userName,
+      })
+    }
+
     return NextResponse.json({
       success: true,
       message: "Etiqueta atribuída com sucesso",
@@ -107,6 +136,11 @@ export async function POST(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   try {
     const supabase = await createClient()
+    const cookieStore = await cookies()
+    
+    const userId = cookieStore.get("auth_user_id")?.value
+    const userName = cookieStore.get("auth_user_name")?.value
+    
     const body = await request.json()
     const { chatId, etiquetaId } = body
 
@@ -118,6 +152,26 @@ export async function DELETE(request: NextRequest) {
         { status: 400 }
       )
     }
+
+    // Busca dados da etiqueta e do chat para o histórico
+    let etiquetaData = null
+    let chatData = null
+    
+    if (etiquetaId) {
+      const { data: etiqueta } = await supabase
+        .from("whatsapp_etiquetas")
+        .select("nome, cor")
+        .eq("id", etiquetaId)
+        .maybeSingle()
+      etiquetaData = etiqueta
+    }
+    
+    const { data: chat } = await supabase
+      .from("chats")
+      .select("name, etiqueta_ids")
+      .eq("id", chatId)
+      .maybeSingle()
+    chatData = chat
 
     // Se etiquetaId específico, remove apenas essa do array
     if (etiquetaId) {
@@ -151,6 +205,22 @@ export async function DELETE(request: NextRequest) {
         .eq("id", chatId)
 
       if (error) throw error
+    }
+
+    // Registra no histórico unificado
+    if (userId && userName && etiquetaId) {
+      await supabase.from("chat_history").insert({
+        chat_id: chatId,
+        chat_name: chatData?.name || chatId,
+        event_type: "etiqueta_removed",
+        event_data: {
+          etiqueta_id: etiquetaId,
+          etiqueta_nome: etiquetaData?.nome || "Etiqueta",
+          etiqueta_cor: etiquetaData?.cor || "#888888",
+        },
+        performed_by_id: userId,
+        performed_by_name: userName,
+      })
     }
 
     return NextResponse.json({

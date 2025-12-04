@@ -4,7 +4,7 @@ import type React from "react"
 import { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { Send, RefreshCw, Zap, Loader2, Paperclip, X, User, History, UserPlus, Plus, Tag, Pencil, Tags } from "lucide-react"
+import { Send, RefreshCw, Zap, Loader2, Paperclip, X, User, History, UserPlus, Plus, Tag, Pencil, Tags, StickyNote, Copy, Phone } from "lucide-react"
 import { QuickRepliesPanel } from "./quick-replies-panel"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger } from "@/components/ui/context-menu"
@@ -13,7 +13,7 @@ import { toast } from "sonner"
 import type { Message, ChatAssignmentDB, ChatActivity } from "@/lib/whatsapp-types"
 import { useWhatsAppCache } from "@/contexts/whatsapp-cache-context"
 import { Badge } from "@/components/ui/badge"
-import { AssignmentHistoryDialog } from "./assignment-history-dialog"
+import { ChatHistoryDialog } from "./chat-history-dialog"
 import { AssignToUserDialog } from "./assign-to-user-dialog"
 import { getCookie } from "@/lib/auth"
 import { createClient } from "@/lib/supabase/client"
@@ -24,6 +24,8 @@ import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription"
 import { EditChatNameDialog } from "./edit-chat-name-dialog"
 import { TagSelector } from "./tag-selector"
 import { ChatEtiquetasDialog } from "./chat-etiquetas-dialog"
+import { ChatNotesDialog } from "./chat-notes-dialog"
+import { NoteBadge } from "./note-badge"
 import type { Etiqueta, EtiquetaSimple } from "@/lib/whatsapp-types"
 
 const MESSAGES_PER_PAGE = 20
@@ -36,6 +38,7 @@ interface ChatWindowProps {
   chatId: string
   chatName?: string | null
   chatPicture?: string | null
+  chatTelefone?: string | null
   chatEtiquetas?: EtiquetaSimple[]
   onRefresh: () => void
   onToggleLeadPanel: (show: boolean) => void
@@ -46,6 +49,7 @@ export function ChatWindow({
   chatId,
   chatName: initialChatName,
   chatPicture = null,
+  chatTelefone = null,
   chatEtiquetas: initialEtiquetas = [],
   onRefresh,
   onToggleLeadPanel,
@@ -65,10 +69,13 @@ export function ChatWindow({
   const [assignedUserCargo, setAssignedUserCargo] = useState<string | null>(null)
   const [activities, setActivities] = useState<ChatActivity[]>([])
   const [showHistoryDialog, setShowHistoryDialog] = useState(false)
-  const [hasAssignmentHistory, setHasAssignmentHistory] = useState(false)
   const [showAssignToUserDialog, setShowAssignToUserDialog] = useState(false)
   const [showEditNameDialog, setShowEditNameDialog] = useState(false)
   const [showEtiquetasDialog, setShowEtiquetasDialog] = useState(false)
+  const [showNotesDialog, setShowNotesDialog] = useState(false)
+  const [hasNotes, setHasNotes] = useState(false)
+  const [noteContent, setNoteContent] = useState<string | null>(null)
+  const [hasHistory, setHasHistory] = useState(false)
   const [roleColor, setRoleColor] = useState<string | null>(null)
   const userDataCache = useRef<Record<string, { nome: string | null; cargo: string | null; color: string | null }>>({})
 
@@ -153,6 +160,16 @@ export function ChatWindow({
       setAssignedUserName(null)
       setAssignedUserCargo(null)
       setRoleColor(null)
+    },
+  })
+
+  // Realtime para atualização do botão de histórico
+  useRealtimeSubscription({
+    table: "chat_history",
+    filter: `chat_id=eq.${chatId}`,
+    onInsert: () => {
+      // Quando qualquer entrada é adicionada ao histórico, ativa o botão
+      setHasHistory(true)
     },
   })
 
@@ -242,11 +259,14 @@ export function ChatWindow({
     setAssignedUserName(null)
     setAssignedUserCargo(null)
     setRoleColor(null)
-    setHasAssignmentHistory(false)
+    setHasNotes(false)
+    setNoteContent(null)
+    setHasHistory(false)
     
     loadAssignment()
     loadActivities()
-    checkAssignmentHistory()
+    checkNotes()
+    checkHistory()
     registerActivity("viewing")
   }, [chatId])
 
@@ -383,12 +403,28 @@ export function ChatWindow({
       } catch (e) { console.error(e) }
   }
 
-  async function checkAssignmentHistory() {
+  async function checkHistory() {
       try {
-          const res = await fetch(`/api/whatsapp/assignment-logs?chatId=${chatId}`)
+          const res = await fetch(`/api/whatsapp/chat-history?chatId=${chatId}`)
           if(res.ok) {
               const data = await res.json()
-              if(data.success && data.logs?.length > 0) setHasAssignmentHistory(true)
+              if(data.success && data.history?.length > 0) setHasHistory(true)
+          }
+      } catch (e) { console.error(e) }
+  }
+
+  async function checkNotes() {
+      try {
+          const res = await fetch(`/api/whatsapp/notes?chatId=${chatId}`)
+          if(res.ok) {
+              const data = await res.json()
+              if(data.success && data.note) {
+                setHasNotes(true)
+                setNoteContent(data.note.content || null)
+              } else {
+                setHasNotes(false)
+                setNoteContent(null)
+              }
           }
       } catch (e) { console.error(e) }
   }
@@ -500,6 +536,8 @@ export function ChatWindow({
     )
   }
 
+  const telefone = chatTelefone || chatId.split('@')[0]
+
   return (
     <div className="flex flex-col h-full bg-white relative">
       {/* HEADER */}
@@ -512,7 +550,9 @@ export function ChatWindow({
                 alt={safeChatName} 
                 className="object-cover"
               />
-              <AvatarFallback className="bg-primary text-primary-foreground">{safeChatName.charAt(0).toUpperCase()}</AvatarFallback>
+              <AvatarFallback className="bg-gray-400 text-white">
+                <User className="w-5 h-5" />
+              </AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
@@ -568,12 +608,22 @@ export function ChatWindow({
                                 body: JSON.stringify({ assignmentId: assignment.id, chatId })
                               })
                               
-                              if (res.ok) {
+                              const data = await res.json()
+                              
+                              if (res.ok && data.success) {
+                                // Limpa os estados locais imediatamente
+                                setAssignment(null)
+                                setAssignedUserName(null)
+                                setAssignedUserCargo(null)
+                                setRoleColor(null)
                                 toast.success("Atribuição removida")
                                 onRefresh()
+                              } else {
+                                toast.error(data.message || "Erro ao remover atribuição")
                               }
                             }
-                          } catch {
+                          } catch (error) {
+                            console.error("Erro ao remover atribuição:", error)
                             toast.error("Erro ao remover atribuição")
                           }
                         }}
@@ -654,12 +704,41 @@ export function ChatWindow({
                     )}
                   </div>
                 )}
+                
+                {/* Badge de Notas */}
+                {hasNotes && (
+                  <NoteBadge 
+                    chatId={chatId} 
+                    chatName={safeChatName} 
+                    hasNote={hasNotes}
+                    noteContent={noteContent}
+                  />
+                )}
               </div>
             </div>
           </div>
           <div className="flex items-center gap-2">
              <TooltipProvider>
-                 {hasAssignmentHistory && (
+                 {/* Badge de telefone */}
+                 <Tooltip>
+                   <TooltipTrigger asChild>
+                     <Badge 
+                       variant="secondary" 
+                       className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 cursor-pointer flex items-center gap-1"
+                       onClick={() => {
+                         navigator.clipboard.writeText(telefone)
+                         toast.success("Telefone copiado!")
+                       }}
+                     >
+                       <Phone className="w-3 h-3" />
+                       {telefone}
+                     </Badge>
+                   </TooltipTrigger>
+                   <TooltipContent>
+                     <p>Copiar telefone</p>
+                   </TooltipContent>
+                 </Tooltip>
+                 {hasHistory && (
                     <Tooltip><TooltipTrigger asChild><Button variant="outline" size="sm" onClick={() => setShowHistoryDialog(true)}><History className="w-4 h-4" /></Button></TooltipTrigger><TooltipContent><p>Histórico</p></TooltipContent></Tooltip>
                  )}
                  <Tooltip><TooltipTrigger asChild><Button variant="outline" size="sm" onClick={() => setShowAssignToUserDialog(true)}><User className="w-4 h-4 mr-2" /> Atribuir</Button></TooltipTrigger><TooltipContent><p>Atribuir</p></TooltipContent></Tooltip>
@@ -677,10 +756,22 @@ export function ChatWindow({
                  <Tooltip>
                    <TooltipTrigger asChild>
                      <div>
-                       <TagSelector chatId={chatId} currentEtiquetaId={chatEtiquetas?.[0]?.id || null} onTagAssigned={onRefresh} />
+                       <TagSelector chatId={chatId} currentEtiquetaId={chatEtiquetas?.[0]?.id || null} currentEtiquetaIds={chatEtiquetas?.map(e => e.id) || []} onTagAssigned={onRefresh} />
                      </div>
                    </TooltipTrigger>
                    <TooltipContent><p>Adicionar etiqueta</p></TooltipContent>
+                 </Tooltip>
+                 <Tooltip>
+                   <TooltipTrigger asChild>
+                     <Button 
+                       variant="outline" 
+                       size="sm" 
+                       onClick={() => setShowNotesDialog(true)}
+                     >
+                       <StickyNote className="w-4 h-4" />
+                     </Button>
+                   </TooltipTrigger>
+                   <TooltipContent><p>Notas</p></TooltipContent>
                  </Tooltip>
                  <Tooltip><TooltipTrigger asChild><Button variant="outline" size="sm" onClick={onRefresh}><RefreshCw className="w-4 h-4" /></Button></TooltipTrigger><TooltipContent><p>Atualizar</p></TooltipContent></Tooltip>
              </TooltipProvider>
@@ -754,7 +845,7 @@ export function ChatWindow({
         </SheetContent>
       </Sheet>
 
-      <AssignmentHistoryDialog open={showHistoryDialog} onOpenChange={setShowHistoryDialog} chatId={chatId} chatName={safeChatName} />
+      <ChatHistoryDialog open={showHistoryDialog} onOpenChange={setShowHistoryDialog} chatId={chatId} chatName={safeChatName} />
       
       <AssignToUserDialog
         open={showAssignToUserDialog}
@@ -782,6 +873,17 @@ export function ChatWindow({
         etiquetas={chatEtiquetas}
         onEtiquetaRemoved={() => {
           onRefresh()
+        }}
+      />
+
+      <ChatNotesDialog
+        open={showNotesDialog}
+        onOpenChange={setShowNotesDialog}
+        chatId={chatId}
+        chatName={safeChatName}
+        onNotesChange={() => {
+          checkNotes()
+          checkHistory()
         }}
       />
     </div>

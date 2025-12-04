@@ -20,6 +20,8 @@ import { EditLeadDialog } from "@/components/crm/edit-lead-dialog"
 import { ViewLeadDialog } from "@/components/crm/view-lead-dialog"
 import { MoveLeadDialog } from "@/components/crm/move-lead-dialog"
 import { DeleteLeadDialog } from "@/components/crm/delete-lead-dialog"
+import { ConvertLeadDialog } from "@/components/crm/convert-lead-dialog"
+import { UnconvertLeadDialog } from "@/components/crm/unconvert-lead-dialog"
 import { FilterPanel, type FilterRule } from "@/components/crm/filter-panel"
 import { useUser } from "@/contexts/user-context"
 import { createClient } from "@/lib/supabase/client"
@@ -98,6 +100,8 @@ export default function CRMPage() {
   const [viewingLead, setViewingLead] = useState<Lead | null>(null)
   const [movingLead, setMovingLead] = useState<Lead | null>(null)
   const [deletingLead, setDeletingLead] = useState<Lead | null>(null)
+  const [convertingLead, setConvertingLead] = useState<Lead | null>(null)
+  const [unconvertingLead, setUnconvertingLead] = useState<Lead | null>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const kanbanContainerRef = useRef<HTMLDivElement>(null)
   const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null)
@@ -351,24 +355,7 @@ export default function CRMPage() {
       return
     }
 
-    const { error } = await supabase.from("leads").update({ status: "convertido" }).eq("id", lead.id)
-
-    if (error) {
-      console.error("Error converting lead:", error)
-      toast.error("Erro ao converter lead")
-      return
-    }
-
-    await supabase.from("lead_logs").insert({
-      lead_id: lead.id,
-      usuario_id: user.id,
-      usuario_nome: user.nome,
-      acao: "convertido",
-      detalhes: `Lead "${lead.nome}" marcado como convertido`,
-    })
-
-    toast.success("Lead convertido com sucesso!")
-    fetchLeads()
+    setConvertingLead(lead)
   }
 
   const handleUnconvertLead = async (lead: Lead) => {
@@ -382,24 +369,7 @@ export default function CRMPage() {
       return
     }
 
-    const { error } = await supabase.from("leads").update({ status: "ativo" }).eq("id", lead.id)
-
-    if (error) {
-      console.error("Error unconverting lead:", error)
-      toast.error("Erro ao desconverter lead")
-      return
-    }
-
-    await supabase.from("lead_logs").insert({
-      lead_id: lead.id,
-      usuario_id: user.id,
-      usuario_nome: user.nome,
-      acao: "desconvertido",
-      detalhes: `Lead "${lead.nome}" marcado como ativo novamente`,
-    })
-
-    toast.success("Lead desconvertido com sucesso!")
-    fetchLeads()
+    setUnconvertingLead(lead)
   }
 
   const activeLead = activeId ? leads.find((l) => l.id === activeId) : null
@@ -504,6 +474,20 @@ export default function CRMPage() {
         open={!!deletingLead}
         onOpenChange={(open) => !open && setDeletingLead(null)}
         lead={deletingLead}
+        onSuccess={fetchLeads}
+      />
+
+      <ConvertLeadDialog
+        open={!!convertingLead}
+        onOpenChange={(open) => !open && setConvertingLead(null)}
+        lead={convertingLead}
+        onSuccess={fetchLeads}
+      />
+
+      <UnconvertLeadDialog
+        open={!!unconvertingLead}
+        onOpenChange={(open) => !open && setUnconvertingLead(null)}
+        lead={unconvertingLead}
         onSuccess={fetchLeads}
       />
     </div>

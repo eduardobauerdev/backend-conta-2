@@ -159,23 +159,20 @@ async function POST(request) {
             console.error("Erro ao buscar atribuição anterior:", fetchError);
         }
         if (previousAssignment) {
-            const logData = {
+            // Histórico unificado - transferência
+            await supabase.from("chat_history").insert({
                 chat_id: chatId,
                 chat_name: chatName,
-                action: "transferred",
-                from_user_id: previousAssignment.assigned_to_id,
-                from_user_name: previousAssignment.assigned_to_name,
-                to_user_id: assignToId,
-                to_user_name: assignToName,
+                event_type: "assignment_transferred",
+                event_data: {
+                    from_user_id: previousAssignment.assigned_to_id,
+                    from_user_name: previousAssignment.assigned_to_name,
+                    to_user_id: assignToId,
+                    to_user_name: assignToName
+                },
                 performed_by_id: userId,
-                performed_by_name: userName,
-                notes: notes || null,
-                created_at: new Date().toISOString()
-            };
-            const { error: logError } = await supabase.from("assignment_logs").insert(logData);
-            if (logError) {
-                console.error("Erro ao criar log de transferência:", logError);
-            }
+                performed_by_name: userName
+            });
             const { error: deleteError } = await supabase.from("chat_assignments").delete().eq("chat_id", chatId).eq("status", "active");
             if (deleteError) {
                 console.error("Erro ao remover atribuição anterior:", deleteError);
@@ -211,23 +208,18 @@ async function POST(request) {
             });
         }
         if (!previousAssignment) {
-            const logData = {
+            // Histórico unificado - nova atribuição
+            await supabase.from("chat_history").insert({
                 chat_id: chatId,
                 chat_name: chatName,
-                action: "assigned",
-                from_user_id: null,
-                from_user_name: null,
-                to_user_id: assignToId,
-                to_user_name: assignToName,
+                event_type: "assignment_created",
+                event_data: {
+                    assigned_to_id: assignToId,
+                    assigned_to_name: assignToName
+                },
                 performed_by_id: userId,
-                performed_by_name: userName,
-                notes: notes || null,
-                created_at: new Date().toISOString()
-            };
-            const { error: logError } = await supabase.from("assignment_logs").insert(logData);
-            if (logError) {
-                console.error("Erro ao criar log de auditoria:", logError);
-            }
+                performed_by_name: userName
+            });
         }
         return __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: true,
@@ -288,17 +280,17 @@ async function DELETE(request) {
                     status: 500
                 });
             }
-            await supabase.from("assignment_logs").insert({
+            // Histórico unificado - liberação
+            await supabase.from("chat_history").insert({
                 chat_id: activeAssignment.chat_id,
                 chat_name: activeAssignment.chat_name,
-                action: "released",
-                from_user_id: activeAssignment.assigned_to_id,
-                from_user_name: activeAssignment.assigned_to_name,
-                to_user_id: null,
-                to_user_name: null,
+                event_type: "assignment_removed",
+                event_data: {
+                    removed_user_id: activeAssignment.assigned_to_id,
+                    removed_user_name: activeAssignment.assigned_to_name
+                },
                 performed_by_id: activeAssignment.assigned_to_id,
-                performed_by_name: activeAssignment.assigned_to_name,
-                notes: null
+                performed_by_name: activeAssignment.assigned_to_name
             });
         }
         return __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({

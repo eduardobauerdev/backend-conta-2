@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { createServerClient } from "@/lib/supabase/server"
+import { cookies } from "next/headers"
 
 // GET - Buscar atribuição de um chat
 export async function GET(request: NextRequest) {
@@ -57,6 +58,11 @@ export async function GET(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   try {
     const supabase = await createServerClient()
+    const cookieStore = await cookies()
+    
+    const userId = cookieStore.get("auth_user_id")?.value
+    const userName = cookieStore.get("auth_user_name")?.value
+    
     const body = await request.json()
     const { assignmentId, chatId } = body
 
@@ -74,21 +80,29 @@ export async function DELETE(request: NextRequest) {
 
     // Se assignmentId foi fornecido, busca por ID
     if (assignmentId) {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("chat_assignments")
         .select("*")
         .eq("id", assignmentId)
         .maybeSingle()
+      
+      if (error) {
+        console.error("[API] Erro ao buscar atribuição por ID:", error)
+      }
       activeAssignment = data
     }
     // Caso contrário, busca por chatId
     else if (chatId) {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("chat_assignments")
         .select("*")
         .eq("chat_id", chatId)
         .eq("status", "active")
         .maybeSingle()
+      
+      if (error) {
+        console.error("[API] Erro ao buscar atribuição por chatId:", error)
+      }
       activeAssignment = data
     }
 
@@ -102,13 +116,14 @@ export async function DELETE(request: NextRequest) {
       )
     }
 
-    const { error } = await supabase
+    // Deleta o registro da tabela
+    const { error: deleteError } = await supabase
       .from("chat_assignments")
-      .update({ status: "completed", updated_at: new Date().toISOString() })
+      .delete()
       .eq("id", activeAssignment.id)
 
-    if (error) {
-      console.error("[API] Erro ao remover atribuição:", error)
+    if (deleteError) {
+      console.error("[API] Erro ao deletar atribuição:", deleteError)
       return NextResponse.json(
         {
           success: false,
@@ -118,19 +133,23 @@ export async function DELETE(request: NextRequest) {
       )
     }
 
-    // Registra o log de auditoria
-    await supabase.from("assignment_logs").insert({
-      chat_id: activeAssignment.chat_id,
-      chat_name: activeAssignment.chat_name,
-      action: "released",
-      from_user_id: activeAssignment.assigned_to_id,
-      from_user_name: activeAssignment.assigned_to_name,
-      to_user_id: null,
-      to_user_name: null,
-      performed_by_id: activeAssignment.assigned_to_id,
-      performed_by_name: activeAssignment.assigned_to_name,
-      notes: null,
-    })
+    // Registra o log de auditoria (não bloqueia se falhar)
+    try {
+      // Histórico unificado
+      await supabase.from("chat_history").insert({
+        chat_id: activeAssignment.chat_id,
+        chat_name: activeAssignment.chat_name,
+        event_type: "assignment_removed",
+        event_data: {
+          removed_user_id: activeAssignment.assigned_to_id,
+          removed_user_name: activeAssignment.assigned_to_name,
+        },
+        performed_by_id: userId || activeAssignment.assigned_to_id,
+        performed_by_name: userName || activeAssignment.assigned_to_name,
+      })
+    } catch (logError) {
+      console.error("[API] Erro ao registrar log:", logError)
+    }
 
     return NextResponse.json({
       success: true,

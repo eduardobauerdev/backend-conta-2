@@ -128,6 +128,7 @@ export default function WhatsAppPage() {
                 chatName={selectedChatName}
                 // 🔥 AQUI: Passamos a URL do proxy diretamente para o filho
                 chatPicture={`${BACKEND_URL}/chats/avatar/${selectedChatId}`}
+                chatTelefone={selectedChat?.telefone || null}
                 chatEtiquetas={selectedChat?.etiquetas || []}
                 onRefresh={handleRefreshChats}
                 onToggleLeadPanel={setShowLeadPanel}
