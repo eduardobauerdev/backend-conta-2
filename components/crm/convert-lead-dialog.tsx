@@ -123,6 +123,32 @@ export function ConvertLeadDialog({ open, onOpenChange, lead, onSuccess }: Conve
         detalhes: `Lead "${lead.nome}" convertido com valor de R$ ${valor}`,
       })
 
+      // Registra no histórico do chat se houver chat_uuid vinculado
+      if (lead.chat_uuid) {
+        // Busca o chat_id pelo uuid
+        const { data: chatData } = await supabase
+          .from('chats')
+          .select('id, name')
+          .eq('uuid', lead.chat_uuid)
+          .single()
+        
+        if (chatData) {
+          await supabase.from("chat_history").insert({
+            chat_id: chatData.id,
+            chat_name: chatData.name || lead.nome,
+            event_type: "lead_converted",
+            event_data: {
+              lead_id: lead.id,
+              lead_nome: lead.nome,
+              valor: valorNumerico,
+              valor_formatado: valor,
+            },
+            performed_by_id: user.id,
+            performed_by_name: user.nome,
+          })
+        }
+      }
+
       toast.success("Lead convertido com sucesso!")
       setIsConverting(false)
       onOpenChange(false)

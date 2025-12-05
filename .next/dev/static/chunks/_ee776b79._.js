@@ -954,7 +954,7 @@ function OrdemForm({ onSave }) {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "w-20 h-20 relative flex-shrink-0",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                src: "/images/google-drive-icon.png",
+                                src: "/google_drive.svg",
                                 alt: "Google Drive",
                                 className: `w-full h-full object-contain drop-shadow-lg transition-all duration-500`,
                                 style: {
@@ -3627,7 +3627,7 @@ function ContratoForm({ gerarContrato, setGerarContrato, tipoContrato, setTipoCo
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "w-20 h-20 relative flex-shrink-0",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                src: "/images/google-drive-icon.png",
+                                src: "/google_drive.svg",
                                 alt: "Google Drive",
                                 className: `w-full h-full object-contain drop-shadow-lg transition-all duration-500`,
                                 style: {
@@ -5579,7 +5579,7 @@ function ContratoJuridicaForm({ gerarContrato, setGerarContrato, tipoContrato, s
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "w-20 h-20 relative flex-shrink-0",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                src: "/images/google-drive-icon.png",
+                                src: "/google_drive.svg",
                                 alt: "Google Drive",
                                 className: `w-full h-full object-contain drop-shadow-lg transition-all duration-500`,
                                 style: {

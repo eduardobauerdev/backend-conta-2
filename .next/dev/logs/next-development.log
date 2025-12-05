@@ -1,53 +1,264 @@
-[00:00:45.200] Server  LOG      ✓ Ready in 30.5s
-[00:00:48.426] Server  LOG      ○ Compiling /crm ...
-[00:01:37.633] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:39.365] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:01:39.365] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:01:39.365] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/visao-geral","route":"/visao-geral"}
-[00:01:39.365] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877764571}
-[00:01:39.365] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877764572}
-[00:01:42.161] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877767369}
-[00:02:01.999] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:02:01.999] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:02:17.093] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877802300}
-[00:02:26.305] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877811516}
-[00:02:29.978] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/login color: rgb(120, 120, 120) color: inherit {"dp":"/login","o":"http://localhost:3000/login","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877815185}
-[00:02:35.986] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:36.242] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:02:36.242] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/crm","route":"/crm"}
-[00:02:36.242] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/login","route":"/login"}
-[00:02:36.242] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877821452}
-[00:02:36.242] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/login color: rgb(120, 120, 120) color: inherit {"dp":"/login","o":"http://localhost:3000/login","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877821452}
-[00:02:41.491] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:41.710] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:02:41.710] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/ajustes","route":"/ajustes"}
-[00:02:41.710] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/login","route":"/login"}
-[00:02:41.710] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877826913}
-[00:02:41.710] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/login color: rgb(120, 120, 120) color: inherit {"dp":"/login","o":"http://localhost:3000/login","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877826913}
-[00:02:47.753] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:47.942] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:02:47.942] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/visao-geral","route":"/visao-geral"}
-[00:02:47.942] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877833156}
-[00:02:51.961] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877837167}
-[00:02:52.860] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877838063}
-[00:02:55.944] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877841147}
-[00:03:19.294] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:03:19.294] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:03:26.581] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:03:26.581] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:03:34.369] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:03:34.369] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:03:56.959] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp?chatUuid=ca3face4-15b1-4c06-9340-1f95bca532f5 color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp?chatUuid=ca3face4-15b1-4c06-9340-1f95bca532f5","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877902162}
-[00:03:57.224] Browser LOG     🛠️ ChatList montado.
-[00:03:57.224] Browser LOG     🛠️ ChatList montado.
-[00:03:57.457] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
-[00:03:57.722] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
-[00:03:57.913] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
-[00:03:57.913] Browser LOG     [Atribuições] Mapa construído com 1 chats
-[00:03:58.155] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
-[00:03:58.155] Browser LOG     [Atribuições] Mapa construído com 1 chats
-[00:04:12.023] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764877917225}
-[00:04:15.920] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:04:15.920] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:04:19.396] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:04:19.396] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:00:01.108] Server  LOG      ✓ Ready in 733ms
+[00:01:48.835] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:49.085] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:01:49.085] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/crm","route":"/crm"}
+[00:01:49.085] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764883963434}
+[00:02:51.994] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764884026353}
+[00:02:53.810] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764884028168}
+[00:02:56.116] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ajustes color: rgb(120, 120, 120) color: inherit {"dp":"/ajustes","o":"http://localhost:3000/ajustes","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764884030477}
+[00:04:13.127] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/gerar-documento color: rgb(120, 120, 120) color: inherit {"dp":"/gerar-documento","o":"http://localhost:3000/gerar-documento","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764884107485}
+[00:04:14.113] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764884108476}
+[00:04:41.451] Browser LOG     🛠️ ChatList montado.
+[00:04:41.451] Browser LOG     🛠️ ChatList montado.
+[00:04:41.778] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:04:41.978] Browser LOG     [Atribuições] Construindo mapa para 1 atribuições
+[00:04:42.515] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:04:42.515] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:04:42.688] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:04:42.688] Browser LOG     [Atribuições] Mapa construído com 1 chats
+[00:08:15.478] Browser LOG     [Realtime] Mudança em chat_assignments: INSERT {"assigned_at":"2025-12-04T21:39:09.555+00:00","assigned_by_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_by_name":"Usuário","assigned_to_id":"3ec12418-2040-4fff-a780-9a578de80357","assigned_to_name":"Edu Bauer ","chat_id":"555184480235@s.whatsapp.net","chat_name":"Melnick","chat_uuid":"659fb9dc-7c1e-4312-8cd2-39025e8605ab","created_at":"2025-12-04T21:39:09.555+00:00","id":"ba7c30ac-10ca-4b85-ba3c-2a6af8b3c2a9","notes":null,"status":"active","updated_at":"2025-12-04T21:39:09.555+00:00"}
+[00:08:15.692] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:08:16.025] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:08:16.025] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:08:16.025] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:08:16.025] Browser LOG     [Realtime] Atualizando atribuições map com: ["555189269053@s.whatsapp.net","555184480235@s.whatsapp.net"]
+[00:12:54.301] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764884628662}
+[00:12:56.687] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:12:56.687] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:13:00.304] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:13:00.304] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:13:08.305] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:13:08.305] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:13:12.049] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:13:12.049] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:16:31.927] Server  LOG      ✓ Compiled in 190ms
+[00:18:04.792] Server  LOG      ✓ Compiled in 113ms
+[00:18:19.387] Server  LOG      ✓ Compiled in 122ms
+[00:18:40.624] Server  LOG      ✓ Compiled in 99ms
+[00:18:57.517] Server  LOG      ✓ Compiled in 120ms
+[00:19:46.042] Server  LOG      ✓ Compiled in 107ms
+[00:19:46.619] Browser ERROR   ./components/whatsapp/chat-list.tsx:791:47
+Parsing ecmascript source code failed
+  789 |                                                 className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border cursor-context-menu"
+  790 |                                                 style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor, color: getContrastTextColor(etiqueta.cor) }}
+> 791 |                                               >
+      |                                               ^
+  792 |                                                 <Tag className="w-2.5 h-2.5" />
+  793 |                                                 <span className="max-w-[60px] truncate">{etiqueta.nome}</span>
+  794 |                                               </Badge>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import traces:
+  Client Component Browser:
+    ./components/whatsapp/chat-list.tsx [Client Component Browser]
+    ./app/(app)/whatsapp/page.tsx [Client Component Browser]
+    ./app/(app)/whatsapp/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/whatsapp/chat-list.tsx [Client Component SSR]
+    ./app/(app)/whatsapp/page.tsx [Client Component SSR]
+    ./app/(app)/whatsapp/page.tsx [Server Component]
+[00:20:06.617] Browser ERROR   ./components/whatsapp/chat-list.tsx:791:47
+Parsing ecmascript source code failed
+  789 |                                                 className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border cursor-context-menu"
+  790 |                                                 style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor, color: getContrastTextColor(etiqueta.cor) }}
+> 791 |                                               >
+      |                                               ^
+  792 |                                                 <Tag className="w-2.5 h-2.5" />
+  793 |                                                 <span className="max-w-[60px] truncate">{etiqueta.nome}</span>
+  794 |                                               </Badge>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import traces:
+  Client Component Browser:
+    ./components/whatsapp/chat-list.tsx [Client Component Browser]
+    ./app/(app)/whatsapp/page.tsx [Client Component Browser]
+    ./app/(app)/whatsapp/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/whatsapp/chat-list.tsx [Client Component SSR]
+    ./app/(app)/whatsapp/page.tsx [Client Component SSR]
+    ./app/(app)/whatsapp/page.tsx [Server Component]
+[00:20:10.873] Server  LOG      ✓ Compiled in 112ms
+[00:20:24.082] Server  LOG      ✓ Compiled in 122ms
+[00:20:45.329] Server  LOG      ✓ Compiled in 144ms
+[00:21:06.040] Server  LOG      ✓ Compiled in 126ms
+[00:21:23.069] Server  LOG      ✓ Compiled in 134ms
+[00:21:36.891] Server  LOG      ✓ Compiled in 105ms
+[00:22:00.333] Server  LOG      ✓ Compiled in 125ms
+[00:22:08.253] Server  LOG      ✓ Compiled in 125ms
+[00:22:24.148] Server  LOG      ✓ Compiled in 134ms
+[00:22:29.366] Server  LOG      ✓ Compiled in 94ms
+[00:23:13.606] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885247968}
+[00:23:13.874] Browser LOG     🛠️ ChatList montado.
+[00:23:13.874] Browser LOG     🛠️ ChatList montado.
+[00:23:14.094] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:23:14.364] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:23:14.525] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:23:14.525] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:23:14.525] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:23:14.684] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:23:14.684] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:23:14.684] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:23:29.990] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/visao-geral color: rgb(120, 120, 120) color: inherit {"dp":"/visao-geral","o":"http://localhost:3000/visao-geral","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885264353}
+[00:23:31.381] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885265741}
+[00:23:34.800] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:23:34.800] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:23:50.801] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:23:50.801] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:23:54.190] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885288551}
+[00:23:54.389] Browser LOG     🛠️ ChatList montado.
+[00:23:54.389] Browser LOG     🛠️ ChatList montado.
+[00:23:54.605] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:23:54.760] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:23:55.011] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:23:55.011] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:23:55.011] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:23:55.172] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:23:55.172] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:23:55.172] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:24:01.379] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm?leadId=eb52f26d-8996-48f8-9b60-4a529d5a63a0&date=2025-12-09 color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm?leadId=eb52f26d-8996-48f8-9b60-4a529d5a63a0&date=2025-12-09","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885295738}
+[00:24:06.268] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885300628}
+[00:24:06.456] Browser LOG     🛠️ ChatList montado.
+[00:24:06.456] Browser LOG     🛠️ ChatList montado.
+[00:24:06.673] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:24:06.828] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:24:07.095] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:24:07.095] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:24:07.095] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:24:07.268] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:24:07.268] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:24:07.268] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:24:08.068] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm?leadId=eb52f26d-8996-48f8-9b60-4a529d5a63a0&date=2025-12-09 color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm?leadId=eb52f26d-8996-48f8-9b60-4a529d5a63a0&date=2025-12-09","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885302426}
+[00:24:13.295] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:24:13.295] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:24:22.495] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:24:22.495] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:24:27.378] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:24:27.378] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:24:31.491] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885325850}
+[00:24:31.673] Browser LOG     🛠️ ChatList montado.
+[00:24:31.673] Browser LOG     🛠️ ChatList montado.
+[00:24:31.879] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:24:32.044] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:24:32.323] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:24:32.323] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:24:32.323] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:24:32.482] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:24:32.482] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:24:32.482] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:24:49.974] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885344334}
+[00:24:52.330] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:24:52.330] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:24:56.200] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885350563}
+[00:24:56.401] Browser LOG     🛠️ ChatList montado.
+[00:24:56.401] Browser LOG     🛠️ ChatList montado.
+[00:24:56.627] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:24:56.780] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885351119}
+[00:24:56.780] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:24:56.986] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:24:56.986] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:24:56.986] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:24:57.153] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:24:57.153] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:24:57.153] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:24:58.958] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885353321}
+[00:24:59.152] Browser LOG     🛠️ ChatList montado.
+[00:24:59.152] Browser LOG     🛠️ ChatList montado.
+[00:24:59.378] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:24:59.534] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:24:59.812] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885354079}
+[00:24:59.813] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:24:59.813] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:24:59.813] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:24:59.984] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:24:59.984] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:24:59.984] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:29:22.448] Server  LOG      ✓ Compiled in 177ms
+[00:30:38.922] Server  LOG      ✓ Compiled in 124ms
+[00:30:56.962] Server  LOG      ✓ Compiled in 172ms
+[00:31:09.145] Server  LOG      ✓ Compiled in 166ms
+[00:31:22.759] Server  LOG      ✓ Compiled in 120ms
+[00:32:08.674] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:32:08.674] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:32:30.652] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:32:30.652] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:32:47.561] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885821924}
+[00:32:47.749] Browser LOG     🛠️ ChatList montado.
+[00:32:47.749] Browser LOG     🛠️ ChatList montado.
+[00:32:47.934] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:32:48.373] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:32:48.497] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:32:48.497] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:32:48.497] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:32:48.720] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:32:48.720] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:32:48.720] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:33:19.145] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885853506}
+[00:33:19.812] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764885854175}
+[00:33:19.995] Browser LOG     🛠️ ChatList montado.
+[00:33:19.995] Browser LOG     🛠️ ChatList montado.
+[00:33:20.183] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:33:20.419] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:33:20.589] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:33:20.589] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:33:20.589] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:33:20.798] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:33:20.798] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:33:20.798] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:36:52.077] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764886066437}
+[00:37:36.858] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:37:36.858] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:37:54.222] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:37:54.222] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:39:10.880] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:39:10.880] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:39:18.021] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/usuarios color: rgb(120, 120, 120) color: inherit {"dp":"/usuarios","o":"http://localhost:3000/usuarios","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764886212384}
+[00:39:20.764] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados","o":"http://localhost:3000/banco-de-dados","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764886215122}
+[00:39:21.697] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/banco-de-dados/leads color: rgb(120, 120, 120) color: inherit {"dp":"/banco-de-dados/leads","o":"http://localhost:3000/banco-de-dados/leads","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764886216060}
+[00:39:51.737] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/whatsapp color: rgb(120, 120, 120) color: inherit {"dp":"/whatsapp","o":"http://localhost:3000/whatsapp","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764886246100}
+[00:39:51.958] Browser LOG     🛠️ ChatList montado.
+[00:39:51.958] Browser LOG     🛠️ ChatList montado.
+[00:39:52.197] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:39:52.352] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:39:52.853] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:39:52.853] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:39:52.853] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:39:53.019] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:39:53.019] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:39:53.019] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:44:22.940] Server  LOG      ✓ Compiled in 122ms
+[00:44:40.192] Server  LOG      ✓ Compiled in 110ms
+[00:44:48.906] Server  LOG      ✓ Compiled in 106ms
+[00:45:13.654] Server  LOG      ✓ Compiled in 106ms
+[00:45:26.124] Server  LOG      ✓ Compiled in 101ms
+[00:45:26.606] Browser LOG     🛠️ ChatList montado.
+[00:45:26.606] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:45:27.616] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:45:27.616] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:45:27.616] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:46:41.750] Server  LOG      ✓ Compiled in 115ms
+[00:46:42.694] Browser LOG     🛠️ ChatList montado.
+[00:46:42.694] Browser LOG     [Atribuições] Construindo mapa para 2 atribuições
+[00:46:43.620] Browser LOG     [Atribuições] 555189269053@s.whatsapp.net => Edu Bauer 
+[00:46:43.620] Browser LOG     [Atribuições] 555184480235@s.whatsapp.net => Edu Bauer 
+[00:46:43.620] Browser LOG     [Atribuições] Mapa construído com 2 chats
+[00:47:00.547] Server  LOG      ✓ Compiled in 118ms
+[00:47:01.619] Browser LOG     🛠️ ChatList montado.
+[00:47:15.704] Server  LOG      ✓ Compiled in 124ms
+[00:47:16.622] Browser LOG     🛠️ ChatList montado.
+[00:48:44.538] Server  LOG      ✓ Compiled in 113ms
+[00:48:50.338] Server  LOG      ✓ Compiled in 115ms
+[00:49:01.789] Server  LOG      ✓ Compiled in 102ms
+[00:49:25.048] Server  LOG      ✓ Compiled in 110ms
+[00:49:41.784] Server  LOG      ✓ Compiled in 114ms
+[00:49:59.536] Server  LOG      ✓ Compiled in 109ms
+[00:50:08.956] Server  LOG      ✓ Compiled in 122ms
+[00:50:51.584] Server  LOG      ✓ Compiled in 115ms
+[00:51:20.886] Server  LOG      ✓ Compiled in 136ms
+[00:51:39.558] Server  LOG      ✓ Compiled in 169ms
+[00:52:48.918] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/crm color: rgb(120, 120, 120) color: inherit {"dp":"/crm","o":"http://localhost:3000/crm","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1764887023274}
+[00:52:50.766] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:52:50.766] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.

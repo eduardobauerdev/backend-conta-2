@@ -117,6 +117,8 @@ export default function CRMPage() {
   const [highlightedLeadId, setHighlightedLeadId] = useState<string | null>(null)
   const [onlyMyLeads, setOnlyMyLeads] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [etiquetas, setEtiquetas] = useState<{ id: string; nome: string; cor: string }[]>([])
+  const [chatEtiquetasMap, setChatEtiquetasMap] = useState<Record<string, string[]>>({}) // chat_uuid -> etiqueta_ids
   const kanbanContainerRef = useRef<HTMLDivElement>(null)
   const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const { user } = useUser()
@@ -172,6 +174,47 @@ export default function CRMPage() {
     }
   }, [highlightedLeadId])
 
+  // Carrega etiquetas disponíveis
+  const fetchEtiquetas = async () => {
+    try {
+      const response = await fetch("/api/whatsapp/etiquetas")
+      const data = await response.json()
+      if (data.success) {
+        setEtiquetas(data.etiquetas || [])
+      }
+    } catch (error) {
+      console.error("Error fetching etiquetas:", error)
+    }
+  }
+
+  // Carrega mapeamento de chats -> etiquetas para os leads
+  const fetchChatEtiquetasMap = async (chatUuids: string[]) => {
+    if (chatUuids.length === 0) return
+
+    try {
+      const { data: chatsData } = await supabase
+        .from("chats")
+        .select("uuid, etiqueta_ids")
+        .in("uuid", chatUuids)
+
+      if (chatsData) {
+        const map: Record<string, string[]> = {}
+        chatsData.forEach((chat) => {
+          if (chat.uuid && chat.etiqueta_ids) {
+            map[chat.uuid] = chat.etiqueta_ids
+          }
+        })
+        setChatEtiquetasMap(map)
+      }
+    } catch (error) {
+      console.error("Error fetching chat etiquetas:", error)
+    }
+  }
+
+  useEffect(() => {
+    fetchEtiquetas()
+  }, [])
+
   const fetchLeads = async () => {
     const weekEnd = addDays(currentWeekStart, 6)
 
@@ -192,6 +235,14 @@ export default function CRMPage() {
     }
 
     setLeads(data || [])
+
+    // Carrega mapeamento de etiquetas para os chats vinculados
+    const chatUuids = (data || [])
+      .filter((lead) => lead.chat_uuid)
+      .map((lead) => lead.chat_uuid as string)
+    if (chatUuids.length > 0) {
+      fetchChatEtiquetasMap(chatUuids)
+    }
   }
 
   useEffect(() => {
@@ -303,10 +354,16 @@ export default function CRMPage() {
         if (filter.type === "acao") {
           return lead.acao === filter.value
         }
+        if (filter.type === "etiqueta") {
+          // Filtra por etiqueta via chat vinculado
+          if (!lead.chat_uuid) return false
+          const leadEtiquetas = chatEtiquetasMap[lead.chat_uuid] || []
+          return leadEtiquetas.includes(filter.value)
+        }
         return true
       })
     })
-  }, [leads, activeFilters, onlyMyLeads, user])
+  }, [leads, activeFilters, onlyMyLeads, user, chatEtiquetasMap])
 
   const uniqueVendedores = useMemo(() => {
     return Array.from(new Set(leads.map((l) => l.adicionado_por_nome))).sort()
@@ -457,7 +514,7 @@ export default function CRMPage() {
             {onlyMyLeads ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
             Apenas meus leads
           </Button>
-          <FilterPanel vendedores={uniqueVendedores} acoes={uniqueAcoes} onFiltersChange={setActiveFilters} />
+          <FilterPanel vendedores={uniqueVendedores} acoes={uniqueAcoes} etiquetas={etiquetas} onFiltersChange={setActiveFilters} />
           <Button onClick={() => setIsNewLeadOpen(true)} className="gap-2">
             <Plus className="w-4 h-4" />
             Novo Lead

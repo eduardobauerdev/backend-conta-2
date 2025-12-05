@@ -4,10 +4,11 @@ import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
-import { Loader2, UserPlus, ArrowRightLeft, UserMinus, StickyNote, Edit, Tag, Pencil, Plus } from "lucide-react"
+import { Loader2, UserPlus, ArrowRightLeft, UserMinus, StickyNote, Edit, Tag, Pencil, Plus, ClipboardList, DollarSign, Undo2 } from "lucide-react"
 import { formatDistanceToNow } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { toast } from "sonner"
+import { getContrastTextColor } from "@/lib/utils"
 
 interface ChatHistoryEntry {
   id: string
@@ -81,6 +82,10 @@ export function ChatHistoryDialog({ open, onOpenChange, chatId, chatName }: Chat
         return <Tag className="w-4 h-4" />
       case "name_changed":
         return <Pencil className="w-4 h-4" />
+      case "lead_converted":
+        return <DollarSign className="w-4 h-4" />
+      case "lead_unconverted":
+        return <Undo2 className="w-4 h-4" />
       default:
         return <StickyNote className="w-4 h-4" />
     }
@@ -104,6 +109,10 @@ export function ChatHistoryDialog({ open, onOpenChange, chatId, chatName }: Chat
         return "bg-purple-500/10 text-purple-600"
       case "name_changed":
         return "bg-cyan-500/10 text-cyan-600"
+      case "lead_converted":
+        return "bg-emerald-500/10 text-emerald-600"
+      case "lead_unconverted":
+        return "bg-orange-500/10 text-orange-600"
       default:
         return "bg-gray-500/10 text-gray-600"
     }
@@ -125,6 +134,10 @@ export function ChatHistoryDialog({ open, onOpenChange, chatId, chatName }: Chat
         return { label: "Etiqueta", color: "bg-purple-100 text-purple-700 border-purple-200" }
       case "name_changed":
         return { label: "Nome", color: "bg-cyan-100 text-cyan-700 border-cyan-200" }
+      case "lead_converted":
+        return { label: "Conversão", color: "bg-emerald-100 text-emerald-700 border-emerald-200" }
+      case "lead_unconverted":
+        return { label: "Desconversão", color: "bg-orange-100 text-orange-700 border-orange-200" }
       default:
         return { label: "Evento", color: "bg-gray-100 text-gray-700 border-gray-200" }
     }
@@ -177,7 +190,7 @@ export function ChatHistoryDialog({ open, onOpenChange, chatId, chatName }: Chat
               className="text-xs ml-1"
               style={{
                 backgroundColor: event_data.etiqueta_cor,
-                color: "#fff",
+                color: getContrastTextColor(event_data.etiqueta_cor || "#000000"),
                 borderColor: event_data.etiqueta_cor,
               }}
             >
@@ -194,7 +207,7 @@ export function ChatHistoryDialog({ open, onOpenChange, chatId, chatName }: Chat
               className="text-xs ml-1 line-through"
               style={{
                 backgroundColor: event_data.etiqueta_cor,
-                color: "#fff",
+                color: getContrastTextColor(event_data.etiqueta_cor || "#000000"),
                 borderColor: event_data.etiqueta_cor,
               }}
             >
@@ -208,6 +221,24 @@ export function ChatHistoryDialog({ open, onOpenChange, chatId, chatName }: Chat
             <strong>{performed_by_name}</strong> alterou o nome de{" "}
             <span className="line-through text-muted-foreground">{event_data.previous_name}</span> para{" "}
             <strong>{event_data.new_name}</strong>
+          </span>
+        )
+      case "lead_converted":
+        return (
+          <span>
+            <strong>{performed_by_name}</strong> converteu o lead{" "}
+            <strong>{event_data.lead_nome}</strong> com valor de{" "}
+            <span className="text-emerald-600 font-semibold">R$ {event_data.valor_formatado || event_data.valor}</span>
+          </span>
+        )
+      case "lead_unconverted":
+        return (
+          <span>
+            <strong>{performed_by_name}</strong> desconverteu o lead{" "}
+            <strong>{event_data.lead_nome}</strong>
+            {event_data.motivo && (
+              <span className="text-muted-foreground"> - Motivo: {event_data.motivo}</span>
+            )}
           </span>
         )
       default:
@@ -256,7 +287,7 @@ export function ChatHistoryDialog({ open, onOpenChange, chatId, chatName }: Chat
       <DialogContent className="max-w-2xl max-h-[80vh]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            📋 Histórico Completo
+            <ClipboardList className="w-5 h-5" /> Histórico Completo
           </DialogTitle>
           <DialogDescription>{chatName}</DialogDescription>
         </DialogHeader>

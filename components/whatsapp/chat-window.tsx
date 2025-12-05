@@ -28,6 +28,7 @@ import { ChatEtiquetasDialog } from "./chat-etiquetas-dialog"
 import { ChatNotesDialog } from "./chat-notes-dialog"
 import { NoteBadge } from "./note-badge"
 import type { Etiqueta, EtiquetaSimple } from "@/lib/whatsapp-types"
+import { getContrastTextColor, formatPhoneNumber } from "@/lib/utils"
 
 const MESSAGES_PER_PAGE = 20
 const SCROLL_THRESHOLD = 100
@@ -734,8 +735,8 @@ export function ChatWindow({
                                 <TooltipTrigger asChild>
                                   <Badge
                                     variant="secondary"
-                                    className="text-xs flex items-center gap-1 border text-white cursor-context-menu"
-                                    style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor }}
+                                    className="text-xs flex items-center gap-1 border cursor-context-menu"
+                                    style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor, color: getContrastTextColor(etiqueta.cor) }}
                                   >
                                     <Tag className="w-3 h-3" />
                                     {etiqueta.nome}

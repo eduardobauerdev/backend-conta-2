@@ -94,6 +94,31 @@ export function UnconvertLeadDialog({ open, onOpenChange, lead, onSuccess }: Unc
         detalhes: `Lead "${lead.nome}" desconvertido. Motivo: ${motivo.trim()}`,
       })
 
+      // Registra no histórico do chat se houver chat_uuid vinculado
+      if (lead.chat_uuid) {
+        // Busca o chat_id pelo uuid
+        const { data: chatData } = await supabase
+          .from('chats')
+          .select('id, name')
+          .eq('uuid', lead.chat_uuid)
+          .single()
+        
+        if (chatData) {
+          await supabase.from("chat_history").insert({
+            chat_id: chatData.id,
+            chat_name: chatData.name || lead.nome,
+            event_type: "lead_unconverted",
+            event_data: {
+              lead_id: lead.id,
+              lead_nome: lead.nome,
+              motivo: motivo.trim(),
+            },
+            performed_by_id: user.id,
+            performed_by_name: user.nome,
+          })
+        }
+      }
+
       toast.success("Lead desconvertido com sucesso!")
       setIsUnconverting(false)
       onOpenChange(false)

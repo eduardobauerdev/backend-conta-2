@@ -1806,6 +1806,16 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/square-pen.js [app-client] (ecmascript) <export default as Edit>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-down.js [app-client] (ecmascript) <export default as ChevronDown>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-right.js [app-client] (ecmascript) <export default as ChevronRight>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$left$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronLeft$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-left.js [app-client] (ecmascript) <export default as ChevronLeft>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tag$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/tag.js [app-client] (ecmascript) <export default as Tag>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shopping-bag.js [app-client] (ecmascript) <export default as ShoppingBag>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$copy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Copy$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/copy.js [app-client] (ecmascript) <export default as Copy>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/external-link.js [app-client] (ecmascript) <export default as ExternalLink>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Image$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/image.js [app-client] (ecmascript) <export default as Image>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.js [app-client] (ecmascript) <export default as X>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$toggle$2d$left$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ToggleLeft$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/toggle-left.js [app-client] (ecmascript) <export default as ToggleLeft>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$toggle$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ToggleRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/toggle-right.js [app-client] (ecmascript) <export default as ToggleRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase/client.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$contexts$2f$user$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/contexts/user-context.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$PhotoUploadDialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/PhotoUploadDialog.tsx [app-client] (ecmascript)");
@@ -1906,6 +1916,45 @@ function AjustesPage() {
     });
     const [newCategoryName, setNewCategoryName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [expandedCategories, setExpandedCategories] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(new Set());
+    const [etiquetas, setEtiquetas] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [loadingEtiquetas, setLoadingEtiquetas] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [etiquetaDialogOpen, setEtiquetaDialogOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [editingEtiqueta, setEditingEtiqueta] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [etiquetaForm, setEtiquetaForm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        nome: "",
+        cor: "#3B82F6",
+        descricao: ""
+    });
+    // Estados do Catálogo
+    const [catalogos, setCatalogos] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [loadingCatalogos, setLoadingCatalogos] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [catalogoDialogOpen, setCatalogoDialogOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [editingCatalogo, setEditingCatalogo] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [catalogoForm, setCatalogoForm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        nome: "",
+        descricao: "",
+        logo_url: "",
+        cor_primaria: "#000000"
+    });
+    // Estados de Produtos
+    const [selectedCatalogo, setSelectedCatalogo] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [produtos, setProdutos] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [produtoTipos, setProdutoTipos] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [loadingProdutos, setLoadingProdutos] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [produtoDialogOpen, setProdutoDialogOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [editingProduto, setEditingProduto] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [produtoForm, setProdutoForm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        nome: "",
+        descricao: "",
+        tipo_id: "",
+        preco: "",
+        preco_promocional: "",
+        destaque: false,
+        imagens: []
+    });
+    // Estados de Tipos de Produto
+    const [tipoDialogOpen, setTipoDialogOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [newTipoNome, setNewTipoNome] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "AjustesPage.useEffect": ()=>{
             const tabParam = searchParams.get("tab");
@@ -1913,7 +1962,9 @@ function AjustesPage() {
                 "usuario",
                 "whatsapp",
                 "links",
-                "respostas-rapidas"
+                "respostas-rapidas",
+                "etiquetas",
+                "catalogo"
             ].includes(tabParam)) {
                 setActiveTab(tabParam);
             }
@@ -1928,6 +1979,12 @@ function AjustesPage() {
             if (activeTab === "respostas-rapidas") {
                 loadQuickReplies();
                 loadCategories();
+            }
+            if (activeTab === "etiquetas") {
+                loadEtiquetas();
+            }
+            if (activeTab === "catalogo") {
+                loadCatalogos();
             }
         }
     }["AjustesPage.useEffect"], [
@@ -2237,7 +2294,450 @@ function AjustesPage() {
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao deletar resposta rápida");
         }
     }
-    // O handleWhatsappSave já foi coberto pela função handleWhatsappUrlChange acima
+    async function loadEtiquetas() {
+        try {
+            setLoadingEtiquetas(true);
+            const response = await fetch("/api/whatsapp/etiquetas");
+            const data = await response.json();
+            if (data.success) {
+                setEtiquetas(data.etiquetas || []);
+            } else {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao carregar etiquetas");
+            }
+        } catch (error) {
+            console.error("Erro ao carregar etiquetas:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao carregar etiquetas");
+        } finally{
+            setLoadingEtiquetas(false);
+        }
+    }
+    const openEtiquetaDialog = (etiqueta)=>{
+        if (etiqueta) {
+            setEditingEtiqueta(etiqueta);
+            setEtiquetaForm({
+                nome: etiqueta.nome,
+                cor: etiqueta.cor,
+                descricao: etiqueta.descricao || ""
+            });
+        } else {
+            setEditingEtiqueta(null);
+            setEtiquetaForm({
+                nome: "",
+                cor: "#3B82F6",
+                descricao: ""
+            });
+        }
+        setEtiquetaDialogOpen(true);
+    };
+    async function handleSaveEtiqueta() {
+        if (!etiquetaForm.nome.trim() || !etiquetaForm.cor.trim()) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Nome e cor são obrigatórios");
+            return;
+        }
+        try {
+            const method = editingEtiqueta ? "PUT" : "POST";
+            const body = editingEtiqueta ? {
+                id: editingEtiqueta.id,
+                ...etiquetaForm
+            } : etiquetaForm;
+            const response = await fetch("/api/whatsapp/etiquetas", {
+                method,
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+            const data = await response.json();
+            if (data.success) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(editingEtiqueta ? "Etiqueta atualizada" : "Etiqueta criada");
+                setEtiquetaDialogOpen(false);
+                loadEtiquetas();
+            } else {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao salvar etiqueta");
+            }
+        } catch (error) {
+            console.error("Erro ao salvar etiqueta:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao salvar etiqueta");
+        }
+    }
+    async function handleDeleteEtiqueta(id) {
+        if (!confirm("Tem certeza que deseja deletar esta etiqueta?")) {
+            return;
+        }
+        try {
+            const response = await fetch(`/api/whatsapp/etiquetas?id=${id}`, {
+                method: "DELETE"
+            });
+            const data = await response.json();
+            if (data.success) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Etiqueta deletada");
+                loadEtiquetas();
+            } else {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.message || "Erro ao deletar etiqueta");
+            }
+        } catch (error) {
+            console.error("Erro ao deletar etiqueta:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao deletar etiqueta");
+        }
+    }
+    // ========== FUNÇÕES DO CATÁLOGO ==========
+    async function loadCatalogos() {
+        try {
+            setLoadingCatalogos(true);
+            const response = await fetch("/api/catalogo");
+            const data = await response.json();
+            // Verifica se é um array antes de setar (API pode retornar { error: ... } em caso de erro)
+            if (Array.isArray(data)) {
+                setCatalogos(data);
+            } else {
+                console.error("API retornou formato inválido:", data);
+                setCatalogos([]);
+            }
+        } catch (error) {
+            console.error("Erro ao carregar catálogos:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao carregar catálogos");
+        } finally{
+            setLoadingCatalogos(false);
+        }
+    }
+    const openCatalogoDialog = (catalogo)=>{
+        if (catalogo) {
+            setEditingCatalogo(catalogo);
+            setCatalogoForm({
+                nome: catalogo.nome,
+                descricao: catalogo.descricao || "",
+                logo_url: catalogo.logo_url || "",
+                cor_primaria: catalogo.cor_primaria || "#000000"
+            });
+        } else {
+            setEditingCatalogo(null);
+            setCatalogoForm({
+                nome: "",
+                descricao: "",
+                logo_url: "",
+                cor_primaria: "#000000"
+            });
+        }
+        setCatalogoDialogOpen(true);
+    };
+    async function handleSaveCatalogo() {
+        if (!catalogoForm.nome.trim()) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Nome é obrigatório");
+            return;
+        }
+        try {
+            const method = editingCatalogo ? "PATCH" : "POST";
+            const body = editingCatalogo ? {
+                id: editingCatalogo.id,
+                ...catalogoForm
+            } : {
+                ...catalogoForm,
+                created_by_id: user?.id,
+                created_by_name: user?.nome
+            };
+            const response = await fetch("/api/catalogo", {
+                method,
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+            if (response.ok) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(editingCatalogo ? "Catálogo atualizado" : "Catálogo criado");
+                setCatalogoDialogOpen(false);
+                loadCatalogos();
+            } else {
+                const data = await response.json();
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.error || "Erro ao salvar catálogo");
+            }
+        } catch (error) {
+            console.error("Erro ao salvar catálogo:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao salvar catálogo");
+        }
+    }
+    async function handleDeleteCatalogo(id) {
+        if (!confirm("Tem certeza que deseja deletar este catálogo? Todos os produtos serão excluídos.")) {
+            return;
+        }
+        try {
+            const response = await fetch("/api/catalogo", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id
+                })
+            });
+            if (response.ok) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Catálogo deletado");
+                if (selectedCatalogo?.id === id) {
+                    setSelectedCatalogo(null);
+                    setProdutos([]);
+                    setProdutoTipos([]);
+                }
+                loadCatalogos();
+            } else {
+                const data = await response.json();
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.error || "Erro ao deletar catálogo");
+            }
+        } catch (error) {
+            console.error("Erro ao deletar catálogo:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao deletar catálogo");
+        }
+    }
+    async function handleToggleCatalogoAtivo(catalogo) {
+        try {
+            const response = await fetch("/api/catalogo", {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: catalogo.id,
+                    ativo: !catalogo.ativo
+                })
+            });
+            if (response.ok) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(catalogo.ativo ? "Catálogo desativado" : "Catálogo ativado");
+                loadCatalogos();
+            }
+        } catch (error) {
+            console.error("Erro ao alterar status:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao alterar status");
+        }
+    }
+    function copyCatalogoLink(slug) {
+        const baseUrl = window.location.origin;
+        const link = `${baseUrl}/catalogo/${slug}`;
+        navigator.clipboard.writeText(link);
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Link copiado!");
+    }
+    async function selectCatalogo(catalogo) {
+        setSelectedCatalogo(catalogo);
+        setLoadingProdutos(true);
+        try {
+            // Carregar tipos e produtos em paralelo
+            const [tiposRes, produtosRes] = await Promise.all([
+                fetch(`/api/catalogo/tipos?catalogo_id=${catalogo.id}`),
+                fetch(`/api/catalogo/produtos?catalogo_id=${catalogo.id}`)
+            ]);
+            const tiposData = await tiposRes.json();
+            const produtosData = await produtosRes.json();
+            setProdutoTipos(tiposData || []);
+            setProdutos(produtosData || []);
+        } catch (error) {
+            console.error("Erro ao carregar dados do catálogo:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao carregar dados");
+        } finally{
+            setLoadingProdutos(false);
+        }
+    }
+    // ========== FUNÇÕES DE TIPOS DE PRODUTO ==========
+    async function handleSaveTipo() {
+        if (!newTipoNome.trim() || !selectedCatalogo) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Nome é obrigatório");
+            return;
+        }
+        try {
+            const response = await fetch("/api/catalogo/tipos", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    catalogo_id: selectedCatalogo.id,
+                    nome: newTipoNome
+                })
+            });
+            if (response.ok) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Tipo criado");
+                setTipoDialogOpen(false);
+                setNewTipoNome("");
+                // Recarregar tipos
+                const tiposRes = await fetch(`/api/catalogo/tipos?catalogo_id=${selectedCatalogo.id}`);
+                const tiposData = await tiposRes.json();
+                setProdutoTipos(tiposData || []);
+            } else {
+                const data = await response.json();
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.error || "Erro ao criar tipo");
+            }
+        } catch (error) {
+            console.error("Erro ao criar tipo:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao criar tipo");
+        }
+    }
+    async function handleDeleteTipo(id) {
+        if (!confirm("Tem certeza que deseja deletar este tipo?")) return;
+        try {
+            const response = await fetch("/api/catalogo/tipos", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id
+                })
+            });
+            if (response.ok) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Tipo deletado");
+                setProdutoTipos((prev)=>prev.filter((t)=>t.id !== id));
+            }
+        } catch (error) {
+            console.error("Erro ao deletar tipo:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao deletar tipo");
+        }
+    }
+    // ========== FUNÇÕES DE PRODUTOS ==========
+    const openProdutoDialog = (produto)=>{
+        if (produto) {
+            setEditingProduto(produto);
+            setProdutoForm({
+                nome: produto.nome,
+                descricao: produto.descricao || "",
+                tipo_id: produto.tipo_id || "",
+                preco: produto.preco?.toString() || "",
+                preco_promocional: produto.preco_promocional?.toString() || "",
+                destaque: produto.destaque,
+                imagens: produto.imagens?.map((img)=>img.url) || []
+            });
+        } else {
+            setEditingProduto(null);
+            setProdutoForm({
+                nome: "",
+                descricao: "",
+                tipo_id: "",
+                preco: "",
+                preco_promocional: "",
+                destaque: false,
+                imagens: []
+            });
+        }
+        setProdutoDialogOpen(true);
+    };
+    async function handleSaveProduto() {
+        if (!produtoForm.nome.trim() || !selectedCatalogo) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Nome é obrigatório");
+            return;
+        }
+        try {
+            const method = editingProduto ? "PATCH" : "POST";
+            const body = {
+                ...editingProduto ? {
+                    id: editingProduto.id
+                } : {
+                    catalogo_id: selectedCatalogo.id
+                },
+                nome: produtoForm.nome,
+                descricao: produtoForm.descricao || null,
+                tipo_id: produtoForm.tipo_id || null,
+                preco: produtoForm.preco ? parseFloat(produtoForm.preco) : null,
+                preco_promocional: produtoForm.preco_promocional ? parseFloat(produtoForm.preco_promocional) : null,
+                destaque: produtoForm.destaque,
+                imagens: produtoForm.imagens,
+                created_by_id: user?.id,
+                created_by_name: user?.nome
+            };
+            const response = await fetch("/api/catalogo/produtos", {
+                method,
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+            if (response.ok) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(editingProduto ? "Produto atualizado" : "Produto criado");
+                setProdutoDialogOpen(false);
+                // Recarregar produtos
+                const produtosRes = await fetch(`/api/catalogo/produtos?catalogo_id=${selectedCatalogo.id}`);
+                const produtosData = await produtosRes.json();
+                setProdutos(produtosData || []);
+            } else {
+                const data = await response.json();
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.error || "Erro ao salvar produto");
+            }
+        } catch (error) {
+            console.error("Erro ao salvar produto:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao salvar produto");
+        }
+    }
+    async function handleDeleteProduto(id) {
+        if (!confirm("Tem certeza que deseja deletar este produto?")) return;
+        try {
+            const response = await fetch("/api/catalogo/produtos", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id
+                })
+            });
+            if (response.ok) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Produto deletado");
+                setProdutos((prev)=>prev.filter((p)=>p.id !== id));
+            }
+        } catch (error) {
+            console.error("Erro ao deletar produto:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao deletar produto");
+        }
+    }
+    async function handleToggleProdutoAtivo(produto) {
+        try {
+            const response = await fetch("/api/catalogo/produtos", {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: produto.id,
+                    ativo: !produto.ativo
+                })
+            });
+            if (response.ok) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(produto.ativo ? "Produto desativado" : "Produto ativado");
+                setProdutos((prev)=>prev.map((p)=>p.id === produto.id ? {
+                            ...p,
+                            ativo: !p.ativo
+                        } : p));
+            }
+        } catch (error) {
+            console.error("Erro ao alterar status:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erro ao alterar status");
+        }
+    }
+    function handleImageUpload(e) {
+        const files = e.target.files;
+        if (!files) return;
+        Array.from(files).forEach((file)=>{
+            const reader = new FileReader();
+            reader.onload = (event)=>{
+                const base64 = event.target?.result;
+                setProdutoForm((prev)=>({
+                        ...prev,
+                        imagens: [
+                            ...prev.imagens,
+                            base64
+                        ]
+                    }));
+            };
+            reader.readAsDataURL(file);
+        });
+        // Limpar input para permitir selecionar a mesma imagem novamente
+        e.target.value = "";
+    }
+    function removeImage(index) {
+        setProdutoForm((prev)=>({
+                ...prev,
+                imagens: prev.imagens.filter((_, i)=>i !== index)
+            }));
+    }
+    function formatPreco(valor) {
+        return valor ? new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        }).format(parseFloat(valor)) : '-';
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex h-screen bg-neutral-100",
         children: [
@@ -2252,7 +2752,7 @@ function AjustesPage() {
                                 children: "Ajustes"
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 515,
+                                lineNumber: 1070,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2260,13 +2760,13 @@ function AjustesPage() {
                                 children: "Configurações do sistema"
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 516,
+                                lineNumber: 1071,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                        lineNumber: 514,
+                        lineNumber: 1069,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -2280,20 +2780,20 @@ function AjustesPage() {
                                         className: "w-5 h-5 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 527,
+                                        lineNumber: 1082,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Usuário"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 528,
+                                        lineNumber: 1083,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 519,
+                                lineNumber: 1074,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2304,7 +2804,7 @@ function AjustesPage() {
                                         className: "w-5 h-5 flex-shrink-0 text-green-500"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 541,
+                                        lineNumber: 1096,
                                         columnNumber: 15
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                         xmlns: "http://www.w3.org/2000/svg",
@@ -2322,40 +2822,40 @@ function AjustesPage() {
                                                 d: "M19 19H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.7.7 0 0 1 2 21.286V5a2 2 0 0 1 1.184-1.826"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 555,
+                                                lineNumber: 1110,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                 d: "m2 2 20 20"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 556,
+                                                lineNumber: 1111,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                 d: "M8.656 3H20a2 2 0 0 1 2 2v11.344"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 557,
+                                                lineNumber: 1112,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 543,
+                                        lineNumber: 1098,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "WhatsApp"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 560,
+                                        lineNumber: 1115,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 531,
+                                lineNumber: 1086,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2366,20 +2866,68 @@ function AjustesPage() {
                                         className: "w-5 h-5 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 571,
+                                        lineNumber: 1126,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Respostas Rápidas"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 572,
+                                        lineNumber: 1127,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 563,
+                                lineNumber: 1118,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setActiveTab("etiquetas"),
+                                className: `w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === "etiquetas" ? "bg-neutral-900 text-white font-medium" : "text-neutral-700 hover:bg-neutral-100"}`,
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tag$3e$__["Tag"], {
+                                        className: "w-5 h-5 flex-shrink-0"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1138,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        children: "Etiquetas"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1139,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                lineNumber: 1130,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setActiveTab("catalogo"),
+                                className: `w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === "catalogo" ? "bg-neutral-900 text-white font-medium" : "text-neutral-700 hover:bg-neutral-100"}`,
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__["ShoppingBag"], {
+                                        className: "w-5 h-5 flex-shrink-0"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1150,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        children: "Catálogo"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1151,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                lineNumber: 1142,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2390,32 +2938,32 @@ function AjustesPage() {
                                         className: "w-5 h-5 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 581,
+                                        lineNumber: 1160,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Links Úteis"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 582,
+                                        lineNumber: 1161,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 575,
+                                lineNumber: 1154,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                        lineNumber: 518,
+                        lineNumber: 1073,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 513,
+                lineNumber: 1068,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2431,7 +2979,7 @@ function AjustesPage() {
                                     children: "Perfil do Usuário"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 591,
+                                    lineNumber: 1170,
                                     columnNumber: 15
                                 }, this),
                                 loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2440,12 +2988,12 @@ function AjustesPage() {
                                         className: "w-6 h-6 animate-spin text-neutral-600"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 595,
+                                        lineNumber: 1174,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 594,
+                                    lineNumber: 1173,
                                     columnNumber: 17
                                 }, this) : userProfile ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "space-y-6",
@@ -2460,19 +3008,19 @@ function AjustesPage() {
                                                         alt: userProfile.nome
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 602,
+                                                        lineNumber: 1181,
                                                         columnNumber: 25
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarFallback"], {
                                                         className: "text-2xl bg-neutral-200 text-neutral-700",
                                                         children: userProfile.nome.charAt(0).toUpperCase()
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 604,
+                                                        lineNumber: 1183,
                                                         columnNumber: 25
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 600,
+                                                    lineNumber: 1179,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2484,20 +3032,20 @@ function AjustesPage() {
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 610,
+                                                            lineNumber: 1189,
                                                             columnNumber: 23
                                                         }, this),
                                                         "Editar Foto"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 609,
+                                                    lineNumber: 1188,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 599,
+                                            lineNumber: 1178,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2510,14 +3058,14 @@ function AjustesPage() {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 617,
+                                                            lineNumber: 1196,
                                                             columnNumber: 23
                                                         }, this),
                                                         "Nome Completo"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 616,
+                                                    lineNumber: 1195,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -2527,13 +3075,13 @@ function AjustesPage() {
                                                     placeholder: "Digite seu nome"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 620,
+                                                    lineNumber: 1199,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 615,
+                                            lineNumber: 1194,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2545,14 +3093,14 @@ function AjustesPage() {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 630,
+                                                            lineNumber: 1209,
                                                             columnNumber: 23
                                                         }, this),
                                                         "Email"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 629,
+                                                    lineNumber: 1208,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -2561,13 +3109,13 @@ function AjustesPage() {
                                                     className: "bg-neutral-50 text-neutral-600"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 633,
+                                                    lineNumber: 1212,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 628,
+                                            lineNumber: 1207,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2579,14 +3127,14 @@ function AjustesPage() {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 638,
+                                                            lineNumber: 1217,
                                                             columnNumber: 23
                                                         }, this),
                                                         "Cargo"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 637,
+                                                    lineNumber: 1216,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -2595,13 +3143,13 @@ function AjustesPage() {
                                                     className: "bg-neutral-50 text-neutral-600"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 641,
+                                                    lineNumber: 1220,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 636,
+                                            lineNumber: 1215,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2614,7 +3162,7 @@ function AjustesPage() {
                                                         className: "w-4 h-4 mr-2 animate-spin"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 647,
+                                                        lineNumber: 1226,
                                                         columnNumber: 25
                                                     }, this),
                                                     "Salvando..."
@@ -2625,7 +3173,7 @@ function AjustesPage() {
                                                         className: "w-4 h-4 mr-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 652,
+                                                        lineNumber: 1231,
                                                         columnNumber: 25
                                                     }, this),
                                                     "Salvar Alterações"
@@ -2633,7 +3181,7 @@ function AjustesPage() {
                                             }, void 0, true)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 644,
+                                            lineNumber: 1223,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2645,33 +3193,33 @@ function AjustesPage() {
                                                     className: "w-4 h-4 mr-2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 659,
+                                                    lineNumber: 1238,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Sair da Conta"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 658,
+                                            lineNumber: 1237,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 598,
+                                    lineNumber: 1177,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "text-center p-8 text-neutral-600",
                                     children: "Erro ao carregar perfil."
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 664,
+                                    lineNumber: 1243,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 590,
+                            lineNumber: 1169,
                             columnNumber: 13
                         }, this),
                         activeTab === "whatsapp" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -2682,7 +3230,7 @@ function AjustesPage() {
                                     children: "Integração WhatsApp"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 671,
+                                    lineNumber: 1250,
                                     columnNumber: 15
                                 }, this),
                                 loadingWhatsApp ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2690,7 +3238,7 @@ function AjustesPage() {
                                     children: "Carregando configuração..."
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 674,
+                                    lineNumber: 1253,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "space-y-6",
@@ -2704,7 +3252,7 @@ function AjustesPage() {
                                                     children: "URL da API WhatsApp"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 678,
+                                                    lineNumber: 1257,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2718,20 +3266,20 @@ function AjustesPage() {
                                                             className: "border-2 border-neutral-300 flex-1"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 682,
+                                                            lineNumber: 1261,
                                                             columnNumber: 23
                                                         }, this),
                                                         urlSaved && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
                                                             className: "w-6 h-6 text-emerald-600 flex-shrink-0 self-center"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 689,
+                                                            lineNumber: 1268,
                                                             columnNumber: 36
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 681,
+                                                    lineNumber: 1260,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2739,13 +3287,13 @@ function AjustesPage() {
                                                     children: "Insira a URL do servidor da API WhatsApp. A URL é salva automaticamente."
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 691,
+                                                    lineNumber: 1270,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 677,
+                                            lineNumber: 1256,
                                             columnNumber: 19
                                         }, this),
                                         !whatsappServerUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2755,12 +3303,12 @@ function AjustesPage() {
                                                 children: "Você precisa configurar a URL da API antes de conectar o WhatsApp."
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 698,
+                                                lineNumber: 1277,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 697,
+                                            lineNumber: 1276,
                                             columnNumber: 21
                                         }, this),
                                         whatsappServerUrl && !isWhatsAppConnected && !showQR && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2770,7 +3318,7 @@ function AjustesPage() {
                                                     className: "w-12 h-12 text-neutral-500 mx-auto"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 706,
+                                                    lineNumber: 1285,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2780,7 +3328,7 @@ function AjustesPage() {
                                                             children: "WhatsApp não conectado"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 708,
+                                                            lineNumber: 1287,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2788,13 +3336,13 @@ function AjustesPage() {
                                                             children: "Escaneie o QR Code para conectar"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 709,
+                                                            lineNumber: 1288,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 707,
+                                                    lineNumber: 1286,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2805,27 +3353,27 @@ function AjustesPage() {
                                                             className: "w-5 h-5 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 712,
+                                                            lineNumber: 1291,
                                                             columnNumber: 25
                                                         }, this),
                                                         "Conectar WhatsApp"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 711,
+                                                    lineNumber: 1290,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 705,
+                                            lineNumber: 1284,
                                             columnNumber: 21
                                         }, this),
                                         showQR && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$qr$2d$scanner$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["QRScanner"], {
                                             onConnected: handleWhatsAppConnected
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 718,
+                                            lineNumber: 1297,
                                             columnNumber: 30
                                         }, this),
                                         isWhatsAppConnected && !showQR && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2833,7 +3381,7 @@ function AjustesPage() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$connection$2d$status$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ConnectionStatus"], {}, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 722,
+                                                    lineNumber: 1301,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2847,7 +3395,7 @@ function AjustesPage() {
                                                                 className: "w-4 h-4 mr-2 animate-spin"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 731,
+                                                                lineNumber: 1310,
                                                                 columnNumber: 29
                                                             }, this),
                                                             "Desconectando..."
@@ -2858,7 +3406,7 @@ function AjustesPage() {
                                                                 className: "w-4 h-4 mr-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 736,
+                                                                lineNumber: 1315,
                                                                 columnNumber: 29
                                                             }, this),
                                                             "Desconectar WhatsApp"
@@ -2866,25 +3414,25 @@ function AjustesPage() {
                                                     }, void 0, true)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 723,
+                                                    lineNumber: 1302,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 721,
+                                            lineNumber: 1300,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 676,
+                                    lineNumber: 1255,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 670,
+                            lineNumber: 1249,
                             columnNumber: 13
                         }, this),
                         activeTab === "respostas-rapidas" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2899,7 +3447,7 @@ function AjustesPage() {
                                                     children: "Respostas Rápidas"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 752,
+                                                    lineNumber: 1331,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2907,13 +3455,13 @@ function AjustesPage() {
                                                     children: "Gerencie mensagens pré-definidas para responder rapidamente no WhatsApp"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 753,
+                                                    lineNumber: 1332,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 751,
+                                            lineNumber: 1330,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2928,14 +3476,14 @@ function AjustesPage() {
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 763,
+                                                            lineNumber: 1342,
                                                             columnNumber: 21
                                                         }, this),
                                                         "Nova Categoria"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 758,
+                                                    lineNumber: 1337,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2946,26 +3494,26 @@ function AjustesPage() {
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 767,
+                                                            lineNumber: 1346,
                                                             columnNumber: 21
                                                         }, this),
                                                         "Nova Resposta"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 766,
+                                                    lineNumber: 1345,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 757,
+                                            lineNumber: 1336,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 750,
+                                    lineNumber: 1329,
                                     columnNumber: 15
                                 }, this),
                                 loadingReplies ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2974,12 +3522,12 @@ function AjustesPage() {
                                         className: "w-6 h-6 animate-spin text-neutral-600"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 775,
+                                        lineNumber: 1354,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 774,
+                                    lineNumber: 1353,
                                     columnNumber: 17
                                 }, this) : quickReplies.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
                                     className: "p-12 text-center border-2 border-dashed border-neutral-300",
@@ -2988,7 +3536,7 @@ function AjustesPage() {
                                             className: "w-12 h-12 mx-auto text-neutral-400 mb-4"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 779,
+                                            lineNumber: 1358,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2996,7 +3544,7 @@ function AjustesPage() {
                                             children: "Nenhuma resposta rápida cadastrada"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 780,
+                                            lineNumber: 1359,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3004,7 +3552,7 @@ function AjustesPage() {
                                             children: "Crie respostas pré-definidas para agilizar o atendimento no WhatsApp"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 781,
+                                            lineNumber: 1360,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -3015,20 +3563,20 @@ function AjustesPage() {
                                                     className: "w-4 h-4 mr-2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 785,
+                                                    lineNumber: 1364,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Criar Primeira Resposta"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 784,
+                                            lineNumber: 1363,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 778,
+                                    lineNumber: 1357,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "space-y-4",
@@ -3050,7 +3598,7 @@ function AjustesPage() {
                                                                     className: "w-5 h-5 text-neutral-600"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 804,
+                                                                    lineNumber: 1383,
                                                                     columnNumber: 29
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3061,7 +3609,7 @@ function AjustesPage() {
                                                                             children: category.name
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 806,
+                                                                            lineNumber: 1385,
                                                                             columnNumber: 31
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3073,38 +3621,38 @@ function AjustesPage() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 807,
+                                                                            lineNumber: 1386,
                                                                             columnNumber: 31
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 805,
+                                                                    lineNumber: 1384,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 803,
+                                                            lineNumber: 1382,
                                                             columnNumber: 27
                                                         }, this),
                                                         isExpanded ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                                             className: "w-5 h-5 text-neutral-600"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 813,
+                                                            lineNumber: 1392,
                                                             columnNumber: 29
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
                                                             className: "w-5 h-5 text-neutral-600"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 815,
+                                                            lineNumber: 1394,
                                                             columnNumber: 29
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 799,
+                                                    lineNumber: 1378,
                                                     columnNumber: 25
                                                 }, this),
                                                 isExpanded && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3123,7 +3671,7 @@ function AjustesPage() {
                                                                                     children: reply.title
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                    lineNumber: 825,
+                                                                                    lineNumber: 1404,
                                                                                     columnNumber: 37
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3134,13 +3682,13 @@ function AjustesPage() {
                                                                                     ]
                                                                                 }, void 0, true, {
                                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                    lineNumber: 826,
+                                                                                    lineNumber: 1405,
                                                                                     columnNumber: 37
                                                                                 }, this)
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 824,
+                                                                            lineNumber: 1403,
                                                                             columnNumber: 35
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3155,12 +3703,12 @@ function AjustesPage() {
                                                                                         className: "w-4 h-4"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                        lineNumber: 835,
+                                                                                        lineNumber: 1414,
                                                                                         columnNumber: 39
                                                                                     }, this)
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                    lineNumber: 829,
+                                                                                    lineNumber: 1408,
                                                                                     columnNumber: 37
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -3172,24 +3720,24 @@ function AjustesPage() {
                                                                                         className: "w-4 h-4"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                        lineNumber: 843,
+                                                                                        lineNumber: 1422,
                                                                                         columnNumber: 39
                                                                                     }, this)
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                    lineNumber: 837,
+                                                                                    lineNumber: 1416,
                                                                                     columnNumber: 37
                                                                                 }, this)
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 828,
+                                                                            lineNumber: 1407,
                                                                             columnNumber: 35
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 823,
+                                                                    lineNumber: 1402,
                                                                     columnNumber: 33
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3197,36 +3745,1171 @@ function AjustesPage() {
                                                                     children: reply.message
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 847,
+                                                                    lineNumber: 1426,
                                                                     columnNumber: 33
                                                                 }, this)
                                                             ]
                                                         }, reply.id, true, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 822,
+                                                            lineNumber: 1401,
                                                             columnNumber: 31
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 820,
+                                                    lineNumber: 1399,
                                                     columnNumber: 27
                                                 }, this)
                                             ]
                                         }, category.id, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 798,
+                                            lineNumber: 1377,
                                             columnNumber: 23
                                         }, this);
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 790,
+                                    lineNumber: 1369,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 749,
+                            lineNumber: 1328,
+                            columnNumber: 13
+                        }, this),
+                        activeTab === "etiquetas" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center justify-between mb-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                    className: "text-xl font-bold text-neutral-900",
+                                                    children: "Etiquetas"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 1443,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-sm text-neutral-600 mt-1",
+                                                    children: "Configure etiquetas para categorizar seus chats do WhatsApp"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 1444,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 1442,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                            onClick: ()=>openEtiquetaDialog(),
+                                            className: "bg-neutral-900 hover:bg-neutral-800",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
+                                                    className: "w-4 h-4 mr-2"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 1449,
+                                                    columnNumber: 19
+                                                }, this),
+                                                "Nova Etiqueta"
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 1448,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 1441,
+                                    columnNumber: 15
+                                }, this),
+                                loadingEtiquetas ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center justify-center py-12",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
+                                        className: "w-6 h-6 animate-spin text-neutral-600"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1456,
+                                        columnNumber: 19
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 1455,
+                                    columnNumber: 17
+                                }, this) : etiquetas.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
+                                    className: "p-12 text-center border-2 border-dashed border-neutral-300",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tag$3e$__["Tag"], {
+                                            className: "w-12 h-12 mx-auto text-neutral-400 mb-4"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 1460,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                            className: "text-lg font-semibold text-neutral-900 mb-2",
+                                            children: "Nenhuma etiqueta cadastrada"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 1461,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-sm text-neutral-600 mb-4",
+                                            children: "Crie etiquetas para organizar e categorizar seus chats"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 1462,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                            onClick: ()=>openEtiquetaDialog(),
+                                            className: "bg-neutral-900 hover:bg-neutral-800",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
+                                                    className: "w-4 h-4 mr-2"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 1466,
+                                                    columnNumber: 21
+                                                }, this),
+                                                "Criar Primeira Etiqueta"
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 1465,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 1459,
+                                    columnNumber: 17
+                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
+                                    children: etiquetas.map((etiqueta)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
+                                            className: "p-4 border-2 border-neutral-300 bg-white",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex items-start justify-between mb-3",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex items-center gap-2 flex-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "w-8 h-8 rounded-lg flex items-center justify-center",
+                                                                    style: {
+                                                                        backgroundColor: etiqueta.cor
+                                                                    },
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tag$3e$__["Tag"], {
+                                                                        className: "w-4 h-4 text-white"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1480,
+                                                                        columnNumber: 29
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                    lineNumber: 1476,
+                                                                    columnNumber: 27
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex-1 min-w-0",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                                            className: "font-semibold text-neutral-900 truncate",
+                                                                            children: etiqueta.nome
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                            lineNumber: 1483,
+                                                                            columnNumber: 29
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-xs text-neutral-500",
+                                                                            children: etiqueta.created_by_name || "Sistema"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                            lineNumber: 1484,
+                                                                            columnNumber: 29
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                    lineNumber: 1482,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                            lineNumber: 1475,
+                                                            columnNumber: 25
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex gap-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                                    variant: "ghost",
+                                                                    size: "icon",
+                                                                    className: "h-8 w-8",
+                                                                    onClick: ()=>openEtiquetaDialog(etiqueta),
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__["Edit"], {
+                                                                        className: "w-4 h-4"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1496,
+                                                                        columnNumber: 29
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                    lineNumber: 1490,
+                                                                    columnNumber: 27
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                                    variant: "ghost",
+                                                                    size: "icon",
+                                                                    className: "h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50",
+                                                                    onClick: ()=>handleDeleteEtiqueta(etiqueta.id),
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
+                                                                        className: "w-4 h-4"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1504,
+                                                                        columnNumber: 29
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                    lineNumber: 1498,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                            lineNumber: 1489,
+                                                            columnNumber: 25
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 1474,
+                                                    columnNumber: 23
+                                                }, this),
+                                                etiqueta.descricao && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-sm text-neutral-600 line-clamp-2",
+                                                    children: etiqueta.descricao
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 1509,
+                                                    columnNumber: 25
+                                                }, this)
+                                            ]
+                                        }, etiqueta.id, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 1473,
+                                            columnNumber: 21
+                                        }, this))
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 1471,
+                                    columnNumber: 17
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 1440,
+                            columnNumber: 13
+                        }, this),
+                        activeTab === "catalogo" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            children: !selectedCatalogo ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between mb-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                        className: "text-xl font-bold text-neutral-900",
+                                                        children: "Catálogos"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1525,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-sm text-neutral-600 mt-1",
+                                                        children: "Gerencie seus catálogos de produtos com links públicos para compartilhar"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1526,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1524,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                onClick: ()=>openCatalogoDialog(),
+                                                className: "bg-neutral-900 hover:bg-neutral-800",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
+                                                        className: "w-4 h-4 mr-2"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1531,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    "Novo Catálogo"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1530,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1523,
+                                        columnNumber: 19
+                                    }, this),
+                                    loadingCatalogos ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-center py-12",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
+                                            className: "w-6 h-6 animate-spin text-neutral-600"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 1538,
+                                            columnNumber: 23
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1537,
+                                        columnNumber: 21
+                                    }, this) : catalogos.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
+                                        className: "p-12 text-center border-2 border-dashed border-neutral-300",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__["ShoppingBag"], {
+                                                className: "w-12 h-12 mx-auto text-neutral-400 mb-4"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1542,
+                                                columnNumber: 23
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                className: "text-lg font-semibold text-neutral-900 mb-2",
+                                                children: "Nenhum catálogo cadastrado"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1543,
+                                                columnNumber: 23
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-sm text-neutral-600 mb-4",
+                                                children: "Crie catálogos para exibir seus produtos em páginas públicas"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1544,
+                                                columnNumber: 23
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                onClick: ()=>openCatalogoDialog(),
+                                                className: "bg-neutral-900 hover:bg-neutral-800",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
+                                                        className: "w-4 h-4 mr-2"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1548,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    "Criar Primeiro Catálogo"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1547,
+                                                columnNumber: 23
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1541,
+                                        columnNumber: 21
+                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
+                                        children: catalogos.map((catalogo)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
+                                                className: `p-4 border-2 bg-white cursor-pointer transition-all hover:shadow-lg ${catalogo.ativo ? 'border-neutral-300 hover:border-neutral-900' : 'border-neutral-200 opacity-60'}`,
+                                                onClick: ()=>selectCatalogo(catalogo),
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex items-start justify-between mb-3",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex items-center gap-3 flex-1",
+                                                                children: [
+                                                                    catalogo.logo_url ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                                        src: catalogo.logo_url,
+                                                                        alt: catalogo.nome,
+                                                                        className: "w-12 h-12 rounded-lg object-cover"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1565,
+                                                                        columnNumber: 33
+                                                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "w-12 h-12 rounded-lg flex items-center justify-center",
+                                                                        style: {
+                                                                            backgroundColor: catalogo.cor_primaria
+                                                                        },
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__["ShoppingBag"], {
+                                                                            className: "w-6 h-6 text-white"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                            lineNumber: 1575,
+                                                                            columnNumber: 35
+                                                                        }, this)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1571,
+                                                                        columnNumber: 33
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "flex-1 min-w-0",
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                                                className: "font-semibold text-neutral-900 truncate",
+                                                                                children: catalogo.nome
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                                lineNumber: 1579,
+                                                                                columnNumber: 33
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-xs text-neutral-500",
+                                                                                children: [
+                                                                                    "/",
+                                                                                    catalogo.slug
+                                                                                ]
+                                                                            }, void 0, true, {
+                                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                                lineNumber: 1580,
+                                                                                columnNumber: 33
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1578,
+                                                                        columnNumber: 31
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1563,
+                                                                columnNumber: 29
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex gap-1",
+                                                                onClick: (e)=>e.stopPropagation(),
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                                        variant: "ghost",
+                                                                        size: "icon",
+                                                                        className: "h-8 w-8",
+                                                                        onClick: ()=>copyCatalogoLink(catalogo.slug),
+                                                                        title: "Copiar link",
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$copy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Copy$3e$__["Copy"], {
+                                                                            className: "w-4 h-4"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                            lineNumber: 1591,
+                                                                            columnNumber: 33
+                                                                        }, this)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1584,
+                                                                        columnNumber: 31
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                                        variant: "ghost",
+                                                                        size: "icon",
+                                                                        className: "h-8 w-8",
+                                                                        onClick: ()=>window.open(`/catalogo/${catalogo.slug}`, '_blank'),
+                                                                        title: "Abrir catálogo",
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
+                                                                            className: "w-4 h-4"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                            lineNumber: 1600,
+                                                                            columnNumber: 33
+                                                                        }, this)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1593,
+                                                                        columnNumber: 31
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1583,
+                                                                columnNumber: 29
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1562,
+                                                        columnNumber: 27
+                                                    }, this),
+                                                    catalogo.descricao && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-sm text-neutral-600 line-clamp-2 mb-3",
+                                                        children: catalogo.descricao
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1605,
+                                                        columnNumber: 29
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex items-center justify-between pt-2 border-t border-neutral-200",
+                                                        onClick: (e)=>e.stopPropagation(),
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                onClick: ()=>handleToggleCatalogoAtivo(catalogo),
+                                                                className: `flex items-center gap-1 text-xs ${catalogo.ativo ? 'text-green-600' : 'text-neutral-500'}`,
+                                                                children: [
+                                                                    catalogo.ativo ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$toggle$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ToggleRight$3e$__["ToggleRight"], {
+                                                                        className: "w-5 h-5"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1615,
+                                                                        columnNumber: 33
+                                                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$toggle$2d$left$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ToggleLeft$3e$__["ToggleLeft"], {
+                                                                        className: "w-5 h-5"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1617,
+                                                                        columnNumber: 33
+                                                                    }, this),
+                                                                    catalogo.ativo ? 'Ativo' : 'Inativo'
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1608,
+                                                                columnNumber: 29
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex gap-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                                        variant: "ghost",
+                                                                        size: "icon",
+                                                                        className: "h-8 w-8",
+                                                                        onClick: ()=>openCatalogoDialog(catalogo),
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__["Edit"], {
+                                                                            className: "w-4 h-4"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                            lineNumber: 1628,
+                                                                            columnNumber: 33
+                                                                        }, this)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1622,
+                                                                        columnNumber: 31
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                                        variant: "ghost",
+                                                                        size: "icon",
+                                                                        className: "h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50",
+                                                                        onClick: ()=>handleDeleteCatalogo(catalogo.id),
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
+                                                                            className: "w-4 h-4"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                            lineNumber: 1636,
+                                                                            columnNumber: 33
+                                                                        }, this)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1630,
+                                                                        columnNumber: 31
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1621,
+                                                                columnNumber: 29
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1607,
+                                                        columnNumber: 27
+                                                    }, this)
+                                                ]
+                                            }, catalogo.id, true, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1555,
+                                                columnNumber: 25
+                                            }, this))
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1553,
+                                        columnNumber: 21
+                                    }, this)
+                                ]
+                            }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between mb-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center gap-3",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                        variant: "ghost",
+                                                        size: "sm",
+                                                        onClick: ()=>{
+                                                            setSelectedCatalogo(null);
+                                                            setProdutos([]);
+                                                            setProdutoTipos([]);
+                                                        },
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$left$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronLeft$3e$__["ChevronLeft"], {
+                                                                className: "w-4 h-4 mr-1"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1659,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            "Voltar"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1650,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex items-center gap-3",
+                                                        children: [
+                                                            selectedCatalogo.logo_url ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                                src: selectedCatalogo.logo_url,
+                                                                alt: selectedCatalogo.nome,
+                                                                className: "w-10 h-10 rounded-lg object-cover"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1664,
+                                                                columnNumber: 27
+                                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "w-10 h-10 rounded-lg flex items-center justify-center",
+                                                                style: {
+                                                                    backgroundColor: selectedCatalogo.cor_primaria
+                                                                },
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__["ShoppingBag"], {
+                                                                    className: "w-5 h-5 text-white"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                    lineNumber: 1674,
+                                                                    columnNumber: 29
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1670,
+                                                                columnNumber: 27
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                                        className: "text-xl font-bold text-neutral-900",
+                                                                        children: selectedCatalogo.nome
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1678,
+                                                                        columnNumber: 27
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                        className: "text-xs text-neutral-500",
+                                                                        children: [
+                                                                            "/",
+                                                                            selectedCatalogo.slug
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1679,
+                                                                        columnNumber: 27
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1677,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1662,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1649,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex gap-2",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                        variant: "outline",
+                                                        size: "sm",
+                                                        onClick: ()=>copyCatalogoLink(selectedCatalogo.slug),
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$copy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Copy$3e$__["Copy"], {
+                                                                className: "w-4 h-4 mr-2"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1689,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            "Copiar Link"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1684,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                        variant: "outline",
+                                                        size: "sm",
+                                                        onClick: ()=>window.open(`/catalogo/${selectedCatalogo.slug}`, '_blank'),
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
+                                                                className: "w-4 h-4 mr-2"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1697,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            "Ver Catálogo"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1692,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1683,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1648,
+                                        columnNumber: 19
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
+                                        className: "p-4 border-2 border-neutral-300 bg-white mb-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center justify-between mb-3",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                        className: "font-semibold text-neutral-900",
+                                                        children: "Tipos de Produto"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1706,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                        variant: "outline",
+                                                        size: "sm",
+                                                        onClick: ()=>setTipoDialogOpen(true),
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
+                                                                className: "w-4 h-4 mr-1"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1712,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            "Novo Tipo"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1707,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1705,
+                                                columnNumber: 21
+                                            }, this),
+                                            produtoTipos.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-sm text-neutral-500",
+                                                children: "Nenhum tipo cadastrado"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1717,
+                                                columnNumber: 23
+                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex flex-wrap gap-2",
+                                                children: produtoTipos.map((tipo)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex items-center gap-1 px-3 py-1.5 bg-neutral-100 rounded-lg text-sm",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                children: tipo.nome
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1725,
+                                                                columnNumber: 29
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                onClick: ()=>handleDeleteTipo(tipo.id),
+                                                                className: "ml-1 text-neutral-400 hover:text-red-500",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                                                    className: "w-3 h-3"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                    lineNumber: 1730,
+                                                                    columnNumber: 31
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1726,
+                                                                columnNumber: 29
+                                                            }, this)
+                                                        ]
+                                                    }, tipo.id, true, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1721,
+                                                        columnNumber: 27
+                                                    }, this))
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1719,
+                                                columnNumber: 23
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1704,
+                                        columnNumber: 19
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between mb-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                className: "font-semibold text-neutral-900",
+                                                children: [
+                                                    "Produtos (",
+                                                    produtos.length,
+                                                    ")"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1740,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                onClick: ()=>openProdutoDialog(),
+                                                className: "bg-neutral-900 hover:bg-neutral-800",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
+                                                        className: "w-4 h-4 mr-2"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1744,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    "Novo Produto"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1743,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1739,
+                                        columnNumber: 19
+                                    }, this),
+                                    loadingProdutos ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-center py-12",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
+                                            className: "w-6 h-6 animate-spin text-neutral-600"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 1751,
+                                            columnNumber: 23
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1750,
+                                        columnNumber: 21
+                                    }, this) : produtos.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
+                                        className: "p-12 text-center border-2 border-dashed border-neutral-300",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__["ShoppingBag"], {
+                                                className: "w-12 h-12 mx-auto text-neutral-400 mb-4"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1755,
+                                                columnNumber: 23
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                className: "text-lg font-semibold text-neutral-900 mb-2",
+                                                children: "Nenhum produto cadastrado"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1756,
+                                                columnNumber: 23
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-sm text-neutral-600 mb-4",
+                                                children: "Adicione produtos ao seu catálogo"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1757,
+                                                columnNumber: 23
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                onClick: ()=>openProdutoDialog(),
+                                                className: "bg-neutral-900 hover:bg-neutral-800",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
+                                                        className: "w-4 h-4 mr-2"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1761,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    "Adicionar Produto"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1760,
+                                                columnNumber: 23
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1754,
+                                        columnNumber: 21
+                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
+                                        children: produtos.map((produto)=>{
+                                            const imagemPrincipal = produto.imagens?.find((img)=>img.principal) || produto.imagens?.[0];
+                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
+                                                className: `overflow-hidden border-2 bg-white ${produto.ativo ? 'border-neutral-300' : 'border-neutral-200 opacity-60'}`,
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "relative aspect-square bg-neutral-100",
+                                                        children: [
+                                                            imagemPrincipal ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                                src: imagemPrincipal.url,
+                                                                alt: produto.nome,
+                                                                className: "w-full h-full object-cover"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1779,
+                                                                columnNumber: 33
+                                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "w-full h-full flex items-center justify-center",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Image$3e$__["Image"], {
+                                                                    className: "w-12 h-12 text-neutral-300"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                    lineNumber: 1786,
+                                                                    columnNumber: 35
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1785,
+                                                                columnNumber: 33
+                                                            }, this),
+                                                            produto.destaque && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "absolute top-2 left-2 px-2 py-1 bg-yellow-500 text-white text-xs font-medium rounded flex items-center gap-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
+                                                                        className: "w-3 h-3"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1791,
+                                                                        columnNumber: 35
+                                                                    }, this),
+                                                                    "Destaque"
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1790,
+                                                                columnNumber: 33
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1777,
+                                                        columnNumber: 29
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "p-4",
+                                                        children: [
+                                                            produto.tipo && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-xs font-medium text-neutral-500 uppercase",
+                                                                children: produto.tipo.nome
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1800,
+                                                                columnNumber: 33
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                                                className: "font-semibold text-neutral-900 line-clamp-1",
+                                                                children: produto.nome
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1804,
+                                                                columnNumber: 31
+                                                            }, this),
+                                                            produto.preco !== null && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex items-center gap-2 mt-1",
+                                                                children: produto.preco_promocional !== null ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                            className: "font-bold text-green-600",
+                                                                            children: formatPreco(produto.preco_promocional.toString())
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                            lineNumber: 1809,
+                                                                            columnNumber: 39
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                            className: "text-sm text-neutral-400 line-through",
+                                                                            children: formatPreco(produto.preco.toString())
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                            lineNumber: 1812,
+                                                                            columnNumber: 39
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "font-bold text-neutral-900",
+                                                                    children: formatPreco(produto.preco.toString())
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                    lineNumber: 1817,
+                                                                    columnNumber: 37
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1806,
+                                                                columnNumber: 33
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex items-center justify-between pt-3 mt-3 border-t border-neutral-200",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                        onClick: ()=>handleToggleProdutoAtivo(produto),
+                                                                        className: `flex items-center gap-1 text-xs ${produto.ativo ? 'text-green-600' : 'text-neutral-500'}`,
+                                                                        children: [
+                                                                            produto.ativo ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$toggle$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ToggleRight$3e$__["ToggleRight"], {
+                                                                                className: "w-5 h-5"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                                lineNumber: 1833,
+                                                                                columnNumber: 37
+                                                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$toggle$2d$left$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ToggleLeft$3e$__["ToggleLeft"], {
+                                                                                className: "w-5 h-5"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                                lineNumber: 1835,
+                                                                                columnNumber: 37
+                                                                            }, this),
+                                                                            produto.ativo ? 'Ativo' : 'Inativo'
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1826,
+                                                                        columnNumber: 33
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "flex gap-1",
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                                                variant: "ghost",
+                                                                                size: "icon",
+                                                                                className: "h-8 w-8",
+                                                                                onClick: ()=>openProdutoDialog(produto),
+                                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__["Edit"], {
+                                                                                    className: "w-4 h-4"
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                                    lineNumber: 1846,
+                                                                                    columnNumber: 37
+                                                                                }, this)
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                                lineNumber: 1840,
+                                                                                columnNumber: 35
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                                                variant: "ghost",
+                                                                                size: "icon",
+                                                                                className: "h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50",
+                                                                                onClick: ()=>handleDeleteProduto(produto.id),
+                                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
+                                                                                    className: "w-4 h-4"
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                                    lineNumber: 1854,
+                                                                                    columnNumber: 37
+                                                                                }, this)
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                                lineNumber: 1848,
+                                                                                columnNumber: 35
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 1839,
+                                                                        columnNumber: 33
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 1825,
+                                                                columnNumber: 31
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 1798,
+                                                        columnNumber: 29
+                                                    }, this)
+                                                ]
+                                            }, produto.id, true, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 1770,
+                                                columnNumber: 27
+                                            }, this);
+                                        })
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 1766,
+                                        columnNumber: 21
+                                    }, this)
+                                ]
+                            }, void 0, true)
+                        }, void 0, false, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 1519,
                             columnNumber: 13
                         }, this),
                         activeTab === "links" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3236,7 +4919,7 @@ function AjustesPage() {
                                     children: "Links Úteis"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 862,
+                                    lineNumber: 1871,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3259,20 +4942,20 @@ function AjustesPage() {
                                                                 className: "w-full h-full object-contain"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 870,
+                                                                lineNumber: 1879,
                                                                 columnNumber: 29
                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                src: "/images/google-drive-icon.png",
+                                                                src: "/google_drive.svg",
                                                                 alt: "Google Drive",
                                                                 className: "w-full h-full object-contain"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 876,
+                                                                lineNumber: 1885,
                                                                 columnNumber: 29
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 868,
+                                                            lineNumber: 1877,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3283,7 +4966,7 @@ function AjustesPage() {
                                                                     children: folder.label
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 884,
+                                                                    lineNumber: 1893,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3291,51 +4974,51 @@ function AjustesPage() {
                                                                     children: folder.description
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 885,
+                                                                    lineNumber: 1894,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 883,
+                                                            lineNumber: 1892,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 867,
+                                                    lineNumber: 1876,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 866,
+                                                lineNumber: 1875,
                                                 columnNumber: 21
                                             }, this)
                                         }, folder.id, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 865,
+                                            lineNumber: 1874,
                                             columnNumber: 19
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 863,
+                                    lineNumber: 1872,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 861,
+                            lineNumber: 1870,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                    lineNumber: 588,
+                    lineNumber: 1167,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 587,
+                lineNumber: 1166,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -3349,20 +5032,20 @@ function AjustesPage() {
                                     children: "Nova Categoria"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 900,
+                                    lineNumber: 1909,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogDescription"], {
                                     children: "Crie uma nova categoria para organizar suas respostas rápidas"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 901,
+                                    lineNumber: 1910,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 899,
+                            lineNumber: 1908,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3375,7 +5058,7 @@ function AjustesPage() {
                                         children: "Nome da Categoria"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 906,
+                                        lineNumber: 1915,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3385,18 +5068,18 @@ function AjustesPage() {
                                         onChange: (e)=>setNewCategoryName(e.target.value)
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 907,
+                                        lineNumber: 1916,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 905,
+                                lineNumber: 1914,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 904,
+                            lineNumber: 1913,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -3407,7 +5090,7 @@ function AjustesPage() {
                                     children: "Cancelar"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 917,
+                                    lineNumber: 1926,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -3416,24 +5099,24 @@ function AjustesPage() {
                                     children: "Criar Categoria"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 920,
+                                    lineNumber: 1929,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 916,
+                            lineNumber: 1925,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                    lineNumber: 898,
+                    lineNumber: 1907,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 897,
+                lineNumber: 1906,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -3447,20 +5130,20 @@ function AjustesPage() {
                                     children: editingReply ? "Editar Resposta Rápida" : "Nova Resposta Rápida"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 930,
+                                    lineNumber: 1939,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogDescription"], {
                                     children: "Crie mensagens pré-definidas para usar no atendimento via WhatsApp"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 931,
+                                    lineNumber: 1940,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 929,
+                            lineNumber: 1938,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3474,7 +5157,7 @@ function AjustesPage() {
                                             children: "Título"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 936,
+                                            lineNumber: 1945,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3487,13 +5170,13 @@ function AjustesPage() {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 937,
+                                            lineNumber: 1946,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 935,
+                                    lineNumber: 1944,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3504,7 +5187,7 @@ function AjustesPage() {
                                             children: "Categoria"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 946,
+                                            lineNumber: 1955,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
@@ -3526,12 +5209,12 @@ function AjustesPage() {
                                                         placeholder: "Selecione uma categoria"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 958,
+                                                        lineNumber: 1967,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 957,
+                                                    lineNumber: 1966,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -3541,7 +5224,7 @@ function AjustesPage() {
                                                                 children: cat.name
                                                             }, cat.id, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 962,
+                                                                lineNumber: 1971,
                                                                 columnNumber: 21
                                                             }, this)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -3550,25 +5233,25 @@ function AjustesPage() {
                                                             children: "+ Criar nova categoria"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 966,
+                                                            lineNumber: 1975,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 960,
+                                                    lineNumber: 1969,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 947,
+                                            lineNumber: 1956,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 945,
+                                    lineNumber: 1954,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3579,7 +5262,7 @@ function AjustesPage() {
                                             children: "Mensagem"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 974,
+                                            lineNumber: 1983,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -3593,19 +5276,19 @@ function AjustesPage() {
                                             rows: 5
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 975,
+                                            lineNumber: 1984,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 973,
+                                    lineNumber: 1982,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 934,
+                            lineNumber: 1943,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -3616,7 +5299,7 @@ function AjustesPage() {
                                     children: "Cancelar"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 986,
+                                    lineNumber: 1995,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -3625,24 +5308,1070 @@ function AjustesPage() {
                                     children: editingReply ? "Salvar Alterações" : "Criar Resposta"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 989,
+                                    lineNumber: 1998,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 985,
+                            lineNumber: 1994,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                    lineNumber: 928,
+                    lineNumber: 1937,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 927,
+                lineNumber: 1936,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
+                open: etiquetaDialogOpen,
+                onOpenChange: setEtiquetaDialogOpen,
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogHeader"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
+                                    children: editingEtiqueta ? "Editar Etiqueta" : "Nova Etiqueta"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2008,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogDescription"], {
+                                    children: "Configure uma etiqueta para categorizar seus chats"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2009,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2007,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "space-y-4 py-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            htmlFor: "etiqueta-nome",
+                                            children: "Nome da Etiqueta"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2014,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                            id: "etiqueta-nome",
+                                            placeholder: "Ex: Urgente, Vendas, Suporte...",
+                                            value: etiquetaForm.nome,
+                                            onChange: (e)=>setEtiquetaForm({
+                                                    ...etiquetaForm,
+                                                    nome: e.target.value
+                                                })
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2015,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2013,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            htmlFor: "etiqueta-cor",
+                                            children: "Cor"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2024,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex gap-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                    id: "etiqueta-cor",
+                                                    type: "color",
+                                                    value: etiquetaForm.cor,
+                                                    onChange: (e)=>setEtiquetaForm({
+                                                            ...etiquetaForm,
+                                                            cor: e.target.value
+                                                        }),
+                                                    className: "w-20 h-10 cursor-pointer"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2026,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                    value: etiquetaForm.cor,
+                                                    onChange: (e)=>setEtiquetaForm({
+                                                            ...etiquetaForm,
+                                                            cor: e.target.value
+                                                        }),
+                                                    placeholder: "#3B82F6",
+                                                    className: "flex-1"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2033,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2025,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2023,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            htmlFor: "etiqueta-descricao",
+                                            children: "Descrição (Opcional)"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2043,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
+                                            id: "etiqueta-descricao",
+                                            placeholder: "Descreva o propósito desta etiqueta...",
+                                            value: etiquetaForm.descricao,
+                                            onChange: (e)=>setEtiquetaForm({
+                                                    ...etiquetaForm,
+                                                    descricao: e.target.value
+                                                }),
+                                            rows: 3
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2044,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2042,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center gap-2 p-3 bg-neutral-50 rounded-lg border border-neutral-200",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "w-10 h-10 rounded-lg flex items-center justify-center",
+                                            style: {
+                                                backgroundColor: etiquetaForm.cor
+                                            },
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tag$3e$__["Tag"], {
+                                                className: "w-5 h-5 text-white"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 2058,
+                                                columnNumber: 17
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2054,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex-1",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "font-medium text-sm",
+                                                    children: "Preview"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2061,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-xs text-neutral-600",
+                                                    children: etiquetaForm.nome || "Nome da etiqueta"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2062,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2060,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2053,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2012,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                    variant: "outline",
+                                    onClick: ()=>setEtiquetaDialogOpen(false),
+                                    children: "Cancelar"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2068,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                    onClick: handleSaveEtiqueta,
+                                    className: "bg-neutral-900 hover:bg-neutral-800",
+                                    children: editingEtiqueta ? "Salvar Alterações" : "Criar Etiqueta"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2071,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2067,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                    lineNumber: 2006,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                lineNumber: 2005,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
+                open: catalogoDialogOpen,
+                onOpenChange: setCatalogoDialogOpen,
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogHeader"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
+                                    children: editingCatalogo ? "Editar Catálogo" : "Novo Catálogo"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2082,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogDescription"], {
+                                    children: "Configure seu catálogo de produtos"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2083,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2081,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "space-y-4 py-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            htmlFor: "catalogo-nome",
+                                            children: "Nome do Catálogo"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2088,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                            id: "catalogo-nome",
+                                            placeholder: "Ex: Produtos 2024, Coleção Verão...",
+                                            value: catalogoForm.nome,
+                                            onChange: (e)=>setCatalogoForm({
+                                                    ...catalogoForm,
+                                                    nome: e.target.value
+                                                })
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2089,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2087,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            htmlFor: "catalogo-descricao",
+                                            children: "Descrição (Opcional)"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2098,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
+                                            id: "catalogo-descricao",
+                                            placeholder: "Descreva seu catálogo...",
+                                            value: catalogoForm.descricao,
+                                            onChange: (e)=>setCatalogoForm({
+                                                    ...catalogoForm,
+                                                    descricao: e.target.value
+                                                }),
+                                            rows: 2
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2099,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2097,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            htmlFor: "catalogo-cor",
+                                            children: "Cor Primária"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2109,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex gap-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                    id: "catalogo-cor",
+                                                    type: "color",
+                                                    value: catalogoForm.cor_primaria,
+                                                    onChange: (e)=>setCatalogoForm({
+                                                            ...catalogoForm,
+                                                            cor_primaria: e.target.value
+                                                        }),
+                                                    className: "w-20 h-10 cursor-pointer"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2111,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                    value: catalogoForm.cor_primaria,
+                                                    onChange: (e)=>setCatalogoForm({
+                                                            ...catalogoForm,
+                                                            cor_primaria: e.target.value
+                                                        }),
+                                                    placeholder: "#000000",
+                                                    className: "flex-1"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2118,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2110,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2108,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            htmlFor: "catalogo-logo",
+                                            children: "Logo (URL ou Base64)"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2128,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                            id: "catalogo-logo",
+                                            placeholder: "https://... ou deixe vazio",
+                                            value: catalogoForm.logo_url,
+                                            onChange: (e)=>setCatalogoForm({
+                                                    ...catalogoForm,
+                                                    logo_url: e.target.value
+                                                })
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2129,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2127,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center gap-3 p-3 bg-neutral-50 rounded-lg border border-neutral-200",
+                                    children: [
+                                        catalogoForm.logo_url ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                            src: catalogoForm.logo_url,
+                                            alt: "Preview",
+                                            className: "w-12 h-12 rounded-lg object-cover",
+                                            onError: (e)=>e.currentTarget.style.display = 'none'
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2140,
+                                            columnNumber: 17
+                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "w-12 h-12 rounded-lg flex items-center justify-center",
+                                            style: {
+                                                backgroundColor: catalogoForm.cor_primaria
+                                            },
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__["ShoppingBag"], {
+                                                className: "w-6 h-6 text-white"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                lineNumber: 2151,
+                                                columnNumber: 19
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2147,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex-1",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "font-medium text-sm",
+                                                    children: catalogoForm.nome || "Nome do catálogo"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2155,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-xs text-neutral-500",
+                                                    children: "Preview do cabeçalho"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2156,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2154,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2138,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2086,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                    variant: "outline",
+                                    onClick: ()=>setCatalogoDialogOpen(false),
+                                    children: "Cancelar"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2162,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                    onClick: handleSaveCatalogo,
+                                    className: "bg-neutral-900 hover:bg-neutral-800",
+                                    children: editingCatalogo ? "Salvar Alterações" : "Criar Catálogo"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2165,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2161,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                    lineNumber: 2080,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                lineNumber: 2079,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
+                open: tipoDialogOpen,
+                onOpenChange: setTipoDialogOpen,
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogHeader"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
+                                    children: "Novo Tipo de Produto"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2176,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogDescription"], {
+                                    children: "Crie uma categoria para organizar seus produtos"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2177,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2175,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "space-y-4 py-4",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "space-y-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                        htmlFor: "tipo-nome",
+                                        children: "Nome do Tipo"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 2182,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                        id: "tipo-nome",
+                                        placeholder: "Ex: Eletrônicos, Roupas, Acessórios...",
+                                        value: newTipoNome,
+                                        onChange: (e)=>setNewTipoNome(e.target.value)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                        lineNumber: 2183,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                lineNumber: 2181,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2180,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                    variant: "outline",
+                                    onClick: ()=>setTipoDialogOpen(false),
+                                    children: "Cancelar"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2193,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                    onClick: handleSaveTipo,
+                                    className: "bg-neutral-900 hover:bg-neutral-800",
+                                    children: "Criar Tipo"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2196,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2192,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                    lineNumber: 2174,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                lineNumber: 2173,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
+                open: produtoDialogOpen,
+                onOpenChange: setProdutoDialogOpen,
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
+                    className: "max-w-2xl max-h-[90vh] overflow-y-auto",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogHeader"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
+                                    children: editingProduto ? "Editar Produto" : "Novo Produto"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2207,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogDescription"], {
+                                    children: "Adicione ou edite um produto do catálogo"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2208,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2206,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "space-y-4 py-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "grid grid-cols-2 gap-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                    htmlFor: "produto-nome",
+                                                    children: "Nome do Produto *"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2214,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                    id: "produto-nome",
+                                                    placeholder: "Ex: Camiseta Básica",
+                                                    value: produtoForm.nome,
+                                                    onChange: (e)=>setProdutoForm({
+                                                            ...produtoForm,
+                                                            nome: e.target.value
+                                                        })
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2215,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2213,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                    htmlFor: "produto-tipo",
+                                                    children: "Tipo"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2224,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
+                                                    value: produtoForm.tipo_id,
+                                                    onValueChange: (value)=>{
+                                                        if (value === "new") {
+                                                            setTipoDialogOpen(true);
+                                                        } else {
+                                                            setProdutoForm({
+                                                                ...produtoForm,
+                                                                tipo_id: value
+                                                            });
+                                                        }
+                                                    },
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
+                                                            id: "produto-tipo",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {
+                                                                placeholder: "Selecione um tipo"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 2236,
+                                                                columnNumber: 21
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                            lineNumber: 2235,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
+                                                            children: [
+                                                                produtoTipos.map((tipo)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                        value: tipo.id,
+                                                                        children: tipo.nome
+                                                                    }, tipo.id, false, {
+                                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                        lineNumber: 2240,
+                                                                        columnNumber: 23
+                                                                    }, this)),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                    value: "new",
+                                                                    className: "text-primary font-medium",
+                                                                    children: "+ Criar novo tipo"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                    lineNumber: 2244,
+                                                                    columnNumber: 21
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                            lineNumber: 2238,
+                                                            columnNumber: 19
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2225,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2223,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2212,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            htmlFor: "produto-descricao",
+                                            children: "Descrição"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2253,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
+                                            id: "produto-descricao",
+                                            placeholder: "Descreva o produto...",
+                                            value: produtoForm.descricao,
+                                            onChange: (e)=>setProdutoForm({
+                                                    ...produtoForm,
+                                                    descricao: e.target.value
+                                                }),
+                                            rows: 3
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2254,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2252,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "grid grid-cols-2 gap-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                    htmlFor: "produto-preco",
+                                                    children: "Preço (R$)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2265,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                    id: "produto-preco",
+                                                    type: "number",
+                                                    step: "0.01",
+                                                    placeholder: "0,00",
+                                                    value: produtoForm.preco,
+                                                    onChange: (e)=>setProdutoForm({
+                                                            ...produtoForm,
+                                                            preco: e.target.value
+                                                        })
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2266,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2264,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                    htmlFor: "produto-preco-promocional",
+                                                    children: "Preço Promocional (R$)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2277,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                    id: "produto-preco-promocional",
+                                                    type: "number",
+                                                    step: "0.01",
+                                                    placeholder: "0,00",
+                                                    value: produtoForm.preco_promocional,
+                                                    onChange: (e)=>setProdutoForm({
+                                                            ...produtoForm,
+                                                            preco_promocional: e.target.value
+                                                        })
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2278,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2276,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2263,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center gap-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                            type: "checkbox",
+                                            id: "produto-destaque",
+                                            checked: produtoForm.destaque,
+                                            onChange: (e)=>setProdutoForm({
+                                                    ...produtoForm,
+                                                    destaque: e.target.checked
+                                                }),
+                                            className: "w-4 h-4 rounded border-neutral-300"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2290,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            htmlFor: "produto-destaque",
+                                            className: "text-sm cursor-pointer",
+                                            children: "Marcar como produto em destaque"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2297,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2289,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            children: "Imagens do Produto"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2304,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "grid grid-cols-4 gap-2",
+                                            children: [
+                                                produtoForm.imagens.map((img, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "relative aspect-square rounded-lg overflow-hidden bg-neutral-100",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                                src: img,
+                                                                alt: `Imagem ${index + 1}`,
+                                                                className: "w-full h-full object-cover"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 2308,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                onClick: ()=>removeImage(index),
+                                                                className: "absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full hover:bg-red-600",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                                                    className: "w-3 h-3"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                    lineNumber: 2313,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 2309,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            index === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/70 text-white text-xs rounded",
+                                                                children: "Principal"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                                lineNumber: 2316,
+                                                                columnNumber: 23
+                                                            }, this)
+                                                        ]
+                                                    }, index, true, {
+                                                        fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                        lineNumber: 2307,
+                                                        columnNumber: 19
+                                                    }, this)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    className: "aspect-square rounded-lg border-2 border-dashed border-neutral-300 flex flex-col items-center justify-center cursor-pointer hover:bg-neutral-50 transition-colors",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Image$3e$__["Image"], {
+                                                            className: "w-6 h-6 text-neutral-400"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                            lineNumber: 2323,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-xs text-neutral-500 mt-1",
+                                                            children: "Adicionar"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                            lineNumber: 2324,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                            type: "file",
+                                                            accept: "image/*",
+                                                            multiple: true,
+                                                            onChange: handleImageUpload,
+                                                            className: "hidden"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                            lineNumber: 2325,
+                                                            columnNumber: 19
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                                    lineNumber: 2322,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2305,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-xs text-neutral-500",
+                                            children: "A primeira imagem será a principal. Arraste para reordenar."
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                            lineNumber: 2334,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2303,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2211,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                    variant: "outline",
+                                    onClick: ()=>setProdutoDialogOpen(false),
+                                    children: "Cancelar"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2341,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                    onClick: handleSaveProduto,
+                                    className: "bg-neutral-900 hover:bg-neutral-800",
+                                    children: editingProduto ? "Salvar Alterações" : "Criar Produto"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                                    lineNumber: 2344,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/(app)/ajustes/page.tsx",
+                            lineNumber: 2340,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/(app)/ajustes/page.tsx",
+                    lineNumber: 2205,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/(app)/ajustes/page.tsx",
+                lineNumber: 2204,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$PhotoUploadDialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PhotoUploadDialog"], {
@@ -3652,17 +6381,17 @@ function AjustesPage() {
                 currentPhoto: userProfile?.foto_perfil || undefined
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 996,
+                lineNumber: 2351,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/(app)/ajustes/page.tsx",
-        lineNumber: 512,
+        lineNumber: 1067,
         columnNumber: 5
     }, this);
 }
-_s(AjustesPage, "OAp3aSy5lXIG6v1Ka+4st8phcgA=", false, function() {
+_s(AjustesPage, "voQlDTeplrHmVb+g0JEB7RZws18=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"],

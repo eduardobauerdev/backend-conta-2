@@ -4,7 +4,13 @@ module.exports = [
 
 __turbopack_context__.s([
     "cn",
-    ()=>cn
+    ()=>cn,
+    "formatPhoneNumber",
+    ()=>formatPhoneNumber,
+    "getContrastTextColor",
+    ()=>getContrastTextColor,
+    "isColorLight",
+    ()=>isColorLight
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/clsx/dist/clsx.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tailwind$2d$merge$2f$dist$2f$bundle$2d$mjs$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/tailwind-merge/dist/bundle-mjs.mjs [app-ssr] (ecmascript)");
@@ -12,6 +18,39 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tailwind$2d$
 ;
 function cn(...inputs) {
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tailwind$2d$merge$2f$dist$2f$bundle$2d$mjs$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["twMerge"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clsx"])(inputs));
+}
+function isColorLight(hexColor) {
+    const hex = hexColor.replace("#", "");
+    const r = Number.parseInt(hex.substr(0, 2), 16);
+    const g = Number.parseInt(hex.substr(2, 2), 16);
+    const b = Number.parseInt(hex.substr(4, 2), 16);
+    // Calcula a luminância relativa
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminance > 0.55 // Threshold mais baixo para capturar mais cores claras (antes era 0.7)
+    ;
+}
+function getContrastTextColor(hexColor) {
+    return isColorLight(hexColor) ? "#000000" : "#ffffff";
+}
+function formatPhoneNumber(phone) {
+    if (!phone) return "";
+    // Remove sufixos do WhatsApp (ex: @c.us, @s.whatsapp.net)
+    const cleanPhone = phone.replace(/@.*$/, "").replace(/:\d+$/, "").replace(/\D/g, "");
+    if (cleanPhone.startsWith("55")) {
+        const withoutCountryCode = cleanPhone.substring(2);
+        if (withoutCountryCode.length === 10) {
+            // Telefone fixo ou celular antigo (sem o 9)
+            const ddd = withoutCountryCode.substring(0, 2);
+            const number = withoutCountryCode.substring(2);
+            return `+55 (${ddd}) ${number.substring(0, 4)}-${number.substring(4)}`;
+        } else if (withoutCountryCode.length === 11) {
+            // Celular com 9
+            const ddd = withoutCountryCode.substring(0, 2);
+            return `+55 (${ddd}) ${withoutCountryCode.substring(2, 7)}-${withoutCountryCode.substring(7)}`;
+        }
+    }
+    // Se não for BR ou formato desconhecido, retorna com +
+    return cleanPhone.startsWith("+") ? cleanPhone : `+${cleanPhone}`;
 }
 }),
 "[project]/components/ui/avatar.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {

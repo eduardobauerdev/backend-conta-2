@@ -8,12 +8,17 @@ import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Calendar, Phone, MapPin, Target, FileText, History, StickyNote, Pencil, Tag, MessageSquare, Loader2 } from 'lucide-react'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Calendar, Phone, MapPin, Target, FileText, History, StickyNote, Pencil, Tag, MessageSquare, Loader2, UserCog } from 'lucide-react'
 import { format, parseISO } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { createClient } from "@/lib/supabase/client"
 import type { Lead } from "@/types/crm"
 import { toast } from "sonner"
+import { ChatHistoryDialog } from "@/components/whatsapp/chat-history-dialog"
+import { ChatNotesDialog } from "@/components/whatsapp/chat-notes-dialog"
+import { getContrastTextColor } from "@/lib/utils"
+import { useUser } from "@/contexts/user-context"
 
 // Ícone SVG do WhatsApp
 const WhatsAppIcon = () => (
@@ -54,25 +59,125 @@ type ViewLeadDialogProps = {
   onOpenChange: (open: boolean) => void
   lead: Lead | null
   onEdit?: () => void
+  onLeadUpdated?: () => void
 }
 
-export function ViewLeadDialog({ open, onOpenChange, lead, onEdit }: ViewLeadDialogProps) {
+type UserPerfil = {
+  id: string
+  nome: string
+  cargo: string
+}
+
+export function ViewLeadDialog({ open, onOpenChange, lead, onEdit, onLeadUpdated }: ViewLeadDialogProps) {
   const router = useRouter()
   const supabase = createClient()
+  const { user } = useUser()
   const [etiquetas, setEtiquetas] = useState<EtiquetaSimple[]>([])
   const [logs, setLogs] = useState<LeadLog[]>([])
   const [notas, setNotas] = useState<string>("")
   const [showHistory, setShowHistory] = useState(false)
   const [showNotes, setShowNotes] = useState(false)
   const [loadingLogs, setLoadingLogs] = useState(false)
+  // Estados para os dialogs do WhatsApp
+  const [showChatHistory, setShowChatHistory] = useState(false)
+  const [showChatNotes, setShowChatNotes] = useState(false)
+  const [chatId, setChatId] = useState<string | null>(null)
+  // Estados para editar vendedor
+  const [showEditVendedor, setShowEditVendedor] = useState(false)
+  const [vendedores, setVendedores] = useState<UserPerfil[]>([])
+  const [selectedVendedorId, setSelectedVendedorId] = useState<string>("")
+  const [savingVendedor, setSavingVendedor] = useState(false)
+
+  // Verifica se o usuário é admin ou desenvolvedor
+  const isAdmin = user?.cargo === "Administrador" || user?.cargo === "Desenvolvedor"
 
   useEffect(() => {
     if (open && lead) {
       loadEtiquetas()
+      loadChatId()
       setShowHistory(false)
       setShowNotes(false)
+      setShowChatHistory(false)
+      setShowChatNotes(false)
+      setShowEditVendedor(false)
+      if (isAdmin) {
+        loadVendedores()
+      }
     }
-  }, [open, lead])
+  }, [open, lead, isAdmin])
+
+  const loadVendedores = async () => {
+    try {
+      const { data } = await supabase
+        .from("perfis")
+        .select("id, nome, cargo")
+        .order("nome")
+      setVendedores(data || [])
+    } catch (error) {
+      console.error("Erro ao carregar vendedores:", error)
+    }
+  }
+
+  const handleChangeVendedor = async () => {
+    if (!lead || !selectedVendedorId) return
+
+    const vendedorSelecionado = vendedores.find(v => v.id === selectedVendedorId)
+    if (!vendedorSelecionado) return
+
+    setSavingVendedor(true)
+    try {
+      const { error } = await supabase
+        .from("leads")
+        .update({
+          adicionado_por_id: vendedorSelecionado.id,
+          adicionado_por_nome: vendedorSelecionado.nome,
+        })
+        .eq("id", lead.id)
+
+      if (error) throw error
+
+      // Registra no log
+      await supabase.from("lead_logs").insert({
+        lead_id: lead.id,
+        usuario_id: user?.id,
+        usuario_nome: user?.nome,
+        acao: "vendedor_alterado",
+        detalhes: `Vendedor alterado de "${lead.adicionado_por_nome}" para "${vendedorSelecionado.nome}"`,
+        campo_alterado: "adicionado_por",
+        valor_antigo: lead.adicionado_por_nome,
+        valor_novo: vendedorSelecionado.nome,
+      })
+
+      toast.success("Vendedor alterado com sucesso!")
+      setShowEditVendedor(false)
+      onLeadUpdated?.()
+    } catch (error) {
+      console.error("Erro ao alterar vendedor:", error)
+      toast.error("Erro ao alterar vendedor")
+    } finally {
+      setSavingVendedor(false)
+    }
+  }
+
+  const loadChatId = async () => {
+    if (!lead?.chat_uuid) {
+      setChatId(null)
+      return
+    }
+    
+    try {
+      const { data: chatData } = await supabase
+        .from('chats')
+        .select('id')
+        .eq('uuid', lead.chat_uuid)
+        .single()
+      
+      setChatId(chatData?.id || null)
+    } catch (err) {
+      console.error("Erro ao carregar chat ID:", err)
+      setChatId(null)
+    }
+  }
 
   const loadEtiquetas = async () => {
     if (!lead?.chat_uuid) return
@@ -122,15 +227,27 @@ export function ViewLeadDialog({ open, onOpenChange, lead, onEdit }: ViewLeadDia
   }
 
   const handleShowHistory = () => {
-    setShowHistory(true)
-    setShowNotes(false)
-    loadLogs()
+    // Sempre abre o dialog de histórico do chat se tiver chatId
+    if (chatId) {
+      setShowChatHistory(true)
+    } else {
+      // Fallback: mostra histórico do lead (logs do CRM)
+      setShowHistory(true)
+      setShowNotes(false)
+      loadLogs()
+    }
   }
 
   const handleShowNotes = () => {
-    setShowNotes(true)
-    setShowHistory(false)
-    setNotas(lead?.observacao || "")
+    // Se tem chat vinculado, abre o dialog de notas do chat
+    if (chatId) {
+      setShowChatNotes(true)
+    } else {
+      // Fallback: mostra observação do lead
+      setShowNotes(true)
+      setShowHistory(false)
+      setNotas(lead?.observacao || "")
+    }
   }
 
   const handleVerChat = () => {
@@ -279,7 +396,60 @@ export function ViewLeadDialog({ open, onOpenChange, lead, onEdit }: ViewLeadDia
             {/* Cabeçalho com nome e etiquetas */}
             <div className="bg-neutral-50 p-4 rounded-lg">
               <h3 className="text-2xl font-bold text-neutral-900 mb-1">{lead.nome}</h3>
-              <p className="text-sm text-neutral-500">Adicionado por {lead.adicionado_por_nome}</p>
+              <div className="flex items-center gap-2">
+                <p className="text-sm text-neutral-500">Adicionado por {lead.adicionado_por_nome}</p>
+                {isAdmin && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-6 w-6"
+                    onClick={() => {
+                      setSelectedVendedorId(lead.adicionado_por_id)
+                      setShowEditVendedor(true)
+                    }}
+                    title="Alterar vendedor"
+                  >
+                    <UserCog className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Button>
+                )}
+              </div>
+              
+              {/* Dialog para editar vendedor */}
+              {showEditVendedor && (
+                <div className="mt-3 p-3 bg-white border rounded-lg space-y-3">
+                  <Label className="text-xs text-muted-foreground">Alterar vendedor responsável</Label>
+                  <Select value={selectedVendedorId} onValueChange={setSelectedVendedorId}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione um vendedor" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {vendedores.map((v) => (
+                        <SelectItem key={v.id} value={v.id}>
+                          {v.nome} ({v.cargo})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowEditVendedor(false)}
+                      className="flex-1"
+                    >
+                      Cancelar
+                    </Button>
+                    <Button
+                      size="sm"
+                      onClick={handleChangeVendedor}
+                      disabled={savingVendedor || selectedVendedorId === lead.adicionado_por_id}
+                      className="flex-1"
+                    >
+                      {savingVendedor ? <Loader2 className="w-4 h-4 animate-spin" /> : "Salvar"}
+                    </Button>
+                  </div>
+                </div>
+              )}
               
               {/* Etiquetas */}
               {etiquetas.length > 0 && (
@@ -287,8 +457,8 @@ export function ViewLeadDialog({ open, onOpenChange, lead, onEdit }: ViewLeadDia
                   {etiquetas.map((etiqueta) => (
                     <Badge
                       key={etiqueta.id}
-                      className="text-xs flex items-center gap-1 text-white"
-                      style={{ backgroundColor: etiqueta.cor }}
+                      className="text-xs flex items-center gap-1"
+                      style={{ backgroundColor: etiqueta.cor, color: getContrastTextColor(etiqueta.cor) }}
                     >
                       <Tag className="w-3 h-3" />
                       {etiqueta.nome}
@@ -403,6 +573,24 @@ export function ViewLeadDialog({ open, onOpenChange, lead, onEdit }: ViewLeadDia
           </Button>
         </div>
       </DialogContent>
+
+      {/* Dialogs do WhatsApp - renderizados fora do Dialog principal para sobrepor */}
+      {chatId && (
+        <>
+          <ChatHistoryDialog 
+            open={showChatHistory} 
+            onOpenChange={setShowChatHistory} 
+            chatId={chatId} 
+            chatName={lead.nome} 
+          />
+          <ChatNotesDialog
+            open={showChatNotes}
+            onOpenChange={setShowChatNotes}
+            chatId={chatId}
+            chatName={lead.nome}
+          />
+        </>
+      )}
     </Dialog>
   )
 }

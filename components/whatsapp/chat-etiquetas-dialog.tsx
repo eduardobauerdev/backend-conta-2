@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge"
 import { Tag, Trash2, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import type { EtiquetaSimple } from "@/lib/whatsapp-types"
+import { getContrastTextColor } from "@/lib/utils"
 
 interface ChatEtiquetasDialogProps {
   open: boolean
@@ -92,8 +93,8 @@ export function ChatEtiquetasDialog({
                 <div className="flex items-center gap-3">
                   <Badge
                     variant="secondary"
-                    className="text-sm px-3 py-1 flex items-center gap-2 border text-white"
-                    style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor }}
+                    className="text-sm px-3 py-1 flex items-center gap-2 border"
+                    style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor, color: getContrastTextColor(etiqueta.cor) }}
                   >
                     <Tag className="w-3.5 h-3.5" />
                     {etiqueta.nome}

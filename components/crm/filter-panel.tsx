@@ -1,24 +1,32 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Filter, Plus, X, User, Thermometer, Phone } from 'lucide-react'
+import { Filter, Plus, X, User, Thermometer, Phone, Tag } from 'lucide-react'
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { getContrastTextColor } from "@/lib/utils"
 
 export interface FilterRule {
   id: string
-  type: "vendedor" | "temperatura" | "acao" | ""
+  type: "vendedor" | "temperatura" | "acao" | "etiqueta" | ""
   value: string
+}
+
+interface Etiqueta {
+  id: string
+  nome: string
+  cor: string
 }
 
 interface FilterPanelProps {
   vendedores: string[]
   acoes: string[]
+  etiquetas?: Etiqueta[]
   onFiltersChange: (filters: FilterRule[]) => void
 }
 
-export function FilterPanel({ vendedores, acoes, onFiltersChange }: FilterPanelProps) {
+export function FilterPanel({ vendedores, acoes, etiquetas = [], onFiltersChange }: FilterPanelProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [filters, setFilters] = useState<FilterRule[]>([
     { id: crypto.randomUUID(), type: "", value: "" }
@@ -130,6 +138,14 @@ export function FilterPanel({ vendedores, acoes, onFiltersChange }: FilterPanelP
                         Ação
                       </div>
                     </SelectItem>
+                    {etiquetas.length > 0 && (
+                      <SelectItem value="etiqueta">
+                        <div className="flex items-center gap-2">
+                          <Tag className="w-4 h-4" />
+                          Etiqueta
+                        </div>
+                      </SelectItem>
+                    )}
                   </SelectContent>
                 </Select>
 
@@ -179,6 +195,30 @@ export function FilterPanel({ vendedores, acoes, onFiltersChange }: FilterPanelP
                       {acoes.map((acao) => (
                         <SelectItem key={acao} value={acao}>
                           {acao}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+
+                {filter.type === "etiqueta" && (
+                  <Select
+                    value={filter.value}
+                    onValueChange={(value) => handleFilterValueChange(filter.id, value)}
+                  >
+                    <SelectTrigger className="flex-1">
+                      <SelectValue placeholder="Selecione etiqueta..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {etiquetas.map((etiqueta) => (
+                        <SelectItem key={etiqueta.id} value={etiqueta.id}>
+                          <div className="flex items-center gap-2">
+                            <div 
+                              className="w-3 h-3 rounded" 
+                              style={{ backgroundColor: etiqueta.cor }}
+                            />
+                            {etiqueta.nome}
+                          </div>
                         </SelectItem>
                       ))}
                     </SelectContent>
