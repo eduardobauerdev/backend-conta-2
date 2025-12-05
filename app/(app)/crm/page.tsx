@@ -115,7 +115,14 @@ export default function CRMPage() {
   const [convertingLead, setConvertingLead] = useState<Lead | null>(null)
   const [unconvertingLead, setUnconvertingLead] = useState<Lead | null>(null)
   const [highlightedLeadId, setHighlightedLeadId] = useState<string | null>(null)
-  const [onlyMyLeads, setOnlyMyLeads] = useState(false)
+  const [onlyMyLeads, setOnlyMyLeads] = useState(() => {
+    // Carrega o estado do localStorage se disponível
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('crm-only-my-leads')
+      return saved === 'true'
+    }
+    return false
+  })
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [etiquetas, setEtiquetas] = useState<{ id: string; nome: string; cor: string }[]>([])
   const [chatEtiquetasMap, setChatEtiquetasMap] = useState<Record<string, string[]>>({}) // chat_uuid -> etiqueta_ids
@@ -134,6 +141,11 @@ export default function CRMPage() {
       },
     }),
   )
+
+  // Persiste o estado "apenas meus leads" no localStorage
+  useEffect(() => {
+    localStorage.setItem('crm-only-my-leads', String(onlyMyLeads))
+  }, [onlyMyLeads])
 
   // Efeito para destacar o lead quando vem por URL
   useEffect(() => {

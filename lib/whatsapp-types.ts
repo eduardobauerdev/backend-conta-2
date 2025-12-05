@@ -11,12 +11,12 @@ export interface Chat {
   id: string
   uuid?: string  // UUID interno estável
   name: string
+  phone?: string | null  // telefone formatado
   lastMessage: string | null
   lastMessageTime: number | null
   unreadCount: number
   pictureUrl?: string | null
   profilePic?: string | null
-  telefone?: string | null
   // IDs das etiquetas (do banco - array de UUIDs)
   etiqueta_ids?: string[]
   // Array de etiquetas resolvidas (com nome e cor)
@@ -53,7 +53,7 @@ export interface ConnectionStatus {
   connected: boolean
   phone: string | null
   qr: string | null
-  status?: "connected" | "disconnected" | "qr_ready" | "loading"
+  status?: "connected" | "disconnected" | "qr_ready" | "loading" | "syncing" | "qr"
   device?: {
     name?: string
     platform?: string

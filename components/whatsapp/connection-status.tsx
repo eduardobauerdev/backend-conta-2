@@ -95,7 +95,8 @@ export function ConnectionStatus({ onStatusChange }: ConnectionStatusProps) {
 
   // Atualiza o estado local com base nos dados do banco
   const updateState = (data: any) => {
-    const isConnected = data.status === "connected"
+    // "syncing" também é considerado conectado (está conectado, apenas sincronizando mensagens)
+    const isConnected = data.status === "connected" || data.status === "syncing"
     
     setState({
       connected: isConnected,
@@ -119,22 +120,31 @@ export function ConnectionStatus({ onStatusChange }: ConnectionStatusProps) {
     )
   }
 
-  // CASO 1: CONECTADO
+  // CASO 1: CONECTADO (inclui "syncing" - conectado e sincronizando)
   if (state.connected) {
     const formattedPhone = state.phone ? formatPhoneNumber(state.phone) : "Online"
+    const isSyncing = state.status === "syncing"
 
     return (
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
             <Badge variant="default" className="gap-2 cursor-help bg-green-600 hover:bg-green-700 px-3 py-1 text-xs font-medium">
-              <CheckCircle2 className="w-3.5 h-3.5" />
+              {isSyncing ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <CheckCircle2 className="w-3.5 h-3.5" />
+              )}
               <span className="hidden sm:inline">{formattedPhone}</span>
-              <span className="sm:hidden">Online</span>
+              <span className="sm:hidden">{isSyncing ? "Sincronizando" : "Online"}</span>
             </Badge>
           </TooltipTrigger>
           <TooltipContent>
-            <p className="text-sm">WhatsApp conectado e sincronizado</p>
+            <p className="text-sm">
+              {isSyncing 
+                ? "WhatsApp conectado - Sincronizando mensagens..." 
+                : "WhatsApp conectado e sincronizado"}
+            </p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

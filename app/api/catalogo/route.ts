@@ -11,9 +11,27 @@ export async function GET() {
       .select('*')
       .order('created_at', { ascending: false })
 
-    if (error) throw error
+    if (error) {
+      // Se a tabela não existir ou houver erro de relação, retorna array vazio
+      // Códigos comuns: 42P01 (undefined_table), PGRST116 (relation not found)
+      const isTableMissing = 
+        error.code === '42P01' || 
+        error.code === 'PGRST116' ||
+        error.message?.toLowerCase().includes('does not exist') ||
+        error.message?.toLowerCase().includes('relation') ||
+        error.message?.toLowerCase().includes('not found')
+      
+      if (isTableMissing) {
+        console.warn('Tabela catalogos não existe no banco de dados. Execute o script 011_create_catalog_tables.sql para criá-la.')
+        return NextResponse.json([])
+      }
+      
+      console.error('Erro Supabase ao buscar catálogos:', error)
+      throw error
+    }
 
-    return NextResponse.json(data)
+    // Garante que sempre retorna um array
+    return NextResponse.json(data || [])
   } catch (error) {
     console.error('Erro ao buscar catálogos:', error)
     return NextResponse.json(

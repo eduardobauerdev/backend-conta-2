@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { ColorPalette } from "@/components/ui/color-palette"
 import {
   UserCogIcon,
   User,
@@ -34,6 +35,7 @@ import {
   Star,
   ToggleLeft,
   ToggleRight,
+  AlertTriangle,
 } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { useUser } from "@/contexts/user-context"
@@ -155,7 +157,8 @@ export default function AjustesPage() {
               .eq("id", 1)
               .single()
           
-          setIsWhatsAppConnected(data?.status === "connected")
+          // "syncing" também é considerado conectado
+          setIsWhatsAppConnected(data?.status === "connected" || data?.status === "syncing")
       }
       fetchStatus()
 
@@ -167,9 +170,10 @@ export default function AjustesPage() {
               { event: "UPDATE", schema: "public", table: "instance_settings", filter: "id=eq.1" },
               (payload) => {
                   const status = payload.new.status
-                  setIsWhatsAppConnected(status === "connected")
+                  // "syncing" também é considerado conectado
+                  setIsWhatsAppConnected(status === "connected" || status === "syncing")
                   // Se conectar, fecha o QR automaticamente
-                  if (status === "connected") setShowQR(false)
+                  if (status === "connected" || status === "syncing") setShowQR(false)
               }
           )
           .subscribe()
@@ -216,6 +220,12 @@ export default function AjustesPage() {
     cor: "#3B82F6",
     descricao: "",
   })
+  
+  // Estados do diálogo de exclusão de etiqueta
+  const [deleteEtiquetaDialogOpen, setDeleteEtiquetaDialogOpen] = useState(false)
+  const [etiquetaToDelete, setEtiquetaToDelete] = useState<Etiqueta | null>(null)
+  const [deleteConfirmationText, setDeleteConfirmationText] = useState("")
+  const [isDeletingEtiqueta, setIsDeletingEtiqueta] = useState(false)
 
   // Estados do Catálogo
   const [catalogos, setCatalogos] = useState<Catalogo[]>([])
@@ -684,25 +694,46 @@ export default function AjustesPage() {
     }
   }
 
-  async function handleDeleteEtiqueta(id: string) {
-    if (!confirm("Tem certeza que deseja deletar esta etiqueta?")) {
+  async function handleDeleteEtiqueta(etiqueta: Etiqueta) {
+    // Verifica se o usuário tem permissão (apenas Administrador e Desenvolvedor)
+    const userCargo = user?.cargo?.toLowerCase() || ""
+    const hasPermission = userCargo === "administrador" || userCargo === "desenvolvedor"
+    
+    if (!hasPermission) {
+      toast.error("Você não tem permissão para excluir etiquetas")
       return
     }
 
+    // Abre o diálogo de confirmação
+    setEtiquetaToDelete(etiqueta)
+    setDeleteConfirmationText("")
+    setDeleteEtiquetaDialogOpen(true)
+  }
+
+  async function confirmDeleteEtiqueta() {
+    if (!etiquetaToDelete) return
+
+    setIsDeletingEtiqueta(true)
+
     try {
-      const response = await fetch(`/api/whatsapp/etiquetas?id=${id}`, { method: "DELETE" })
+      const response = await fetch(`/api/whatsapp/etiquetas?id=${etiquetaToDelete.id}`, { method: "DELETE" })
 
       const data = await response.json()
 
       if (data.success) {
-        toast.success("Etiqueta deletada")
+        toast.success("Etiqueta deletada com sucesso")
         loadEtiquetas()
+        setDeleteEtiquetaDialogOpen(false)
+        setEtiquetaToDelete(null)
+        setDeleteConfirmationText("")
       } else {
         toast.error(data.message || "Erro ao deletar etiqueta")
       }
     } catch (error) {
       console.error("Erro ao deletar etiqueta:", error)
       toast.error("Erro ao deletar etiqueta")
+    } finally {
+      setIsDeletingEtiqueta(false)
     }
   }
 
@@ -713,11 +744,18 @@ export default function AjustesPage() {
       setLoadingCatalogos(true)
       const response = await fetch("/api/catalogo")
       const data = await response.json()
-      // Verifica se é um array antes de setar (API pode retornar { error: ... } em caso de erro)
+      // Verifica se é um array antes de setar (API pode retornar { error: ... } em caso de erro ou null)
       if (Array.isArray(data)) {
         setCatalogos(data)
+      } else if (data === null) {
+        // API retornou null (sem catálogos), trata como array vazio
+        setCatalogos([])
+      } else if (data?.error) {
+        // API retornou erro estruturado - não mostra toast, apenas usa array vazio
+        // A tabela pode não existir ainda no banco de dados
+        setCatalogos([])
       } else {
-        console.error("API retornou formato inválido:", data)
+        // Outro formato inesperado
         setCatalogos([])
       }
     } catch (error) {
@@ -1499,7 +1537,7 @@ export default function AjustesPage() {
                             variant="ghost"
                             size="icon"
                             className="h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50"
-                            onClick={() => handleDeleteEtiqueta(etiqueta.id)}
+                            onClick={() => handleDeleteEtiqueta(etiqueta)}
                           >
                             <Trash2 className="w-4 h-4" />
                           </Button>
@@ -2021,22 +2059,11 @@ export default function AjustesPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="etiqueta-cor">Cor</Label>
-              <div className="flex gap-2">
-                <Input
-                  id="etiqueta-cor"
-                  type="color"
-                  value={etiquetaForm.cor}
-                  onChange={(e) => setEtiquetaForm({ ...etiquetaForm, cor: e.target.value })}
-                  className="w-20 h-10 cursor-pointer"
-                />
-                <Input
-                  value={etiquetaForm.cor}
-                  onChange={(e) => setEtiquetaForm({ ...etiquetaForm, cor: e.target.value })}
-                  placeholder="#3B82F6"
-                  className="flex-1"
-                />
-              </div>
+              <Label>Cor</Label>
+              <ColorPalette
+                value={etiquetaForm.cor}
+                onChange={(cor) => setEtiquetaForm({ ...etiquetaForm, cor })}
+              />
             </div>
 
             <div className="space-y-2">
@@ -2075,6 +2102,103 @@ export default function AjustesPage() {
         </DialogContent>
       </Dialog>
 
+      {/* Dialog de Confirmação de Exclusão de Etiqueta */}
+      <Dialog open={deleteEtiquetaDialogOpen} onOpenChange={(open) => {
+        if (!open) {
+          setDeleteEtiquetaDialogOpen(false)
+          setEtiquetaToDelete(null)
+          setDeleteConfirmationText("")
+        }
+      }}>
+        <DialogContent className="border-red-200 bg-red-50">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-red-700">
+              <AlertTriangle className="w-5 h-5 text-amber-500" />
+              Excluir Etiqueta
+            </DialogTitle>
+            <DialogDescription className="text-red-600">
+              Esta ação não pode ser desfeita
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 py-4">
+            {/* Aviso */}
+            <div className="flex items-start gap-3 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+              <AlertTriangle className="w-6 h-6 text-amber-500 flex-shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="font-medium text-amber-800">Atenção!</p>
+                <p className="text-sm text-amber-700">
+                  Ao excluir esta etiqueta, ela será <strong>permanentemente removida</strong> de todos os chats e leads que a contêm. 
+                  Esta ação não pode ser desfeita.
+                </p>
+              </div>
+            </div>
+
+            {/* Preview da etiqueta */}
+            {etiquetaToDelete && (
+              <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-red-200">
+                <div
+                  className="w-10 h-10 rounded-lg flex items-center justify-center"
+                  style={{ backgroundColor: etiquetaToDelete.cor }}
+                >
+                  <Tag className="w-5 h-5 text-white" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-medium text-neutral-900">{etiquetaToDelete.nome}</p>
+                  {etiquetaToDelete.descricao && (
+                    <p className="text-xs text-neutral-500">{etiquetaToDelete.descricao}</p>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Campo de confirmação */}
+            <div className="space-y-2">
+              <Label className="text-red-700">
+                Para confirmar, digite: <strong className="font-mono">excluir etiqueta {etiquetaToDelete?.nome}</strong>
+              </Label>
+              <Input
+                placeholder={`excluir etiqueta ${etiquetaToDelete?.nome || ""}`}
+                value={deleteConfirmationText}
+                onChange={(e) => setDeleteConfirmationText(e.target.value)}
+                className="border-red-200 focus:border-red-400 focus:ring-red-400"
+              />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button 
+              variant="outline" 
+              onClick={() => {
+                setDeleteEtiquetaDialogOpen(false)
+                setEtiquetaToDelete(null)
+                setDeleteConfirmationText("")
+              }}
+              className="border-neutral-300"
+            >
+              Cancelar
+            </Button>
+            <Button
+              onClick={confirmDeleteEtiqueta}
+              disabled={deleteConfirmationText !== `excluir etiqueta ${etiquetaToDelete?.nome}` || isDeletingEtiqueta}
+              className="bg-red-600 hover:bg-red-700 text-white disabled:bg-red-300"
+            >
+              {isDeletingEtiqueta ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Excluindo...
+                </>
+              ) : (
+                <>
+                  <Trash2 className="w-4 h-4 mr-2" />
+                  Excluir Permanentemente
+                </>
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       {/* Dialog de Catálogo */}
       <Dialog open={catalogoDialogOpen} onOpenChange={setCatalogoDialogOpen}>
         <DialogContent>
@@ -2106,22 +2230,11 @@ export default function AjustesPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="catalogo-cor">Cor Primária</Label>
-              <div className="flex gap-2">
-                <Input
-                  id="catalogo-cor"
-                  type="color"
-                  value={catalogoForm.cor_primaria}
-                  onChange={(e) => setCatalogoForm({ ...catalogoForm, cor_primaria: e.target.value })}
-                  className="w-20 h-10 cursor-pointer"
-                />
-                <Input
-                  value={catalogoForm.cor_primaria}
-                  onChange={(e) => setCatalogoForm({ ...catalogoForm, cor_primaria: e.target.value })}
-                  placeholder="#000000"
-                  className="flex-1"
-                />
-              </div>
+              <Label>Cor Primária</Label>
+              <ColorPalette
+                value={catalogoForm.cor_primaria}
+                onChange={(cor) => setCatalogoForm({ ...catalogoForm, cor_primaria: cor })}
+              />
             </div>
 
             <div className="space-y-2">

@@ -219,7 +219,8 @@ export function Sidebar() {
             .eq("id", 1)
             .single()
         
-        setIsWhatsAppConnected(data?.status === "connected")
+        // "syncing" também é considerado conectado
+        setIsWhatsAppConnected(data?.status === "connected" || data?.status === "syncing")
     }
     fetchStatus()
 
@@ -231,7 +232,8 @@ export function Sidebar() {
             { event: "UPDATE", schema: "public", table: "instance_settings", filter: "id=eq.1" },
             (payload) => {
                 const status = payload.new.status
-                setIsWhatsAppConnected(status === "connected")
+                // "syncing" também é considerado conectado
+                setIsWhatsAppConnected(status === "connected" || status === "syncing")
             }
         )
         .subscribe()

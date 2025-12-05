@@ -6,7 +6,7 @@ import { ChatList } from "@/components/whatsapp/chat-list"
 import { ChatWindow } from "@/components/whatsapp/chat-window"
 import { ConnectionStatus } from "@/components/whatsapp/connection-status"
 import { Card } from "@/components/ui/card"
-import { MessageSquare, Unplug, Settings } from "lucide-react"
+import { MessageSquare, Unplug, Settings, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { useWhatsAppCache } from "@/contexts/whatsapp-cache-context"
@@ -29,6 +29,7 @@ export default function WhatsAppPage() {
   const [refreshTrigger, setRefreshTrigger] = useState(0)
   const [isConnected, setIsConnected] = useState(false)
   const [isChecking, setIsChecking] = useState(true)
+  const [isSyncing, setIsSyncing] = useState(false)
   const [showLeadPanel, setShowLeadPanel] = useState(false)
   const [selectedChat, setSelectedChat] = useState<Chat | null>(null)
   const chatListRef = useRef<any>(null)
@@ -37,21 +38,60 @@ export default function WhatsAppPage() {
   useEffect(() => {
       const checkStatus = async () => {
           const { data } = await supabase.from('instance_settings').select('status').eq('id', 1).single()
-          setIsConnected(data?.status === 'connected')
+          const status = data?.status
+          
+          if (status === 'syncing') {
+              setIsSyncing(true)
+              setIsConnected(false)
+          } else if (status === 'connected') {
+              setIsConnected(true)
+              setIsSyncing(false)
+          } else {
+              setIsConnected(false)
+              setIsSyncing(false)
+          }
+          
           setIsChecking(false)
       }
       checkStatus()
+      
+      // Realtime para mudanças no status
+      const channel = supabase
+          .channel('whatsapp-status')
+          .on(
+              'postgres_changes',
+              { event: 'UPDATE', schema: 'public', table: 'instance_settings', filter: 'id=eq.1' },
+              (payload) => {
+                  const status = payload.new.status
+                  
+                  if (status === 'syncing') {
+                      setIsSyncing(true)
+                      setIsConnected(false)
+                  } else if (status === 'connected') {
+                      setIsConnected(true)
+                      setIsSyncing(false)
+                  } else {
+                      setIsConnected(false)
+                      setIsSyncing(false)
+                  }
+              }
+          )
+          .subscribe()
+
+      return () => {
+          supabase.removeChannel(channel)
+      }
   }, [supabase])
 
   // Navegar para o chat quando vem por parâmetro de URL
   useEffect(() => {
     async function findAndSelectChat() {
-      if (!isConnected || isChecking) return
+      if ((!isConnected && !isSyncing) || isChecking) return
       
       if (chatUuidParam) {
         // Busca chat pelo UUID
         const { data } = await supabase
-          .from("chats")
+          .from("chat_last_message_view")
           .select("*")
           .eq("uuid", chatUuidParam)
           .single()
@@ -64,7 +104,7 @@ export default function WhatsAppPage() {
       } else if (telefoneParam) {
         // Busca chat pelo telefone
         const { data } = await supabase
-          .from("chats")
+          .from("chat_last_message_view")
           .select("*")
           .or(`id.eq.${telefoneParam}@s.whatsapp.net,telefone.eq.${telefoneParam}`)
           .limit(1)
@@ -78,7 +118,7 @@ export default function WhatsAppPage() {
     }
     
     findAndSelectChat()
-  }, [chatUuidParam, telefoneParam, isConnected, isChecking])
+  }, [chatUuidParam, telefoneParam, isConnected, isSyncing, isChecking, supabase])
 
   function handleSelectChat(chat: Chat) {
     setSelectedChatId(chat.id)
@@ -104,23 +144,47 @@ export default function WhatsAppPage() {
           <p className="text-muted-foreground mt-1">Gerencie suas conversas do WhatsApp</p>
         </div>
         
-        {isConnected && (
+        {(isConnected || isSyncing) && (
             <div className="flex flex-col gap-2">
             <ConnectionStatus onStatusChange={setIsConnected} />
-            <NewContactDialog
-                onContactCreated={(chatId) => {
-                handleRefreshChats()
-                setTimeout(() => {
-                    setSelectedChatId(chatId)
-                }, 500)
-                toast.success("Conversa iniciada com sucesso!")
-                }}
-            />
+            {isConnected && (
+                <NewContactDialog
+                    onContactCreated={(chatId) => {
+                    handleRefreshChats()
+                    setTimeout(() => {
+                        setSelectedChatId(chatId)
+                    }, 500)
+                    toast.success("Conversa iniciada com sucesso!")
+                    }}
+                />
+            )}
             </div>
         )}
       </div>
 
-      {!isConnected ? (
+      {isSyncing ? (
+        <div className="flex-1 flex items-center justify-center">
+            <Card className="w-full max-w-md p-12 flex flex-col items-center text-center gap-6 bg-green-50/50 border-green-200">
+                <div className="p-6 bg-green-100 rounded-full shadow-sm border border-green-200">
+                    <Loader2 className="w-12 h-12 text-green-600 animate-spin" />
+                </div>
+                
+                <div className="space-y-2">
+                    <h2 className="text-xl font-semibold text-green-800">Sincronizando mensagens</h2>
+                    <p className="text-sm text-green-600 max-w-xs mx-auto">
+                        Seu WhatsApp foi conectado com sucesso! Estamos carregando suas conversas...
+                    </p>
+                </div>
+
+                <Link href="/ajustes?tab=whatsapp">
+                    <Button size="lg" className="gap-2 bg-green-600 hover:bg-green-700 text-white">
+                        <Settings className="w-4 h-4" />
+                        Ver Status da Conexão
+                    </Button>
+                </Link>
+            </Card>
+        </div>
+      ) : !isConnected ? (
         <div className="flex-1 flex items-center justify-center">
             <Card className="w-full max-w-md p-12 flex flex-col items-center text-center gap-6 border-2 border-dashed border-neutral-300 bg-neutral-50/50">
                 <div className="p-6 bg-white rounded-full shadow-sm border border-neutral-200">

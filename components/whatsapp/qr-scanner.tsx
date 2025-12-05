@@ -15,6 +15,7 @@ export function QRScanner({ onConnected }: QRScannerProps) {
   const [qrImage, setQrImage] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [sessionActive, setSessionActive] = useState(false)
+  const [isSyncing, setIsSyncing] = useState(false)
   
   const supabase = createClient()
 
@@ -32,6 +33,11 @@ export function QRScanner({ onConnected }: QRScannerProps) {
           if (data.status === 'qr' && data.qr_code) {
             setQrImage(data.qr_code);
             setSessionActive(true);
+            setIsSyncing(false);
+          } else if (data.status === 'syncing') {
+            setIsSyncing(true);
+            setSessionActive(false);
+            setQrImage(null);
           } else if (data.status === 'connected') {
             onConnected();
           }
@@ -54,14 +60,21 @@ export function QRScanner({ onConnected }: QRScannerProps) {
           if (newData.status === 'connected') {
             toast.success("Conectado com sucesso!");
             onConnected();
+          } else if (newData.status === 'syncing') {
+            setIsSyncing(true);
+            setSessionActive(false);
+            setQrImage(null);
+            setLoading(false);
           } else if (newData.status === 'qr' && newData.qr_code) {
             setQrImage(newData.qr_code);
             setLoading(false);
             setSessionActive(true);
+            setIsSyncing(false);
           } else if (newData.status === 'disconnected') {
             setQrImage(null);
             setSessionActive(false);
             setLoading(false);
+            setIsSyncing(false);
           }
         }
       )
@@ -135,6 +148,32 @@ export function QRScanner({ onConnected }: QRScannerProps) {
   }
 
   // --- RENDERIZAÇÃO ---
+
+  // Estado de sincronização
+  if (isSyncing) {
+    return (
+      <Card className="p-8 flex flex-col items-center justify-center gap-6 min-h-[300px]">
+        <div className="p-6 bg-green-50 rounded-full border border-green-200">
+          <Loader2 className="w-12 h-12 animate-spin text-green-600" />
+        </div>
+        
+        <div className="text-center space-y-3">
+          <h3 className="font-semibold text-lg text-green-800">Sincronizando mensagens</h3>
+          <p className="text-sm text-green-600 max-w-sm mx-auto">
+            Seu WhatsApp foi conectado com sucesso! Estamos sincronizando suas conversas...
+          </p>
+        </div>
+
+        <Button 
+          onClick={() => onConnected()} 
+          size="lg" 
+          className="bg-green-600 hover:bg-green-700 text-white"
+        >
+          Ir para o WhatsApp
+        </Button>
+      </Card>
+    )
+  }
 
   if (loading && !qrImage) {
     return (

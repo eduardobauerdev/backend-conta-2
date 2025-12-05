@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Separator } from "@/components/ui/separator"
+import { ColorPalette } from "@/components/ui/color-palette"
 import { createClient } from "@/lib/supabase/client"
 import { toast } from "sonner"
 import { Spinner } from "@/components/ui/spinner"
@@ -199,7 +200,7 @@ export function CreateRoleDialog({ open, onOpenChange, onSuccess }: CreateRoleDi
           <div className="space-y-4">
             <h3 className="text-sm font-semibold">Dados do Cargo</h3>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="nome">Nome do cargo</Label>
                 <Input
@@ -212,22 +213,11 @@ export function CreateRoleDialog({ open, onOpenChange, onSuccess }: CreateRoleDi
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="cor">Cor do cargo</Label>
-                <div className="flex gap-2">
-                  <Input
-                    id="cor"
-                    type="color"
-                    value={formData.cor}
-                    onChange={(e) => setFormData({ ...formData, cor: e.target.value })}
-                    className="w-20 h-10 cursor-pointer"
-                    disabled={loading}
-                  />
-                  <Input
-                    value={formData.cor}
-                    onChange={(e) => setFormData({ ...formData, cor: e.target.value })}
-                    disabled={loading}
-                  />
-                </div>
+                <Label>Cor do cargo</Label>
+                <ColorPalette
+                  value={formData.cor}
+                  onChange={(cor) => setFormData({ ...formData, cor })}
+                />
               </div>
             </div>
 

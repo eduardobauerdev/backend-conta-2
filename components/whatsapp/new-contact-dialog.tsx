@@ -110,12 +110,12 @@ export function NewContactDialog({ onContactCreated }: NewContactDialogProps) {
       <DialogTrigger asChild>
         <Button variant="outline" className="w-full gap-2 bg-transparent">
           <UserPlus className="w-4 h-4" />
-          Novo Contato
+          Chamar Novo Contato
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Novo Contato</DialogTitle>
+          <DialogTitle>Chamar Novo Contato</DialogTitle>
           <DialogDescription>Inicie uma conversa com um novo número do WhatsApp</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>

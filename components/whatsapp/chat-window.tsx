@@ -27,6 +27,8 @@ import { TagSelector } from "./tag-selector"
 import { ChatEtiquetasDialog } from "./chat-etiquetas-dialog"
 import { ChatNotesDialog } from "./chat-notes-dialog"
 import { NoteBadge } from "./note-badge"
+import { ProfilePictureModal } from "./profile-picture-modal"
+import { DateSeparator, shouldShowDateSeparator } from "./date-separator"
 import type { Etiqueta, EtiquetaSimple } from "@/lib/whatsapp-types"
 import { getContrastTextColor, formatPhoneNumber } from "@/lib/utils"
 
@@ -97,6 +99,7 @@ export function ChatWindow({
   const [showEditNameDialog, setShowEditNameDialog] = useState(false)
   const [showEtiquetasDialog, setShowEtiquetasDialog] = useState(false)
   const [showNotesDialog, setShowNotesDialog] = useState(false)
+  const [showProfilePictureModal, setShowProfilePictureModal] = useState(false)
   const [hasNotes, setHasNotes] = useState(false)
   const [noteContent, setNoteContent] = useState<string | null>(null)
   const [hasHistory, setHasHistory] = useState(false)
@@ -124,7 +127,9 @@ export function ChatWindow({
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const safeChatName = chatName && chatName.trim().length > 0 ? chatName : chatId || "Contato"
+  const safeChatName = chatName && chatName.trim().length > 0 
+    ? chatName 
+    : chatTelefone || chatId?.split('@')[0] || "Contato"
   const profilePictureUrl = `${BACKEND_URL}/chats/avatar/${chatId}`;
 
   // Verifica se existe lead vinculado ao chat
@@ -632,7 +637,10 @@ export function ChatWindow({
         {/* Linha 1: Avatar, Nome, Atribuição, Etiquetas, Notas e Botões */}
         <div className="flex items-center justify-between px-4 pt-1 pb-3">
           <div className="flex items-center gap-3 flex-1 min-w-0">
-            <Avatar className="w-10 h-10 flex-shrink-0">
+            <Avatar 
+              className="w-10 h-10 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => setShowProfilePictureModal(true)}
+            >
               <AvatarImage 
                 src={profilePictureUrl}
                 alt={safeChatName} 
@@ -880,7 +888,22 @@ export function ChatWindow({
               {messages.length === 0 ? (
                 <div className="flex items-center justify-center h-full"><p className="text-muted-foreground">Nenhuma mensagem ainda</p></div>
               ) : (
-                messages.map((message) => <MessageBubble key={message.id} message={message} />)
+                messages.map((message, index) => {
+                  const previousMessage = index > 0 ? messages[index - 1] : null
+                  const showDateSeparator = shouldShowDateSeparator(
+                    message.timestamp,
+                    previousMessage?.timestamp || null
+                  )
+                  
+                  return (
+                    <div key={message.id}>
+                      {showDateSeparator && (
+                        <DateSeparator date={new Date(message.timestamp)} />
+                      )}
+                      <MessageBubble message={message} />
+                    </div>
+                  )
+                })
               )}
               <div ref={scrollRef} />
             </div>
@@ -962,6 +985,13 @@ export function ChatWindow({
           checkNotes()
           checkHistory()
         }}
+      />
+
+      <ProfilePictureModal
+        open={showProfilePictureModal}
+        onOpenChange={setShowProfilePictureModal}
+        imageUrl={profilePictureUrl}
+        name={safeChatName}
       />
     </div>
   )

@@ -2224,11 +2224,19 @@ function AjustesPage() {
             setLoadingCatalogos(true);
             const response = await fetch("/api/catalogo");
             const data = await response.json();
-            // Verifica se é um array antes de setar (API pode retornar { error: ... } em caso de erro)
+            // Verifica se é um array antes de setar (API pode retornar { error: ... } em caso de erro ou null)
             if (Array.isArray(data)) {
                 setCatalogos(data);
+            } else if (data === null) {
+                // API retornou null (sem catálogos), trata como array vazio
+                setCatalogos([]);
+            } else if (data?.error) {
+                // API retornou erro estruturado
+                console.error("Erro da API:", data.error);
+                setCatalogos([]);
             } else {
-                console.error("API retornou formato inválido:", data);
+                // Outro formato inesperado
+                console.warn("API de catálogos retornou formato inesperado, usando array vazio");
                 setCatalogos([]);
             }
         } catch (error) {
@@ -2590,7 +2598,7 @@ function AjustesPage() {
                                 children: "Ajustes"
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 1070,
+                                lineNumber: 1079,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2598,13 +2606,13 @@ function AjustesPage() {
                                 children: "Configurações do sistema"
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 1071,
+                                lineNumber: 1080,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                        lineNumber: 1069,
+                        lineNumber: 1078,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -2618,20 +2626,20 @@ function AjustesPage() {
                                         className: "w-5 h-5 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1082,
+                                        lineNumber: 1091,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Usuário"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1083,
+                                        lineNumber: 1092,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 1074,
+                                lineNumber: 1083,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2642,7 +2650,7 @@ function AjustesPage() {
                                         className: "w-5 h-5 flex-shrink-0 text-green-500"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1096,
+                                        lineNumber: 1105,
                                         columnNumber: 15
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                         xmlns: "http://www.w3.org/2000/svg",
@@ -2660,40 +2668,40 @@ function AjustesPage() {
                                                 d: "M19 19H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.7.7 0 0 1 2 21.286V5a2 2 0 0 1 1.184-1.826"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1110,
+                                                lineNumber: 1119,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                 d: "m2 2 20 20"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1111,
+                                                lineNumber: 1120,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                 d: "M8.656 3H20a2 2 0 0 1 2 2v11.344"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1112,
+                                                lineNumber: 1121,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1098,
+                                        lineNumber: 1107,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "WhatsApp"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1115,
+                                        lineNumber: 1124,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 1086,
+                                lineNumber: 1095,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2704,20 +2712,20 @@ function AjustesPage() {
                                         className: "w-5 h-5 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1126,
+                                        lineNumber: 1135,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Respostas Rápidas"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1127,
+                                        lineNumber: 1136,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 1118,
+                                lineNumber: 1127,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2728,20 +2736,20 @@ function AjustesPage() {
                                         className: "w-5 h-5 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1138,
+                                        lineNumber: 1147,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Etiquetas"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1139,
+                                        lineNumber: 1148,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 1130,
+                                lineNumber: 1139,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2752,20 +2760,20 @@ function AjustesPage() {
                                         className: "w-5 h-5 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1150,
+                                        lineNumber: 1159,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Catálogo"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1151,
+                                        lineNumber: 1160,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 1142,
+                                lineNumber: 1151,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2776,32 +2784,32 @@ function AjustesPage() {
                                         className: "w-5 h-5 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1160,
+                                        lineNumber: 1169,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Links Úteis"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1161,
+                                        lineNumber: 1170,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 1154,
+                                lineNumber: 1163,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                        lineNumber: 1073,
+                        lineNumber: 1082,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 1068,
+                lineNumber: 1077,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2817,7 +2825,7 @@ function AjustesPage() {
                                     children: "Perfil do Usuário"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1170,
+                                    lineNumber: 1179,
                                     columnNumber: 15
                                 }, this),
                                 loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2826,12 +2834,12 @@ function AjustesPage() {
                                         className: "w-6 h-6 animate-spin text-neutral-600"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1174,
+                                        lineNumber: 1183,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1173,
+                                    lineNumber: 1182,
                                     columnNumber: 17
                                 }, this) : userProfile ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "space-y-6",
@@ -2846,19 +2854,19 @@ function AjustesPage() {
                                                         alt: userProfile.nome
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1181,
+                                                        lineNumber: 1190,
                                                         columnNumber: 25
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AvatarFallback"], {
                                                         className: "text-2xl bg-neutral-200 text-neutral-700",
                                                         children: userProfile.nome.charAt(0).toUpperCase()
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1183,
+                                                        lineNumber: 1192,
                                                         columnNumber: 25
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1179,
+                                                    lineNumber: 1188,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -2870,20 +2878,20 @@ function AjustesPage() {
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1189,
+                                                            lineNumber: 1198,
                                                             columnNumber: 23
                                                         }, this),
                                                         "Editar Foto"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1188,
+                                                    lineNumber: 1197,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1178,
+                                            lineNumber: 1187,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2896,14 +2904,14 @@ function AjustesPage() {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1196,
+                                                            lineNumber: 1205,
                                                             columnNumber: 23
                                                         }, this),
                                                         "Nome Completo"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1195,
+                                                    lineNumber: 1204,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -2913,13 +2921,13 @@ function AjustesPage() {
                                                     placeholder: "Digite seu nome"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1199,
+                                                    lineNumber: 1208,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1194,
+                                            lineNumber: 1203,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2931,14 +2939,14 @@ function AjustesPage() {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1209,
+                                                            lineNumber: 1218,
                                                             columnNumber: 23
                                                         }, this),
                                                         "Email"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1208,
+                                                    lineNumber: 1217,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -2947,13 +2955,13 @@ function AjustesPage() {
                                                     className: "bg-neutral-50 text-neutral-600"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1212,
+                                                    lineNumber: 1221,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1207,
+                                            lineNumber: 1216,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2965,14 +2973,14 @@ function AjustesPage() {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1217,
+                                                            lineNumber: 1226,
                                                             columnNumber: 23
                                                         }, this),
                                                         "Cargo"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1216,
+                                                    lineNumber: 1225,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -2981,13 +2989,13 @@ function AjustesPage() {
                                                     className: "bg-neutral-50 text-neutral-600"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1220,
+                                                    lineNumber: 1229,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1215,
+                                            lineNumber: 1224,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3000,7 +3008,7 @@ function AjustesPage() {
                                                         className: "w-4 h-4 mr-2 animate-spin"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1226,
+                                                        lineNumber: 1235,
                                                         columnNumber: 25
                                                     }, this),
                                                     "Salvando..."
@@ -3011,7 +3019,7 @@ function AjustesPage() {
                                                         className: "w-4 h-4 mr-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1231,
+                                                        lineNumber: 1240,
                                                         columnNumber: 25
                                                     }, this),
                                                     "Salvar Alterações"
@@ -3019,7 +3027,7 @@ function AjustesPage() {
                                             }, void 0, true)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1223,
+                                            lineNumber: 1232,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3031,33 +3039,33 @@ function AjustesPage() {
                                                     className: "w-4 h-4 mr-2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1238,
+                                                    lineNumber: 1247,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Sair da Conta"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1237,
+                                            lineNumber: 1246,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1177,
+                                    lineNumber: 1186,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "text-center p-8 text-neutral-600",
                                     children: "Erro ao carregar perfil."
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1243,
+                                    lineNumber: 1252,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1169,
+                            lineNumber: 1178,
                             columnNumber: 13
                         }, this),
                         activeTab === "whatsapp" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -3068,7 +3076,7 @@ function AjustesPage() {
                                     children: "Integração WhatsApp"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1250,
+                                    lineNumber: 1259,
                                     columnNumber: 15
                                 }, this),
                                 loadingWhatsApp ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3076,7 +3084,7 @@ function AjustesPage() {
                                     children: "Carregando configuração..."
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1253,
+                                    lineNumber: 1262,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "space-y-6",
@@ -3090,7 +3098,7 @@ function AjustesPage() {
                                                     children: "URL da API WhatsApp"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1257,
+                                                    lineNumber: 1266,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3104,20 +3112,20 @@ function AjustesPage() {
                                                             className: "border-2 border-neutral-300 flex-1"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1261,
+                                                            lineNumber: 1270,
                                                             columnNumber: 23
                                                         }, this),
                                                         urlSaved && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
                                                             className: "w-6 h-6 text-emerald-600 flex-shrink-0 self-center"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1268,
+                                                            lineNumber: 1277,
                                                             columnNumber: 36
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1260,
+                                                    lineNumber: 1269,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3125,13 +3133,13 @@ function AjustesPage() {
                                                     children: "Insira a URL do servidor da API WhatsApp. A URL é salva automaticamente."
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1270,
+                                                    lineNumber: 1279,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1256,
+                                            lineNumber: 1265,
                                             columnNumber: 19
                                         }, this),
                                         !whatsappServerUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3141,12 +3149,12 @@ function AjustesPage() {
                                                 children: "Você precisa configurar a URL da API antes de conectar o WhatsApp."
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1277,
+                                                lineNumber: 1286,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1276,
+                                            lineNumber: 1285,
                                             columnNumber: 21
                                         }, this),
                                         whatsappServerUrl && !isWhatsAppConnected && !showQR && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3156,7 +3164,7 @@ function AjustesPage() {
                                                     className: "w-12 h-12 text-neutral-500 mx-auto"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1285,
+                                                    lineNumber: 1294,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3166,7 +3174,7 @@ function AjustesPage() {
                                                             children: "WhatsApp não conectado"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1287,
+                                                            lineNumber: 1296,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3174,13 +3182,13 @@ function AjustesPage() {
                                                             children: "Escaneie o QR Code para conectar"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1288,
+                                                            lineNumber: 1297,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1286,
+                                                    lineNumber: 1295,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3191,27 +3199,27 @@ function AjustesPage() {
                                                             className: "w-5 h-5 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1291,
+                                                            lineNumber: 1300,
                                                             columnNumber: 25
                                                         }, this),
                                                         "Conectar WhatsApp"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1290,
+                                                    lineNumber: 1299,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1284,
+                                            lineNumber: 1293,
                                             columnNumber: 21
                                         }, this),
                                         showQR && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$qr$2d$scanner$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["QRScanner"], {
                                             onConnected: handleWhatsAppConnected
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1297,
+                                            lineNumber: 1306,
                                             columnNumber: 30
                                         }, this),
                                         isWhatsAppConnected && !showQR && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3219,7 +3227,7 @@ function AjustesPage() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$whatsapp$2f$connection$2d$status$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ConnectionStatus"], {}, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1301,
+                                                    lineNumber: 1310,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3233,7 +3241,7 @@ function AjustesPage() {
                                                                 className: "w-4 h-4 mr-2 animate-spin"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1310,
+                                                                lineNumber: 1319,
                                                                 columnNumber: 29
                                                             }, this),
                                                             "Desconectando..."
@@ -3244,7 +3252,7 @@ function AjustesPage() {
                                                                 className: "w-4 h-4 mr-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1315,
+                                                                lineNumber: 1324,
                                                                 columnNumber: 29
                                                             }, this),
                                                             "Desconectar WhatsApp"
@@ -3252,25 +3260,25 @@ function AjustesPage() {
                                                     }, void 0, true)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1302,
+                                                    lineNumber: 1311,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1300,
+                                            lineNumber: 1309,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1255,
+                                    lineNumber: 1264,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1249,
+                            lineNumber: 1258,
                             columnNumber: 13
                         }, this),
                         activeTab === "respostas-rapidas" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3285,7 +3293,7 @@ function AjustesPage() {
                                                     children: "Respostas Rápidas"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1331,
+                                                    lineNumber: 1340,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3293,13 +3301,13 @@ function AjustesPage() {
                                                     children: "Gerencie mensagens pré-definidas para responder rapidamente no WhatsApp"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1332,
+                                                    lineNumber: 1341,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1330,
+                                            lineNumber: 1339,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3314,14 +3322,14 @@ function AjustesPage() {
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1342,
+                                                            lineNumber: 1351,
                                                             columnNumber: 21
                                                         }, this),
                                                         "Nova Categoria"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1337,
+                                                    lineNumber: 1346,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3332,26 +3340,26 @@ function AjustesPage() {
                                                             className: "w-4 h-4 mr-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1346,
+                                                            lineNumber: 1355,
                                                             columnNumber: 21
                                                         }, this),
                                                         "Nova Resposta"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1345,
+                                                    lineNumber: 1354,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1336,
+                                            lineNumber: 1345,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1329,
+                                    lineNumber: 1338,
                                     columnNumber: 15
                                 }, this),
                                 loadingReplies ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3360,12 +3368,12 @@ function AjustesPage() {
                                         className: "w-6 h-6 animate-spin text-neutral-600"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1354,
+                                        lineNumber: 1363,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1353,
+                                    lineNumber: 1362,
                                     columnNumber: 17
                                 }, this) : quickReplies.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
                                     className: "p-12 text-center border-2 border-dashed border-neutral-300",
@@ -3374,7 +3382,7 @@ function AjustesPage() {
                                             className: "w-12 h-12 mx-auto text-neutral-400 mb-4"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1358,
+                                            lineNumber: 1367,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3382,7 +3390,7 @@ function AjustesPage() {
                                             children: "Nenhuma resposta rápida cadastrada"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1359,
+                                            lineNumber: 1368,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3390,7 +3398,7 @@ function AjustesPage() {
                                             children: "Crie respostas pré-definidas para agilizar o atendimento no WhatsApp"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1360,
+                                            lineNumber: 1369,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3401,20 +3409,20 @@ function AjustesPage() {
                                                     className: "w-4 h-4 mr-2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1364,
+                                                    lineNumber: 1373,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Criar Primeira Resposta"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1363,
+                                            lineNumber: 1372,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1357,
+                                    lineNumber: 1366,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "space-y-4",
@@ -3436,7 +3444,7 @@ function AjustesPage() {
                                                                     className: "w-5 h-5 text-neutral-600"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1383,
+                                                                    lineNumber: 1392,
                                                                     columnNumber: 29
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3447,7 +3455,7 @@ function AjustesPage() {
                                                                             children: category.name
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1385,
+                                                                            lineNumber: 1394,
                                                                             columnNumber: 31
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3459,38 +3467,38 @@ function AjustesPage() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1386,
+                                                                            lineNumber: 1395,
                                                                             columnNumber: 31
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1384,
+                                                                    lineNumber: 1393,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1382,
+                                                            lineNumber: 1391,
                                                             columnNumber: 27
                                                         }, this),
                                                         isExpanded ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                                             className: "w-5 h-5 text-neutral-600"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1392,
+                                                            lineNumber: 1401,
                                                             columnNumber: 29
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
                                                             className: "w-5 h-5 text-neutral-600"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1394,
+                                                            lineNumber: 1403,
                                                             columnNumber: 29
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1378,
+                                                    lineNumber: 1387,
                                                     columnNumber: 25
                                                 }, this),
                                                 isExpanded && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3509,7 +3517,7 @@ function AjustesPage() {
                                                                                     children: reply.title
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                    lineNumber: 1404,
+                                                                                    lineNumber: 1413,
                                                                                     columnNumber: 37
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3520,13 +3528,13 @@ function AjustesPage() {
                                                                                     ]
                                                                                 }, void 0, true, {
                                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                    lineNumber: 1405,
+                                                                                    lineNumber: 1414,
                                                                                     columnNumber: 37
                                                                                 }, this)
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1403,
+                                                                            lineNumber: 1412,
                                                                             columnNumber: 35
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3541,12 +3549,12 @@ function AjustesPage() {
                                                                                         className: "w-4 h-4"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                        lineNumber: 1414,
+                                                                                        lineNumber: 1423,
                                                                                         columnNumber: 39
                                                                                     }, this)
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                    lineNumber: 1408,
+                                                                                    lineNumber: 1417,
                                                                                     columnNumber: 37
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3558,24 +3566,24 @@ function AjustesPage() {
                                                                                         className: "w-4 h-4"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                        lineNumber: 1422,
+                                                                                        lineNumber: 1431,
                                                                                         columnNumber: 39
                                                                                     }, this)
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                    lineNumber: 1416,
+                                                                                    lineNumber: 1425,
                                                                                     columnNumber: 37
                                                                                 }, this)
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1407,
+                                                                            lineNumber: 1416,
                                                                             columnNumber: 35
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1402,
+                                                                    lineNumber: 1411,
                                                                     columnNumber: 33
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3583,36 +3591,36 @@ function AjustesPage() {
                                                                     children: reply.message
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1426,
+                                                                    lineNumber: 1435,
                                                                     columnNumber: 33
                                                                 }, this)
                                                             ]
                                                         }, reply.id, true, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1401,
+                                                            lineNumber: 1410,
                                                             columnNumber: 31
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1399,
+                                                    lineNumber: 1408,
                                                     columnNumber: 27
                                                 }, this)
                                             ]
                                         }, category.id, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1377,
+                                            lineNumber: 1386,
                                             columnNumber: 23
                                         }, this);
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1369,
+                                    lineNumber: 1378,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1328,
+                            lineNumber: 1337,
                             columnNumber: 13
                         }, this),
                         activeTab === "etiquetas" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3627,7 +3635,7 @@ function AjustesPage() {
                                                     children: "Etiquetas"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1443,
+                                                    lineNumber: 1452,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3635,13 +3643,13 @@ function AjustesPage() {
                                                     children: "Configure etiquetas para categorizar seus chats do WhatsApp"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1444,
+                                                    lineNumber: 1453,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1442,
+                                            lineNumber: 1451,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3652,20 +3660,20 @@ function AjustesPage() {
                                                     className: "w-4 h-4 mr-2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1449,
+                                                    lineNumber: 1458,
                                                     columnNumber: 19
                                                 }, this),
                                                 "Nova Etiqueta"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1448,
+                                            lineNumber: 1457,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1441,
+                                    lineNumber: 1450,
                                     columnNumber: 15
                                 }, this),
                                 loadingEtiquetas ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3674,12 +3682,12 @@ function AjustesPage() {
                                         className: "w-6 h-6 animate-spin text-neutral-600"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1456,
+                                        lineNumber: 1465,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1455,
+                                    lineNumber: 1464,
                                     columnNumber: 17
                                 }, this) : etiquetas.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
                                     className: "p-12 text-center border-2 border-dashed border-neutral-300",
@@ -3688,7 +3696,7 @@ function AjustesPage() {
                                             className: "w-12 h-12 mx-auto text-neutral-400 mb-4"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1460,
+                                            lineNumber: 1469,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3696,7 +3704,7 @@ function AjustesPage() {
                                             children: "Nenhuma etiqueta cadastrada"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1461,
+                                            lineNumber: 1470,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3704,7 +3712,7 @@ function AjustesPage() {
                                             children: "Crie etiquetas para organizar e categorizar seus chats"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1462,
+                                            lineNumber: 1471,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3715,20 +3723,20 @@ function AjustesPage() {
                                                     className: "w-4 h-4 mr-2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1466,
+                                                    lineNumber: 1475,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Criar Primeira Etiqueta"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1465,
+                                            lineNumber: 1474,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1459,
+                                    lineNumber: 1468,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
@@ -3750,12 +3758,12 @@ function AjustesPage() {
                                                                         className: "w-4 h-4 text-white"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1480,
+                                                                        lineNumber: 1489,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1476,
+                                                                    lineNumber: 1485,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3766,7 +3774,7 @@ function AjustesPage() {
                                                                             children: etiqueta.nome
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1483,
+                                                                            lineNumber: 1492,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3774,19 +3782,19 @@ function AjustesPage() {
                                                                             children: etiqueta.created_by_name || "Sistema"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1484,
+                                                                            lineNumber: 1493,
                                                                             columnNumber: 29
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1482,
+                                                                    lineNumber: 1491,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1475,
+                                                            lineNumber: 1484,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3801,12 +3809,12 @@ function AjustesPage() {
                                                                         className: "w-4 h-4"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1496,
+                                                                        lineNumber: 1505,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1490,
+                                                                    lineNumber: 1499,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3818,24 +3826,24 @@ function AjustesPage() {
                                                                         className: "w-4 h-4"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1504,
+                                                                        lineNumber: 1513,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1498,
+                                                                    lineNumber: 1507,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1489,
+                                                            lineNumber: 1498,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1474,
+                                                    lineNumber: 1483,
                                                     columnNumber: 23
                                                 }, this),
                                                 etiqueta.descricao && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3843,24 +3851,24 @@ function AjustesPage() {
                                                     children: etiqueta.descricao
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1509,
+                                                    lineNumber: 1518,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, etiqueta.id, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1473,
+                                            lineNumber: 1482,
                                             columnNumber: 21
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1471,
+                                    lineNumber: 1480,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1440,
+                            lineNumber: 1449,
                             columnNumber: 13
                         }, this),
                         activeTab === "catalogo" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3876,7 +3884,7 @@ function AjustesPage() {
                                                         children: "Catálogos"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1525,
+                                                        lineNumber: 1534,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3884,13 +3892,13 @@ function AjustesPage() {
                                                         children: "Gerencie seus catálogos de produtos com links públicos para compartilhar"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1526,
+                                                        lineNumber: 1535,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1524,
+                                                lineNumber: 1533,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3901,20 +3909,20 @@ function AjustesPage() {
                                                         className: "w-4 h-4 mr-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1531,
+                                                        lineNumber: 1540,
                                                         columnNumber: 23
                                                     }, this),
                                                     "Novo Catálogo"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1530,
+                                                lineNumber: 1539,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1523,
+                                        lineNumber: 1532,
                                         columnNumber: 19
                                     }, this),
                                     loadingCatalogos ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3923,12 +3931,12 @@ function AjustesPage() {
                                             className: "w-6 h-6 animate-spin text-neutral-600"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1538,
+                                            lineNumber: 1547,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1537,
+                                        lineNumber: 1546,
                                         columnNumber: 21
                                     }, this) : catalogos.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
                                         className: "p-12 text-center border-2 border-dashed border-neutral-300",
@@ -3937,7 +3945,7 @@ function AjustesPage() {
                                                 className: "w-12 h-12 mx-auto text-neutral-400 mb-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1542,
+                                                lineNumber: 1551,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3945,7 +3953,7 @@ function AjustesPage() {
                                                 children: "Nenhum catálogo cadastrado"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1543,
+                                                lineNumber: 1552,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3953,7 +3961,7 @@ function AjustesPage() {
                                                 children: "Crie catálogos para exibir seus produtos em páginas públicas"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1544,
+                                                lineNumber: 1553,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3964,20 +3972,20 @@ function AjustesPage() {
                                                         className: "w-4 h-4 mr-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1548,
+                                                        lineNumber: 1557,
                                                         columnNumber: 25
                                                     }, this),
                                                     "Criar Primeiro Catálogo"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1547,
+                                                lineNumber: 1556,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1541,
+                                        lineNumber: 1550,
                                         columnNumber: 21
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
@@ -3997,7 +4005,7 @@ function AjustesPage() {
                                                                         className: "w-12 h-12 rounded-lg object-cover"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1565,
+                                                                        lineNumber: 1574,
                                                                         columnNumber: 33
                                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                         className: "w-12 h-12 rounded-lg flex items-center justify-center",
@@ -4008,12 +4016,12 @@ function AjustesPage() {
                                                                             className: "w-6 h-6 text-white"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1575,
+                                                                            lineNumber: 1584,
                                                                             columnNumber: 35
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1571,
+                                                                        lineNumber: 1580,
                                                                         columnNumber: 33
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4024,7 +4032,7 @@ function AjustesPage() {
                                                                                 children: catalogo.nome
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                lineNumber: 1579,
+                                                                                lineNumber: 1588,
                                                                                 columnNumber: 33
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4035,19 +4043,19 @@ function AjustesPage() {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                lineNumber: 1580,
+                                                                                lineNumber: 1589,
                                                                                 columnNumber: 33
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1578,
+                                                                        lineNumber: 1587,
                                                                         columnNumber: 31
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1563,
+                                                                lineNumber: 1572,
                                                                 columnNumber: 29
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4064,12 +4072,12 @@ function AjustesPage() {
                                                                             className: "w-4 h-4"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1591,
+                                                                            lineNumber: 1600,
                                                                             columnNumber: 33
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1584,
+                                                                        lineNumber: 1593,
                                                                         columnNumber: 31
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4082,24 +4090,24 @@ function AjustesPage() {
                                                                             className: "w-4 h-4"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1600,
+                                                                            lineNumber: 1609,
                                                                             columnNumber: 33
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1593,
+                                                                        lineNumber: 1602,
                                                                         columnNumber: 31
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1583,
+                                                                lineNumber: 1592,
                                                                 columnNumber: 29
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1562,
+                                                        lineNumber: 1571,
                                                         columnNumber: 27
                                                     }, this),
                                                     catalogo.descricao && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4107,7 +4115,7 @@ function AjustesPage() {
                                                         children: catalogo.descricao
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1605,
+                                                        lineNumber: 1614,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4122,20 +4130,20 @@ function AjustesPage() {
                                                                         className: "w-5 h-5"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1615,
+                                                                        lineNumber: 1624,
                                                                         columnNumber: 33
                                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$toggle$2d$left$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ToggleLeft$3e$__["ToggleLeft"], {
                                                                         className: "w-5 h-5"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1617,
+                                                                        lineNumber: 1626,
                                                                         columnNumber: 33
                                                                     }, this),
                                                                     catalogo.ativo ? 'Ativo' : 'Inativo'
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1608,
+                                                                lineNumber: 1617,
                                                                 columnNumber: 29
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4150,12 +4158,12 @@ function AjustesPage() {
                                                                             className: "w-4 h-4"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1628,
+                                                                            lineNumber: 1637,
                                                                             columnNumber: 33
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1622,
+                                                                        lineNumber: 1631,
                                                                         columnNumber: 31
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4167,35 +4175,35 @@ function AjustesPage() {
                                                                             className: "w-4 h-4"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1636,
+                                                                            lineNumber: 1645,
                                                                             columnNumber: 33
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1630,
+                                                                        lineNumber: 1639,
                                                                         columnNumber: 31
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1621,
+                                                                lineNumber: 1630,
                                                                 columnNumber: 29
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1607,
+                                                        lineNumber: 1616,
                                                         columnNumber: 27
                                                     }, this)
                                                 ]
                                             }, catalogo.id, true, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1555,
+                                                lineNumber: 1564,
                                                 columnNumber: 25
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1553,
+                                        lineNumber: 1562,
                                         columnNumber: 21
                                     }, this)
                                 ]
@@ -4220,14 +4228,14 @@ function AjustesPage() {
                                                                 className: "w-4 h-4 mr-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1659,
+                                                                lineNumber: 1668,
                                                                 columnNumber: 25
                                                             }, this),
                                                             "Voltar"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1650,
+                                                        lineNumber: 1659,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4239,7 +4247,7 @@ function AjustesPage() {
                                                                 className: "w-10 h-10 rounded-lg object-cover"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1664,
+                                                                lineNumber: 1673,
                                                                 columnNumber: 27
                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "w-10 h-10 rounded-lg flex items-center justify-center",
@@ -4250,12 +4258,12 @@ function AjustesPage() {
                                                                     className: "w-5 h-5 text-white"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1674,
+                                                                    lineNumber: 1683,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1670,
+                                                                lineNumber: 1679,
                                                                 columnNumber: 27
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4265,7 +4273,7 @@ function AjustesPage() {
                                                                         children: selectedCatalogo.nome
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1678,
+                                                                        lineNumber: 1687,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4276,25 +4284,25 @@ function AjustesPage() {
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1679,
+                                                                        lineNumber: 1688,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1677,
+                                                                lineNumber: 1686,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1662,
+                                                        lineNumber: 1671,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1649,
+                                                lineNumber: 1658,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4309,14 +4317,14 @@ function AjustesPage() {
                                                                 className: "w-4 h-4 mr-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1689,
+                                                                lineNumber: 1698,
                                                                 columnNumber: 25
                                                             }, this),
                                                             "Copiar Link"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1684,
+                                                        lineNumber: 1693,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4328,26 +4336,26 @@ function AjustesPage() {
                                                                 className: "w-4 h-4 mr-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1697,
+                                                                lineNumber: 1706,
                                                                 columnNumber: 25
                                                             }, this),
                                                             "Ver Catálogo"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1692,
+                                                        lineNumber: 1701,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1683,
+                                                lineNumber: 1692,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1648,
+                                        lineNumber: 1657,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -4361,7 +4369,7 @@ function AjustesPage() {
                                                         children: "Tipos de Produto"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1706,
+                                                        lineNumber: 1715,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4373,20 +4381,20 @@ function AjustesPage() {
                                                                 className: "w-4 h-4 mr-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1712,
+                                                                lineNumber: 1721,
                                                                 columnNumber: 25
                                                             }, this),
                                                             "Novo Tipo"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1707,
+                                                        lineNumber: 1716,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1705,
+                                                lineNumber: 1714,
                                                 columnNumber: 21
                                             }, this),
                                             produtoTipos.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4394,7 +4402,7 @@ function AjustesPage() {
                                                 children: "Nenhum tipo cadastrado"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1717,
+                                                lineNumber: 1726,
                                                 columnNumber: 23
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex flex-wrap gap-2",
@@ -4405,7 +4413,7 @@ function AjustesPage() {
                                                                 children: tipo.nome
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1725,
+                                                                lineNumber: 1734,
                                                                 columnNumber: 29
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -4415,29 +4423,29 @@ function AjustesPage() {
                                                                     className: "w-3 h-3"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1730,
+                                                                    lineNumber: 1739,
                                                                     columnNumber: 31
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1726,
+                                                                lineNumber: 1735,
                                                                 columnNumber: 29
                                                             }, this)
                                                         ]
                                                     }, tipo.id, true, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1721,
+                                                        lineNumber: 1730,
                                                         columnNumber: 27
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1719,
+                                                lineNumber: 1728,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1704,
+                                        lineNumber: 1713,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4452,7 +4460,7 @@ function AjustesPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1740,
+                                                lineNumber: 1749,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4463,20 +4471,20 @@ function AjustesPage() {
                                                         className: "w-4 h-4 mr-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1744,
+                                                        lineNumber: 1753,
                                                         columnNumber: 23
                                                     }, this),
                                                     "Novo Produto"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1743,
+                                                lineNumber: 1752,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1739,
+                                        lineNumber: 1748,
                                         columnNumber: 19
                                     }, this),
                                     loadingProdutos ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4485,12 +4493,12 @@ function AjustesPage() {
                                             className: "w-6 h-6 animate-spin text-neutral-600"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1751,
+                                            lineNumber: 1760,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1750,
+                                        lineNumber: 1759,
                                         columnNumber: 21
                                     }, this) : produtos.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
                                         className: "p-12 text-center border-2 border-dashed border-neutral-300",
@@ -4499,7 +4507,7 @@ function AjustesPage() {
                                                 className: "w-12 h-12 mx-auto text-neutral-400 mb-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1755,
+                                                lineNumber: 1764,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -4507,7 +4515,7 @@ function AjustesPage() {
                                                 children: "Nenhum produto cadastrado"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1756,
+                                                lineNumber: 1765,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4515,7 +4523,7 @@ function AjustesPage() {
                                                 children: "Adicione produtos ao seu catálogo"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1757,
+                                                lineNumber: 1766,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4526,20 +4534,20 @@ function AjustesPage() {
                                                         className: "w-4 h-4 mr-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1761,
+                                                        lineNumber: 1770,
                                                         columnNumber: 25
                                                     }, this),
                                                     "Adicionar Produto"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1760,
+                                                lineNumber: 1769,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1754,
+                                        lineNumber: 1763,
                                         columnNumber: 21
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
@@ -4557,7 +4565,7 @@ function AjustesPage() {
                                                                 className: "w-full h-full object-cover"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1779,
+                                                                lineNumber: 1788,
                                                                 columnNumber: 33
                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "w-full h-full flex items-center justify-center",
@@ -4565,12 +4573,12 @@ function AjustesPage() {
                                                                     className: "w-12 h-12 text-neutral-300"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1786,
+                                                                    lineNumber: 1795,
                                                                     columnNumber: 35
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1785,
+                                                                lineNumber: 1794,
                                                                 columnNumber: 33
                                                             }, this),
                                                             produto.destaque && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4580,20 +4588,20 @@ function AjustesPage() {
                                                                         className: "w-3 h-3"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1791,
+                                                                        lineNumber: 1800,
                                                                         columnNumber: 35
                                                                     }, this),
                                                                     "Destaque"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1790,
+                                                                lineNumber: 1799,
                                                                 columnNumber: 33
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1777,
+                                                        lineNumber: 1786,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4604,7 +4612,7 @@ function AjustesPage() {
                                                                 children: produto.tipo.nome
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1800,
+                                                                lineNumber: 1809,
                                                                 columnNumber: 33
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -4612,7 +4620,7 @@ function AjustesPage() {
                                                                 children: produto.nome
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1804,
+                                                                lineNumber: 1813,
                                                                 columnNumber: 31
                                                             }, this),
                                                             produto.preco !== null && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4624,7 +4632,7 @@ function AjustesPage() {
                                                                             children: formatPreco(produto.preco_promocional.toString())
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1809,
+                                                                            lineNumber: 1818,
                                                                             columnNumber: 39
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4632,7 +4640,7 @@ function AjustesPage() {
                                                                             children: formatPreco(produto.preco.toString())
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                            lineNumber: 1812,
+                                                                            lineNumber: 1821,
                                                                             columnNumber: 39
                                                                         }, this)
                                                                     ]
@@ -4641,12 +4649,12 @@ function AjustesPage() {
                                                                     children: formatPreco(produto.preco.toString())
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1817,
+                                                                    lineNumber: 1826,
                                                                     columnNumber: 37
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1806,
+                                                                lineNumber: 1815,
                                                                 columnNumber: 33
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4660,20 +4668,20 @@ function AjustesPage() {
                                                                                 className: "w-5 h-5"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                lineNumber: 1833,
+                                                                                lineNumber: 1842,
                                                                                 columnNumber: 37
                                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$toggle$2d$left$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ToggleLeft$3e$__["ToggleLeft"], {
                                                                                 className: "w-5 h-5"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                lineNumber: 1835,
+                                                                                lineNumber: 1844,
                                                                                 columnNumber: 37
                                                                             }, this),
                                                                             produto.ativo ? 'Ativo' : 'Inativo'
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1826,
+                                                                        lineNumber: 1835,
                                                                         columnNumber: 33
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4688,12 +4696,12 @@ function AjustesPage() {
                                                                                     className: "w-4 h-4"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                    lineNumber: 1846,
+                                                                                    lineNumber: 1855,
                                                                                     columnNumber: 37
                                                                                 }, this)
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                lineNumber: 1840,
+                                                                                lineNumber: 1849,
                                                                                 columnNumber: 35
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4705,49 +4713,49 @@ function AjustesPage() {
                                                                                     className: "w-4 h-4"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                    lineNumber: 1854,
+                                                                                    lineNumber: 1863,
                                                                                     columnNumber: 37
                                                                                 }, this)
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                                lineNumber: 1848,
+                                                                                lineNumber: 1857,
                                                                                 columnNumber: 35
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 1839,
+                                                                        lineNumber: 1848,
                                                                         columnNumber: 33
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1825,
+                                                                lineNumber: 1834,
                                                                 columnNumber: 31
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1798,
+                                                        lineNumber: 1807,
                                                         columnNumber: 29
                                                     }, this)
                                                 ]
                                             }, produto.id, true, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1770,
+                                                lineNumber: 1779,
                                                 columnNumber: 27
                                             }, this);
                                         })
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1766,
+                                        lineNumber: 1775,
                                         columnNumber: 21
                                     }, this)
                                 ]
                             }, void 0, true)
                         }, void 0, false, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1519,
+                            lineNumber: 1528,
                             columnNumber: 13
                         }, this),
                         activeTab === "links" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4757,7 +4765,7 @@ function AjustesPage() {
                                     children: "Links Úteis"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1871,
+                                    lineNumber: 1880,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4780,7 +4788,7 @@ function AjustesPage() {
                                                                 className: "w-full h-full object-contain"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1879,
+                                                                lineNumber: 1888,
                                                                 columnNumber: 29
                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                                 src: "/google_drive.svg",
@@ -4788,12 +4796,12 @@ function AjustesPage() {
                                                                 className: "w-full h-full object-contain"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1885,
+                                                                lineNumber: 1894,
                                                                 columnNumber: 29
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1877,
+                                                            lineNumber: 1886,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4804,7 +4812,7 @@ function AjustesPage() {
                                                                     children: folder.label
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1893,
+                                                                    lineNumber: 1902,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4812,51 +4820,51 @@ function AjustesPage() {
                                                                     children: folder.description
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 1894,
+                                                                    lineNumber: 1903,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1892,
+                                                            lineNumber: 1901,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1876,
+                                                    lineNumber: 1885,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 1875,
+                                                lineNumber: 1884,
                                                 columnNumber: 21
                                             }, this)
                                         }, folder.id, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1874,
+                                            lineNumber: 1883,
                                             columnNumber: 19
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1872,
+                                    lineNumber: 1881,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1870,
+                            lineNumber: 1879,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                    lineNumber: 1167,
+                    lineNumber: 1176,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 1166,
+                lineNumber: 1175,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -4870,20 +4878,20 @@ function AjustesPage() {
                                     children: "Nova Categoria"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1909,
+                                    lineNumber: 1918,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogDescription"], {
                                     children: "Crie uma nova categoria para organizar suas respostas rápidas"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1910,
+                                    lineNumber: 1919,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1908,
+                            lineNumber: 1917,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4896,7 +4904,7 @@ function AjustesPage() {
                                         children: "Nome da Categoria"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1915,
+                                        lineNumber: 1924,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -4906,18 +4914,18 @@ function AjustesPage() {
                                         onChange: (e)=>setNewCategoryName(e.target.value)
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 1916,
+                                        lineNumber: 1925,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 1914,
+                                lineNumber: 1923,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1913,
+                            lineNumber: 1922,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -4928,7 +4936,7 @@ function AjustesPage() {
                                     children: "Cancelar"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1926,
+                                    lineNumber: 1935,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4937,24 +4945,24 @@ function AjustesPage() {
                                     children: "Criar Categoria"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1929,
+                                    lineNumber: 1938,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1925,
+                            lineNumber: 1934,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                    lineNumber: 1907,
+                    lineNumber: 1916,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 1906,
+                lineNumber: 1915,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -4968,20 +4976,20 @@ function AjustesPage() {
                                     children: editingReply ? "Editar Resposta Rápida" : "Nova Resposta Rápida"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1939,
+                                    lineNumber: 1948,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogDescription"], {
                                     children: "Crie mensagens pré-definidas para usar no atendimento via WhatsApp"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1940,
+                                    lineNumber: 1949,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1938,
+                            lineNumber: 1947,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4995,7 +5003,7 @@ function AjustesPage() {
                                             children: "Título"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1945,
+                                            lineNumber: 1954,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -5008,13 +5016,13 @@ function AjustesPage() {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1946,
+                                            lineNumber: 1955,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1944,
+                                    lineNumber: 1953,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5025,7 +5033,7 @@ function AjustesPage() {
                                             children: "Categoria"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1955,
+                                            lineNumber: 1964,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -5047,12 +5055,12 @@ function AjustesPage() {
                                                         placeholder: "Selecione uma categoria"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 1967,
+                                                        lineNumber: 1976,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1966,
+                                                    lineNumber: 1975,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -5062,7 +5070,7 @@ function AjustesPage() {
                                                                 children: cat.name
                                                             }, cat.id, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 1971,
+                                                                lineNumber: 1980,
                                                                 columnNumber: 21
                                                             }, this)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -5071,25 +5079,25 @@ function AjustesPage() {
                                                             children: "+ Criar nova categoria"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 1975,
+                                                            lineNumber: 1984,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 1969,
+                                                    lineNumber: 1978,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1956,
+                                            lineNumber: 1965,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1954,
+                                    lineNumber: 1963,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5100,7 +5108,7 @@ function AjustesPage() {
                                             children: "Mensagem"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1983,
+                                            lineNumber: 1992,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -5114,19 +5122,19 @@ function AjustesPage() {
                                             rows: 5
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 1984,
+                                            lineNumber: 1993,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1982,
+                                    lineNumber: 1991,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1943,
+                            lineNumber: 1952,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -5137,7 +5145,7 @@ function AjustesPage() {
                                     children: "Cancelar"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1995,
+                                    lineNumber: 2004,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5146,24 +5154,24 @@ function AjustesPage() {
                                     children: editingReply ? "Salvar Alterações" : "Criar Resposta"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 1998,
+                                    lineNumber: 2007,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 1994,
+                            lineNumber: 2003,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                    lineNumber: 1937,
+                    lineNumber: 1946,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 1936,
+                lineNumber: 1945,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -5177,20 +5185,20 @@ function AjustesPage() {
                                     children: editingEtiqueta ? "Editar Etiqueta" : "Nova Etiqueta"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2008,
+                                    lineNumber: 2017,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogDescription"], {
                                     children: "Configure uma etiqueta para categorizar seus chats"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2009,
+                                    lineNumber: 2018,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2007,
+                            lineNumber: 2016,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5204,7 +5212,7 @@ function AjustesPage() {
                                             children: "Nome da Etiqueta"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2014,
+                                            lineNumber: 2023,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -5217,13 +5225,13 @@ function AjustesPage() {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2015,
+                                            lineNumber: 2024,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2013,
+                                    lineNumber: 2022,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5234,7 +5242,7 @@ function AjustesPage() {
                                             children: "Cor"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2024,
+                                            lineNumber: 2033,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5251,7 +5259,7 @@ function AjustesPage() {
                                                     className: "w-20 h-10 cursor-pointer"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2026,
+                                                    lineNumber: 2035,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -5264,19 +5272,19 @@ function AjustesPage() {
                                                     className: "flex-1"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2033,
+                                                    lineNumber: 2042,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2025,
+                                            lineNumber: 2034,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2023,
+                                    lineNumber: 2032,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5287,7 +5295,7 @@ function AjustesPage() {
                                             children: "Descrição (Opcional)"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2043,
+                                            lineNumber: 2052,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -5301,13 +5309,13 @@ function AjustesPage() {
                                             rows: 3
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2044,
+                                            lineNumber: 2053,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2042,
+                                    lineNumber: 2051,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5322,12 +5330,12 @@ function AjustesPage() {
                                                 className: "w-5 h-5 text-white"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 2058,
+                                                lineNumber: 2067,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2054,
+                                            lineNumber: 2063,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5338,7 +5346,7 @@ function AjustesPage() {
                                                     children: "Preview"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2061,
+                                                    lineNumber: 2070,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5346,25 +5354,25 @@ function AjustesPage() {
                                                     children: etiquetaForm.nome || "Nome da etiqueta"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2062,
+                                                    lineNumber: 2071,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2060,
+                                            lineNumber: 2069,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2053,
+                                    lineNumber: 2062,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2012,
+                            lineNumber: 2021,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -5375,7 +5383,7 @@ function AjustesPage() {
                                     children: "Cancelar"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2068,
+                                    lineNumber: 2077,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5384,24 +5392,24 @@ function AjustesPage() {
                                     children: editingEtiqueta ? "Salvar Alterações" : "Criar Etiqueta"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2071,
+                                    lineNumber: 2080,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2067,
+                            lineNumber: 2076,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                    lineNumber: 2006,
+                    lineNumber: 2015,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 2005,
+                lineNumber: 2014,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -5415,20 +5423,20 @@ function AjustesPage() {
                                     children: editingCatalogo ? "Editar Catálogo" : "Novo Catálogo"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2082,
+                                    lineNumber: 2091,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogDescription"], {
                                     children: "Configure seu catálogo de produtos"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2083,
+                                    lineNumber: 2092,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2081,
+                            lineNumber: 2090,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5442,7 +5450,7 @@ function AjustesPage() {
                                             children: "Nome do Catálogo"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2088,
+                                            lineNumber: 2097,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -5455,13 +5463,13 @@ function AjustesPage() {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2089,
+                                            lineNumber: 2098,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2087,
+                                    lineNumber: 2096,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5472,7 +5480,7 @@ function AjustesPage() {
                                             children: "Descrição (Opcional)"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2098,
+                                            lineNumber: 2107,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -5486,13 +5494,13 @@ function AjustesPage() {
                                             rows: 2
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2099,
+                                            lineNumber: 2108,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2097,
+                                    lineNumber: 2106,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5503,7 +5511,7 @@ function AjustesPage() {
                                             children: "Cor Primária"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2109,
+                                            lineNumber: 2118,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5520,7 +5528,7 @@ function AjustesPage() {
                                                     className: "w-20 h-10 cursor-pointer"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2111,
+                                                    lineNumber: 2120,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -5533,19 +5541,19 @@ function AjustesPage() {
                                                     className: "flex-1"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2118,
+                                                    lineNumber: 2127,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2110,
+                                            lineNumber: 2119,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2108,
+                                    lineNumber: 2117,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5556,7 +5564,7 @@ function AjustesPage() {
                                             children: "Logo (URL ou Base64)"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2128,
+                                            lineNumber: 2137,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -5569,13 +5577,13 @@ function AjustesPage() {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2129,
+                                            lineNumber: 2138,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2127,
+                                    lineNumber: 2136,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5588,7 +5596,7 @@ function AjustesPage() {
                                             onError: (e)=>e.currentTarget.style.display = 'none'
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2140,
+                                            lineNumber: 2149,
                                             columnNumber: 17
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "w-12 h-12 rounded-lg flex items-center justify-center",
@@ -5599,12 +5607,12 @@ function AjustesPage() {
                                                 className: "w-6 h-6 text-white"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                lineNumber: 2151,
+                                                lineNumber: 2160,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2147,
+                                            lineNumber: 2156,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5615,7 +5623,7 @@ function AjustesPage() {
                                                     children: catalogoForm.nome || "Nome do catálogo"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2155,
+                                                    lineNumber: 2164,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5623,25 +5631,25 @@ function AjustesPage() {
                                                     children: "Preview do cabeçalho"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2156,
+                                                    lineNumber: 2165,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2154,
+                                            lineNumber: 2163,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2138,
+                                    lineNumber: 2147,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2086,
+                            lineNumber: 2095,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -5652,7 +5660,7 @@ function AjustesPage() {
                                     children: "Cancelar"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2162,
+                                    lineNumber: 2171,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5661,24 +5669,24 @@ function AjustesPage() {
                                     children: editingCatalogo ? "Salvar Alterações" : "Criar Catálogo"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2165,
+                                    lineNumber: 2174,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2161,
+                            lineNumber: 2170,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                    lineNumber: 2080,
+                    lineNumber: 2089,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 2079,
+                lineNumber: 2088,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -5692,20 +5700,20 @@ function AjustesPage() {
                                     children: "Novo Tipo de Produto"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2176,
+                                    lineNumber: 2185,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogDescription"], {
                                     children: "Crie uma categoria para organizar seus produtos"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2177,
+                                    lineNumber: 2186,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2175,
+                            lineNumber: 2184,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5718,7 +5726,7 @@ function AjustesPage() {
                                         children: "Nome do Tipo"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 2182,
+                                        lineNumber: 2191,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -5728,18 +5736,18 @@ function AjustesPage() {
                                         onChange: (e)=>setNewTipoNome(e.target.value)
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                        lineNumber: 2183,
+                                        lineNumber: 2192,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                lineNumber: 2181,
+                                lineNumber: 2190,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2180,
+                            lineNumber: 2189,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -5750,7 +5758,7 @@ function AjustesPage() {
                                     children: "Cancelar"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2193,
+                                    lineNumber: 2202,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5759,24 +5767,24 @@ function AjustesPage() {
                                     children: "Criar Tipo"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2196,
+                                    lineNumber: 2205,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2192,
+                            lineNumber: 2201,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                    lineNumber: 2174,
+                    lineNumber: 2183,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 2173,
+                lineNumber: 2182,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -5791,20 +5799,20 @@ function AjustesPage() {
                                     children: editingProduto ? "Editar Produto" : "Novo Produto"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2207,
+                                    lineNumber: 2216,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogDescription"], {
                                     children: "Adicione ou edite um produto do catálogo"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2208,
+                                    lineNumber: 2217,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2206,
+                            lineNumber: 2215,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5821,7 +5829,7 @@ function AjustesPage() {
                                                     children: "Nome do Produto *"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2214,
+                                                    lineNumber: 2223,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -5834,13 +5842,13 @@ function AjustesPage() {
                                                         })
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2215,
+                                                    lineNumber: 2224,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2213,
+                                            lineNumber: 2222,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5851,7 +5859,7 @@ function AjustesPage() {
                                                     children: "Tipo"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2224,
+                                                    lineNumber: 2233,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -5873,12 +5881,12 @@ function AjustesPage() {
                                                                 placeholder: "Selecione um tipo"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 2236,
+                                                                lineNumber: 2245,
                                                                 columnNumber: 21
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 2235,
+                                                            lineNumber: 2244,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -5888,7 +5896,7 @@ function AjustesPage() {
                                                                         children: tipo.nome
                                                                     }, tipo.id, false, {
                                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                        lineNumber: 2240,
+                                                                        lineNumber: 2249,
                                                                         columnNumber: 23
                                                                     }, this)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -5897,31 +5905,31 @@ function AjustesPage() {
                                                                     children: "+ Criar novo tipo"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 2244,
+                                                                    lineNumber: 2253,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 2238,
+                                                            lineNumber: 2247,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2225,
+                                                    lineNumber: 2234,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2223,
+                                            lineNumber: 2232,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2212,
+                                    lineNumber: 2221,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5932,7 +5940,7 @@ function AjustesPage() {
                                             children: "Descrição"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2253,
+                                            lineNumber: 2262,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -5946,13 +5954,13 @@ function AjustesPage() {
                                             rows: 3
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2254,
+                                            lineNumber: 2263,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2252,
+                                    lineNumber: 2261,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5966,7 +5974,7 @@ function AjustesPage() {
                                                     children: "Preço (R$)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2265,
+                                                    lineNumber: 2274,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -5981,13 +5989,13 @@ function AjustesPage() {
                                                         })
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2266,
+                                                    lineNumber: 2275,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2264,
+                                            lineNumber: 2273,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5998,7 +6006,7 @@ function AjustesPage() {
                                                     children: "Preço Promocional (R$)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2277,
+                                                    lineNumber: 2286,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -6013,19 +6021,19 @@ function AjustesPage() {
                                                         })
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2278,
+                                                    lineNumber: 2287,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2276,
+                                            lineNumber: 2285,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2263,
+                                    lineNumber: 2272,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6042,7 +6050,7 @@ function AjustesPage() {
                                             className: "w-4 h-4 rounded border-neutral-300"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2290,
+                                            lineNumber: 2299,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Label"], {
@@ -6051,13 +6059,13 @@ function AjustesPage() {
                                             children: "Marcar como produto em destaque"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2297,
+                                            lineNumber: 2306,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2289,
+                                    lineNumber: 2298,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6067,7 +6075,7 @@ function AjustesPage() {
                                             children: "Imagens do Produto"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2304,
+                                            lineNumber: 2313,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6082,7 +6090,7 @@ function AjustesPage() {
                                                                 className: "w-full h-full object-cover"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 2308,
+                                                                lineNumber: 2317,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6092,12 +6100,12 @@ function AjustesPage() {
                                                                     className: "w-3 h-3"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                    lineNumber: 2313,
+                                                                    lineNumber: 2322,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 2309,
+                                                                lineNumber: 2318,
                                                                 columnNumber: 21
                                                             }, this),
                                                             index === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6105,13 +6113,13 @@ function AjustesPage() {
                                                                 children: "Principal"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                                lineNumber: 2316,
+                                                                lineNumber: 2325,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, index, true, {
                                                         fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                        lineNumber: 2307,
+                                                        lineNumber: 2316,
                                                         columnNumber: 19
                                                     }, this)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -6121,7 +6129,7 @@ function AjustesPage() {
                                                             className: "w-6 h-6 text-neutral-400"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 2323,
+                                                            lineNumber: 2332,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6129,7 +6137,7 @@ function AjustesPage() {
                                                             children: "Adicionar"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 2324,
+                                                            lineNumber: 2333,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -6140,19 +6148,19 @@ function AjustesPage() {
                                                             className: "hidden"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                            lineNumber: 2325,
+                                                            lineNumber: 2334,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                                    lineNumber: 2322,
+                                                    lineNumber: 2331,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2305,
+                                            lineNumber: 2314,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6160,19 +6168,19 @@ function AjustesPage() {
                                             children: "A primeira imagem será a principal. Arraste para reordenar."
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                            lineNumber: 2334,
+                                            lineNumber: 2343,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2303,
+                                    lineNumber: 2312,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2211,
+                            lineNumber: 2220,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -6183,7 +6191,7 @@ function AjustesPage() {
                                     children: "Cancelar"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2341,
+                                    lineNumber: 2350,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -6192,24 +6200,24 @@ function AjustesPage() {
                                     children: editingProduto ? "Salvar Alterações" : "Criar Produto"
                                 }, void 0, false, {
                                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                                    lineNumber: 2344,
+                                    lineNumber: 2353,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(app)/ajustes/page.tsx",
-                            lineNumber: 2340,
+                            lineNumber: 2349,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(app)/ajustes/page.tsx",
-                    lineNumber: 2205,
+                    lineNumber: 2214,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 2204,
+                lineNumber: 2213,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$PhotoUploadDialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["PhotoUploadDialog"], {
@@ -6219,13 +6227,13 @@ function AjustesPage() {
                 currentPhoto: userProfile?.foto_perfil || undefined
             }, void 0, false, {
                 fileName: "[project]/app/(app)/ajustes/page.tsx",
-                lineNumber: 2351,
+                lineNumber: 2360,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/(app)/ajustes/page.tsx",
-        lineNumber: 1067,
+        lineNumber: 1076,
         columnNumber: 5
     }, this);
 }

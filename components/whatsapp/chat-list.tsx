@@ -27,6 +27,7 @@ import { EditChatNameDialog } from "./edit-chat-name-dialog"
 import { TagSelector } from "./tag-selector"
 import { AssignToUserDialog } from "./assign-to-user-dialog"
 import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription"
+import { ProfilePictureModal } from "./profile-picture-modal"
 import type { Etiqueta } from "@/lib/whatsapp-types" 
 
 interface ChatListProps {
@@ -81,6 +82,8 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
     const [showTagSelector, setShowTagSelector] = useState(false)
     const [showEtiquetasDialog, setShowEtiquetasDialog] = useState(false)
     const [contextMenuEtiqueta, setContextMenuEtiqueta] = useState<EtiquetaSimple | null>(null)
+    const [showProfilePictureModal, setShowProfilePictureModal] = useState(false)
+    const [profilePictureChat, setProfilePictureChat] = useState<{url: string, name: string} | null>(null)
     
     // Estado para chats com notas (mapa de chatId -> conteúdo da nota)
     const [chatNotes, setChatNotes] = useState<Record<string, string>>({})
@@ -252,7 +255,8 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                         
                         const formattedChat: Chat = {
                             id: newChat.id,
-                            name: newChat.name || newChat.id.split('@')[0],
+                            name: newChat.name || '',
+                            phone: newChat.phone || newChat.id.split('@')[0],
                             lastMessage: newChat.last_message,
                             lastMessageTime: newChat.last_message_time,
                             unreadCount: newChat.unread_count || 0,
@@ -381,11 +385,11 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
         const rangeEnd = currentOffset + limit - 1
 
         let query = supabase
-            .from('chats')
+            .from('chat_last_message_view')
             .select('*', { count: 'exact' })
             .eq('is_archived', false)
             .not('id', 'ilike', '%@g.us') 
-            .order('last_message_time', { ascending: false })
+            .order('last_message_timestamp', { ascending: false })
             .range(currentOffset, rangeEnd)
 
         if (debouncedSearch) {
@@ -438,11 +442,11 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
               id: c.id,
               uuid: c.uuid,  // UUID interno estável
               name: c.name,
+              phone: c.phone || c.id.split('@')[0],  // telefone formatado
               lastMessage: c.last_message,
-              lastMessageTime: c.last_message_time,
+              lastMessageTime: c.last_message_timestamp ? Number(c.last_message_timestamp) : c.last_message_time,
               unreadCount: c.unread_count,
               pictureUrl: c.image_url,
-              telefone: c.telefone || c.id.split('@')[0],
               etiquetas: etiquetas,
             };
         });
@@ -660,7 +664,17 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                             chat.unreadCount > 0 && "border-l-2 border-primary bg-primary/5"
                           )}
                         >
-                          <Avatar className="w-10 h-10 flex-shrink-0">
+                          <Avatar 
+                            className="w-10 h-10 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              setProfilePictureChat({
+                                url: profilePicture,
+                                name: chat.name || chat.phone || chat.id.split('@')[0]
+                              })
+                              setShowProfilePictureModal(true)
+                            }}
+                          >
                             <AvatarImage 
                                 src={profilePicture} 
                                 alt={chat.name} 
@@ -674,7 +688,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
 
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-2 mb-0.5">
-                              <p className="font-medium truncate text-sm">{chat.name}</p>
+                              <p className="font-medium truncate text-sm">{chat.name || chat.phone || chat.id.split('@')[0]}</p>
                               <span className="text-[11px] text-muted-foreground flex-shrink-0">
                                 {formatTime(chat.lastMessageTime)}
                               </span>
@@ -908,7 +922,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                         <ContextMenuSeparator />
                         <ContextMenuItem 
                           onClick={() => {
-                            const telefone = chat.telefone || chat.id.split('@')[0]
+                            const telefone = chat.phone || chat.id.split('@')[0]
                             navigator.clipboard.writeText(formatPhoneNumber(telefone))
                             toast.success("Telefone copiado!")
                           }}
@@ -1004,6 +1018,19 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                   : c
               ))
             }}
+          />
+        )}
+
+        {/* Modal de foto de perfil */}
+        {profilePictureChat && (
+          <ProfilePictureModal
+            open={showProfilePictureModal}
+            onOpenChange={(open) => {
+              setShowProfilePictureModal(open)
+              if (!open) setProfilePictureChat(null)
+            }}
+            imageUrl={profilePictureChat.url}
+            name={profilePictureChat.name}
           />
         )}
       </div>
