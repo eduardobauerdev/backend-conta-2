@@ -9,7 +9,7 @@ import { Filter, X, Plus, Tag, User } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import type { Etiqueta } from "@/lib/whatsapp-types"
 
-export type FilterType = "etiqueta" | "atribuicao" | "sem_etiqueta" | "sem_atribuicao"
+export type FilterType = "etiqueta" | "atribuicao" | "sem_atribuicao"
 
 export interface ChatFilterRule {
   id: string
@@ -73,10 +73,7 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
   function updateFilterType(id: string, type: FilterType) {
     onFiltersChange(filters.map(f => {
       if (f.id === id) {
-        // Se o tipo mudou para "sem_etiqueta" ou "sem_atribuicao", define valores padrão
-        if (type === "sem_etiqueta") {
-          return { ...f, type, value: "any", label: "Sem etiqueta" }
-        }
+        // Se o tipo mudou para "sem_atribuicao", define valores padrão
         if (type === "sem_atribuicao") {
           return { ...f, type, value: "any", label: "Sem atribuição" }
         }
@@ -91,8 +88,12 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
       if (f.id === id) {
         let label = ""
         if (f.type === "etiqueta") {
-          const etiqueta = etiquetas.find(e => e.id === value)
-          label = etiqueta?.nome || ""
+          if (value === "sem_etiqueta") {
+            label = "Sem etiqueta"
+          } else {
+            const etiqueta = etiquetas.find(e => e.id === value)
+            label = etiqueta?.nome || ""
+          }
         } else if (f.type === "atribuicao") {
           const user = users.find(u => u.id === value)
           label = user?.nome || ""
@@ -167,12 +168,6 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
                       <div className="flex items-center gap-2">
                         <User className="w-3 h-3" />
                         Atribuição
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="sem_etiqueta">
-                      <div className="flex items-center gap-2">
-                        <Tag className="w-3 h-3 text-muted-foreground" />
-                        Sem etiqueta
                       </div>
                     </SelectItem>
                     <SelectItem value="sem_atribuicao">

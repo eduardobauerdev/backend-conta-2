@@ -24,6 +24,7 @@ import { DeleteLeadDialog } from "@/components/crm/delete-lead-dialog"
 import { ConvertLeadDialog } from "@/components/crm/convert-lead-dialog"
 import { UnconvertLeadDialog } from "@/components/crm/unconvert-lead-dialog"
 import { FilterPanel, type FilterRule } from "@/components/crm/filter-panel"
+import { ChatEtiquetasDialog } from "@/components/whatsapp/chat-etiquetas-dialog"
 import { useUser } from "@/contexts/user-context"
 import { createClient } from "@/lib/supabase/client"
 import { toast } from "sonner"
@@ -115,6 +116,8 @@ export default function CRMPage() {
   const [convertingLead, setConvertingLead] = useState<Lead | null>(null)
   const [unconvertingLead, setUnconvertingLead] = useState<Lead | null>(null)
   const [highlightedLeadId, setHighlightedLeadId] = useState<string | null>(null)
+  const [showEtiquetasDialog, setShowEtiquetasDialog] = useState(false)
+  const [selectedLeadForEtiquetas, setSelectedLeadForEtiquetas] = useState<{ chatId: string; chatUuid: string; etiquetas: Array<{ id: string; nome: string; cor: string }> } | null>(null)
   const [onlyMyLeads, setOnlyMyLeads] = useState(() => {
     // Carrega o estado do localStorage se disponível
     if (typeof window !== 'undefined') {
@@ -126,6 +129,9 @@ export default function CRMPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [etiquetas, setEtiquetas] = useState<{ id: string; nome: string; cor: string }[]>([])
   const [chatEtiquetasMap, setChatEtiquetasMap] = useState<Record<string, string[]>>({}) // chat_uuid -> etiqueta_ids
+  const [chatAssignmentsMap, setChatAssignmentsMap] = useState<Record<string, { assigned_to_name: string; assigned_to_cargo?: string; assigned_to_color?: string }>>({})
+  const [chatNotesMap, setChatNotesMap] = useState<Record<string, boolean>>({})
+  const [chatIdMap, setChatIdMap] = useState<Record<string, string>>({}) // chat_uuid -> chat_id
   const kanbanContainerRef = useRef<HTMLDivElement>(null)
   const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const { user } = useUser()
@@ -223,6 +229,117 @@ export default function CRMPage() {
     }
   }
 
+  // Carrega mapeamento de chats -> atribuições
+  const fetchChatAssignmentsMap = async (chatUuids: string[]) => {
+    if (chatUuids.length === 0) return
+
+    try {
+      // Primeiro, pega os IDs dos chats a partir dos UUIDs
+      const { data: chatsData } = await supabase
+        .from("chats")
+        .select("id, uuid")
+        .in("uuid", chatUuids)
+
+      if (!chatsData || chatsData.length === 0) return
+
+      // Preenche o mapa de uuid -> id
+      const uuidToIdMap: Record<string, string> = {}
+      chatsData.forEach(chat => {
+        if (chat.uuid) {
+          uuidToIdMap[chat.uuid] = chat.id
+        }
+      })
+      setChatIdMap(uuidToIdMap)
+
+      const chatIds = chatsData.map(c => c.id)
+
+      // Busca atribuições ativas
+      const { data: assignmentsData } = await supabase
+        .from("chat_assignments")
+        .select("chat_id, assigned_to_id")
+        .in("chat_id", chatIds)
+        .eq("status", "active")
+
+      if (!assignmentsData || assignmentsData.length === 0) return
+
+      // Busca perfis dos usuários atribuídos
+      const userIds = Array.from(new Set(assignmentsData.map(a => a.assigned_to_id)))
+      const { data: profiles } = await supabase
+        .from("perfis")
+        .select("id, nome, cargo")
+        .in("id", userIds)
+
+      // Busca cores dos cargos
+      const cargos = Array.from(new Set(profiles?.map(p => p.cargo).filter(Boolean) as string[]))
+      const { data: cargosData } = await supabase
+        .from("cargos")
+        .select("nome, cor")
+        .in("nome", cargos)
+
+      const coresMap: Record<string, string> = {}
+      cargosData?.forEach(c => coresMap[c.nome] = c.cor)
+
+      // Monta o mapa uuid -> assignment
+      const map: Record<string, { assigned_to_name: string; assigned_to_cargo?: string; assigned_to_color?: string }> = {}
+      
+      assignmentsData.forEach(assignment => {
+        const chat = chatsData.find(c => c.id === assignment.chat_id)
+        const profile = profiles?.find(p => p.id === assignment.assigned_to_id)
+        
+        if (chat?.uuid && profile) {
+          map[chat.uuid] = {
+            assigned_to_name: profile.nome || "",
+            assigned_to_cargo: profile.cargo || undefined,
+            assigned_to_color: profile.cargo ? coresMap[profile.cargo] : undefined
+          }
+        }
+      })
+
+      setChatAssignmentsMap(map)
+    } catch (error) {
+      console.error("Error fetching chat assignments:", error)
+    }
+  }
+
+  // Carrega mapeamento de chats -> notas
+  const fetchChatNotesMap = async (chatUuids: string[]) => {
+    if (chatUuids.length === 0) return
+
+    try {
+      // Primeiro, pega os IDs dos chats a partir dos UUIDs
+      const { data: chatsData } = await supabase
+        .from("chats")
+        .select("id, uuid")
+        .in("uuid", chatUuids)
+
+      if (!chatsData || chatsData.length === 0) return
+
+      const chatIds = chatsData.map(c => c.id)
+
+      // Busca notas
+      const { data: notesData } = await supabase
+        .from("chat_notes")
+        .select("chat_id")
+        .in("chat_id", chatIds)
+
+      if (!notesData || notesData.length === 0) return
+
+      // Monta o mapa uuid -> hasNotes
+      const map: Record<string, boolean> = {}
+      
+      notesData.forEach(note => {
+        const chat = chatsData.find(c => c.id === note.chat_id)
+        if (chat?.uuid) {
+          map[chat.uuid] = true
+        }
+      })
+
+      setChatNotesMap(map)
+    } catch (error) {
+      console.error("Error fetching chat notes:", error)
+    }
+  }
+
   useEffect(() => {
     fetchEtiquetas()
   }, [])
@@ -248,12 +365,74 @@ export default function CRMPage() {
 
     setLeads(data || [])
 
-    // Carrega mapeamento de etiquetas para os chats vinculados
+    // Carrega mapeamento de etiquetas, atribuições e notas para os chats vinculados
     const chatUuids = (data || [])
       .filter((lead) => lead.chat_uuid)
       .map((lead) => lead.chat_uuid as string)
     if (chatUuids.length > 0) {
       fetchChatEtiquetasMap(chatUuids)
+      fetchChatAssignmentsMap(chatUuids)
+      fetchChatNotesMap(chatUuids)
+    }
+  }
+
+  // Handler para remover atribuição de um lead
+  const handleRemoveAssignment = async (chatId: string, chatUuid: string) => {
+    try {
+      // Buscar a atribuição ativa
+      const res = await fetch(`/api/whatsapp/assignment?chatId=${chatId}`)
+      const data = await res.json()
+      
+      if (data.assignment?.id) {
+        const deleteRes = await fetch("/api/whatsapp/assignment", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ assignmentId: data.assignment.id, chatId })
+        })
+        
+        if (deleteRes.ok) {
+          toast.success("Atribuição removida")
+          // Atualiza o mapa local removendo a atribuição
+          setChatAssignmentsMap(prev => {
+            const newMap = { ...prev }
+            delete newMap[chatUuid]
+            return newMap
+          })
+        } else {
+          toast.error("Erro ao remover atribuição")
+        }
+      }
+    } catch (error) {
+      console.error("Erro ao remover atribuição:", error)
+      toast.error("Erro ao remover atribuição")
+    }
+  }
+
+  // Handler para remover etiqueta de um chat
+  const handleRemoveEtiqueta = async (chatId: string, chatUuid: string, etiquetaId: string) => {
+    try {
+      const res = await fetch("/api/whatsapp/assign-tag", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chatId, etiquetaId })
+      })
+      
+      if (res.ok) {
+        toast.success("Etiqueta removida")
+        // Atualiza o mapa local removendo a etiqueta
+        setChatEtiquetasMap(prev => {
+          const newMap = { ...prev }
+          if (newMap[chatUuid]) {
+            newMap[chatUuid] = newMap[chatUuid].filter(id => id !== etiquetaId)
+          }
+          return newMap
+        })
+      } else {
+        toast.error("Erro ao remover etiqueta")
+      }
+    } catch (error) {
+      console.error("Erro ao remover etiqueta:", error)
+      toast.error("Erro ao remover etiqueta")
     }
   }
 
@@ -578,6 +757,30 @@ export default function CRMPage() {
                 onLeadConvert={handleConvertLead}
                 onLeadUnconvert={handleUnconvertLead}
                 highlightedLeadId={highlightedLeadId}
+                chatEtiquetasMap={chatEtiquetasMap}
+                chatAssignmentsMap={chatAssignmentsMap}
+                chatNotesMap={chatNotesMap}
+                chatIdMap={chatIdMap}
+                etiquetas={etiquetas}
+                onRemoveAssignment={handleRemoveAssignment}
+                onRemoveEtiqueta={handleRemoveEtiqueta}
+                onShowEtiquetas={(lead) => {
+                  if (lead.chat_uuid && chatIdMap[lead.chat_uuid]) {
+                    const leadEtiquetaIds = chatEtiquetasMap[lead.chat_uuid] || []
+                    const leadEtiquetas = leadEtiquetaIds
+                      .map(id => etiquetas.find(e => e.id === id))
+                      .filter(Boolean) as { id: string; nome: string; cor: string }[]
+                    
+                    setSelectedLeadForEtiquetas({
+                      chatId: chatIdMap[lead.chat_uuid],
+                      chatUuid: lead.chat_uuid,
+                      etiquetas: leadEtiquetas
+                    })
+                    setShowEtiquetasDialog(true)
+                  } else {
+                    toast.error("Este lead não está vinculado a um chat")
+                  }
+                }}
               />
             )
           })}

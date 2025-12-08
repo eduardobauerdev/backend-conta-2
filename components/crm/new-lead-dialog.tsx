@@ -429,12 +429,12 @@ export function NewLeadDialog({ open, onOpenChange, onSuccess, weekStart }: NewL
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="observacao">Observação</Label>
+            <Label htmlFor="observacao">Adicionar notas</Label>
             <Textarea
               id="observacao"
               value={observacao}
               onChange={(e) => setObservacao(e.target.value)}
-              placeholder="Adicione detalhes importantes sobre este lead..."
+              placeholder="Adicione notas sobre este lead..."
               rows={3}
             />
           </div>

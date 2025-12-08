@@ -118,17 +118,17 @@ export function QuickRepliesPanel({ onSelectReply }: QuickRepliesPanelProps) {
                 </Button>
 
                 {isExpanded && (
-                  <div className="ml-2 mt-1 space-y-1 overflow-hidden">
+                  <div className="ml-2 mt-1 space-y-1">
                     {categoryReplies.map((reply) => (
                       <Button
                         key={reply.id}
                         variant="outline"
-                        className="w-full justify-start text-left h-auto py-3 px-4 hover:bg-accent bg-transparent overflow-hidden"
+                        className="w-full justify-start text-left h-auto py-3 px-4 hover:bg-accent bg-transparent"
                         onClick={() => onSelectReply(reply.message)}
                       >
-                        <div className="flex flex-col gap-1 w-full min-w-0 overflow-hidden">
-                          <div className="font-medium text-sm truncate">{reply.title}</div>
-                          <div className="text-xs text-muted-foreground line-clamp-2 break-words">{reply.message}</div>
+                        <div className="flex flex-col gap-1 w-full">
+                          <div className="font-medium text-sm break-words">{reply.title}</div>
+                          <div className="text-xs text-muted-foreground line-clamp-3 break-words whitespace-pre-wrap">{reply.message}</div>
                         </div>
                       </Button>
                     ))}

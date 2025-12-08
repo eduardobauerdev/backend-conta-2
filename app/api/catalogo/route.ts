@@ -1,6 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase/server'
 
+// Função para validar UUID
+function isValidUUID(uuid: string): boolean {
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+  return uuidRegex.test(uuid)
+}
+
+// Função para sanitizar string (previne XSS)
+function sanitizeString(str: string | null | undefined): string {
+  if (!str) return ''
+  return str.trim().replace(/<[^>]*>/g, '') // Remove tags HTML
+}
+
 // GET - Listar catálogos
 export async function GET() {
   try {
@@ -56,20 +68,39 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Sanitizar strings
+    const nomeSanitizado = sanitizeString(nome)
+    const descricaoSanitizada = sanitizeString(descricao)
+
+    if (!nomeSanitizado) {
+      return NextResponse.json(
+        { error: 'Nome não pode estar vazio' },
+        { status: 400 }
+      )
+    }
+
+    // Validar cor se fornecida (hex color)
+    if (cor_primaria && !/^#[0-9A-F]{6}$/i.test(cor_primaria)) {
+      return NextResponse.json(
+        { error: 'Cor primária inválida (use formato #RRGGBB)' },
+        { status: 400 }
+      )
+    }
+
     // Gerar slug
     const { data: slugData, error: slugError } = await supabase
-      .rpc('generate_catalog_slug', { p_nome: nome })
+      .rpc('generate_catalog_slug', { p_nome: nomeSanitizado })
 
     if (slugError) {
       console.error('Erro ao gerar slug:', slugError)
       // Fallback: gerar slug simples
-      const baseSlug = nome.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+      const baseSlug = nomeSanitizado.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
       const { data, error } = await supabase
         .from('catalogos')
         .insert({
-          nome,
+          nome: nomeSanitizado,
           slug: baseSlug + '-' + Date.now(),
-          descricao,
+          descricao: descricaoSanitizada,
           logo_url,
           cor_primaria,
           created_by_id,
@@ -85,9 +116,9 @@ export async function POST(request: NextRequest) {
     const { data, error } = await supabase
       .from('catalogos')
       .insert({
-        nome,
+        nome: nomeSanitizado,
         slug: slugData,
-        descricao,
+        descricao: descricaoSanitizada,
         logo_url,
         cor_primaria,
         created_by_id,
@@ -123,9 +154,25 @@ export async function PATCH(request: NextRequest) {
       )
     }
 
+    // Validar UUID
+    if (!isValidUUID(id)) {
+      return NextResponse.json(
+        { error: 'ID inválido' },
+        { status: 400 }
+      )
+    }
+
+    // Validar cor se fornecida
+    if (cor_primaria !== undefined && cor_primaria !== null && !/^#[0-9A-F]{6}$/i.test(cor_primaria)) {
+      return NextResponse.json(
+        { error: 'Cor primária inválida (use formato #RRGGBB)' },
+        { status: 400 }
+      )
+    }
+
     const updateData: Record<string, unknown> = { updated_at: new Date().toISOString() }
-    if (nome !== undefined) updateData.nome = nome
-    if (descricao !== undefined) updateData.descricao = descricao
+    if (nome !== undefined) updateData.nome = sanitizeString(nome)
+    if (descricao !== undefined) updateData.descricao = sanitizeString(descricao)
     if (logo_url !== undefined) updateData.logo_url = logo_url
     if (cor_primaria !== undefined) updateData.cor_primaria = cor_primaria
     if (ativo !== undefined) updateData.ativo = ativo
@@ -160,6 +207,14 @@ export async function DELETE(request: NextRequest) {
     if (!id) {
       return NextResponse.json(
         { error: 'ID é obrigatório' },
+        { status: 400 }
+      )
+    }
+
+    // Validar UUID
+    if (!isValidUUID(id)) {
+      return NextResponse.json(
+        { error: 'ID inválido' },
         { status: 400 }
       )
     }

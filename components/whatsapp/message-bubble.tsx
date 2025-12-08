@@ -58,7 +58,11 @@ export function MessageBubble({ message }: MessageBubbleProps) {
           message.fromMe ? "bg-primary text-primary-foreground" : "bg-muted",
         )}
       >
-        {!message.fromMe && message.from && <p className="text-xs font-medium mb-1 opacity-70">{message.from}</p>}
+        {!message.fromMe && message.from && (
+          <p className="text-xs font-medium mb-1 opacity-70">
+            {message.from.includes('@') ? message.from.split('@')[0] : message.from}
+          </p>
+        )}
 
         {message.hasMedia && message.mediaUrl && (
           <div className="mb-2">

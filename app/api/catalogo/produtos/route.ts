@@ -1,6 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase/server'
 
+// Função para validar UUID
+function isValidUUID(uuid: string): boolean {
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+  return uuidRegex.test(uuid)
+}
+
+// Função para sanitizar string (previne XSS)
+function sanitizeString(str: string | null | undefined): string {
+  if (!str) return ''
+  return str.trim().replace(/<[^>]*>/g, '') // Remove tags HTML
+}
+
 // GET - Listar produtos de um catálogo
 export async function GET(request: NextRequest) {
   try {
@@ -11,6 +23,14 @@ export async function GET(request: NextRequest) {
     if (!catalogo_id) {
       return NextResponse.json(
         { error: 'catalogo_id é obrigatório' },
+        { status: 400 }
+      )
+    }
+
+    // Validar UUID do catálogo
+    if (!isValidUUID(catalogo_id)) {
+      return NextResponse.json(
+        { error: 'catalogo_id inválido' },
         { status: 400 }
       )
     }
@@ -67,14 +87,55 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Validar UUIDs
+    if (!isValidUUID(catalogo_id)) {
+      return NextResponse.json(
+        { error: 'catalogo_id inválido' },
+        { status: 400 }
+      )
+    }
+
+    if (tipo_id && !isValidUUID(tipo_id)) {
+      return NextResponse.json(
+        { error: 'tipo_id inválido' },
+        { status: 400 }
+      )
+    }
+
+    // Sanitizar strings
+    const nomeSanitizado = sanitizeString(nome)
+    const descricaoSanitizada = sanitizeString(descricao)
+
+    if (!nomeSanitizado) {
+      return NextResponse.json(
+        { error: 'Nome não pode estar vazio' },
+        { status: 400 }
+      )
+    }
+
+    // Validar números
+    if (preco !== undefined && (typeof preco !== 'number' || preco < 0)) {
+      return NextResponse.json(
+        { error: 'Preço inválido' },
+        { status: 400 }
+      )
+    }
+
+    if (preco_promocional !== undefined && (typeof preco_promocional !== 'number' || preco_promocional < 0)) {
+      return NextResponse.json(
+        { error: 'Preço promocional inválido' },
+        { status: 400 }
+      )
+    }
+
     // Criar produto
     const { data: produto, error: produtoError } = await supabase
       .from('produtos')
       .insert({
         catalogo_id,
         tipo_id,
-        nome,
-        descricao,
+        nome: nomeSanitizado,
+        descricao: descricaoSanitizada,
         preco,
         preco_promocional,
         ativo: ativo ?? true,
@@ -155,10 +216,40 @@ export async function PATCH(request: NextRequest) {
       )
     }
 
+    // Validar UUIDs
+    if (!isValidUUID(id)) {
+      return NextResponse.json(
+        { error: 'ID inválido' },
+        { status: 400 }
+      )
+    }
+
+    if (tipo_id !== undefined && tipo_id !== null && !isValidUUID(tipo_id)) {
+      return NextResponse.json(
+        { error: 'tipo_id inválido' },
+        { status: 400 }
+      )
+    }
+
+    // Validar números se fornecidos
+    if (preco !== undefined && preco !== null && (typeof preco !== 'number' || preco < 0)) {
+      return NextResponse.json(
+        { error: 'Preço inválido' },
+        { status: 400 }
+      )
+    }
+
+    if (preco_promocional !== undefined && preco_promocional !== null && (typeof preco_promocional !== 'number' || preco_promocional < 0)) {
+      return NextResponse.json(
+        { error: 'Preço promocional inválido' },
+        { status: 400 }
+      )
+    }
+
     const updateData: Record<string, unknown> = { updated_at: new Date().toISOString() }
     if (tipo_id !== undefined) updateData.tipo_id = tipo_id
-    if (nome !== undefined) updateData.nome = nome
-    if (descricao !== undefined) updateData.descricao = descricao
+    if (nome !== undefined) updateData.nome = sanitizeString(nome)
+    if (descricao !== undefined) updateData.descricao = sanitizeString(descricao)
     if (preco !== undefined) updateData.preco = preco
     if (preco_promocional !== undefined) updateData.preco_promocional = preco_promocional
     if (ativo !== undefined) updateData.ativo = ativo

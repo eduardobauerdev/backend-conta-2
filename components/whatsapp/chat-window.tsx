@@ -127,9 +127,11 @@ export function ChatWindow({
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  // Prioriza: nome > phone > id.split('@')[0] > id
   const safeChatName = chatName && chatName.trim().length > 0 
     ? chatName 
-    : chatTelefone || chatId?.split('@')[0] || "Contato"
+    : chatTelefone || (chatId?.includes('@') ? chatId.split('@')[0] : chatId) || "Contato"
+  const telefone = chatTelefone || (chatId?.includes('@') ? chatId.split('@')[0] : chatId) || ""
   const profilePictureUrl = `${BACKEND_URL}/chats/avatar/${chatId}`;
 
   // Verifica se existe lead vinculado ao chat
@@ -141,7 +143,8 @@ export function ChatWindow({
         if (chatUuid) {
           query = query.eq("chat_uuid", chatUuid)
         } else {
-          const telefoneNum = chatId.includes("@") ? chatId.split("@")[0] : chatId
+          // Usa chatTelefone se disponível, caso contrário extrai do chatId
+          const telefoneNum = chatTelefone || (chatId.includes("@") ? chatId.split("@")[0] : chatId)
           query = query.eq("telefone", telefoneNum)
         }
         
@@ -253,8 +256,8 @@ export function ChatWindow({
       }, async (payload) => {
         const updatedChat = payload.new as any;
         
-        // Atualiza o nome
-        if (updatedChat.name) {
+        // Atualiza o nome imediatamente
+        if (updatedChat.name !== undefined) {
           setChatName(updatedChat.name);
         }
         
@@ -604,8 +607,6 @@ export function ChatWindow({
     )
   }
 
-  const telefone = chatTelefone || chatId.split('@')[0]
-
   return (
     <div className="flex flex-col h-full bg-white relative">
       {/* HEADER */}
@@ -808,7 +809,6 @@ export function ChatWindow({
                  {hasHistory && (
                     <Tooltip><TooltipTrigger asChild><Button variant="outline" size="sm" onClick={() => setShowHistoryDialog(true)}><History className="w-4 h-4" /></Button></TooltipTrigger><TooltipContent><p>Histórico</p></TooltipContent></Tooltip>
                  )}
-                 <Tooltip><TooltipTrigger asChild><Button variant="outline" size="sm" onClick={() => setShowAssignToUserDialog(true)}><User className="w-4 h-4 mr-2" /> Atribuir</Button></TooltipTrigger><TooltipContent><p>Atribuir</p></TooltipContent></Tooltip>
                  {!chatName || !chatName.trim() ? (
                    <Tooltip>
                      <TooltipTrigger asChild>
@@ -838,6 +838,7 @@ export function ChatWindow({
                      <TooltipContent><p>Criar Lead</p></TooltipContent>
                    </Tooltip>
                  )}
+                 <Tooltip><TooltipTrigger asChild><Button variant="outline" size="sm" onClick={() => setShowAssignToUserDialog(true)}><User className="w-4 h-4 mr-2" /> Atribuir</Button></TooltipTrigger><TooltipContent><p>Atribuir</p></TooltipContent></Tooltip>
                  <Tooltip>
                    <TooltipTrigger asChild>
                      <div>

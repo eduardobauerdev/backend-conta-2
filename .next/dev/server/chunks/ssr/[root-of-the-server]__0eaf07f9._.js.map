@@ -2,5 +2,5 @@
   "version": 3,
   "sources": [],
   "sections": [
-    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Jarvis/OneDrive/%C3%81rea%20de%20Trabalho/front/frontend-ii/app/page.tsx"],"sourcesContent":["import { redirect } from 'next/navigation'\r\n\r\nexport default function Home() {\r\n  redirect(\"/visao-geral\")\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;AAAA;;AAEe,SAAS;IACtB,IAAA,mNAAQ,EAAC;AACX","debugId":null}}]
+    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Edu%20Bauer/Desktop/front%20recent/frontend-ii/app/page.tsx"],"sourcesContent":["import { redirect } from 'next/navigation'\r\n\r\nexport default function Home() {\r\n  redirect(\"/visao-geral\")\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;AAAA;;AAEe,SAAS;IACtB,IAAA,mNAAQ,EAAC;AACX","debugId":null}}]
 }

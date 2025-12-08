@@ -930,7 +930,7 @@ function OrdensPage() {
                                                                 rel: "noopener noreferrer",
                                                                 className: "inline-flex hover:opacity-70 transition-opacity",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                    src: "/images/google-drive-icon.png",
+                                                                    src: "/google_drive.svg",
                                                                     alt: "Google Drive",
                                                                     className: "w-6 h-6 object-contain"
                                                                 }, void 0, false, {
@@ -1491,7 +1491,7 @@ function OrdensPage() {
                                                                     rel: "noopener noreferrer",
                                                                     className: "inline-flex hover:opacity-70 transition-opacity",
                                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                        src: "/images/google-drive-icon.png",
+                                                                        src: "/google_drive.svg",
                                                                         alt: "Google Drive",
                                                                         className: "w-5 h-5 object-contain"
                                                                     }, void 0, false, {

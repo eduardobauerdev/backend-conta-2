@@ -99,8 +99,19 @@ async function GET() {
         const { data, error } = await supabase.from('catalogos').select('*').order('created_at', {
             ascending: false
         });
-        if (error) throw error;
-        return __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data);
+        if (error) {
+            // Se a tabela não existir ou houver erro de relação, retorna array vazio
+            // Códigos comuns: 42P01 (undefined_table), PGRST116 (relation not found)
+            const isTableMissing = error.code === '42P01' || error.code === 'PGRST116' || error.message?.toLowerCase().includes('does not exist') || error.message?.toLowerCase().includes('relation') || error.message?.toLowerCase().includes('not found');
+            if (isTableMissing) {
+                console.warn('Tabela catalogos não existe no banco de dados. Execute o script 011_create_catalog_tables.sql para criá-la.');
+                return __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json([]);
+            }
+            console.error('Erro Supabase ao buscar catálogos:', error);
+            throw error;
+        }
+        // Garante que sempre retorna um array
+        return __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data || []);
     } catch (error) {
         console.error('Erro ao buscar catálogos:', error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({

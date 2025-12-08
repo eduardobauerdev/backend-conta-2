@@ -18,6 +18,14 @@ type KanbanColumnProps = {
   onLeadConvert?: (lead: Lead) => void
   onLeadUnconvert?: (lead: Lead) => void
   highlightedLeadId?: string | null
+  chatEtiquetasMap?: Record<string, string[]>
+  chatAssignmentsMap?: Record<string, { assigned_to_name: string; assigned_to_cargo?: string; assigned_to_color?: string }>
+  chatNotesMap?: Record<string, boolean>
+  chatIdMap?: Record<string, string>
+  etiquetas?: Array<{ id: string; nome: string; cor: string }>
+  onRemoveAssignment?: (chatId: string, chatUuid: string) => void
+  onRemoveEtiqueta?: (chatId: string, chatUuid: string, etiquetaId: string) => void
+  onShowEtiquetas?: (lead: Lead) => void
 }
 
 export function KanbanColumn({
@@ -31,6 +39,14 @@ export function KanbanColumn({
   onLeadConvert,
   onLeadUnconvert,
   highlightedLeadId,
+  chatEtiquetasMap = {},
+  chatAssignmentsMap = {},
+  chatNotesMap = {},
+  chatIdMap = {},
+  etiquetas = [],
+  onRemoveAssignment,
+  onRemoveEtiqueta,
+  onShowEtiquetas,
 }: KanbanColumnProps) {
   const { setNodeRef, isOver } = useDroppable({
     id: dateStr,
@@ -57,19 +73,49 @@ export function KanbanColumn({
       </div>
 
       <div className="space-y-3">
-        {leads.map((lead) => (
-          <LeadCard
-            key={lead.id}
-            lead={lead}
-            onClick={() => onLeadClick(lead)}
-            onView={() => onLeadView(lead)}
-            onMove={() => onLeadMove(lead)}
-            onDelete={() => onLeadDelete(lead)}
-            onConvert={() => onLeadConvert?.(lead)}
-            onUnconvert={() => onLeadUnconvert?.(lead)}
-            isHighlighted={highlightedLeadId === lead.id}
-          />
-        ))}
+        {leads.map((lead) => {
+          // Prepara dados de badges
+          const leadEtiquetaIds = lead.chat_uuid ? (chatEtiquetasMap[lead.chat_uuid] || []) : []
+          const leadEtiquetas = leadEtiquetaIds
+            .map(id => etiquetas.find(e => e.id === id))
+            .filter(Boolean) as { id: string; nome: string; cor: string }[]
+          
+          const leadAssignment = lead.chat_uuid ? chatAssignmentsMap[lead.chat_uuid] : undefined
+          const hasNotes = lead.chat_uuid ? (chatNotesMap[lead.chat_uuid] || false) : false
+          const chatId = lead.chat_uuid ? chatIdMap[lead.chat_uuid] : undefined
+
+          return (
+            <LeadCard
+              key={lead.id}
+              lead={lead}
+              onClick={() => onLeadClick(lead)}
+              onView={() => onLeadView(lead)}
+              onMove={() => onLeadMove(lead)}
+              onDelete={() => onLeadDelete(lead)}
+              onConvert={() => onLeadConvert?.(lead)}
+              onUnconvert={() => onLeadUnconvert?.(lead)}
+              isHighlighted={highlightedLeadId === lead.id}
+              assignment={leadAssignment}
+              etiquetas={leadEtiquetas}
+              hasNotes={hasNotes}
+              onRemoveAssignment={
+                chatId && lead.chat_uuid && onRemoveAssignment
+                  ? () => onRemoveAssignment(chatId, lead.chat_uuid!)
+                  : undefined
+              }
+              onRemoveEtiqueta={
+                chatId && lead.chat_uuid && onRemoveEtiqueta
+                  ? (etiquetaId: string) => onRemoveEtiqueta(chatId, lead.chat_uuid!, etiquetaId)
+                  : undefined
+              }
+              onShowEtiquetas={
+                onShowEtiquetas
+                  ? () => onShowEtiquetas(lead)
+                  : undefined
+              }
+            />
+          )
+        })}
       </div>
 
       {leads.length === 0 && <div className="text-center text-neutral-400 text-sm mt-8">Nenhum lead</div>}

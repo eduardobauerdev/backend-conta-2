@@ -221,6 +221,12 @@ export function FilterPanel({ vendedores, acoes, etiquetas = [], onFiltersChange
                           </div>
                         </SelectItem>
                       ))}
+                      <SelectItem value="sem_etiqueta">
+                        <div className="flex items-center gap-2">
+                          <Tag className="w-3 h-3 text-muted-foreground" />
+                          <span className="text-muted-foreground">Sem etiqueta</span>
+                        </div>
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 )}

@@ -157,6 +157,18 @@ export function EditLeadDialog({ open, onOpenChange, lead, onSuccess }: EditLead
       return
     }
 
+    // Sincroniza o nome com o chat se houver chat_uuid
+    if (lead.chat_uuid && nome.trim() !== lead.nome) {
+      try {
+        await supabase
+          .from("chats")
+          .update({ name: nome.trim() })
+          .eq("uuid", lead.chat_uuid)
+      } catch (err) {
+        console.error("Erro ao sincronizar nome do chat:", err)
+      }
+    }
+
     await supabase.from("lead_logs").insert({
       lead_id: lead.id,
       usuario_id: user.id,

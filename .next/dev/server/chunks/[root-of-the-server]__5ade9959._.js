@@ -206,6 +206,32 @@ async function DELETE(request) {
                 status: 400
             });
         }
+        // Primeiro, remove a etiqueta de todos os chats que a contêm
+        // Usa a função RPC para remover a etiqueta do array etiqueta_ids
+        const { error: removeError } = await supabase.rpc('remove_etiqueta_from_all_chats', {
+            p_etiqueta_id: id
+        });
+        // Se a função RPC não existir, faz a remoção manualmente
+        if (removeError && removeError.code === '42883') {
+            // Função não existe, faz update manual
+            // Busca todos os chats que têm essa etiqueta
+            const { data: chatsWithEtiqueta } = await supabase.from('chats').select('id, etiqueta_ids').contains('etiqueta_ids', [
+                id
+            ]);
+            if (chatsWithEtiqueta && chatsWithEtiqueta.length > 0) {
+                // Remove a etiqueta de cada chat
+                for (const chat of chatsWithEtiqueta){
+                    const newEtiquetaIds = (chat.etiqueta_ids || []).filter((eid)=>eid !== id);
+                    await supabase.from('chats').update({
+                        etiqueta_ids: newEtiquetaIds
+                    }).eq('id', chat.id);
+                }
+            }
+        } else if (removeError) {
+            console.error('Erro ao remover etiqueta dos chats:', removeError);
+        // Continua com a exclusão mesmo se houver erro na limpeza
+        }
+        // Agora exclui a etiqueta
         const { error } = await supabase.from("whatsapp_etiquetas").delete().eq("id", id);
         if (error) throw error;
         return __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({

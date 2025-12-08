@@ -176,12 +176,6 @@ export default function WhatsAppPage() {
                     </p>
                 </div>
 
-                <Link href="/ajustes?tab=whatsapp">
-                    <Button size="lg" className="gap-2 bg-green-600 hover:bg-green-700 text-white">
-                        <Settings className="w-4 h-4" />
-                        Ver Status da Conexão
-                    </Button>
-                </Link>
             </Card>
         </div>
       ) : !isConnected ? (

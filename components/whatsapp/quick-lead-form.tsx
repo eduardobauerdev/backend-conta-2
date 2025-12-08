@@ -50,7 +50,7 @@ export function QuickLeadForm({ chatId, chatUuid, chatName, onSuccess, onCancel 
   const [temperatura, setTemperatura] = useState<"Quente" | "Morno" | "Frio">("Morno")
   const [proximoContato, setProximoContato] = useState<Date | undefined>(new Date())
   const [acao, setAcao] = useState("")
-  const [observacao, setObservacao] = useState("")
+  const [notas, setNotas] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [existingLead, setExistingLead] = useState<{ id: string; nome: string } | null>(null)
   const [checkingLead, setCheckingLead] = useState(true)
@@ -89,6 +89,25 @@ export function QuickLeadForm({ chatId, chatUuid, chatName, onSuccess, onCancel 
     
     checkExistingLead()
   }, [chatId, chatUuid, supabase])
+
+  // Busca notas existentes do chat
+  useEffect(() => {
+    async function loadChatNotes() {
+      try {
+        const response = await fetch(`/api/whatsapp/notes?chatId=${chatId}`)
+        if (response.ok) {
+          const data = await response.json()
+          if (data.success && data.note?.content) {
+            setNotas(data.note.content)
+          }
+        }
+      } catch (error) {
+        console.error("Erro ao carregar notas do chat:", error)
+      }
+    }
+    
+    loadChatNotes()
+  }, [chatId])
 
   const formatPhone = (value: string) => {
     const numbers = value.replace(/\D/g, "")
@@ -142,7 +161,8 @@ export function QuickLeadForm({ chatId, chatUuid, chatName, onSuccess, onCancel 
     const interesseFormatado = formatInteresse()
     const proximoContatoStr = proximoContato ? formatDateToISO(proximoContato) : null
 
-    const { error } = await supabase.from("leads").insert({
+    // Cria o lead
+    const { data: leadData, error } = await supabase.from("leads").insert({
       nome: nome.trim(),
       cidade: cidade.trim(),
       interesse: interesseFormatado,
@@ -155,16 +175,34 @@ export function QuickLeadForm({ chatId, chatUuid, chatName, onSuccess, onCancel 
       adicionado_por_id: user.id,
       adicionado_por_nome: user.nome,
       acao: acao.trim() || null,
-      observacao: observacao.trim() || null,
+      observacao: null,
       status: "ativo",
       chat_uuid: chatUuid || null,  // Vincula ao chat pelo UUID estável
-    })
+    }).select().single()
 
     if (error) {
       console.error("[v0] Error creating lead:", error)
       toast.error("Erro ao criar lead")
       setIsSubmitting(false)
       return
+    }
+
+    // Se houver notas, salva/atualiza no sistema de notas
+    if (notas.trim() && leadData) {
+      try {
+        await fetch("/api/whatsapp/notes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chatId,
+            chatName,
+            content: notas.trim(),
+            previousContent: null,
+          }),
+        })
+      } catch (error) {
+        console.error("Erro ao salvar notas:", error)
+      }
     }
 
     await supabase.from("lead_logs").insert({
@@ -191,7 +229,7 @@ export function QuickLeadForm({ chatId, chatUuid, chatName, onSuccess, onCancel 
     setTemperatura("Morno")
     setProximoContato(new Date())
     setAcao("")
-    setObservacao("")
+    // Não reseta as notas aqui pois elas são carregadas pelo useEffect acima
   }, [chatId, chatName])
 
   return (
@@ -499,12 +537,12 @@ export function QuickLeadForm({ chatId, chatUuid, chatName, onSuccess, onCancel 
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="observacao">Observação</Label>
+          <Label htmlFor="notas">Adicionar notas</Label>
           <Textarea
-            id="observacao"
-            value={observacao}
-            onChange={(e) => setObservacao(e.target.value)}
-            placeholder="Adicione detalhes importantes sobre este lead..."
+            id="notas"
+            value={notas}
+            onChange={(e) => setNotas(e.target.value)}
+            placeholder="Adicione notas sobre este lead (serão salvas no sistema de notas)..."
             rows={3}
           />
         </div>
