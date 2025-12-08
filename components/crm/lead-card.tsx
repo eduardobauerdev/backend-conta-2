@@ -5,7 +5,7 @@ import { CSS } from "@dnd-kit/utilities"
 import { useRouter } from "next/navigation"
 import type { Lead } from "@/types/crm"
 import { cn } from "@/lib/utils"
-import { Phone, MessageCircle, MapPin, FileText, RefreshCw, Users, MoreHorizontal, CheckCircle, XCircle, Eye, ArrowRightLeft, Trash2, Pencil, User, Tag, StickyNote, X, Tags } from 'lucide-react'
+import { Phone, MessageCircle, MapPin, FileText, RefreshCw, Users, MoreHorizontal, CheckCircle, XCircle, Eye, ArrowRightLeft, Trash2, Pencil, User, Tag, StickyNote, X, Tags, UserPlus } from 'lucide-react'
 import { toast } from "sonner"
 import {
   ContextMenu,
@@ -13,6 +13,10 @@ import {
   ContextMenuItem,
   ContextMenuSeparator,
   ContextMenuTrigger,
+  ContextMenuSub,
+  ContextMenuSubTrigger,
+  ContextMenuSubContent,
+  ContextMenuPortal,
 } from "@/components/ui/context-menu"
 import {
   Tooltip,
@@ -39,6 +43,13 @@ type LeadCardProps = {
   onRemoveAssignment?: () => void
   onRemoveEtiqueta?: (etiquetaId: string) => void
   onShowEtiquetas?: () => void
+  onShowNotes?: () => void
+  onAddEtiqueta?: () => void
+  // Novas props para submenus
+  availableEtiquetas?: Array<{ id: string; nome: string; cor: string }>
+  availableUsers?: Array<{ id: string; nome: string; cargo: string; cor: string }>
+  onAssignEtiqueta?: (etiquetaId: string, isSelected: boolean) => void
+  onAssignUser?: (userId: string, userName: string) => void
 }
 
 // Ícone SVG do WhatsApp (mesmo da Sidebar)
@@ -59,7 +70,7 @@ const WhatsAppChatIcon = () => (
   </svg>
 )
 
-export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, onUnconvert, isHighlighted, assignment, etiquetas, hasNotes, onRemoveAssignment, onRemoveEtiqueta, onShowEtiquetas }: LeadCardProps) {
+export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, onUnconvert, isHighlighted, assignment, etiquetas, hasNotes, onRemoveAssignment, onRemoveEtiqueta, onShowEtiquetas, onShowNotes, onAddEtiqueta, availableEtiquetas, availableUsers, onAssignEtiqueta, onAssignUser }: LeadCardProps) {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: lead.id,
   })
@@ -129,8 +140,12 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
     }
   }
 
-  const getPrimeiroNome = (nomeCompleto: string) => {
-    return nomeCompleto.split(' ')[0]
+  const getPrimeiroESegundoNome = (nomeCompleto: string) => {
+    const partes = nomeCompleto.split(' ').filter(p => p.length > 0)
+    if (partes.length >= 2) {
+      return `${partes[0]} ${partes[1]}`
+    }
+    return partes[0] || nomeCompleto
   }
 
   const getActionIcon = (acao: string) => {
@@ -168,51 +183,104 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
             isHighlighted && "lead-highlight"
           )}
         >
-          <div {...listeners} className="cursor-grab active:cursor-grabbing">
-            <TooltipProvider>
-              <Tooltip delayDuration={200}>
-                <TooltipTrigger asChild>
-                  <h4 
-                    className="font-semibold text-neutral-900 mb-1 inline-flex items-center gap-1.5"
-                  >
-                    <span>{getPrimeiroNome(lead.nome)}</span>
-                    {getTemperaturaEmoji()}
-                  </h4>
-                </TooltipTrigger>
-                <TooltipContent side="top">
-                  <p className="text-xs">{lead.nome}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            
-            <div className="flex items-center gap-2 mb-2 flex-wrap">
-              <p className="text-xs text-neutral-500">
-                <span className="font-medium">Vendedor:</span> {lead.adicionado_por_nome}
-              </p>
+          <div {...listeners} className={cn("cursor-default", isDragging && "cursor-grabbing")}>
+            {/* Nome do lead + Badge de atribuição na mesma linha */}
+            <div className="flex items-center gap-2 mb-2">
+              <TooltipProvider>
+                <Tooltip delayDuration={200}>
+                  <TooltipTrigger asChild>
+                    <h4 
+                      className="font-semibold text-neutral-900 inline-flex items-center gap-1.5 truncate flex-1 min-w-0"
+                    >
+                      <span className="truncate">{getPrimeiroESegundoNome(lead.nome)}</span>
+                      <TooltipProvider>
+                        <Tooltip delayDuration={200}>
+                          <TooltipTrigger asChild>
+                            <span className="flex-shrink-0">{getTemperaturaEmoji()}</span>
+                          </TooltipTrigger>
+                          <TooltipContent side="top">
+                            <p className="text-xs">{lead.temperatura}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </h4>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">
+                    <p className="text-xs">{lead.nome}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               
-              {/* Etiquetas ao lado do vendedor */}
-              {etiquetas && etiquetas.length > 0 && (
-                <div className="flex items-center gap-1">
-                  {etiquetas.slice(0, 2).map((etiqueta) => (
-                    <ContextMenu key={etiqueta.id}>
-                      <ContextMenuTrigger asChild>
-                        <div onClick={(e) => e.stopPropagation()}>
-                          <TooltipProvider>
-                            <Tooltip delayDuration={200}>
-                              <TooltipTrigger asChild>
-                                <Badge
-                                  variant="secondary"
-                                  className="text-[10px] px-1.5 py-0 h-4 flex items-center gap-1 border cursor-pointer"
-                                  style={{ 
-                                    backgroundColor: etiqueta.cor, 
-                                    borderColor: etiqueta.cor, 
-                                    color: getContrastTextColor(etiqueta.cor) 
-                                  }}
-                                >
-                                  <Tag className="w-2.5 h-2.5" />
-                                  <span className="max-w-[50px] truncate">{etiqueta.nome}</span>
-                                </Badge>
-                              </TooltipTrigger>
+              {/* Badge de atribuição ao lado do nome */}
+              {assignment && (
+                <ContextMenu>
+                  <ContextMenuTrigger asChild>
+                    <div onClick={(e) => e.stopPropagation()} className="flex-shrink-0">
+                      <TooltipProvider>
+                        <Tooltip delayDuration={200}>
+                          <TooltipTrigger asChild>
+                            <Badge 
+                              variant="secondary" 
+                              className="text-[10px] px-1.5 py-0 h-4 flex items-center gap-1 border cursor-pointer"
+                              style={{ 
+                                backgroundColor: assignment.assigned_to_color || "#6366f1", 
+                                color: "#ffffff", 
+                                borderColor: assignment.assigned_to_color || "#6366f1" 
+                              }}
+                            >
+                              <User className="w-2.5 h-2.5" />
+                              <span className="max-w-[40px] truncate">{assignment.assigned_to_name.split(' ')[0]}</span>
+                            </Badge>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{assignment.assigned_to_name} - {assignment.assigned_to_cargo || ''}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                  </ContextMenuTrigger>
+                  <ContextMenuContent className="w-48">
+                    <ContextMenuItem
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        onRemoveAssignment?.()
+                      }}
+                      className="text-destructive focus:text-destructive"
+                    >
+                      <X className="w-4 h-4 mr-2" />
+                      Remover atribuição
+                    </ContextMenuItem>
+                  </ContextMenuContent>
+                </ContextMenu>
+              )}
+            </div>
+            
+            {/* Etiquetas - Exibe baseado na configuração show_all_tags */}
+            {etiquetas && etiquetas.length > 0 && (
+              <div className="flex items-center gap-1 mb-2 flex-wrap">
+                {user?.show_all_tags ? (
+                  // Exibe todas as etiquetas coloridas
+                  <>
+                    {etiquetas.slice(0, 2).map((etiqueta) => (
+                      <ContextMenu key={etiqueta.id}>
+                        <ContextMenuTrigger asChild>
+                          <div onClick={(e) => e.stopPropagation()}>
+                            <TooltipProvider>
+                              <Tooltip delayDuration={200}>
+                                <TooltipTrigger asChild>
+                                  <Badge
+                                    variant="secondary"
+                                    className="text-[10px] px-1.5 py-0 h-4 flex items-center gap-1 border cursor-pointer"
+                                    style={{ 
+                                      backgroundColor: etiqueta.cor, 
+                                      borderColor: etiqueta.cor, 
+                                      color: getContrastTextColor(etiqueta.cor) 
+                                    }}
+                                  >
+                                    <Tag className="w-2.5 h-2.5" />
+                                    <span className="max-w-[50px] truncate">{etiqueta.nome}</span>
+                                  </Badge>
+                                </TooltipTrigger>
                               <TooltipContent>
                                 <p>{etiqueta.nome}</p>
                               </TooltipContent>
@@ -247,22 +315,64 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                         )}
                       </ContextMenuContent>
                     </ContextMenu>
-                  ))}
-                  {etiquetas.length > 2 && (
-                    <Badge 
-                      variant="secondary" 
-                      className="text-[10px] px-1.5 py-0 h-4 cursor-pointer hover:bg-secondary/80"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        onShowEtiquetas?.()
-                      }}
-                    >
-                      +{etiquetas.length - 2}
-                    </Badge>
-                  )}
-                </div>
-              )}
-            </div>
+                    ))}
+                    {etiquetas.length > 2 && (
+                      <Badge 
+                        variant="secondary" 
+                        className="text-[10px] px-1.5 py-0 h-4 cursor-pointer hover:bg-secondary/80"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          onShowEtiquetas?.()
+                        }}
+                      >
+                        +{etiquetas.length - 2}
+                      </Badge>
+                    )}
+                  </>
+                ) : (
+                  // Exibe apenas badge compacto com número de etiquetas
+                  <TooltipProvider>
+                    <Tooltip delayDuration={200}>
+                      <TooltipTrigger asChild>
+                        <Badge 
+                          variant="secondary" 
+                          className="text-[10px] px-1.5 py-0 h-4 flex items-center gap-1 cursor-pointer text-black bg-neutral-200 border-2 border-black hover:bg-neutral-300"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            onShowEtiquetas?.()
+                          }}
+                        >
+                          <Tag className="w-2.5 h-2.5 text-black" />
+                          <span>{etiquetas.length}</span>
+                        </Badge>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-[250px]">
+                        <div className="flex flex-col gap-1">
+                          <p className="text-xs font-medium mb-1">Etiquetas:</p>
+                          <div className="flex flex-wrap gap-1">
+                            {etiquetas.map(etiqueta => (
+                              <Badge
+                                key={etiqueta.id}
+                                variant="secondary"
+                                className="text-[10px] px-1.5 py-0.5 flex items-center gap-1 border"
+                                style={{ 
+                                  backgroundColor: etiqueta.cor, 
+                                  borderColor: etiqueta.cor, 
+                                  color: getContrastTextColor(etiqueta.cor) 
+                                }}
+                              >
+                                <Tag className="w-2.5 h-2.5" />
+                                {etiqueta.nome}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )}
+              </div>
+            )}
             
             {lead.acao && (
               <Badge variant="secondary" className="mb-2 text-xs flex items-center gap-1.5 w-fit">
@@ -278,52 +388,16 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
               </Badge>
             )}
             
-            {/* Badge de atribuição com context menu */}
-            {assignment && (
-              <ContextMenu>
-                <ContextMenuTrigger asChild>
-                  <div onClick={(e) => e.stopPropagation()}>
-                    <TooltipProvider>
-                      <Tooltip delayDuration={200}>
-                        <TooltipTrigger asChild>
-                          <Badge 
-                            variant="secondary" 
-                            className="mb-2 text-xs flex items-center gap-1.5 w-fit border cursor-pointer"
-                            style={{ 
-                              backgroundColor: assignment.assigned_to_color || "#6366f1", 
-                              color: "#ffffff", 
-                              borderColor: assignment.assigned_to_color || "#6366f1" 
-                            }}
-                          >
-                            <User className="w-3 h-3" />
-                            <span>{assignment.assigned_to_name.split(' ')[0]}</span>
-                          </Badge>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{assignment.assigned_to_name} - {assignment.assigned_to_cargo || ''}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                </ContextMenuTrigger>
-                <ContextMenuContent className="w-48">
-                  <ContextMenuItem
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      onRemoveAssignment?.()
-                    }}
-                    className="text-destructive focus:text-destructive"
-                  >
-                    <X className="w-4 h-4 mr-2" />
-                    Remover atribuição
-                  </ContextMenuItem>
-                </ContextMenuContent>
-              </ContextMenu>
-            )}
-            
-            {/* Badge de notas */}
+            {/* Badge de notas - clicável para abrir o diálogo */}
             {hasNotes && (
-              <Badge variant="secondary" className="mb-2 text-xs flex items-center gap-1.5 w-fit bg-amber-50 text-amber-700 border-amber-300">
+              <Badge 
+                variant="secondary" 
+                className="mb-2 text-xs flex items-center gap-1.5 w-fit bg-amber-50 text-amber-700 border-amber-300 cursor-pointer hover:bg-amber-100"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onShowNotes?.()
+                }}
+              >
                 <StickyNote className="w-3 h-3" />
                 <span>Notas</span>
               </Badge>
@@ -349,96 +423,202 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
         </div>
       </ContextMenuTrigger>
       <ContextMenuContent 
-        className="w-auto"
+        className="w-48 rounded-lg"
         onCloseAutoFocus={(e) => e.preventDefault()}
       >
-        <ContextMenuItem 
-          onSelect={(e) => {
-            e.preventDefault()
-            onView?.()
-          }}
-        >
-          <Eye className="w-4 h-4 mr-2" />
-          Ver dados
-        </ContextMenuItem>
+        {/* Editar lead */}
         {canEdit && (
           <ContextMenuItem 
-            onSelect={(e) => {
-              e.preventDefault()
-              onClick?.()
-            }}
+            onSelect={() => onClick?.()}
           >
             <Pencil className="w-4 h-4 mr-2" />
             Editar lead
           </ContextMenuItem>
         )}
-        {lead.chat_uuid && (
+        
+        {/* Ver dados */}
+        <ContextMenuItem 
+          onSelect={() => onView?.()}
+        >
+          <Eye className="w-4 h-4 mr-2" />
+          Ver dados
+        </ContextMenuItem>
+        
+        {/* Ver chat */}
+        {(lead.chat_uuid || lead.telefone) && (
           <ContextMenuItem 
-            onSelect={(e) => {
-              e.preventDefault()
-              router.push(`/whatsapp?chatUuid=${lead.chat_uuid}`)
+            onSelect={() => {
+              if (lead.chat_uuid) {
+                router.push(`/whatsapp?chatUuid=${lead.chat_uuid}`)
+              } else if (lead.telefone) {
+                router.push(`/whatsapp?telefone=${lead.telefone}`)
+              }
             }}
           >
             <WhatsAppChatIcon />
             Ver chat
           </ContextMenuItem>
         )}
-        {lead.telefone && !lead.chat_uuid && (
-          <ContextMenuItem 
-            onSelect={(e) => {
-              e.preventDefault()
-              router.push(`/whatsapp?telefone=${lead.telefone}`)
-            }}
-          >
-            <WhatsAppChatIcon />
-            Ver chat
-          </ContextMenuItem>
+        
+        <ContextMenuSeparator />
+        
+        {/* Atribuir com submenu */}
+        {availableUsers && availableUsers.length > 0 && (
+          <ContextMenuSub>
+            <ContextMenuSubTrigger disabled={!lead.chat_uuid}>
+              <UserPlus className="w-4 h-4 mr-2" />
+              Atribuir
+            </ContextMenuSubTrigger>
+            <ContextMenuPortal>
+              <ContextMenuSubContent className="w-48 rounded-lg">
+                {[...availableUsers]
+                  .sort((a, b) => {
+                    const userCargo = (typeof window !== 'undefined' && document.cookie.match(/auth_user_id=([^;]+)/)?.[1]) || ''
+                    const isCurrentUserA = userCargo === a.id
+                    const isCurrentUserB = userCargo === b.id
+                    const isAssignedA = assignment?.assigned_to_name === a.nome
+                    const isAssignedB = assignment?.assigned_to_name === b.nome
+                    
+                    if (isCurrentUserA && !isCurrentUserB) return -1
+                    if (!isCurrentUserA && isCurrentUserB) return 1
+                    if (isAssignedA && !isAssignedB) return -1
+                    if (!isAssignedA && isAssignedB) return 1
+                    return 0
+                  })
+                  .map((user) => {
+                    const userIdFromCookie = (typeof window !== 'undefined' && document.cookie.match(/auth_user_id=([^;]+)/)?.[1]) || ''
+                    const isAssigned = assignment?.assigned_to_name === user.nome
+                    const isCurrentUser = userIdFromCookie === user.id
+                    return (
+                      <ContextMenuItem
+                        key={user.id}
+                        onClick={() => {
+                          if (lead.chat_uuid && onAssignUser) {
+                            onAssignUser(user.id, user.nome)
+                          }
+                        }}
+                        className="cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2 w-full">
+                          <div
+                            className="w-3 h-3 rounded"
+                            style={{ backgroundColor: user.cor }}
+                          />
+                          <span className="flex-1 text-sm">{user.nome}</span>
+                          <div className="flex items-center gap-1">
+                            {isCurrentUser && (
+                              <span className="text-xs text-blue-600 font-medium">Você</span>
+                            )}
+                            {isAssigned && (
+                              <span className="text-xs text-blue-600 font-medium flex items-center gap-1">
+                                <div className="w-2 h-2 rounded-full bg-blue-600" />
+                                Atual
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </ContextMenuItem>
+                    )
+                  })}
+              </ContextMenuSubContent>
+            </ContextMenuPortal>
+          </ContextMenuSub>
         )}
+        
+        {/* Etiqueta com submenu */}
+        {availableEtiquetas && availableEtiquetas.length > 0 && (
+          <ContextMenuSub>
+            <ContextMenuSubTrigger disabled={!lead.chat_uuid}>
+              <Tag className="w-4 h-4 mr-2" />
+              Etiqueta
+            </ContextMenuSubTrigger>
+            <ContextMenuPortal>
+              <ContextMenuSubContent className="w-48 rounded-lg">
+                {availableEtiquetas.map((etiqueta) => {
+                  const isSelected = etiquetas?.some(e => e.id === etiqueta.id) || false
+                  return (
+                    <ContextMenuItem
+                      key={etiqueta.id}
+                      onClick={() => {
+                        if (lead.chat_uuid && onAssignEtiqueta) {
+                          onAssignEtiqueta(etiqueta.id, isSelected)
+                        }
+                      }}
+                      className="cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2 w-full">
+                        <div
+                          className="w-3 h-3 rounded"
+                          style={{ backgroundColor: etiqueta.cor }}
+                        />
+                        <span className="flex-1 text-sm">{etiqueta.nome}</span>
+                        {isSelected && (
+                          <span className="text-xs text-green-600 font-medium">✓</span>
+                        )}
+                      </div>
+                    </ContextMenuItem>
+                  )
+                })}
+              </ContextMenuSubContent>
+            </ContextMenuPortal>
+          </ContextMenuSub>
+        )}
+        
+        {/* Notas */}
+        <ContextMenuItem 
+          onSelect={() => {
+            if (lead.chat_uuid) {
+              onShowNotes?.()
+            }
+          }}
+          disabled={!lead.chat_uuid}
+        >
+          <StickyNote className="w-4 h-4 mr-2" />
+          Notas
+        </ContextMenuItem>
+        
+        {/* Mover lead */}
         {canEdit && (
-          <>
+          <ContextMenuItem 
+            onSelect={() => onMove?.()}
+          >
+            <ArrowRightLeft className="w-4 h-4 mr-2" />
+            Mover lead
+          </ContextMenuItem>
+        )}
+        
+        <ContextMenuSeparator />
+        
+        {/* Converter/Desconverter */}
+        {canEdit && (
+          lead.status === "convertido" ? (
             <ContextMenuItem 
-              onSelect={(e) => {
-                e.preventDefault()
-                onMove?.()
-              }}
+              onSelect={() => onUnconvert?.()}
+              className="text-orange-600 focus:text-orange-600 focus:bg-orange-50"
             >
-              <ArrowRightLeft className="w-4 h-4 mr-2" />
-              Mover lead
+              <XCircle className="w-4 h-4 mr-2 text-orange-600" />
+              Desconverter
             </ContextMenuItem>
-            {lead.status === "convertido" ? (
-              <ContextMenuItem 
-                onSelect={(e) => {
-                  e.preventDefault()
-                  onUnconvert?.()
-                }}
-                className="text-orange-600 focus:text-orange-600 focus:bg-orange-50"
-              >
-                <XCircle className="w-4 h-4 mr-2 text-orange-600" />
-                Desconverter
-              </ContextMenuItem>
-            ) : (
-              <ContextMenuItem 
-                onSelect={(e) => {
-                  e.preventDefault()
-                  onConvert?.()
-                }}
-                className="text-green-600 focus:text-green-600 focus:bg-green-50"
-              >
-                <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
-                Converter
-              </ContextMenuItem>
-            )}
+          ) : (
             <ContextMenuItem 
-              onSelect={(e) => {
-                e.preventDefault()
-                onDelete?.()
-              }}
-              className="text-red-600 focus:text-red-600 focus:bg-red-50"
+              onSelect={() => onConvert?.()}
+              className="text-green-600 focus:text-green-600 focus:bg-green-50"
             >
-              <Trash2 className="w-4 h-4 mr-2 text-red-600" />
-              Excluir
+              <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
+              Converter
             </ContextMenuItem>
-          </>
+          )
+        )}
+        
+        {/* Excluir */}
+        {canEdit && (
+          <ContextMenuItem 
+            onSelect={() => onDelete?.()}
+            className="text-red-600 focus:text-red-600 focus:bg-red-50"
+          >
+            <Trash2 className="w-4 h-4 mr-2 text-red-600" />
+            Excluir
+          </ContextMenuItem>
         )}
       </ContextMenuContent>
     </ContextMenu>

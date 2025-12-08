@@ -50,6 +50,7 @@ export default function LeadsTablePage() {
   const [assignments, setAssignments] = useState<Record<string, { assigned_to_name: string; assigned_to_id: string }>>({})
   const [etiquetas, setEtiquetas] = useState<Array<{ id: string; nome: string; cor: string }>>([])
   const [chatNotes, setChatNotes] = useState<Record<string, boolean>>({})
+  const [chatEtiquetasMap, setChatEtiquetasMap] = useState<Record<string, string[]>>({}) // chat_uuid -> etiqueta_ids
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [sortField, setSortField] = useState<SortField>("created_at")
@@ -136,6 +137,15 @@ export default function LeadsTablePage() {
       toast.error("Erro ao carregar leads")
     } else {
       setLeads(data || [])
+      
+      // Fetch chat etiquetas for leads with chat_uuid
+      const chatUuids = (data || [])
+        .filter(lead => lead.chat_uuid)
+        .map(lead => lead.chat_uuid as string)
+      
+      if (chatUuids.length > 0) {
+        fetchChatEtiquetasMap(chatUuids)
+      }
     }
     setLoading(false)
   }
@@ -386,9 +396,36 @@ export default function LeadsTablePage() {
   const getChatIdFromUuid = (uuid: string) => chatIdMap[uuid] || null
 
   const chatHasEtiqueta = (chatUuid: string, etiquetaId: string) => {
-    // Esta função seria implementada consultando a relação chat-etiqueta
-    // Por ora, retorna true para não bloquear
-    return true
+    const etiquetaIds = chatEtiquetasMap[chatUuid] || []
+    if (etiquetaId === "any") {
+      // Retorna true se tem alguma etiqueta (usado para verificar se NÃO tem etiqueta)
+      return etiquetaIds.length > 0
+    }
+    return etiquetaIds.includes(etiquetaId)
+  }
+
+  // Carrega mapeamento de chats -> etiquetas
+  const fetchChatEtiquetasMap = async (chatUuids: string[]) => {
+    if (chatUuids.length === 0) return
+
+    try {
+      const { data: chatsData } = await supabase
+        .from("chats")
+        .select("uuid, etiqueta_ids")
+        .in("uuid", chatUuids)
+
+      if (chatsData) {
+        const map: Record<string, string[]> = {}
+        chatsData.forEach((chat) => {
+          if (chat.uuid && chat.etiqueta_ids) {
+            map[chat.uuid] = chat.etiqueta_ids
+          }
+        })
+        setChatEtiquetasMap(map)
+      }
+    } catch (error) {
+      console.error("Error fetching chat etiquetas:", error)
+    }
   }
 
   const deleteLeads = async () => {
@@ -487,7 +524,15 @@ export default function LeadsTablePage() {
       })()
 
       // Etiqueta filter
-      const matchesEtiqueta = filters.etiqueta === "all" || (lead.chat_uuid && chatHasEtiqueta(lead.chat_uuid, filters.etiqueta))
+      const matchesEtiqueta = (() => {
+        if (filters.etiqueta === "all") return true
+        if (filters.etiqueta === "sem_etiqueta") {
+          // Filtrar leads sem etiqueta
+          if (!lead.chat_uuid) return true // Sem chat = sem etiqueta
+          return !chatHasEtiqueta(lead.chat_uuid, "any")
+        }
+        return lead.chat_uuid && chatHasEtiqueta(lead.chat_uuid, filters.etiqueta)
+      })()
 
       // Notas filter
       const matchesNotas = (() => {

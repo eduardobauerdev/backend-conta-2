@@ -9,6 +9,7 @@ export interface UserData {
   cargo: string
   nome: string
   foto_perfil: string | null
+  show_all_tags: boolean
 }
 
 interface UserContextType {

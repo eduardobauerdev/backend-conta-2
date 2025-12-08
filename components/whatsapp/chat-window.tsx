@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Send, RefreshCw, Zap, Loader2, Paperclip, X, User, History, UserPlus, Plus, Tag, Pencil, Tags, StickyNote, Copy, Phone } from "lucide-react"
 import { QuickRepliesPanel } from "./quick-replies-panel"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger } from "@/components/ui/context-menu"
 import { MessageBubble } from "./message-bubble"
 import { toast } from "sonner"
@@ -15,8 +16,8 @@ import type { Message, ChatAssignmentDB, ChatActivity } from "@/lib/whatsapp-typ
 import { useWhatsAppCache } from "@/contexts/whatsapp-cache-context"
 import { Badge } from "@/components/ui/badge"
 import { ChatHistoryDialog } from "./chat-history-dialog"
-import { AssignToUserDialog } from "./assign-to-user-dialog"
 import { getCookie } from "@/lib/auth"
+import { useUser } from "@/contexts/user-context"
 import { createClient } from "@/lib/supabase/client"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { getRoleColor } from "@/lib/role-colors"
@@ -30,7 +31,7 @@ import { NoteBadge } from "./note-badge"
 import { ProfilePictureModal } from "./profile-picture-modal"
 import { DateSeparator, shouldShowDateSeparator } from "./date-separator"
 import type { Etiqueta, EtiquetaSimple } from "@/lib/whatsapp-types"
-import { getContrastTextColor, formatPhoneNumber } from "@/lib/utils"
+import { cn, getContrastTextColor, formatPhoneNumber } from "@/lib/utils"
 
 const MESSAGES_PER_PAGE = 20
 const SCROLL_THRESHOLD = 100
@@ -81,6 +82,7 @@ export function ChatWindow({
   showLeadPanel,
 }: ChatWindowProps) {
   const { getCachedMessages, setCachedMessages, appendMessages, addNewMessage } = useWhatsAppCache()
+  const { user } = useUser()
   const supabase = createClient()
   const router = useRouter()
 
@@ -96,10 +98,14 @@ export function ChatWindow({
   const [activities, setActivities] = useState<ChatActivity[]>([])
   const [showHistoryDialog, setShowHistoryDialog] = useState(false)
   const [showAssignToUserDialog, setShowAssignToUserDialog] = useState(false)
+  const [showAssignPopover, setShowAssignPopover] = useState(false)
+  const [availableUsers, setAvailableUsers] = useState<Array<{ id: string; nome: string; cargo: string; cor: string }>>([])
+  const [assigningUser, setAssigningUser] = useState(false)
   const [showEditNameDialog, setShowEditNameDialog] = useState(false)
   const [showEtiquetasDialog, setShowEtiquetasDialog] = useState(false)
   const [showNotesDialog, setShowNotesDialog] = useState(false)
   const [showProfilePictureModal, setShowProfilePictureModal] = useState(false)
+  const [hasProfilePicture, setHasProfilePicture] = useState(false)
   const [hasNotes, setHasNotes] = useState(false)
   const [noteContent, setNoteContent] = useState<string | null>(null)
   const [hasHistory, setHasHistory] = useState(false)
@@ -127,10 +133,30 @@ export function ChatWindow({
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  // Prioriza: nome > phone > id.split('@')[0] > id
-  const safeChatName = chatName && chatName.trim().length > 0 
-    ? chatName 
-    : chatTelefone || (chatId?.includes('@') ? chatId.split('@')[0] : chatId) || "Contato"
+  // Prioriza: nome > phone formatado > número extraído do id (formatado) > id original
+  const getPhoneFromChatId = (id: string) => {
+    if (!id) return null
+    if (id.includes('@')) return id.split('@')[0]
+    return id
+  }
+  
+  const safeChatName = (() => {
+    // 1. Se tem nome, usa o nome
+    if (chatName && chatName.trim().length > 0) {
+      return chatName
+    }
+    // 2. Se tem telefone do banco, formata e usa
+    if (chatTelefone) {
+      return formatPhoneNumber(chatTelefone)
+    }
+    // 3. Se pode extrair número do chatId, formata e usa
+    const phoneFromId = getPhoneFromChatId(chatId)
+    if (phoneFromId && /^\d+$/.test(phoneFromId)) {
+      return formatPhoneNumber(phoneFromId)
+    }
+    // 4. Fallback para o ID original ou "Contato"
+    return chatId || "Contato"
+  })()
   const telefone = chatTelefone || (chatId?.includes('@') ? chatId.split('@')[0] : chatId) || ""
   const profilePictureUrl = `${BACKEND_URL}/chats/avatar/${chatId}`;
 
@@ -161,7 +187,52 @@ export function ChatWindow({
     }
     
     checkExistingLead()
-  }, [chatId, chatUuid, supabase])
+  }, [chatId, chatUuid, chatTelefone, supabase])
+
+  // Realtime subscription para mudanças na tabela leads
+  useEffect(() => {
+    const telefoneNum = chatTelefone || (chatId.includes("@") ? chatId.split("@")[0] : chatId)
+    
+    const channel = supabase
+      .channel(`leads-chat-${chatId}`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'leads',
+        },
+        (payload) => {
+          // Verifica se o lead é relacionado a este chat
+          const newRecord = payload.new as any
+          const oldRecord = payload.old as any
+          
+          if (payload.eventType === 'INSERT' || payload.eventType === 'UPDATE') {
+            // Verifica se o lead pertence a este chat
+            const matchesChatUuid = chatUuid && newRecord.chat_uuid === chatUuid
+            const matchesTelefone = newRecord.telefone === telefoneNum
+            
+            if (matchesChatUuid || matchesTelefone) {
+              setExistingLead({
+                id: newRecord.id,
+                nome: newRecord.nome,
+                proximo_contato: newRecord.proximo_contato
+              })
+            }
+          } else if (payload.eventType === 'DELETE') {
+            // Se o lead deletado era o nosso, remove
+            if (existingLead && oldRecord.id === existingLead.id) {
+              setExistingLead(null)
+            }
+          }
+        }
+      )
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [chatId, chatUuid, chatTelefone, supabase, existingLead])
 
   // Função para navegar até o lead no CRM
   const handleViewLeadInCRM = () => {
@@ -336,6 +407,7 @@ export function ChatWindow({
     
     loadAssignment()
     loadActivities()
+    loadAvailableUsers()
     checkNotes()
     checkHistory()
     registerActivity("viewing")
@@ -462,6 +534,70 @@ export function ChatWindow({
               if(data.success && data.assignment) handleAssignmentUpdate(data.assignment)
           }
       } catch (e) { console.error(e) }
+  }
+
+  // --- CARREGAR USUÁRIOS DISPONÍVEIS PARA ATRIBUIÇÃO ---
+  async function loadAvailableUsers() {
+    try {
+      const { data: perfis } = await supabase.from("perfis").select("id, nome, cargo").order("nome")
+      if (!perfis) return
+
+      const cargos = Array.from(new Set(perfis.map(p => p.cargo).filter(Boolean) as string[]))
+      const { data: cargosData } = await supabase.from("cargos").select("nome, cor").in("nome", cargos)
+
+      const coresMap: Record<string, string> = {}
+      cargosData?.forEach(c => coresMap[c.nome] = c.cor)
+
+      const usersWithColor = perfis.map(p => ({
+        id: p.id,
+        nome: p.nome || "",
+        cargo: p.cargo || "",
+        cor: p.cargo ? (coresMap[p.cargo] || "#6b7280") : "#6b7280"
+      }))
+
+      setAvailableUsers(usersWithColor)
+    } catch (error) {
+      console.error("Erro ao carregar usuários:", error)
+    }
+  }
+
+  // --- ATRIBUIR CHAT A USUÁRIO ---
+  async function handleAssignUser(userId: string, userName: string) {
+    try {
+      setAssigningUser(true)
+      const currentUserId = getCookie("auth_user_id")
+      const currentUserName = getCookie("auth_user_name")
+
+      const response = await fetch("/api/whatsapp/assignment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chatId,
+          chatName: safeChatName,
+          assignToId: userId,
+          assignToName: userName,
+          assignedById: currentUserId,
+          assignedByName: currentUserName || "Sistema"
+        }),
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        toast.success(`Atribuído a ${userName}`)
+        loadAssignment()
+        setShowAssignPopover(false)
+      } else if (data.alreadyAssigned) {
+        toast.warning(data.message)
+        setShowAssignPopover(false)
+      } else {
+        toast.error(data.message || "Erro ao atribuir")
+      }
+    } catch (error) {
+      console.error("Erro ao atribuir:", error)
+      toast.error("Erro ao atribuir")
+    } finally {
+      setAssigningUser(false)
+    }
   }
 
   async function loadActivities() {
@@ -639,13 +775,18 @@ export function ChatWindow({
         <div className="flex items-center justify-between px-4 pt-1 pb-3">
           <div className="flex items-center gap-3 flex-1 min-w-0">
             <Avatar 
-              className="w-10 h-10 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={() => setShowProfilePictureModal(true)}
+              className={cn(
+                "w-10 h-10 flex-shrink-0 transition-opacity",
+                hasProfilePicture && "cursor-pointer hover:opacity-80"
+              )}
+              onClick={() => hasProfilePicture && setShowProfilePictureModal(true)}
             >
               <AvatarImage 
                 src={profilePictureUrl}
                 alt={safeChatName} 
                 className="object-cover"
+                onLoad={() => setHasProfilePicture(true)}
+                onError={() => setHasProfilePicture(false)}
               />
               <AvatarFallback className="bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
                 <User className="w-5 h-5 text-gray-500 dark:text-gray-400" />
@@ -735,60 +876,101 @@ export function ChatWindow({
                 {/* Etiquetas na mesma linha */}
                 {chatEtiquetas && chatEtiquetas.length > 0 && (
                   <>
-                    {chatEtiquetas.map((etiqueta) => (
-                      <ContextMenu key={etiqueta.id}>
-                        <ContextMenuTrigger asChild>
-                          <div>
-                            <TooltipProvider>
-                              <Tooltip>
-                                <TooltipTrigger asChild>
+                    {user?.show_all_tags ? (
+                      // Mostrar todas as etiquetas expandidas com cores
+                      chatEtiquetas.map((etiqueta) => (
+                        <ContextMenu key={etiqueta.id}>
+                          <ContextMenuTrigger asChild>
+                            <div>
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <Badge
+                                      variant="secondary"
+                                      className="text-xs flex items-center gap-1 border cursor-context-menu"
+                                      style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor, color: getContrastTextColor(etiqueta.cor) }}
+                                    >
+                                      <Tag className="w-3 h-3" />
+                                      {etiqueta.nome}
+                                    </Badge>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>{etiqueta.descricao || etiqueta.nome}</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            </div>
+                          </ContextMenuTrigger>
+                          <ContextMenuContent className="w-48">
+                            <ContextMenuItem
+                              onClick={async () => {
+                                try {
+                                  const res = await fetch("/api/whatsapp/assign-tag", {
+                                    method: "DELETE",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({ chatId, etiquetaId: etiqueta.id })
+                                  })
+                                  if (res.ok) {
+                                    toast.success("Etiqueta removida")
+                                    setChatEtiquetas(prev => prev.filter(e => e.id !== etiqueta.id))
+                                    onRefresh()
+                                  }
+                                } catch {
+                                  toast.error("Erro ao remover etiqueta")
+                                }
+                              }}
+                              className="text-destructive focus:text-destructive"
+                            >
+                              <X className="w-4 h-4 mr-2" />
+                              Remover essa etiqueta
+                            </ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuItem onClick={() => setShowEtiquetasDialog(true)}>
+                              <Tags className="w-4 h-4 mr-2" />
+                              Ver todas etiquetas
+                            </ContextMenuItem>
+                          </ContextMenuContent>
+                        </ContextMenu>
+                      ))
+                    ) : (
+                      // Mostrar badge compacto com contagem
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Badge 
+                              variant="secondary" 
+                              className="text-xs flex items-center gap-1 cursor-pointer text-black bg-neutral-200 border-2 border-black hover:bg-neutral-300"
+                              onClick={() => setShowEtiquetasDialog(true)}
+                            >
+                              <Tag className="w-3 h-3 text-black" />
+                              {chatEtiquetas.length}
+                            </Badge>
+                          </TooltipTrigger>
+                          <TooltipContent side="bottom" className="max-w-[250px]">
+                            <div className="flex flex-col gap-1">
+                              <p className="text-xs font-medium mb-1">Etiquetas:</p>
+                              <div className="flex flex-wrap gap-1">
+                                {chatEtiquetas.map((etiqueta) => (
                                   <Badge
+                                    key={etiqueta.id}
                                     variant="secondary"
-                                    className="text-xs flex items-center gap-1 border cursor-context-menu"
-                                    style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor, color: getContrastTextColor(etiqueta.cor) }}
+                                    className="text-xs px-2 py-0.5 flex items-center gap-1 border"
+                                    style={{ 
+                                      backgroundColor: etiqueta.cor, 
+                                      borderColor: etiqueta.cor, 
+                                      color: getContrastTextColor(etiqueta.cor) 
+                                    }}
                                   >
                                     <Tag className="w-3 h-3" />
                                     {etiqueta.nome}
                                   </Badge>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p>{etiqueta.descricao || etiqueta.nome}</p>
-                                </TooltipContent>
-                              </Tooltip>
-                            </TooltipProvider>
-                          </div>
-                        </ContextMenuTrigger>
-                        <ContextMenuContent className="w-48">
-                          <ContextMenuItem
-                            onClick={async () => {
-                              try {
-                                const res = await fetch("/api/whatsapp/assign-tag", {
-                                  method: "DELETE",
-                                  headers: { "Content-Type": "application/json" },
-                                  body: JSON.stringify({ chatId, etiquetaId: etiqueta.id })
-                                })
-                                if (res.ok) {
-                                  toast.success("Etiqueta removida")
-                                  setChatEtiquetas(prev => prev.filter(e => e.id !== etiqueta.id))
-                                  onRefresh()
-                                }
-                              } catch {
-                                toast.error("Erro ao remover etiqueta")
-                              }
-                            }}
-                            className="text-destructive focus:text-destructive"
-                          >
-                            <X className="w-4 h-4 mr-2" />
-                            Remover essa etiqueta
-                          </ContextMenuItem>
-                          <ContextMenuSeparator />
-                          <ContextMenuItem onClick={() => setShowEtiquetasDialog(true)}>
-                            <Tags className="w-4 h-4 mr-2" />
-                            Ver todas etiquetas
-                          </ContextMenuItem>
-                        </ContextMenuContent>
-                      </ContextMenu>
-                    ))}
+                                ))}
+                              </div>
+                            </div>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    )}
                   </>
                 )}
                 
@@ -838,7 +1020,58 @@ export function ChatWindow({
                      <TooltipContent><p>Criar Lead</p></TooltipContent>
                    </Tooltip>
                  )}
-                 <Tooltip><TooltipTrigger asChild><Button variant="outline" size="sm" onClick={() => setShowAssignToUserDialog(true)}><User className="w-4 h-4 mr-2" /> Atribuir</Button></TooltipTrigger><TooltipContent><p>Atribuir</p></TooltipContent></Tooltip>
+                 <Popover open={showAssignPopover} onOpenChange={setShowAssignPopover}>
+                   <Tooltip>
+                     <TooltipTrigger asChild>
+                       <PopoverTrigger asChild>
+                         <Button variant="outline" size="sm">
+                           <User className="w-4 h-4 mr-2" /> Atribuir
+                         </Button>
+                       </PopoverTrigger>
+                     </TooltipTrigger>
+                     <TooltipContent><p>Atribuir</p></TooltipContent>
+                   </Tooltip>
+                   <PopoverContent className="w-56 p-2" align="start">
+                     <div className="space-y-1">
+                       {availableUsers.length === 0 ? (
+                         <p className="text-sm text-muted-foreground text-center py-2">Nenhum usuário disponível</p>
+                       ) : (
+                         availableUsers.map((user) => {
+                           const isAssigned = assignment?.assigned_to_id === user.id
+                           const isCurrentUser = userId === user.id
+                           return (
+                             <button
+                               key={user.id}
+                               onClick={() => handleAssignUser(user.id, user.nome)}
+                               disabled={assigningUser}
+                               className="flex items-center gap-2 w-full px-2 py-1.5 text-sm rounded hover:bg-accent cursor-pointer disabled:opacity-50"
+                             >
+                               <div
+                                 className="w-3 h-3 rounded"
+                                 style={{ backgroundColor: user.cor }}
+                               />
+                               <span className="flex-1 text-left">{user.nome}</span>
+                               <div className="flex items-center gap-1">
+                                 {isCurrentUser && (
+                                   <span className="text-xs text-blue-600 font-medium flex items-center gap-1">
+                                     <User className="w-3 h-3" />
+                                     Você
+                                   </span>
+                                 )}
+                                 {isAssigned && (
+                                   <span className="text-xs text-blue-600 font-medium flex items-center gap-1">
+                                     <div className="w-2 h-2 rounded-full bg-blue-600" />
+                                     Atual
+                                   </span>
+                                 )}
+                               </div>
+                             </button>
+                           )
+                         })
+                       )}
+                     </div>
+                   </PopoverContent>
+                 </Popover>
                  <Tooltip>
                    <TooltipTrigger asChild>
                      <div>
@@ -947,17 +1180,6 @@ export function ChatWindow({
       </Sheet>
 
       <ChatHistoryDialog open={showHistoryDialog} onOpenChange={setShowHistoryDialog} chatId={chatId} chatName={safeChatName} />
-      
-      <AssignToUserDialog
-        open={showAssignToUserDialog}
-        onOpenChange={setShowAssignToUserDialog}
-        chatId={chatId}
-        chatName={safeChatName}
-        currentUserId={userId}
-        currentAssignment={assignment}
-        chatAssignment={assignment}
-        onAssignSuccess={loadAssignment}
-      />
 
       <EditChatNameDialog
         open={showEditNameDialog}

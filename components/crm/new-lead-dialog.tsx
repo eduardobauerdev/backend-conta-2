@@ -91,7 +91,7 @@ export function NewLeadDialog({ open, onOpenChange, onSuccess, weekStart }: NewL
     const interesseFormatado = formatInteresse()
     const proximoContatoStr = proximoContato ? formatDateDDMMYY(proximoContato) : null
 
-    const { error } = await supabase.from("leads").insert({
+    const { data: leadData, error } = await supabase.from("leads").insert({
       nome: nome.trim(),
       cidade: cidade.trim(),
       interesse: interesseFormatado,
@@ -106,13 +106,54 @@ export function NewLeadDialog({ open, onOpenChange, onSuccess, weekStart }: NewL
       acao: acao.trim() || null,
       observacao: observacao.trim() || null,
       status: "ativo",
-    })
+    }).select()
 
     if (error) {
       console.error("[v0] Error creating lead:", error)
       toast.error("Erro ao criar lead")
       setIsSubmitting(false)
       return
+    }
+
+    // Se o lead foi criado com telefone, atualiza o nome do chat correspondente
+    if (leadData && leadData.length > 0 && telefone.trim()) {
+      try {
+        const telefoneNum = telefone.replace(/\D/g, "")
+        const chatId = `${telefoneNum}@c.us`
+        
+        // Verifica se o chat existe
+        const { data: chatExists } = await supabase
+          .from("chats")
+          .select("id")
+          .eq("id", chatId)
+          .single()
+
+        if (chatExists) {
+          // Atualiza o nome do chat
+          await supabase
+            .from("chats")
+            .update({ name: nome.trim() })
+            .eq("id", chatId)
+          
+          console.log("[NewLead] Nome do chat atualizado também:", chatId)
+        } else {
+          // Cria o chat com o nome
+          await supabase
+            .from("chats")
+            .insert({ 
+              id: chatId, 
+              name: nome.trim(),
+              is_archived: false,
+              unread_count: 0,
+              last_message_time: Date.now()
+            })
+          
+          console.log("[NewLead] Chat criado com nome:", chatId)
+        }
+      } catch (chatUpdateError) {
+        console.error("[NewLead] Erro ao atualizar/criar chat:", chatUpdateError)
+        // Não falha se não conseguir atualizar o chat
+      }
     }
 
     await supabase.from("lead_logs").insert({

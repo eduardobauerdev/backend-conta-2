@@ -16,8 +16,13 @@ import { EditUserDialog } from "@/components/usuarios/edit-user-dialog"
 import { CreateInviteDialog } from "@/components/usuarios/create-invite-dialog"
 import { CreateUserDialog } from "@/components/usuarios/create-user-dialog"
 import { CreateRoleDialog } from "@/components/usuarios/create-role-dialog"
+import { ViewRolesDialog } from "@/components/usuarios/view-roles-dialog"
+import { EditRoleDialog } from "@/components/usuarios/edit-role-dialog"
 import { useRealtimeTable } from "@/contexts/realtime-context"
 import RoleBadge from "./role-badge" // Adjust the path as necessary
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent, DropdownMenuPortal } from "@/components/ui/dropdown-menu"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Plus, Copy, Eye, ChevronDown } from "lucide-react"
 
 interface UserProfile {
   id: string
@@ -44,6 +49,13 @@ export default function UsuariosPage() {
   const [inviteDialogOpen, setInviteDialogOpen] = useState(false)
   const [createUserDialogOpen, setCreateUserDialogOpen] = useState(false)
   const [createRoleDialogOpen, setCreateRoleDialogOpen] = useState(false)
+  const [viewRolesDialogOpen, setViewRolesDialogOpen] = useState(false)
+  const [editRoleDialogOpen, setEditRoleDialogOpen] = useState(false)
+  const [editingRole, setEditingRole] = useState<any | null>(null)
+  const [copyFromRole, setCopyFromRole] = useState<any | null>(null)
+  const [roles, setRoles] = useState<any[]>([])
+  const [selectedCopyRole, setSelectedCopyRole] = useState<string>("")
+  const [showCopySelect, setShowCopySelect] = useState(false)
 
   useEffect(() => {
     if (!userLoading && user) {
@@ -51,6 +63,7 @@ export default function UsuariosPage() {
         router.push("/visao-geral")
       } else {
         fetchUsers()
+        fetchRoles()
       }
     }
   }, [user, userLoading, router])
@@ -66,6 +79,28 @@ export default function UsuariosPage() {
       setUsers(data || [])
     }
     setLoading(false)
+  }
+
+  const fetchRoles = async () => {
+    const { data, error } = await supabase.from("cargos").select("*").order("nome")
+    if (!error && data) {
+      setRoles(data)
+    }
+  }
+
+  const handleEditRole = (role: any) => {
+    setEditingRole(role)
+    setEditRoleDialogOpen(true)
+  }
+
+  const handleCopyRole = (roleId: string) => {
+    const role = roles.find((r) => r.id === roleId)
+    if (role) {
+      setCopyFromRole(role)
+      setCreateRoleDialogOpen(true)
+      setShowCopySelect(false)
+      setSelectedCopyRole("")
+    }
   }
 
   const handleEditUser = (user: UserProfile) => {
@@ -158,9 +193,57 @@ export default function UsuariosPage() {
           </div>
           {user.cargo === "Desenvolvedor" && (
             <div className="flex items-center gap-2">
-              <Button onClick={() => setCreateRoleDialogOpen(true)} className="gap-2" variant="outline">
-                <Briefcase className="w-4 h-4" />
-                Novo Cargo
+              <DropdownMenu open={showCopySelect} onOpenChange={setShowCopySelect}>
+                <DropdownMenuTrigger asChild>
+                  <Button className="gap-2" variant="outline">
+                    <Briefcase className="w-4 h-4" />
+                    Novo Cargo
+                    <ChevronDown className="w-4 h-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-64">
+                  <DropdownMenuItem
+                    onClick={() => {
+                      setCopyFromRole(null)
+                      setCreateRoleDialogOpen(true)
+                      setShowCopySelect(false)
+                    }}
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Novo Cargo
+                  </DropdownMenuItem>
+                  <DropdownMenuSub>
+                    <DropdownMenuSubTrigger>
+                      <Copy className="w-4 h-4 mr-2" />
+                      Novo Usando Existente
+                    </DropdownMenuSubTrigger>
+                    <DropdownMenuPortal>
+                      <DropdownMenuSubContent>
+                        {roles.length === 0 ? (
+                          <DropdownMenuItem disabled>
+                            Nenhum cargo disponível
+                          </DropdownMenuItem>
+                        ) : (
+                          roles.map((role) => (
+                            <DropdownMenuItem key={role.id} onClick={() => handleCopyRole(role.id)}>
+                              <div className="flex items-center gap-2">
+                                <div
+                                  className="w-3 h-3 rounded-full"
+                                  style={{ backgroundColor: role.cor }}
+                                />
+                                {role.nome}
+                              </div>
+                            </DropdownMenuItem>
+                          ))
+                        )}
+                      </DropdownMenuSubContent>
+                    </DropdownMenuPortal>
+                  </DropdownMenuSub>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Button onClick={() => setViewRolesDialogOpen(true)} className="gap-2" variant="outline">
+                <Eye className="w-4 h-4" />
+                Ver Cargos
               </Button>
               <Button onClick={() => setInviteDialogOpen(true)} className="gap-2" variant="outline">
                 <Send className="w-4 h-4" />
@@ -256,7 +339,38 @@ export default function UsuariosPage() {
 
       <CreateUserDialog open={createUserDialogOpen} onOpenChange={setCreateUserDialogOpen} onSuccess={fetchUsers} />
 
-      <CreateRoleDialog open={createRoleDialogOpen} onOpenChange={setCreateRoleDialogOpen} onSuccess={fetchUsers} />
+      <CreateRoleDialog 
+        open={createRoleDialogOpen} 
+        onOpenChange={(open) => {
+          setCreateRoleDialogOpen(open)
+          if (!open) setCopyFromRole(null)
+        }}
+        onSuccess={() => {
+          fetchUsers()
+          fetchRoles()
+        }}
+        copyFromRole={copyFromRole}
+      />
+
+      <ViewRolesDialog
+        open={viewRolesDialogOpen}
+        onOpenChange={setViewRolesDialogOpen}
+        onEditRole={handleEditRole}
+        onRefresh={() => {
+          fetchUsers()
+          fetchRoles()
+        }}
+      />
+
+      <EditRoleDialog
+        open={editRoleDialogOpen}
+        onOpenChange={setEditRoleDialogOpen}
+        role={editingRole}
+        onSuccess={() => {
+          fetchUsers()
+          fetchRoles()
+        }}
+      />
     </div>
   )
 }

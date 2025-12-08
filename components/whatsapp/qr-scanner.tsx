@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Loader2, QrCode, Power } from "lucide-react"
+import { Loader2, QrCode, Power, Radio, ArrowRight } from "lucide-react"
 import { toast } from "sonner"
 import { createClient } from "@/lib/supabase/client"
+import Link from "next/link"
 
 interface QRScannerProps {
   onConnected: () => void
@@ -152,25 +153,27 @@ export function QRScanner({ onConnected }: QRScannerProps) {
   // Estado de sincronização
   if (isSyncing) {
     return (
-      <Card className="p-8 flex flex-col items-center justify-center gap-6 min-h-[300px]">
-        <div className="p-6 bg-green-50 rounded-full border border-green-200">
-          <Loader2 className="w-12 h-12 animate-spin text-green-600" />
+      <Card className="p-12 flex flex-col items-center justify-center gap-6 min-h-[300px] bg-green-50/50 border-green-200">
+        <div className="p-6 bg-green-100 rounded-full shadow-sm border border-green-200">
+          <Radio className="w-12 h-12 text-green-600 animate-pulse" />
         </div>
         
-        <div className="text-center space-y-3">
-          <h3 className="font-semibold text-lg text-green-800">Sincronizando mensagens</h3>
+        <div className="text-center space-y-2">
+          <h3 className="text-xl font-semibold text-green-800">Sincronizando mensagens</h3>
           <p className="text-sm text-green-600 max-w-sm mx-auto">
             Seu WhatsApp foi conectado com sucesso! Estamos sincronizando suas conversas...
           </p>
         </div>
 
-        <Button 
-          onClick={() => onConnected()} 
-          size="lg" 
-          className="bg-green-600 hover:bg-green-700 text-white"
-        >
-          Ir para o WhatsApp
-        </Button>
+        <Link href="/whatsapp">
+          <Button 
+            size="lg" 
+            className="bg-green-600 hover:bg-green-700 text-white gap-2"
+          >
+            Ir para aba WhatsApp
+            <ArrowRight className="w-4 h-4" />
+          </Button>
+        </Link>
       </Card>
     )
   }

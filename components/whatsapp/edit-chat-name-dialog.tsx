@@ -97,6 +97,30 @@ export function EditChatNameDialog({
         })
       }
 
+      // Atualiza o nome do lead vinculado ao chat, se existir
+      try {
+        // Busca lead por chat_id ou por telefone
+        const telefoneNum = chatId.includes("@") ? chatId.split("@")[0] : chatId
+        
+        const { data: leadData } = await supabase
+          .from("leads")
+          .select("id, chat_uuid, telefone")
+          .or(`chat_uuid.eq.${chatId},telefone.eq.${telefoneNum}`)
+          .maybeSingle()
+
+        if (leadData) {
+          await supabase
+            .from("leads")
+            .update({ nome: name.trim() })
+            .eq("id", leadData.id)
+          
+          console.log("[EditChatName] Nome do lead atualizado também:", leadData.id)
+        }
+      } catch (leadUpdateError) {
+        console.error("[EditChatName] Erro ao atualizar nome do lead:", leadUpdateError)
+        // Não falha se não conseguir atualizar o lead
+      }
+
       toast.success("Nome atualizado com sucesso!")
       onSuccess?.()
       onOpenChange(false)

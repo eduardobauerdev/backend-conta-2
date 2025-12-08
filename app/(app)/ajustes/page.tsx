@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ColorPalette } from "@/components/ui/color-palette"
 import {
@@ -36,14 +37,19 @@ import {
   ToggleLeft,
   ToggleRight,
   AlertTriangle,
+  Info,
 } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { useUser } from "@/contexts/user-context"
 import { PhotoUploadDialog } from "@/components/PhotoUploadDialog"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { toast } from "sonner"
 import { deleteCookie } from "@/lib/auth"
 import { QRScanner } from "@/components/whatsapp/qr-scanner"
 import { ConnectionStatus } from "@/components/whatsapp/connection-status"
+import { SyncAnimation } from "@/components/whatsapp/sync-animation"
+import { Radio, ArrowRight } from "lucide-react"
+import Link from "next/link"
 // import { useWhatsApp } from "@/contexts/whatsapp-context" // Removido (Contexto antigo)
 import {
   Dialog,
@@ -146,6 +152,7 @@ export default function AjustesPage() {
 
   // ✅ ESTADO DE CONEXÃO LOCAL (Lendo do Banco)
   const [isWhatsAppConnected, setIsWhatsAppConnected] = useState(false)
+  const [isSyncing, setIsSyncing] = useState(false)
   
   // ✅ LISTENERS DE REALTIME
   useEffect(() => {
@@ -157,8 +164,10 @@ export default function AjustesPage() {
               .eq("id", 1)
               .single()
           
+          const status = data?.status
+          setIsSyncing(status === "syncing")
           // "syncing" também é considerado conectado
-          setIsWhatsAppConnected(data?.status === "connected" || data?.status === "syncing")
+          setIsWhatsAppConnected(status === "connected" || status === "syncing")
       }
       fetchStatus()
 
@@ -170,6 +179,7 @@ export default function AjustesPage() {
               { event: "UPDATE", schema: "public", table: "instance_settings", filter: "id=eq.1" },
               (payload) => {
                   const status = payload.new.status
+                  setIsSyncing(status === "syncing")
                   // "syncing" também é considerado conectado
                   setIsWhatsAppConnected(status === "connected" || status === "syncing")
                   // Se conectar, fecha o QR automaticamente
@@ -186,6 +196,7 @@ export default function AjustesPage() {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
   const [loading, setLoading] = useState(true)
   const [nome, setNome] = useState("")
+  const [showAllTags, setShowAllTags] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [isPhotoDialogOpen, setIsPhotoDialogOpen] = useState(false)
 
@@ -296,6 +307,7 @@ export default function AjustesPage() {
 
       setUserProfile(data)
       setNome(data.nome || "")
+      setShowAllTags(data.show_all_tags || false)
     } catch (error) {
       console.error("Erro ao carregar perfil:", error)
     } finally {
@@ -422,20 +434,25 @@ export default function AjustesPage() {
 
     setIsSaving(true)
     try {
-      const { error } = await supabase
+      console.log("[Ajustes] Salvando perfil:", { nome, showAllTags, userId: userProfile.id })
+      
+      const { data, error } = await supabase
         .from("perfis")
         .update({
           nome: nome,
+          show_all_tags: showAllTags,
           updated_at: new Date().toISOString(),
         })
         .eq("id", userProfile.id)
+        .select()
 
       if (error) {
-        console.error("Erro ao salvar perfil:", error)
-        toast.error("Erro ao salvar perfil")
+        console.error("[Ajustes] Erro ao salvar perfil:", error)
+        toast.error(`Erro ao salvar perfil: ${error.message}`)
         return
       }
 
+      console.log("[Ajustes] Perfil salvo com sucesso:", data)
       toast.success("Perfil atualizado com sucesso!")
       await refreshUser()
       loadUserProfile()
@@ -1258,6 +1275,44 @@ export default function AjustesPage() {
                     <Input value={userProfile.cargo} disabled className="bg-neutral-50 text-neutral-600" />
                   </div>
 
+                  {/* Checkbox de Exibição de Etiquetas */}
+                  <div className="pt-4 border-t border-neutral-200">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Checkbox
+                          id="show-all-tags"
+                          checked={showAllTags}
+                          onCheckedChange={(checked) => {
+                            const newValue = checked === true
+                            console.log("[Checkbox] Mudando show_all_tags para:", newValue)
+                            setShowAllTags(newValue)
+                          }}
+                        />
+                        <div className="flex items-center gap-2">
+                          <Label htmlFor="show-all-tags" className="cursor-pointer">
+                            Sempre exibir todas etiquetas
+                          </Label>
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <button type="button" className="text-neutral-400 hover:text-neutral-600">
+                                  <Info className="w-4 h-4" />
+                                </button>
+                              </TooltipTrigger>
+                              <TooltipContent side="right" className="max-w-xs">
+                                <p className="text-xs">
+                                  Quando ligada, exibe visualmente as etiquetas nos chats, conversas e contêineres de leads. 
+                                  Quando desligada exibe apenas um ícone cinza de etiqueta, seguido do número de etiquetas. 
+                                  Esta opção é puramente visual.
+                                </p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <Button onClick={handleSaveProfile} disabled={isSaving} className="w-full">
                     {isSaving ? (
                       <>
@@ -1284,8 +1339,40 @@ export default function AjustesPage() {
           )}
 
           {activeTab === "whatsapp" && (
-            <Card className="p-6 border-2 border-neutral-300 bg-white">
-              <h2 className="text-xl font-bold text-neutral-900 mb-4">Integração WhatsApp</h2>
+            <div className="relative">
+              {/* Badge de sincronização no canto superior direito */}
+              {isSyncing && (
+                <div className="absolute -top-2 right-0 z-10">
+                  <div className="flex items-center gap-2 px-3 py-1.5 bg-green-100 border border-green-300 rounded-full shadow-sm">
+                    <Radio className="w-3.5 h-3.5 text-green-600 animate-pulse" />
+                    <span className="text-xs font-medium text-green-700">Sincronizando</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Container grande de sincronização */}
+              {isSyncing && (
+                <Card className="p-8 mb-6 flex flex-col items-center text-center gap-6 bg-green-50/50 border-green-200 border-2">
+                  <SyncAnimation />
+                  
+                  <div className="space-y-2">
+                    <h2 className="text-xl font-semibold text-green-800">Sincronizando mensagens</h2>
+                    <p className="text-sm text-green-600 max-w-sm mx-auto">
+                      Seu WhatsApp foi conectado com sucesso! Estamos carregando suas conversas...
+                    </p>
+                  </div>
+
+                  <Link href="/whatsapp">
+                    <Button variant="outline" className="gap-2 border-green-300 text-green-700 hover:bg-green-100">
+                      Ir para aba WhatsApp
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </Link>
+                </Card>
+              )}
+
+              <Card className="p-6 border-2 border-neutral-300 bg-white">
+                <h2 className="text-xl font-bold text-neutral-900 mb-4">Integração WhatsApp</h2>
 
               {loadingWhatsApp ? (
                 <p className="text-neutral-600">Carregando configuração...</p>
@@ -1360,6 +1447,7 @@ export default function AjustesPage() {
                 </div>
               )}
             </Card>
+            </div>
           )}
 
           {activeTab === "respostas-rapidas" && (

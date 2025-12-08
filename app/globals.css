@@ -135,3 +135,64 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
   border-color: rgb(59, 130, 246) !important;
 }
+
+/* Animação de dados fluindo para SyncAnimation */
+@keyframes data-flow {
+  0% {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+}
+
+.animate-data-flow-1 {
+  animation: data-flow 2.5s ease-in-out infinite;
+  animation-delay: 0s;
+}
+.animate-data-flow-2 {
+  animation: data-flow 2.5s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+.animate-data-flow-3 {
+  animation: data-flow 2.5s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+.animate-data-flow-4 {
+  animation: data-flow 2.5s ease-in-out infinite;
+  animation-delay: 0.9s;
+}
+.animate-data-flow-5 {
+  animation: data-flow 2.5s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+/* Animação de blink para luzes do servidor */
+@keyframes blink {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-blink-1 {
+  animation: blink 1s ease-in-out infinite;
+}
+.animate-blink-2 {
+  animation: blink 1.5s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+.animate-blink-3 {
+  animation: blink 0.8s ease-in-out infinite;
+  animation-delay: 0.6s;
+}

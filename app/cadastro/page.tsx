@@ -27,7 +27,7 @@ function CadastroForm() {
   
   const router = useRouter()
   const searchParams = useSearchParams()
-  const inviteToken = searchParams.get('invite')
+  const inviteToken = searchParams.get('convite')
   const supabase = createClient()
 
   useEffect(() => {

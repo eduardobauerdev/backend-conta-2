@@ -25,6 +25,8 @@ import { ConvertLeadDialog } from "@/components/crm/convert-lead-dialog"
 import { UnconvertLeadDialog } from "@/components/crm/unconvert-lead-dialog"
 import { FilterPanel, type FilterRule } from "@/components/crm/filter-panel"
 import { ChatEtiquetasDialog } from "@/components/whatsapp/chat-etiquetas-dialog"
+import { ChatNotesDialog } from "@/components/whatsapp/chat-notes-dialog"
+import { EtiquetaSelectorDialog } from "@/components/whatsapp/etiqueta-selector-dialog"
 import { useUser } from "@/contexts/user-context"
 import { createClient } from "@/lib/supabase/client"
 import { toast } from "sonner"
@@ -118,6 +120,10 @@ export default function CRMPage() {
   const [highlightedLeadId, setHighlightedLeadId] = useState<string | null>(null)
   const [showEtiquetasDialog, setShowEtiquetasDialog] = useState(false)
   const [selectedLeadForEtiquetas, setSelectedLeadForEtiquetas] = useState<{ chatId: string; chatUuid: string; etiquetas: Array<{ id: string; nome: string; cor: string }> } | null>(null)
+  const [showNotesDialog, setShowNotesDialog] = useState(false)
+  const [selectedLeadForNotes, setSelectedLeadForNotes] = useState<{ chatId: string; chatName: string; chatUuid: string } | null>(null)
+  const [showEtiquetaSelectorDialog, setShowEtiquetaSelectorDialog] = useState(false)
+  const [selectedLeadForAddEtiqueta, setSelectedLeadForAddEtiqueta] = useState<{ chatId: string; chatName: string; chatUuid: string; etiquetaIds: string[] } | null>(null)
   const [onlyMyLeads, setOnlyMyLeads] = useState(() => {
     // Carrega o estado do localStorage se disponível
     if (typeof window !== 'undefined') {
@@ -128,6 +134,7 @@ export default function CRMPage() {
   })
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [etiquetas, setEtiquetas] = useState<{ id: string; nome: string; cor: string }[]>([])
+  const [availableUsers, setAvailableUsers] = useState<{ id: string; nome: string; cargo: string; cor: string }[]>([])
   const [chatEtiquetasMap, setChatEtiquetasMap] = useState<Record<string, string[]>>({}) // chat_uuid -> etiqueta_ids
   const [chatAssignmentsMap, setChatAssignmentsMap] = useState<Record<string, { assigned_to_name: string; assigned_to_cargo?: string; assigned_to_color?: string }>>({})
   const [chatNotesMap, setChatNotesMap] = useState<Record<string, boolean>>({})
@@ -202,6 +209,34 @@ export default function CRMPage() {
       }
     } catch (error) {
       console.error("Error fetching etiquetas:", error)
+    }
+  }
+
+  // Carrega usuários disponíveis para atribuição
+  const fetchAvailableUsers = async () => {
+    try {
+      // Busca perfis
+      const { data: perfis } = await supabase.from("perfis").select("id, nome, cargo").order("nome")
+      if (!perfis) return
+
+      // Busca cores dos cargos
+      const cargos = Array.from(new Set(perfis.map(p => p.cargo).filter(Boolean) as string[]))
+      const { data: cargosData } = await supabase.from("cargos").select("nome, cor").in("nome", cargos)
+
+      const coresMap: Record<string, string> = {}
+      cargosData?.forEach(c => coresMap[c.nome] = c.cor)
+
+      // Monta array com cor
+      const usersWithColor = perfis.map(p => ({
+        id: p.id,
+        nome: p.nome || "",
+        cargo: p.cargo || "",
+        cor: p.cargo ? (coresMap[p.cargo] || "#6b7280") : "#6b7280"
+      }))
+
+      setAvailableUsers(usersWithColor)
+    } catch (error) {
+      console.error("Error fetching users:", error)
     }
   }
 
@@ -342,6 +377,7 @@ export default function CRMPage() {
 
   useEffect(() => {
     fetchEtiquetas()
+    fetchAvailableUsers()
   }, [])
 
   const fetchLeads = async () => {
@@ -433,6 +469,122 @@ export default function CRMPage() {
     } catch (error) {
       console.error("Erro ao remover etiqueta:", error)
       toast.error("Erro ao remover etiqueta")
+    }
+  }
+
+  // Handler para atribuir/remover etiqueta direto do submenu
+  const handleAssignEtiquetaFromSubmenu = async (lead: Lead, etiquetaId: string, isSelected: boolean) => {
+    if (!lead.chat_uuid || !chatIdMap[lead.chat_uuid]) {
+      toast.error("Este lead não está vinculado a um chat")
+      return
+    }
+    const chatId = chatIdMap[lead.chat_uuid]
+    
+    try {
+      if (isSelected) {
+        const res = await fetch("/api/whatsapp/assign-tag", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chatId, etiquetaId })
+        })
+        if (res.ok) {
+          toast.success("Etiqueta removida")
+          setChatEtiquetasMap(prev => {
+            const newMap = { ...prev }
+            if (newMap[lead.chat_uuid!]) {
+              newMap[lead.chat_uuid!] = newMap[lead.chat_uuid!].filter(id => id !== etiquetaId)
+            }
+            return newMap
+          })
+        } else {
+          toast.error("Erro ao remover etiqueta")
+        }
+      } else {
+        const res = await fetch("/api/whatsapp/assign-tag", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chatId, etiquetaId })
+        })
+        if (res.ok) {
+          toast.success("Etiqueta atribuída")
+          setChatEtiquetasMap(prev => {
+            const newMap = { ...prev }
+            if (!newMap[lead.chat_uuid!]) {
+              newMap[lead.chat_uuid!] = []
+            }
+            newMap[lead.chat_uuid!] = [...newMap[lead.chat_uuid!], etiquetaId]
+            return newMap
+          })
+        } else {
+          toast.error("Erro ao atribuir etiqueta")
+        }
+      }
+    } catch (error) {
+      console.error("Erro ao processar etiqueta:", error)
+      toast.error("Erro ao processar etiqueta")
+    }
+  }
+
+  // Handler para atribuir usuário direto do submenu
+  const handleAssignUserFromSubmenu = async (lead: Lead, userId: string, userName: string) => {
+    if (!lead.chat_uuid || !chatIdMap[lead.chat_uuid]) {
+      toast.error("Este lead não está vinculado a um chat")
+      return
+    }
+    
+    // Verificar se já está atribuído a esse usuário
+    const currentAssignment = chatAssignmentsMap[lead.chat_uuid]
+    if (currentAssignment?.assigned_to_name === userName) {
+      toast.warning(`Este chat já está atribuído a ${userName}`)
+      return
+    }
+    
+    const chatId = chatIdMap[lead.chat_uuid]
+    
+    try {
+      const response = await fetch("/api/whatsapp/assignment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chatId,
+          chatName: lead.nome,
+          assignToId: userId,
+          assignToName: userName,
+          assignedById: user?.id,
+          assignedByName: user?.nome || "Sistema"
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const text = await response.text()
+      if (!text) {
+        throw new Error('Empty response')
+      }
+
+      const data = JSON.parse(text)
+      if (data.success) {
+        toast.success(`Atribuído a ${userName}`)
+        // Atualiza mapa local
+        const userInfo = availableUsers.find(u => u.id === userId)
+        setChatAssignmentsMap(prev => ({
+          ...prev,
+          [lead.chat_uuid!]: {
+            assigned_to_name: userName,
+            assigned_to_cargo: userInfo?.cargo,
+            assigned_to_color: userInfo?.cor
+          }
+        }))
+      } else if (data.alreadyAssigned) {
+        toast.warning(data.message)
+      } else {
+        toast.error(data.message || "Erro ao atribuir")
+      }
+    } catch (error) {
+      console.error("Erro ao atribuir:", error)
+      toast.error("Erro ao atribuir")
     }
   }
 
@@ -547,6 +699,12 @@ export default function CRMPage() {
         }
         if (filter.type === "etiqueta") {
           // Filtra por etiqueta via chat vinculado
+          if (filter.value === "sem_etiqueta") {
+            // Filtrar leads sem etiqueta
+            if (!lead.chat_uuid) return true // Sem chat = sem etiqueta
+            const leadEtiquetas = chatEtiquetasMap[lead.chat_uuid] || []
+            return leadEtiquetas.length === 0
+          }
           if (!lead.chat_uuid) return false
           const leadEtiquetas = chatEtiquetasMap[lead.chat_uuid] || []
           return leadEtiquetas.includes(filter.value)
@@ -781,6 +939,35 @@ export default function CRMPage() {
                     toast.error("Este lead não está vinculado a um chat")
                   }
                 }}
+                onShowNotes={(lead) => {
+                  if (lead.chat_uuid && chatIdMap[lead.chat_uuid]) {
+                    setSelectedLeadForNotes({
+                      chatId: chatIdMap[lead.chat_uuid],
+                      chatName: lead.nome,
+                      chatUuid: lead.chat_uuid
+                    })
+                    setShowNotesDialog(true)
+                  } else {
+                    toast.error("Este lead não está vinculado a um chat")
+                  }
+                }}
+                onAddEtiqueta={(lead) => {
+                  if (lead.chat_uuid && chatIdMap[lead.chat_uuid]) {
+                    const leadEtiquetaIds = chatEtiquetasMap[lead.chat_uuid] || []
+                    setSelectedLeadForAddEtiqueta({
+                      chatId: chatIdMap[lead.chat_uuid],
+                      chatName: lead.nome,
+                      chatUuid: lead.chat_uuid,
+                      etiquetaIds: leadEtiquetaIds
+                    })
+                    setShowEtiquetaSelectorDialog(true)
+                  } else {
+                    toast.error("Este lead não está vinculado a um chat")
+                  }
+                }}
+                availableUsers={availableUsers}
+                onAssignEtiqueta={handleAssignEtiquetaFromSubmenu}
+                onAssignUser={handleAssignUserFromSubmenu}
               />
             )
           })}
@@ -848,6 +1035,73 @@ export default function CRMPage() {
         lead={unconvertingLead}
         onSuccess={fetchLeads}
       />
+
+      {/* Diálogo para ver todas etiquetas */}
+      {selectedLeadForEtiquetas && (
+        <ChatEtiquetasDialog
+          open={showEtiquetasDialog}
+          onOpenChange={(open) => {
+            setShowEtiquetasDialog(open)
+            if (!open) setSelectedLeadForEtiquetas(null)
+          }}
+          chatId={selectedLeadForEtiquetas.chatId}
+          etiquetas={selectedLeadForEtiquetas.etiquetas}
+          onEtiquetaRemoved={() => {
+            // Recarrega as etiquetas do lead
+            const chatUuids = leads
+              .filter((lead) => lead.chat_uuid)
+              .map((lead) => lead.chat_uuid as string)
+            if (chatUuids.length > 0) {
+              fetchChatEtiquetasMap(chatUuids)
+            }
+          }}
+        />
+      )}
+
+      {/* Diálogo de notas */}
+      {selectedLeadForNotes && (
+        <ChatNotesDialog
+          open={showNotesDialog}
+          onOpenChange={(open) => {
+            setShowNotesDialog(open)
+            if (!open) setSelectedLeadForNotes(null)
+          }}
+          chatId={selectedLeadForNotes.chatId}
+          chatName={selectedLeadForNotes.chatName}
+          onNotesChange={() => {
+            // Atualiza o mapa de notas
+            if (selectedLeadForNotes?.chatUuid) {
+              setChatNotesMap(prev => ({
+                ...prev,
+                [selectedLeadForNotes.chatUuid]: true
+              }))
+            }
+          }}
+        />
+      )}
+
+      {/* Diálogo para adicionar etiqueta */}
+      {selectedLeadForAddEtiqueta && (
+        <EtiquetaSelectorDialog
+          open={showEtiquetaSelectorDialog}
+          onOpenChange={(open) => {
+            setShowEtiquetaSelectorDialog(open)
+            if (!open) setSelectedLeadForAddEtiqueta(null)
+          }}
+          chatId={selectedLeadForAddEtiqueta.chatId}
+          chatName={selectedLeadForAddEtiqueta.chatName}
+          currentEtiquetaIds={selectedLeadForAddEtiqueta.etiquetaIds}
+          onEtiquetaChanged={() => {
+            // Recarrega as etiquetas do lead
+            const chatUuids = leads
+              .filter((lead) => lead.chat_uuid)
+              .map((lead) => lead.chat_uuid as string)
+            if (chatUuids.length > 0) {
+              fetchChatEtiquetasMap(chatUuids)
+            }
+          }}
+        />
+      )}
     </div>
   )
 }

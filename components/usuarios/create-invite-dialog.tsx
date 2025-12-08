@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -10,6 +10,11 @@ import { toast } from "sonner"
 import { createClient } from "@/lib/supabase/client"
 import { useUser } from "@/contexts/user-context"
 import { Copy, Check } from 'lucide-react'
+
+interface Role {
+  nome: string
+  cor: string
+}
 
 interface CreateInviteDialogProps {
   open: boolean
@@ -24,6 +29,23 @@ export function CreateInviteDialog({ open, onOpenChange }: CreateInviteDialogPro
   const [loading, setLoading] = useState(false)
   const [inviteLink, setInviteLink] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
+  const [roles, setRoles] = useState<Role[]>([])
+
+  useEffect(() => {
+    if (open) {
+      fetchRoles()
+    }
+  }, [open])
+
+  const fetchRoles = async () => {
+    const { data, error } = await supabase.from("cargos").select("nome, cor").order("nome")
+
+    if (error) {
+      console.error("[v0] Error fetching roles:", error)
+    } else {
+      setRoles(data || [])
+    }
+  }
 
   const handleCreateInvite = async () => {
     if (!cargo) {
@@ -117,10 +139,14 @@ export function CreateInviteDialog({ open, onOpenChange }: CreateInviteDialogPro
                   <SelectValue placeholder="Selecione o cargo" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Desenvolvedor">Desenvolvedor</SelectItem>
-                  <SelectItem value="Administrador">Administrador</SelectItem>
-                  <SelectItem value="Vendedor">Vendedor</SelectItem>
-                  <SelectItem value="Financeiro">Financeiro</SelectItem>
+                  {roles.map((role) => (
+                    <SelectItem key={role.nome} value={role.nome}>
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: role.cor }} />
+                        {role.nome}
+                      </div>
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>

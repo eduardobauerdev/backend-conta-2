@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card"
 import { MessageSquare, Unplug, Settings, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { SyncAnimation } from "@/components/whatsapp/sync-animation"
 import { useWhatsAppCache } from "@/contexts/whatsapp-cache-context"
 import { QuickLeadForm } from "@/components/whatsapp/quick-lead-form"
 import { toast } from "sonner"
@@ -165,9 +166,7 @@ export default function WhatsAppPage() {
       {isSyncing ? (
         <div className="flex-1 flex items-center justify-center">
             <Card className="w-full max-w-md p-12 flex flex-col items-center text-center gap-6 bg-green-50/50 border-green-200">
-                <div className="p-6 bg-green-100 rounded-full shadow-sm border border-green-200">
-                    <Loader2 className="w-12 h-12 text-green-600 animate-spin" />
-                </div>
+                <SyncAnimation />
                 
                 <div className="space-y-2">
                     <h2 className="text-xl font-semibold text-green-800">Sincronizando mensagens</h2>
@@ -227,7 +226,7 @@ export default function WhatsAppPage() {
                 chatName={selectedChatName}
                 // 🔥 AQUI: Passamos a URL do proxy diretamente para o filho
                 chatPicture={`${BACKEND_URL}/chats/avatar/${selectedChatId}`}
-                chatTelefone={selectedChat?.telefone || null}
+                chatTelefone={selectedChat?.phone || null}
                 chatEtiquetas={selectedChat?.etiquetas || []}
                 onRefresh={handleRefreshChats}
                 onToggleLeadPanel={setShowLeadPanel}

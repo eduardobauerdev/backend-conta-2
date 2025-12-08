@@ -81,7 +81,9 @@ function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) {
-        return parts.pop()?.split(';').shift() || null;
+        const cookieValue = parts.pop()?.split(';').shift() || null;
+        // Decodifica valores codificados para evitar %20 e outros caracteres encoded
+        return cookieValue ? decodeURIComponent(cookieValue) : null;
     }
     return null;
 }
@@ -108,7 +110,7 @@ function getUserIdFromCookie() {
 async function getUserData(userId) {
     try {
         const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createClient"])();
-        const { data, error } = await supabase.from("perfis").select("id, email, cargo, nome, foto_perfil").eq("id", userId).single();
+        const { data, error } = await supabase.from("perfis").select("id, email, cargo, nome, foto_perfil, show_all_tags").eq("id", userId).single();
         if (error || !data) {
             return null;
         }
@@ -117,7 +119,8 @@ async function getUserData(userId) {
             email: data.email,
             cargo: data.cargo,
             nome: data.nome || "Usuário",
-            foto_perfil: data.foto_perfil || null
+            foto_perfil: data.foto_perfil || null,
+            show_all_tags: data.show_all_tags || false
         };
     } catch (error) {
         console.error("Erro ao buscar dados do usuário:", error);
@@ -225,7 +228,7 @@ function UserProvider({ children }) {
         children: children
     }, void 0, false, {
         fileName: "[project]/contexts/user-context.tsx",
-        lineNumber: 101,
+        lineNumber: 102,
         columnNumber: 5
     }, this);
 }

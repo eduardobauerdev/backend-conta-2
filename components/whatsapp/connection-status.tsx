@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Badge } from "@/components/ui/badge"
-import { Unplug, CheckCircle2, QrCode, Loader2, Check } from "lucide-react"
+import { Unplug, CheckCircle2, QrCode, Loader2, Check, Radio } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { createClient } from "@/lib/supabase/client"
 
@@ -131,12 +131,12 @@ export function ConnectionStatus({ onStatusChange }: ConnectionStatusProps) {
           <TooltipTrigger asChild>
             <Badge variant="default" className="gap-2 cursor-help bg-green-600 hover:bg-green-700 px-3 py-1 text-xs font-medium">
               {isSyncing ? (
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                <Radio className="w-3.5 h-3.5 animate-pulse" />
               ) : (
                 <CheckCircle2 className="w-3.5 h-3.5" />
               )}
-              <span className="hidden sm:inline">{formattedPhone}</span>
-              <span className="sm:hidden">{isSyncing ? "Sincronizando" : "Online"}</span>
+              <span className="hidden sm:inline">{isSyncing ? "Sincronizando..." : formattedPhone}</span>
+              <span className="sm:hidden">{isSyncing ? "Sync..." : "Online"}</span>
             </Badge>
           </TooltipTrigger>
           <TooltipContent>

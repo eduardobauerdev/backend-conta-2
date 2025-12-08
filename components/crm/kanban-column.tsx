@@ -26,6 +26,12 @@ type KanbanColumnProps = {
   onRemoveAssignment?: (chatId: string, chatUuid: string) => void
   onRemoveEtiqueta?: (chatId: string, chatUuid: string, etiquetaId: string) => void
   onShowEtiquetas?: (lead: Lead) => void
+  onShowNotes?: (lead: Lead) => void
+  onAddEtiqueta?: (lead: Lead) => void
+  // Novas props para submenus
+  availableUsers?: Array<{ id: string; nome: string; cargo: string; cor: string }>
+  onAssignEtiqueta?: (lead: Lead, etiquetaId: string, isSelected: boolean) => void
+  onAssignUser?: (lead: Lead, userId: string, userName: string) => void
 }
 
 export function KanbanColumn({
@@ -47,6 +53,11 @@ export function KanbanColumn({
   onRemoveAssignment,
   onRemoveEtiqueta,
   onShowEtiquetas,
+  onShowNotes,
+  onAddEtiqueta,
+  availableUsers = [],
+  onAssignEtiqueta,
+  onAssignUser,
 }: KanbanColumnProps) {
   const { setNodeRef, isOver } = useDroppable({
     id: dateStr,
@@ -111,6 +122,28 @@ export function KanbanColumn({
               onShowEtiquetas={
                 onShowEtiquetas
                   ? () => onShowEtiquetas(lead)
+                  : undefined
+              }
+              onShowNotes={
+                onShowNotes
+                  ? () => onShowNotes(lead)
+                  : undefined
+              }
+              onAddEtiqueta={
+                onAddEtiqueta
+                  ? () => onAddEtiqueta(lead)
+                  : undefined
+              }
+              availableEtiquetas={etiquetas}
+              availableUsers={availableUsers}
+              onAssignEtiqueta={
+                onAssignEtiqueta
+                  ? (etiquetaId: string, isSelected: boolean) => onAssignEtiqueta(lead, etiquetaId, isSelected)
+                  : undefined
+              }
+              onAssignUser={
+                onAssignUser
+                  ? (userId: string, userName: string) => onAssignUser(lead, userId, userName)
                   : undefined
               }
             />

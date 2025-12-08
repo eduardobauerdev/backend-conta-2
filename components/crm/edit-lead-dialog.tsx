@@ -157,15 +157,40 @@ export function EditLeadDialog({ open, onOpenChange, lead, onSuccess }: EditLead
       return
     }
 
-    // Sincroniza o nome com o chat se houver chat_uuid
-    if (lead.chat_uuid && nome.trim() !== lead.nome) {
+    // Sincroniza o nome com o chat se houver chat_uuid ou telefone
+    if (nome.trim() !== lead.nome) {
       try {
-        await supabase
-          .from("chats")
-          .update({ name: nome.trim() })
-          .eq("uuid", lead.chat_uuid)
+        if (lead.chat_uuid) {
+          // Atualiza via chat_uuid
+          await supabase
+            .from("chats")
+            .update({ name: nome.trim() })
+            .eq("uuid", lead.chat_uuid)
+          
+          console.log("[EditLead] Nome do chat atualizado via UUID:", lead.chat_uuid)
+        } else if (telefone.trim()) {
+          // Atualiza via telefone (chatId)
+          const telefoneNum = telefone.replace(/\D/g, "")
+          const chatId = `${telefoneNum}@c.us`
+          
+          const { data: chatExists } = await supabase
+            .from("chats")
+            .select("id")
+            .eq("id", chatId)
+            .single()
+
+          if (chatExists) {
+            await supabase
+              .from("chats")
+              .update({ name: nome.trim() })
+              .eq("id", chatId)
+            
+            console.log("[EditLead] Nome do chat atualizado via telefone:", chatId)
+          }
+        }
       } catch (err) {
-        console.error("Erro ao sincronizar nome do chat:", err)
+        console.error("[EditLead] Erro ao sincronizar nome do chat:", err)
+        // Não falha se não conseguir atualizar o chat
       }
     }
 

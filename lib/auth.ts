@@ -8,6 +8,7 @@ export interface UserData {
   cargo: string
   nome: string
   foto_perfil: string | null
+  show_all_tags: boolean
 }
 
 export function getCookie(name: string): string | null {
@@ -17,7 +18,9 @@ export function getCookie(name: string): string | null {
   const parts = value.split(`; ${name}=`);
   
   if (parts.length === 2) {
-    return parts.pop()?.split(';').shift() || null;
+    const cookieValue = parts.pop()?.split(';').shift() || null;
+    // Decodifica valores codificados para evitar %20 e outros caracteres encoded
+    return cookieValue ? decodeURIComponent(cookieValue) : null;
   }
   
   return null;
@@ -55,7 +58,7 @@ export async function getUserData(userId: string): Promise<UserData | null> {
 
     const { data, error } = await supabase
       .from("perfis")
-      .select("id, email, cargo, nome, foto_perfil")
+      .select("id, email, cargo, nome, foto_perfil, show_all_tags")
       .eq("id", userId)
       .single()
 
@@ -69,6 +72,7 @@ export async function getUserData(userId: string): Promise<UserData | null> {
       cargo: data.cargo,
       nome: data.nome || "Usuário",
       foto_perfil: data.foto_perfil || null,
+      show_all_tags: data.show_all_tags || false,
     }
   } catch (error) {
     console.error("Erro ao buscar dados do usuário:", error)

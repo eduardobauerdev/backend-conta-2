@@ -9,7 +9,7 @@ import { Filter, X, Plus, Tag, User } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import type { Etiqueta } from "@/lib/whatsapp-types"
 
-export type FilterType = "etiqueta" | "atribuicao" | "sem_atribuicao"
+export type FilterType = "etiqueta" | "atribuicao" | "sem_atribuicao" | "sem_etiqueta"
 
 export interface ChatFilterRule {
   id: string
@@ -76,6 +76,10 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
         // Se o tipo mudou para "sem_atribuicao", define valores padrão
         if (type === "sem_atribuicao") {
           return { ...f, type, value: "any", label: "Sem atribuição" }
+        }
+        // Se o tipo mudou para "sem_etiqueta", define valores padrão
+        if (type === "sem_etiqueta") {
+          return { ...f, type, value: "any", label: "Sem etiqueta" }
         }
         return { ...f, type, value: "", label: "" }
       }
@@ -176,6 +180,12 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
                         Sem atribuição
                       </div>
                     </SelectItem>
+                    <SelectItem value="sem_etiqueta">
+                      <div className="flex items-center gap-2">
+                        <Tag className="w-3 h-3 text-muted-foreground" />
+                        Sem etiqueta
+                      </div>
+                    </SelectItem>
                   </SelectContent>
                 </Select>
 
@@ -200,6 +210,12 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
                           </div>
                         </SelectItem>
                       ))}
+                      <SelectItem value="sem_etiqueta">
+                        <div className="flex items-center gap-2">
+                          <Tag className="w-3 h-3 text-muted-foreground" />
+                          <span className="text-muted-foreground">Sem etiqueta</span>
+                        </div>
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 )}
