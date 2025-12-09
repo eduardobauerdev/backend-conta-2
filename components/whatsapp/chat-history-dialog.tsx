@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
-import { Loader2, UserPlus, ArrowRightLeft, UserMinus, StickyNote, Edit, Tag, Pencil, Plus, ClipboardList, DollarSign, Undo2 } from "lucide-react"
+import { Loader2, UserPlus, ArrowRightLeft, UserMinus, NotepadText, Edit, Tag, Pencil, Plus, ClipboardList, DollarSign, Undo2 } from "lucide-react"
 import { formatDistanceToNow } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { toast } from "sonner"
@@ -87,34 +87,34 @@ export function ChatHistoryDialog({ open, onOpenChange, chatId, chatName }: Chat
       case "lead_unconverted":
         return <Undo2 className="w-4 h-4" />
       default:
-        return <StickyNote className="w-4 h-4" />
+        return <NotepadText className="w-4 h-4" />
     }
   }
 
   function getEventColor(eventType: string) {
     switch (eventType) {
       case "assignment_created":
-        return "bg-green-500/10 text-green-600"
+        return "bg-green-500 text-white"
       case "assignment_transferred":
-        return "bg-blue-500/10 text-blue-600"
+        return "bg-blue-500 text-white"
       case "assignment_removed":
-        return "bg-red-500/10 text-red-600"
+        return "bg-red-500 text-white"
       case "note_created":
-        return "bg-amber-500/10 text-amber-600"
+        return "bg-amber-500 text-white"
       case "note_updated":
-        return "bg-amber-500/10 text-amber-600"
+        return "bg-amber-500 text-white"
       case "etiqueta_added":
-        return "bg-purple-500/10 text-purple-600"
+        return "bg-purple-500 text-white"
       case "etiqueta_removed":
-        return "bg-purple-500/10 text-purple-600"
+        return "bg-purple-500 text-white"
       case "name_changed":
-        return "bg-cyan-500/10 text-cyan-600"
+        return "bg-cyan-500 text-white"
       case "lead_converted":
-        return "bg-emerald-500/10 text-emerald-600"
+        return "bg-emerald-500 text-white"
       case "lead_unconverted":
-        return "bg-orange-500/10 text-orange-600"
+        return "bg-orange-500 text-white"
       default:
-        return "bg-gray-500/10 text-gray-600"
+        return "bg-gray-500 text-white"
     }
   }
 

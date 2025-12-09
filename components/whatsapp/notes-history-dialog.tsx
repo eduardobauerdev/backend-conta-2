@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
-import { Loader2, StickyNote, Edit, Plus } from "lucide-react"
+import { Loader2, NotepadText, Edit, Plus } from "lucide-react"
 import { formatDistanceToNow } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { toast } from "sonner"
@@ -71,7 +71,7 @@ export function NotesHistoryDialog({ open, onOpenChange, chatId, chatName }: Not
       case "updated":
         return <Edit className="w-4 h-4" />
       default:
-        return <StickyNote className="w-4 h-4" />
+        return <NotepadText className="w-4 h-4" />
     }
   }
 
@@ -89,11 +89,11 @@ export function NotesHistoryDialog({ open, onOpenChange, chatId, chatName }: Not
   function getActionColor(action: string) {
     switch (action) {
       case "created":
-        return "bg-green-500/10 text-green-600"
+        return "bg-green-500 text-white"
       case "updated":
-        return "bg-blue-500/10 text-blue-600"
+        return "bg-blue-500 text-white"
       default:
-        return "bg-gray-500/10 text-gray-600"
+        return "bg-gray-500 text-white"
     }
   }
 
@@ -102,7 +102,7 @@ export function NotesHistoryDialog({ open, onOpenChange, chatId, chatName }: Not
       <DialogContent className="max-w-2xl max-h-[80vh]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <StickyNote className="w-5 h-5 text-amber-500" />
+            <NotepadText className="w-5 h-5 text-amber-500" />
             Histórico de Notas
           </DialogTitle>
           <DialogDescription>{chatName}</DialogDescription>
@@ -139,7 +139,7 @@ export function NotesHistoryDialog({ open, onOpenChange, chatId, chatName }: Not
                           <div className="flex-1">
                             <p className="font-medium text-sm">{getActionText(entry)}</p>
                           </div>
-                          <Badge variant="outline" className="text-xs whitespace-nowrap">
+                          <Badge variant="outline" className="text-xs whitespace-nowrap rounded-sm">
                             {formatDistanceToNow(new Date(entry.created_at), {
                               addSuffix: true,
                               locale: ptBR,

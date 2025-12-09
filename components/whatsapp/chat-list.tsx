@@ -791,7 +791,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                                         <TooltipProvider>
                                           <Tooltip>
                                             <TooltipTrigger asChild>
-                                              <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border flex-shrink-0 cursor-pointer" style={{ backgroundColor: assignment.assigned_to_color || "#6366f1", color: "#ffffff", borderColor: assignment.assigned_to_color || "#6366f1" }}>
+                                              <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border flex-shrink-0 cursor-pointer rounded-sm" style={{ backgroundColor: assignment.assigned_to_color || "#6366f1", color: "#ffffff", borderColor: assignment.assigned_to_color || "#6366f1" }}>
                                                 <User className="w-2.5 h-2.5" />
                                                 <span className="max-w-[80px] truncate">{assignment.assigned_to_name?.split(' ')[0]}</span>
                                               </Badge>
@@ -852,7 +852,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                                                     <TooltipTrigger asChild>
                                                       <Badge
                                                         variant="secondary"
-                                                        className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border cursor-pointer"
+                                                        className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 border cursor-pointer rounded-sm"
                                                         style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor, color: getContrastTextColor(etiqueta.cor) }}
                                                       >
                                                         <Tag className="w-2.5 h-2.5" />
@@ -929,37 +929,34 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                                           <TooltipTrigger asChild>
                                             <Badge 
                                               variant="secondary" 
-                                              className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 cursor-pointer text-black bg-neutral-200 border-2 border-black hover:bg-neutral-300"
+                                              className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-1 cursor-pointer text-white bg-gray-800 hover:bg-gray-700 rounded-sm"
                                               onClick={(e) => {
                                                 e.stopPropagation()
                                                 setContextMenuChat(chat)
                                                 setShowEtiquetasDialog(true)
                                               }}
                                             >
-                                              <Tag className="w-2.5 h-2.5 text-black" />
+                                              <Tag className="w-2.5 h-2.5 text-white" />
                                               <span>{chat.etiquetas!.length}</span>
                                             </Badge>
                                           </TooltipTrigger>
-                                          <TooltipContent side="top" className="max-w-[250px]">
-                                            <div className="flex flex-col gap-1">
-                                              <p className="text-xs font-medium mb-1">Etiquetas:</p>
-                                              <div className="flex flex-wrap gap-1">
-                                                {chat.etiquetas!.map(etiqueta => (
-                                                  <Badge
-                                                    key={etiqueta.id}
-                                                    variant="secondary"
-                                                    className="text-[10px] px-1.5 py-0.5 flex items-center gap-1 border"
-                                                    style={{ 
-                                                      backgroundColor: etiqueta.cor, 
-                                                      borderColor: etiqueta.cor, 
-                                                      color: getContrastTextColor(etiqueta.cor) 
-                                                    }}
-                                                  >
-                                                    <Tag className="w-2.5 h-2.5" />
-                                                    {etiqueta.nome}
-                                                  </Badge>
-                                                ))}
-                                              </div>
+                                          <TooltipContent side="top" className="max-w-[200px] p-1.5">
+                                            <div className="flex flex-wrap gap-1 items-center">
+                                              {chat.etiquetas!.map(etiqueta => (
+                                                <Badge
+                                                  key={etiqueta.id}
+                                                  variant="secondary"
+                                                  className="text-[10px] px-1.5 py-0.5 flex items-center gap-1 border rounded-sm"
+                                                  style={{ 
+                                                    backgroundColor: etiqueta.cor, 
+                                                    borderColor: etiqueta.cor, 
+                                                    color: getContrastTextColor(etiqueta.cor) 
+                                                  }}
+                                                >
+                                                  <Tag className="w-2.5 h-2.5" />
+                                                  {etiqueta.nome}
+                                                </Badge>
+                                              ))}
                                             </div>
                                           </TooltipContent>
                                         </Tooltip>

@@ -5,7 +5,7 @@ import { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { Send, RefreshCw, Zap, Loader2, Paperclip, X, User, History, UserPlus, Plus, Tag, Pencil, Tags, StickyNote, Copy, Phone } from "lucide-react"
+import { Send, RefreshCw, Zap, Loader2, Paperclip, X, User, History, UserPlus, Plus, Tag, Pencil, Tags, NotepadText, Copy, Phone } from "lucide-react"
 import { QuickRepliesPanel } from "./quick-replies-panel"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -754,7 +754,7 @@ export function ChatWindow({
               <TooltipTrigger asChild>
                 <Badge 
                   variant="secondary" 
-                  className="text-xs bg-gray-300 hover:bg-gray-400 text-gray-800 cursor-pointer flex items-center gap-1"
+                  className="text-xs bg-gray-300 hover:bg-gray-400 text-gray-800 cursor-pointer flex items-center gap-1 rounded-sm"
                   onClick={() => {
                     navigator.clipboard.writeText(telefone)
                     toast.success("Telefone copiado!")
@@ -823,7 +823,7 @@ export function ChatWindow({
                         <TooltipProvider>
                           <Tooltip>
                             <TooltipTrigger asChild>
-                              <Badge variant="secondary" className="text-xs flex items-center gap-1 border-2 cursor-context-menu" style={{ backgroundColor: roleColor, color: "#ffffff", borderColor: roleColor }}>
+                              <Badge variant="secondary" className="text-xs flex items-center gap-1 border cursor-context-menu rounded-sm" style={{ backgroundColor: roleColor, color: "#ffffff", borderColor: roleColor }}>
                                 <User className="w-3 h-3" />
                                 {assignedUserName.split(' ')[0]}
                               </Badge>
@@ -887,7 +887,7 @@ export function ChatWindow({
                                   <TooltipTrigger asChild>
                                     <Badge
                                       variant="secondary"
-                                      className="text-xs flex items-center gap-1 border cursor-context-menu"
+                                      className="text-xs flex items-center gap-1 border cursor-context-menu rounded-sm"
                                       style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor, color: getContrastTextColor(etiqueta.cor) }}
                                     >
                                       <Tag className="w-3 h-3" />
@@ -939,33 +939,30 @@ export function ChatWindow({
                           <TooltipTrigger asChild>
                             <Badge 
                               variant="secondary" 
-                              className="text-xs flex items-center gap-1 cursor-pointer text-black bg-neutral-200 border-2 border-black hover:bg-neutral-300"
+                              className="text-xs flex items-center gap-1 cursor-pointer text-white bg-gray-800 hover:bg-gray-700 rounded-sm"
                               onClick={() => setShowEtiquetasDialog(true)}
                             >
-                              <Tag className="w-3 h-3 text-black" />
+                              <Tag className="w-3 h-3 text-white" />
                               {chatEtiquetas.length}
                             </Badge>
                           </TooltipTrigger>
-                          <TooltipContent side="bottom" className="max-w-[250px]">
-                            <div className="flex flex-col gap-1">
-                              <p className="text-xs font-medium mb-1">Etiquetas:</p>
-                              <div className="flex flex-wrap gap-1">
-                                {chatEtiquetas.map((etiqueta) => (
-                                  <Badge
-                                    key={etiqueta.id}
-                                    variant="secondary"
-                                    className="text-xs px-2 py-0.5 flex items-center gap-1 border"
-                                    style={{ 
-                                      backgroundColor: etiqueta.cor, 
-                                      borderColor: etiqueta.cor, 
-                                      color: getContrastTextColor(etiqueta.cor) 
-                                    }}
-                                  >
-                                    <Tag className="w-3 h-3" />
-                                    {etiqueta.nome}
-                                  </Badge>
-                                ))}
-                              </div>
+                          <TooltipContent side="bottom" className="max-w-[200px] p-1.5">
+                            <div className="flex flex-wrap gap-1 items-center">
+                              {chatEtiquetas.map((etiqueta) => (
+                                <Badge
+                                  key={etiqueta.id}
+                                  variant="secondary"
+                                  className="text-xs px-2 py-0.5 flex items-center gap-1 border rounded-sm"
+                                  style={{ 
+                                    backgroundColor: etiqueta.cor, 
+                                    borderColor: etiqueta.cor, 
+                                    color: getContrastTextColor(etiqueta.cor) 
+                                  }}
+                                >
+                                  <Tag className="w-3 h-3" />
+                                  {etiqueta.nome}
+                                </Badge>
+                              ))}
                             </div>
                           </TooltipContent>
                         </Tooltip>
@@ -1087,7 +1084,7 @@ export function ChatWindow({
                        size="sm" 
                        onClick={() => setShowNotesDialog(true)}
                      >
-                       <StickyNote className="w-4 h-4" />
+                       <NotepadText className="w-4 h-4" />
                      </Button>
                    </TooltipTrigger>
                    <TooltipContent><p>Notas</p></TooltipContent>

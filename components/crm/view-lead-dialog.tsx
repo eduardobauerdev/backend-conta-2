@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Calendar, Phone, MapPin, Target, FileText, History, StickyNote, Pencil, Tag, MessageSquare, Loader2, UserCog } from 'lucide-react'
+import { Calendar, Phone, MapPin, Target, FileText, History, NotepadText, Pencil, Tag, MessageSquare, Loader2, UserCog } from 'lucide-react'
 import { format, parseISO } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { createClient } from "@/lib/supabase/client"
@@ -356,7 +356,7 @@ export function ViewLeadDialog({ open, onOpenChange, lead, onEdit, onLeadUpdated
         <DialogContent className="sm:max-w-[550px] max-h-[85vh]">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <StickyNote className="w-5 h-5" />
+              <NotepadText className="w-5 h-5" />
               Observação do Lead
             </DialogTitle>
           </DialogHeader>
@@ -475,7 +475,7 @@ export function ViewLeadDialog({ open, onOpenChange, lead, onEdit, onLeadUpdated
                 Histórico
               </Button>
               <Button variant="outline" size="sm" onClick={handleShowNotes} className="gap-2">
-                <StickyNote className="w-4 h-4" />
+                <NotepadText className="w-4 h-4" />
                 Notas
               </Button>
               {onEdit && (

@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
-import { Loader2, StickyNote, Save, History, Clock } from "lucide-react"
+import { Loader2, NotepadText, Save, History } from "lucide-react"
 import { toast } from "sonner"
 import { formatDistanceToNow } from "date-fns"
 import { ptBR } from "date-fns/locale"
@@ -140,14 +140,14 @@ export function ChatNotesDialog({ open, onOpenChange, chatId, chatName, onNotesC
       <DialogContent className="max-w-2xl max-h-[80vh] flex flex-col">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <StickyNote className="w-5 h-5 text-amber-500" />
+            <NotepadText className="w-5 h-5 text-amber-500" />
             Notas do Contato
           </DialogTitle>
           <DialogDescription className="flex items-center justify-between">
             <span>{chatName}</span>
             {currentNote && (
-              <Badge variant="outline" className="text-xs flex items-center gap-1">
-                <Clock className="w-3 h-3" />
+              <Badge variant="outline" className="text-xs flex items-center gap-1 rounded-sm">
+                <History className="w-3 h-3" />
                 Última edição:{" "}
                 {formatDistanceToNow(new Date(currentNote.updated_at), {
                   addSuffix: true,

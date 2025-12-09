@@ -5,7 +5,7 @@ import { CSS } from "@dnd-kit/utilities"
 import { useRouter } from "next/navigation"
 import type { Lead } from "@/types/crm"
 import { cn } from "@/lib/utils"
-import { Phone, MessageCircle, MapPin, FileText, RefreshCw, Users, MoreHorizontal, CheckCircle, XCircle, Eye, ArrowRightLeft, Trash2, Pencil, User, Tag, StickyNote, X, Tags, UserPlus } from 'lucide-react'
+import { Phone, MessageCircle, MapPin, FileText, RefreshCw, Users, MoreHorizontal, CheckCircle, XCircle, Eye, ArrowRightLeft, Trash2, Pencil, User, Tag, NotepadText, X, Tags, UserPlus } from 'lucide-react'
 import { toast } from "sonner"
 import {
   ContextMenu,
@@ -336,36 +336,33 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                       <TooltipTrigger asChild>
                         <Badge 
                           variant="secondary" 
-                          className="text-[10px] px-1.5 py-0 h-4 flex items-center gap-1 cursor-pointer text-black bg-neutral-200 border-2 border-black hover:bg-neutral-300"
+                          className="text-[10px] px-1.5 py-0 h-4 flex items-center gap-1 cursor-pointer text-white bg-gray-800 hover:bg-gray-700"
                           onClick={(e) => {
                             e.stopPropagation()
                             onShowEtiquetas?.()
                           }}
                         >
-                          <Tag className="w-2.5 h-2.5 text-black" />
+                          <Tag className="w-2.5 h-2.5 text-white" />
                           <span>{etiquetas.length}</span>
                         </Badge>
                       </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-[250px]">
-                        <div className="flex flex-col gap-1">
-                          <p className="text-xs font-medium mb-1">Etiquetas:</p>
-                          <div className="flex flex-wrap gap-1">
-                            {etiquetas.map(etiqueta => (
-                              <Badge
-                                key={etiqueta.id}
-                                variant="secondary"
-                                className="text-[10px] px-1.5 py-0.5 flex items-center gap-1 border"
-                                style={{ 
-                                  backgroundColor: etiqueta.cor, 
-                                  borderColor: etiqueta.cor, 
-                                  color: getContrastTextColor(etiqueta.cor) 
-                                }}
-                              >
-                                <Tag className="w-2.5 h-2.5" />
-                                {etiqueta.nome}
-                              </Badge>
-                            ))}
-                          </div>
+                      <TooltipContent side="top" className="max-w-[200px] p-1.5">
+                        <div className="flex flex-wrap gap-1 items-center">
+                          {etiquetas.map(etiqueta => (
+                            <Badge
+                              key={etiqueta.id}
+                              variant="secondary"
+                              className="text-[10px] px-1.5 py-0.5 flex items-center gap-1 border rounded-sm"
+                              style={{ 
+                                backgroundColor: etiqueta.cor, 
+                                borderColor: etiqueta.cor, 
+                                color: getContrastTextColor(etiqueta.cor) 
+                              }}
+                            >
+                              <Tag className="w-2.5 h-2.5" />
+                              {etiqueta.nome}
+                            </Badge>
+                          ))}
                         </div>
                       </TooltipContent>
                     </Tooltip>
@@ -382,7 +379,7 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
             )}
 
             {lead.status === "convertido" && (
-              <Badge className="mb-2 text-xs flex items-center gap-1.5 w-fit bg-green-100 text-green-700 border-green-300">
+              <Badge className="mb-2 text-xs flex items-center gap-1.5 w-fit bg-green-100 text-green-700 border-green-300 rounded-sm">
                 <CheckCircle className="w-3 h-3" />
                 <span>Convertido</span>
               </Badge>
@@ -392,13 +389,13 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
             {hasNotes && (
               <Badge 
                 variant="secondary" 
-                className="mb-2 text-xs flex items-center gap-1.5 w-fit bg-amber-50 text-amber-700 border-amber-300 cursor-pointer hover:bg-amber-100"
+                className="mb-2 text-xs flex items-center gap-1.5 w-fit bg-amber-50 text-amber-700 border-amber-300 cursor-pointer hover:bg-amber-100 rounded-sm"
                 onClick={(e) => {
                   e.stopPropagation()
                   onShowNotes?.()
                 }}
               >
-                <StickyNote className="w-3 h-3" />
+                <NotepadText className="w-3 h-3" />
                 <span>Notas</span>
               </Badge>
             )}
@@ -573,7 +570,7 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
           }}
           disabled={!lead.chat_uuid}
         >
-          <StickyNote className="w-4 h-4 mr-2" />
+          <NotepadText className="w-4 h-4 mr-2" />
           Notas
         </ContextMenuItem>
         

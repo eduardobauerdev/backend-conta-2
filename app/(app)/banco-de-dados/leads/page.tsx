@@ -649,7 +649,7 @@ export default function LeadsTablePage() {
               <Filter className="w-4 h-4" />
               Filtros
               {hasActiveFilters && (
-                <Badge className="ml-1 bg-primary text-primary-foreground">
+                <Badge className="ml-1 bg-primary text-primary-foreground rounded-sm">
                   {Object.values(filters).filter((v) => v !== "all" && v !== "").length}
                 </Badge>
               )}
@@ -955,17 +955,17 @@ export default function LeadsTablePage() {
                   <TableCell>{lead.telefone || "-"}</TableCell>
                   <TableCell>{lead.adicionado_por_nome}</TableCell>
                   <TableCell>
-                    <Badge className={getTemperaturaColor(lead.temperatura)}>{lead.temperatura}</Badge>
+                    <Badge className={`${getTemperaturaColor(lead.temperatura)} rounded-sm`}>{lead.temperatura}</Badge>
                   </TableCell>
                   <TableCell className="max-w-xs truncate">{lead.acao || "-"}</TableCell>
                   <TableCell>
                     {lead.status === "convertido" ? (
-                      <Badge className={getStatusColor(lead.status)}>
+                      <Badge className={`${getStatusColor(lead.status)} rounded-sm`}>
                         <CheckCircle className="w-3 h-3 mr-1" />
                         Convertido
                       </Badge>
                     ) : (
-                      <Badge className={getStatusColor(lead.status)}>Ativo</Badge>
+                      <Badge className={`${getStatusColor(lead.status)} rounded-sm`}>Ativo</Badge>
                     )}
                   </TableCell>
                   <TableCell className="text-right" onClick={(e) => e.stopPropagation()}>

@@ -434,13 +434,12 @@ export default function AjustesPage() {
 
     setIsSaving(true)
     try {
-      console.log("[Ajustes] Salvando perfil:", { nome, showAllTags, userId: userProfile.id })
+      console.log("[Ajustes] Salvando perfil:", { nome, userId: userProfile.id })
       
       const { data, error } = await supabase
         .from("perfis")
         .update({
           nome: nome,
-          show_all_tags: showAllTags,
           updated_at: new Date().toISOString(),
         })
         .eq("id", userProfile.id)
@@ -1282,10 +1281,45 @@ export default function AjustesPage() {
                         <Checkbox
                           id="show-all-tags"
                           checked={showAllTags}
-                          onCheckedChange={(checked) => {
+                          onCheckedChange={async (checked) => {
                             const newValue = checked === true
                             console.log("[Checkbox] Mudando show_all_tags para:", newValue)
+
+                            // Atualiza o estado local imediatamente para feedback visual
                             setShowAllTags(newValue)
+
+                            // Salva diretamente no banco sem confirmação
+                            if (userProfile) {
+                              try {
+                                const { error } = await supabase
+                                  .from("perfis")
+                                  .update({
+                                    show_all_tags: newValue,
+                                    updated_at: new Date().toISOString(),
+                                  })
+                                  .eq("id", userProfile.id)
+
+                                if (error) {
+                                  console.error("[Checkbox] Erro ao salvar show_all_tags:", error)
+                                  toast.error("Erro ao salvar configuração")
+                                  // Reverte o estado local em caso de erro
+                                  setShowAllTags(!newValue)
+                                } else {
+                                  console.log("[Checkbox] show_all_tags salvo com sucesso:", newValue)
+                                  // Feedback visual sutil
+                                  toast.success(newValue ? "Etiquetas sempre visíveis ativado" : "Etiquetas sempre visíveis desativado", {
+                                    duration: 2000,
+                                  })
+                                  // Atualiza o contexto do usuário
+                                  await refreshUser()
+                                }
+                              } catch (error) {
+                                console.error("[Checkbox] Erro ao salvar show_all_tags:", error)
+                                toast.error("Erro ao salvar configuração")
+                                // Reverte o estado local em caso de erro
+                                setShowAllTags(!newValue)
+                              }
+                            }
                           }}
                         />
                         <div className="flex items-center gap-2">
@@ -1303,7 +1337,7 @@ export default function AjustesPage() {
                                 <p className="text-xs">
                                   Quando ligada, exibe visualmente as etiquetas nos chats, conversas e contêineres de leads. 
                                   Quando desligada exibe apenas um ícone cinza de etiqueta, seguido do número de etiquetas. 
-                                  Esta opção é puramente visual.
+                                  Esta opção é puramente visual e é salva automaticamente.
                                 </p>
                               </TooltipContent>
                             </Tooltip>
@@ -1322,7 +1356,7 @@ export default function AjustesPage() {
                     ) : (
                       <>
                         <CheckCircle2 className="w-4 h-4 mr-2" />
-                        Salvar Alterações
+                        Salvar Nome
                       </>
                     )}
                   </Button>

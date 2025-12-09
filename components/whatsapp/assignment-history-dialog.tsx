@@ -103,15 +103,15 @@ export function AssignmentHistoryDialog({ open, onOpenChange, chatId, chatName }
   function getActionColor(action: string) {
     switch (action) {
       case "assigned":
-        return "bg-green-500/10 text-green-600"
+        return "bg-green-500 text-white"
       case "transferred":
-        return "bg-blue-500/10 text-blue-600"
+        return "bg-blue-500 text-white"
       case "released":
-        return "bg-yellow-500/10 text-yellow-600"
+        return "bg-yellow-500 text-white"
       case "completed":
-        return "bg-gray-500/10 text-gray-600"
+        return "bg-gray-500 text-white"
       default:
-        return "bg-gray-500/10 text-gray-600"
+        return "bg-gray-500 text-white"
     }
   }
 
@@ -161,7 +161,7 @@ export function AssignmentHistoryDialog({ open, onOpenChange, chatId, chatName }
                                 </p>
                               )}
                           </div>
-                          <Badge variant="outline" className="text-xs whitespace-nowrap">
+                          <Badge variant="outline" className="text-xs whitespace-nowrap rounded-sm">
                             {formatDistanceToNow(new Date(log.created_at), {
                               addSuffix: true,
                               locale: ptBR,

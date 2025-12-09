@@ -93,7 +93,7 @@ export function ChatEtiquetasDialog({
                 <div className="flex items-center gap-3">
                   <Badge
                     variant="secondary"
-                    className="text-sm px-3 py-1 flex items-center gap-2 border"
+                    className="text-sm px-3 py-1 flex items-center gap-2 border rounded-sm"
                     style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor, color: getContrastTextColor(etiqueta.cor) }}
                   >
                     <Tag className="w-3.5 h-3.5" />
