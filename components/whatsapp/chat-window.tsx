@@ -58,6 +58,32 @@ const CRMIcon = () => (
   </svg>
 );
 
+// Ícones de temperatura
+const TemperaturaIcon = ({ temperatura, size = 14 }: { temperatura: string; size?: number }) => {
+  switch (temperatura) {
+    case "Frio":
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
+          <path d="m10 20-1.25-2.5L6 18"/><path d="M10 4 8.75 6.5 6 6"/><path d="m14 20 1.25-2.5L18 18"/><path d="m14 4 1.25 2.5L18 6"/><path d="m17 21-3-6h-4"/><path d="m17 3-3 6 1.5 3"/><path d="M2 12h6.5L10 9"/><path d="m20 10-1.5 2 1.5 2"/><path d="M22 12h-6.5L14 15"/><path d="m4 10 1.5 2L4 14"/><path d="m7 21 3-6-1.5-3"/><path d="m7 3 3 6h4"/>
+        </svg>
+      );
+    case "Morno":
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-orange-500">
+          <path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/>
+        </svg>
+      );
+    case "Quente":
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-500">
+          <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/>
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
+
 interface ChatWindowProps {
   chatId: string
   chatUuid?: string | null
@@ -113,7 +139,7 @@ export function ChatWindow({
   const userDataCache = useRef<Record<string, { nome: string | null; cargo: string | null; color: string | null }>>({})
 
   // Estado para lead existente
-  const [existingLead, setExistingLead] = useState<{ id: string; nome: string; proximo_contato: string | null } | null>(null)
+  const [existingLead, setExistingLead] = useState<{ id: string; nome: string; proximo_contato: string | null; temperatura: string } | null>(null)
 
   // Estados locais para nome e etiquetas (atualizados via realtime)
   const [chatName, setChatName] = useState<string | null>(initialChatName || null)
@@ -164,7 +190,7 @@ export function ChatWindow({
   useEffect(() => {
     async function checkExistingLead() {
       try {
-        let query = supabase.from("leads").select("id, nome, proximo_contato")
+        let query = supabase.from("leads").select("id, nome, proximo_contato, temperatura")
         
         if (chatUuid) {
           query = query.eq("chat_uuid", chatUuid)
@@ -177,7 +203,7 @@ export function ChatWindow({
         const { data } = await query.limit(1).single()
         
         if (data) {
-          setExistingLead(data)
+          setExistingLead({ ...data, temperatura: data.temperatura || 'Morno' })
         } else {
           setExistingLead(null)
         }
@@ -216,7 +242,8 @@ export function ChatWindow({
               setExistingLead({
                 id: newRecord.id,
                 nome: newRecord.nome,
-                proximo_contato: newRecord.proximo_contato
+                proximo_contato: newRecord.proximo_contato,
+                temperatura: newRecord.temperatura || 'Morno'
               })
             }
           } else if (payload.eventType === 'DELETE') {
@@ -744,7 +771,7 @@ export function ChatWindow({
   }
 
   return (
-    <div className="flex flex-col h-full bg-white relative">
+    <div className="flex flex-col h-full bg-white relative custom-scrollbar">
       {/* HEADER */}
       <div className="border-b flex-shrink-0">
         {/* Linha 0: Badge de telefone no canto direito */}
@@ -815,7 +842,9 @@ export function ChatWindow({
                   </TooltipProvider>
                 ) : null}
                 
-                {/* Badge de atribuição com context menu */}
+                {/* Badges - Ordem: atribuição, temperatura, etiquetas, notas */}
+                
+                {/* 1. Badge de atribuição (estilo moderno com cor do cargo) */}
                 {assignedUserName && roleColor && (
                   <ContextMenu>
                     <ContextMenuTrigger asChild>
@@ -823,8 +852,16 @@ export function ChatWindow({
                         <TooltipProvider>
                           <Tooltip>
                             <TooltipTrigger asChild>
-                              <Badge variant="secondary" className="text-xs h-6 px-2 flex items-center gap-1 cursor-context-menu rounded-md" style={{ backgroundColor: roleColor, color: "#ffffff", borderColor: roleColor }}>
-                                <User className="w-3 h-3" />
+                              <Badge 
+                                variant="secondary" 
+                                className="text-xs h-6 px-1.5 flex items-center gap-1 cursor-context-menu rounded-md border" 
+                                style={{ 
+                                  backgroundColor: roleColor + '33',
+                                  borderColor: roleColor, 
+                                  color: roleColor 
+                                }}
+                              >
+                                <User className="w-3.5 h-3.5" />
                                 {assignedUserName.split(' ')[0]}
                               </Badge>
                             </TooltipTrigger>
@@ -873,7 +910,32 @@ export function ChatWindow({
                   </ContextMenu>
                 )}
                 
-                {/* Etiquetas na mesma linha */}
+                {/* 2. Badge de temperatura */}
+                {existingLead && (
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Badge 
+                          variant="secondary" 
+                          className={cn(
+                            "text-xs px-1.5 h-6 flex items-center gap-1 cursor-pointer rounded-md border",
+                            existingLead.temperatura === "Quente" && "bg-red-100 border-red-300 text-red-700",
+                            existingLead.temperatura === "Morno" && "bg-orange-100 border-orange-300 text-orange-700",
+                            existingLead.temperatura === "Frio" && "bg-blue-100 border-blue-300 text-blue-700"
+                          )}
+                          onClick={handleViewLeadInCRM}
+                        >
+                          <TemperaturaIcon temperatura={existingLead.temperatura} size={14} />
+                        </Badge>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>{existingLead.temperatura}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )}
+                
+                {/* 3. Etiquetas */}
                 {chatEtiquetas && chatEtiquetas.length > 0 && (
                   <>
                     {user?.show_all_tags ? (
@@ -887,10 +949,10 @@ export function ChatWindow({
                                   <TooltipTrigger asChild>
                                     <Badge
                                       variant="secondary"
-                                      className="text-xs h-6 px-2 flex items-center gap-1 cursor-context-menu rounded-md"
+                                      className="text-xs h-6 px-1.5 flex items-center gap-1 cursor-context-menu rounded-md border"
                                       style={{ backgroundColor: etiqueta.cor, borderColor: etiqueta.cor, color: getContrastTextColor(etiqueta.cor) }}
                                     >
-                                      <Tag className="w-3 h-3" />
+                                      <Tag className="w-3.5 h-3.5" />
                                       {etiqueta.nome}
                                     </Badge>
                                   </TooltipTrigger>
@@ -933,16 +995,16 @@ export function ChatWindow({
                         </ContextMenu>
                       ))
                     ) : (
-                      // Mostrar badge compacto com contagem
+                      // Mostrar badge compacto CINZA
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <Badge 
                               variant="secondary" 
-                              className="text-xs px-2 h-6 flex items-center gap-1 cursor-pointer rounded-md bg-neutral-600 text-white border-neutral-600"
+                              className="text-xs px-1.5 h-6 flex items-center gap-1 cursor-pointer rounded-md border bg-gray-100 border-gray-300 text-gray-700"
                               onClick={() => setShowEtiquetasDialog(true)}
                             >
-                              <Tag className="w-3 h-3" />
+                              <Tag className="w-3.5 h-3.5" />
                               {chatEtiquetas.length}
                             </Badge>
                           </TooltipTrigger>
@@ -952,14 +1014,14 @@ export function ChatWindow({
                                 <Badge
                                   key={etiqueta.id}
                                   variant="secondary"
-                                  className="text-xs px-2 py-0.5 flex items-center gap-1 rounded-md"
+                                  className="text-xs px-2 py-0.5 flex items-center gap-1 rounded-md border"
                                   style={{ 
                                     backgroundColor: etiqueta.cor, 
                                     borderColor: etiqueta.cor, 
                                     color: getContrastTextColor(etiqueta.cor) 
                                   }}
                                 >
-                                  <Tag className="w-3 h-3" />
+                                  <Tag className="w-3.5 h-3.5" />
                                   {etiqueta.nome}
                                 </Badge>
                               ))}
@@ -971,7 +1033,7 @@ export function ChatWindow({
                   </>
                 )}
                 
-                {/* Badge de Notas */}
+                {/* 4. Badge de Notas */}
                 {hasNotes && (
                   <NoteBadge 
                     chatId={chatId} 
@@ -1101,7 +1163,7 @@ export function ChatWindow({
           <div
             ref={scrollContainerRef}
             onScroll={handleScroll}
-            className="flex-1 overflow-y-auto p-4 space-y-4"
+            className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar"
             style={{ overscrollBehavior: "contain", WebkitOverflowScrolling: "touch" }}
           >
             {loadingMore && (

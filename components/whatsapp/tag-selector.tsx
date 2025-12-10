@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Tag } from "lucide-react"
+import { Tag, Check } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -126,7 +126,7 @@ export function TagSelector({ chatId, currentEtiquetaId, currentEtiquetaIds = []
                     />
                     <span className="flex-1">{etiqueta.nome}</span>
                     {isSelected && (
-                      <span className="text-xs text-green-600 font-medium">✓</span>
+                      <Check className="w-4 h-4 text-green-600" />
                     )}
                   </div>
                 </DropdownMenuItem>

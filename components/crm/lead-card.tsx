@@ -5,7 +5,7 @@ import { CSS } from "@dnd-kit/utilities"
 import { useRouter } from "next/navigation"
 import type { Lead } from "@/types/crm"
 import { cn } from "@/lib/utils"
-import { Phone, MessageCircle, MapPin, FileText, RefreshCw, Users, MoreHorizontal, CheckCircle, XCircle, Eye, ArrowRightLeft, Trash2, Pencil, User, Tag, StickyNote, X, Tags, UserPlus } from 'lucide-react'
+import { Phone, MessageCircle, MapPin, FileText, RefreshCw, Users, MoreHorizontal, CheckCircle, XCircle, Eye, ArrowRightLeft, Trash2, Pencil, User, Tag, StickyNote, X, Tags, UserPlus, Check } from 'lucide-react'
 import { toast } from "sonner"
 import {
   ContextMenu,
@@ -110,11 +110,27 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
     }
   }
 
-  const getTemperaturaEmoji = () => {
-    switch (lead.temperatura) {
+  // Ícones de temperatura (mesmo padrão do WhatsApp)
+  const TemperaturaIcon = ({ temperatura, size = 14 }: { temperatura: string; size?: number }) => {
+    switch (temperatura) {
+      case "Quente":
+        return (
+          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/>
+          </svg>
+        )
+      case "Morno":
+        return (
+          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10 2v2"/>
+            <path d="M14 2v2"/>
+            <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>
+            <path d="M6 2v2"/>
+          </svg>
+        )
       case "Frio":
         return (
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-snowflake text-blue-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="m10 20-1.25-2.5L6 18"/>
             <path d="M10 4 8.75 6.5 6 6"/>
             <path d="m14 20 1.25-2.5L18 18"/>
@@ -129,21 +145,21 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
             <path d="m7 3 3 6h4"/>
           </svg>
         )
-      case "Morno":
-        return (
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-coffee text-orange-500">
-            <path d="M10 2v2"/>
-            <path d="M14 2v2"/>
-            <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>
-            <path d="M6 2v2"/>
-          </svg>
-        )
+      default:
+        return null
+    }
+  }
+
+  const getTemperaturaBadgeClasses = () => {
+    switch (lead.temperatura) {
       case "Quente":
-        return (
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-flame text-red-500">
-            <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/>
-          </svg>
-        )
+        return "bg-red-100 border-red-300 text-red-700"
+      case "Morno":
+        return "bg-orange-100 border-orange-300 text-orange-700"
+      case "Frio":
+        return "bg-blue-100 border-blue-300 text-blue-700"
+      default:
+        return "bg-gray-100 border-gray-300 text-gray-700"
     }
   }
 
@@ -193,7 +209,7 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
           )}
         >
           <div className="flex flex-col h-full">
-            {/* Nome do lead */}
+            {/* Nome do lead + Badge de temperatura */}
             <div className="flex items-center gap-2 mb-3">
               {!isDragging && (
               <TooltipProvider>
@@ -203,19 +219,6 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                       className="font-semibold text-neutral-900 text-sm inline-flex items-center gap-1.5 truncate flex-1 min-w-0"
                     >
                       <span className="truncate">{getPrimeiroESegundoNome(lead.nome)}</span>
-                      {!isDragging && (
-                      <TooltipProvider>
-                        <Tooltip delayDuration={200}>
-                          <TooltipTrigger asChild>
-                            <span className="flex-shrink-0">{getTemperaturaEmoji()}</span>
-                          </TooltipTrigger>
-                          <TooltipContent side="top">
-                            <p className="text-xs">{lead.temperatura}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                      )}
-                      {isDragging && <span className="flex-shrink-0">{getTemperaturaEmoji()}</span>}
                     </h4>
                   </TooltipTrigger>
                   <TooltipContent side="top">
@@ -227,15 +230,30 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
               {isDragging && (
                 <h4 className="font-semibold text-neutral-900 text-sm inline-flex items-center gap-1.5 truncate flex-1 min-w-0">
                   <span className="truncate">{getPrimeiroESegundoNome(lead.nome)}</span>
-                  <span className="flex-shrink-0">{getTemperaturaEmoji()}</span>
                 </h4>
               )}
+              {/* Badge de temperatura padronizado */}
+              <TooltipProvider>
+                <Tooltip delayDuration={200}>
+                  <TooltipTrigger asChild>
+                    <Badge 
+                      variant="secondary" 
+                      className={`text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-md border ${getTemperaturaBadgeClasses()}`}
+                    >
+                      <TemperaturaIcon temperatura={lead.temperatura} size={14} />
+                    </Badge>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">
+                    <p className="text-xs">{lead.temperatura}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
             
             {/* Linha de badges: Atribuição à esquerda, etiquetas e notas à direita */}
             {(assignment || (etiquetas && etiquetas.length > 0) || hasNotes) && (
               <div className="flex items-center gap-1.5 mb-2 flex-wrap">
-                {/* Badge de atribuição fixado à esquerda */}
+                {/* Badge de atribuição (estilo moderno com cor do cargo) */}
                 {assignment && (
                   <ContextMenu>
                     <ContextMenuTrigger asChild>
@@ -245,10 +263,11 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                             <TooltipTrigger asChild>
                               <Badge 
                                 variant="secondary" 
+                                className="text-[11px] px-1.5 h-6 flex items-center gap-1 cursor-pointer rounded-md border"
                                 style={{ 
-                                  backgroundColor: assignment.assigned_to_color || "oklch(0.28 0.08 255)", 
-                                  color: "#ffffff", 
-                                  borderColor: assignment.assigned_to_color || "oklch(0.28 0.08 255)" 
+                                  backgroundColor: (assignment.assigned_to_color || "#6b7280") + '33', 
+                                  color: assignment.assigned_to_color || "#6b7280", 
+                                  borderColor: assignment.assigned_to_color || "#6b7280" 
                                 }}
                               >
                                 <User className="w-3.5 h-3.5" />
@@ -352,13 +371,13 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                         )}
                       </>
                     ) : (
-                      // Exibe badge compacto com número de etiquetas
+                      // Exibe badge compacto CINZA com número de etiquetas
                       <TooltipProvider>
                         <Tooltip delayDuration={200}>
                           <TooltipTrigger asChild>
                             <Badge 
                               variant="secondary" 
-                              className="text-[11px] px-2 py-0.5 h-6 flex items-center gap-1 cursor-pointer rounded-md bg-neutral-600 text-white border-neutral-600"
+                              className="text-[11px] px-1.5 py-0.5 h-6 flex items-center gap-1 cursor-pointer rounded-md border bg-gray-100 border-gray-300 text-gray-700"
                               onClick={(e) => {
                                 e.stopPropagation()
                                 onShowEtiquetas?.()
@@ -374,7 +393,7 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                                 <Badge
                                   key={etiqueta.id}
                                   variant="secondary"
-                                  className="text-[11px] px-2 py-0.5 flex items-center gap-1 rounded-md"
+                                  className="text-[11px] px-2 py-0.5 flex items-center gap-1 rounded-md border"
                                   style={{ 
                                     backgroundColor: etiqueta.cor, 
                                     borderColor: etiqueta.cor, 
@@ -393,21 +412,20 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                   </>
                 )}
                 
-                {/* Badge de notas ao lado das etiquetas */}
+                {/* Badge de notas (estilo amarelo padronizado) */}
                 {hasNotes && (
                   <TooltipProvider>
                     <Tooltip delayDuration={200}>
                       <TooltipTrigger asChild>
                         <Badge 
                           variant="secondary" 
-                          className="text-[11px] px-2 py-0.5 h-6 flex items-center gap-1 cursor-pointer rounded-md bg-amber-500 text-white border-amber-500"
+                          className="text-[11px] px-1.5 py-0.5 h-6 flex items-center gap-1 cursor-pointer rounded-md border bg-yellow-100 border-yellow-300 text-yellow-700"
                           onClick={(e) => {
                             e.stopPropagation()
                             onShowNotes?.()
                           }}
                         >
                           <StickyNote className="w-3.5 h-3.5" />
-                          <span>1</span>
                         </Badge>
                       </TooltipTrigger>
                       <TooltipContent>
@@ -584,7 +602,7 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                         />
                         <span className="flex-1 text-sm">{etiqueta.nome}</span>
                         {isSelected && (
-                          <span className="text-xs text-green-600 font-medium">✓</span>
+                          <Check className="w-4 h-4 text-green-600" />
                         )}
                       </div>
                     </ContextMenuItem>

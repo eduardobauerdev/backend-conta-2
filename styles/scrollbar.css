@@ -1,0 +1,18 @@
+/* Custom scrollbar for chat-list and chat-window */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #b0b0b0 #f4f4f5;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #b0b0b0;
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f4f4f5;
+  border-radius: 8px;
+}

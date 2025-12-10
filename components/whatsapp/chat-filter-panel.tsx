@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { Filter, X, Plus, Tag, User } from "lucide-react"
+import { Filter, X, Plus, Tag, User, UserX, Flame, Coffee, Snowflake, Users } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import type { Etiqueta } from "@/lib/whatsapp-types"
 
-export type FilterType = "etiqueta" | "atribuicao" | "sem_atribuicao" | "sem_etiqueta"
+export type FilterType = "etiqueta" | "atribuicao" | "lead" | "temperatura"
 
 export interface ChatFilterRule {
   id: string
@@ -73,14 +73,6 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
   function updateFilterType(id: string, type: FilterType) {
     onFiltersChange(filters.map(f => {
       if (f.id === id) {
-        // Se o tipo mudou para "sem_atribuicao", define valores padrão
-        if (type === "sem_atribuicao") {
-          return { ...f, type, value: "any", label: "Sem atribuição" }
-        }
-        // Se o tipo mudou para "sem_etiqueta", define valores padrão
-        if (type === "sem_etiqueta") {
-          return { ...f, type, value: "any", label: "Sem etiqueta" }
-        }
         return { ...f, type, value: "", label: "" }
       }
       return f
@@ -99,8 +91,18 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
             label = etiqueta?.nome || ""
           }
         } else if (f.type === "atribuicao") {
-          const user = users.find(u => u.id === value)
-          label = user?.nome || ""
+          if (value === "sem_atribuicao") {
+            label = "Sem atribuição"
+          } else {
+            const user = users.find(u => u.id === value)
+            label = user?.nome || ""
+          }
+        } else if (f.type === "lead") {
+          label = value === "possui" ? "Possui lead" : "Não possui lead"
+        } else if (f.type === "temperatura") {
+          if (value === "Quente") label = "Quente"
+          else if (value === "Morno") label = "Morno"
+          else if (value === "Frio") label = "Frio"
         }
         return { ...f, value, label }
       }
@@ -174,16 +176,16 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
                         Atribuição
                       </div>
                     </SelectItem>
-                    <SelectItem value="sem_atribuicao">
+                    <SelectItem value="lead">
                       <div className="flex items-center gap-2">
-                        <User className="w-3 h-3 text-muted-foreground" />
-                        Sem atribuição
+                        <Users className="w-3 h-3" />
+                        Lead
                       </div>
                     </SelectItem>
-                    <SelectItem value="sem_etiqueta">
+                    <SelectItem value="temperatura">
                       <div className="flex items-center gap-2">
-                        <Tag className="w-3 h-3 text-muted-foreground" />
-                        Sem etiqueta
+                        <Flame className="w-3 h-3" />
+                        Temperatura
                       </div>
                     </SelectItem>
                   </SelectContent>
@@ -234,15 +236,63 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
                           {user.nome || "Sem nome"}
                         </SelectItem>
                       ))}
+                      <SelectItem value="sem_atribuicao">
+                        <div className="flex items-center gap-2">
+                          <UserX className="w-3 h-3 text-muted-foreground" />
+                          <span className="text-muted-foreground">Sem atribuição</span>
+                        </div>
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 )}
 
-                {(filter.type === "sem_etiqueta" || filter.type === "sem_atribuicao") && (
-                  <div className="flex-1 h-8 flex items-center px-3 text-sm text-muted-foreground border rounded-md bg-muted/50">
-                    {filter.type === "sem_etiqueta" ? "Chats sem etiqueta" : "Chats sem atribuição"}
-                  </div>
+                {filter.type === "lead" && (
+                  <Select
+                    value={filter.value}
+                    onValueChange={(val) => updateFilterValue(filter.id, val)}
+                  >
+                    <SelectTrigger className="flex-1 h-8">
+                      <SelectValue placeholder="Selecione" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="possui">Possui lead</SelectItem>
+                      <SelectItem value="nao_possui">Não possui lead</SelectItem>
+                    </SelectContent>
+                  </Select>
                 )}
+
+                {filter.type === "temperatura" && (
+                  <Select
+                    value={filter.value}
+                    onValueChange={(val) => updateFilterValue(filter.id, val)}
+                  >
+                    <SelectTrigger className="flex-1 h-8">
+                      <SelectValue placeholder="Selecione" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Quente">
+                        <div className="flex items-center gap-2">
+                          <Flame className="w-3 h-3 text-red-500" />
+                          Quente
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="Morno">
+                        <div className="flex items-center gap-2">
+                          <Coffee className="w-3 h-3 text-orange-500" />
+                          Morno
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="Frio">
+                        <div className="flex items-center gap-2">
+                          <Snowflake className="w-3 h-3 text-blue-500" />
+                          Frio
+                        </div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+
+
 
                 {/* Botão remover */}
                 <Button

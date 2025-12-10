@@ -215,6 +215,9 @@ export default function WhatsAppPage() {
               selectedChatId={selectedChatId}
               refreshTrigger={refreshTrigger}
               shrink={showLeadPanel && !isCollapsed}
+              onOpenNewLead={(chat) => {
+                setShowLeadPanel(true)
+              }}
             />
             </Card>
 

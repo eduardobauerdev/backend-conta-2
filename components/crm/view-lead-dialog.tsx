@@ -268,26 +268,56 @@ export function ViewLeadDialog({ open, onOpenChange, lead, onEdit, onLeadUpdated
 
   if (!lead) return null
 
-  const getTemperaturaIcon = () => {
-    switch (lead.temperatura) {
-      case "Frio":
+  // Ícone de temperatura (mesmo padrão do WhatsApp)
+  const TemperaturaIcon = ({ temperatura, size = 14 }: { temperatura: string; size?: number }) => {
+    switch (temperatura) {
+      case "Quente":
         return (
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500">
-            <path d="m10 20-1.25-2.5L6 18"/><path d="M10 4 8.75 6.5 6 6"/><path d="m14 20 1.25-2.5L18 18"/><path d="m14 4 1.25 2.5L18 6"/><path d="m17 21-3-6h-4"/><path d="m17 3-3 6 1.5 3"/><path d="M2 12h6.5L10 9"/><path d="m20 10-1.5 2 1.5 2"/><path d="M22 12h-6.5L14 15"/><path d="m4 10 1.5 2L4 14"/><path d="m7 21 3-6-1.5-3"/><path d="m7 3 3 6h4"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/>
           </svg>
         )
       case "Morno":
         return (
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-orange-500">
-            <path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10 2v2"/>
+            <path d="M14 2v2"/>
+            <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>
+            <path d="M6 2v2"/>
           </svg>
         )
-      case "Quente":
+      case "Frio":
         return (
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-500">
-            <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m10 20-1.25-2.5L6 18"/>
+            <path d="M10 4 8.75 6.5 6 6"/>
+            <path d="m14 20 1.25-2.5L18 18"/>
+            <path d="m14 4 1.25 2.5L18 6"/>
+            <path d="m17 21-3-6h-4"/>
+            <path d="m17 3-3 6 1.5 3"/>
+            <path d="M2 12h6.5L10 9"/>
+            <path d="m20 10-1.5 2 1.5 2"/>
+            <path d="M22 12h-6.5L14 15"/>
+            <path d="m4 10 1.5 2L4 14"/>
+            <path d="m7 21 3-6-1.5-3"/>
+            <path d="m7 3 3 6h4"/>
           </svg>
         )
+      default:
+        return null
+    }
+  }
+
+  const getTemperaturaBadgeClasses = () => {
+    switch (lead.temperatura) {
+      case "Quente":
+        return "bg-red-100 border-red-300 text-red-700"
+      case "Morno":
+        return "bg-orange-100 border-orange-300 text-orange-700"
+      case "Frio":
+        return "bg-blue-100 border-blue-300 text-blue-700"
+      default:
+        return "bg-gray-100 border-gray-300 text-gray-700"
     }
   }
 
@@ -517,7 +547,12 @@ export function ViewLeadDialog({ open, onOpenChange, lead, onEdit, onLeadUpdated
               )}
 
               <div className="flex items-start gap-3">
-                {getTemperaturaIcon()}
+                <Badge 
+                  variant="secondary" 
+                  className={`text-xs px-1.5 h-6 flex items-center gap-1 cursor-pointer rounded-md border ${getTemperaturaBadgeClasses()}`}
+                >
+                  <TemperaturaIcon temperatura={lead.temperatura} size={14} />
+                </Badge>
                 <div className="flex-1">
                   <Label className="text-xs text-neutral-500">Temperatura</Label>
                   <p className="text-sm font-medium">{lead.temperatura}</p>

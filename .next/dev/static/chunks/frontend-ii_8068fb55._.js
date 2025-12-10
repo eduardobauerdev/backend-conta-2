@@ -377,6 +377,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modul
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/lucide-react/dist/esm/icons/chevron-right.js [app-client] (ecmascript) <export default as ChevronRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/lucide-react/dist/esm/icons/chevron-down.js [app-client] (ecmascript) <export default as ChevronDown>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/lucide-react/dist/esm/icons/users.js [app-client] (ecmascript) <export default as Users>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$radio$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Radio$3e$__ = __turbopack_context__.i("[project]/frontend-ii/node_modules/lucide-react/dist/esm/icons/radio.js [app-client] (ecmascript) <export default as Radio>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/lib/utils.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/components/ui/avatar.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$contexts$2f$user$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend-ii/contexts/user-context.tsx [app-client] (ecmascript)");
@@ -410,11 +411,12 @@ const FolderClosedIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5
         strokeWidth: "2",
         strokeLinecap: "round",
         strokeLinejoin: "round",
+        className: "w-5 h-5",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
             d: "M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
         }, void 0, false, {
             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-            lineNumber: 28,
+            lineNumber: 29,
             columnNumber: 5
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
@@ -433,48 +435,50 @@ const FolderOpenIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$
         strokeWidth: "2",
         strokeLinecap: "round",
         strokeLinejoin: "round",
+        className: "w-5 h-5",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
             d: "m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"
         }, void 0, false, {
             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-            lineNumber: 44,
+            lineNumber: 46,
             columnNumber: 5
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-        lineNumber: 33,
+        lineNumber: 34,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
 _c1 = FolderOpenIcon;
 const BookMarkedIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
         xmlns: "http://www.w3.org/2000/svg",
-        width: "18",
-        height: "18",
+        width: "20",
+        height: "20",
         viewBox: "0 0 24 24",
         fill: "none",
         stroke: "currentColor",
         strokeWidth: "2",
         strokeLinecap: "round",
         strokeLinejoin: "round",
+        className: "w-5 h-5",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 d: "M10 2v8l3-3 3 3V2"
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                lineNumber: 60,
+                lineNumber: 63,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 d: "M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                lineNumber: 61,
+                lineNumber: 64,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-        lineNumber: 49,
+        lineNumber: 51,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
 _c2 = BookMarkedIcon;
@@ -488,6 +492,7 @@ const DatabaseIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$pr
         strokeWidth: "2",
         strokeLinecap: "round",
         strokeLinejoin: "round",
+        className: "w-5 h-5",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ellipse", {
                 cx: "12",
@@ -496,30 +501,79 @@ const DatabaseIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$pr
                 ry: "3"
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                lineNumber: 77,
+                lineNumber: 81,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 d: "M3 5V19A9 3 0 0 0 21 19V5"
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                lineNumber: 78,
+                lineNumber: 82,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 d: "M3 12A9 3 0 0 0 21 12"
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                lineNumber: 79,
+                lineNumber: 83,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-        lineNumber: 66,
+        lineNumber: 69,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
 _c3 = DatabaseIcon;
+const UsersIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "20",
+        height: "20",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "2",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        className: "w-5 h-5",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+            }, void 0, false, {
+                fileName: "[project]/frontend-ii/components/Sidebar.tsx",
+                lineNumber: 99,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                cx: "9",
+                cy: "7",
+                r: "4"
+            }, void 0, false, {
+                fileName: "[project]/frontend-ii/components/Sidebar.tsx",
+                lineNumber: 100,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                d: "M23 21v-2a4 4 0 0 0-3-3.87"
+            }, void 0, false, {
+                fileName: "[project]/frontend-ii/components/Sidebar.tsx",
+                lineNumber: 101,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                d: "M16 3.13a4 4 0 0 1 0 7.75"
+            }, void 0, false, {
+                fileName: "[project]/frontend-ii/components/Sidebar.tsx",
+                lineNumber: 102,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0))
+        ]
+    }, void 0, true, {
+        fileName: "[project]/frontend-ii/components/Sidebar.tsx",
+        lineNumber: 87,
+        columnNumber: 3
+    }, ("TURBOPACK compile-time value", void 0));
+_c4 = UsersIcon;
 // Ícone Verde para Conectado
 const WhatsAppIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
         xmlns: "http://www.w3.org/2000/svg",
@@ -535,15 +589,24 @@ const WhatsAppIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$pr
             d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
         }, void 0, false, {
             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-            lineNumber: 96,
+            lineNumber: 119,
             columnNumber: 5
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-        lineNumber: 85,
+        lineNumber: 108,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
-_c4 = WhatsAppIcon;
+_c5 = WhatsAppIcon;
+// Ícone Radio Verde Pulsando para Syncing
+const WhatsAppSyncingIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$radio$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Radio$3e$__["Radio"], {
+        className: "w-5 h-5 text-green-500 animate-pulse"
+    }, void 0, false, {
+        fileName: "[project]/frontend-ii/components/Sidebar.tsx",
+        lineNumber: 125,
+        columnNumber: 3
+    }, ("TURBOPACK compile-time value", void 0));
+_c6 = WhatsAppSyncingIcon;
 // Ícone Vermelho/Padrão para Desconectado
 const WhatsAppDisconnectedIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
         xmlns: "http://www.w3.org/2000/svg",
@@ -560,30 +623,30 @@ const WhatsAppDisconnectedIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__mo
                 d: "M19 19H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.7.7 0 0 1 2 21.286V5a2 2 0 0 1 1.184-1.826"
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                lineNumber: 113,
+                lineNumber: 141,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 d: "m2 2 20 20"
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                lineNumber: 114,
+                lineNumber: 142,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 d: "M8.656 3H20a2 2 0 0 1 2 2v11.344"
             }, void 0, false, {
                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                lineNumber: 115,
+                lineNumber: 143,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-        lineNumber: 102,
+        lineNumber: 130,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
-_c5 = WhatsAppDisconnectedIcon;
+_c7 = WhatsAppDisconnectedIcon;
 const menuItems = [
     {
         icon: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -601,20 +664,20 @@ const menuItems = [
                         d: "M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z"
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 133,
+                        lineNumber: 161,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M21.21 15.89A10 10 0 1 1 8 2.83"
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 134,
+                        lineNumber: 162,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                lineNumber: 122,
+                lineNumber: 150,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
         label: "Visão Geral",
@@ -636,20 +699,20 @@ const menuItems = [
                         d: "M12.034 12.681a.498.498 0 0 1 .647-.647l9 3.5a.5.5 0 0 1-.033.943l-3.444 1.068a1 1 0 0 0-.66.66l-1.067 3.443a.5.5 0 0 1-.943.033z"
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 153,
+                        lineNumber: 181,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 154,
+                        lineNumber: 182,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                lineNumber: 142,
+                lineNumber: 170,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
         label: "CRM",
@@ -676,41 +739,41 @@ const menuItems = [
                         d: "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 178,
+                        lineNumber: 206,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M14 2v5a1 1 0 0 0 1 1h5"
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 179,
+                        lineNumber: 207,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M10 9H8"
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 180,
+                        lineNumber: 208,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M16 13H8"
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 181,
+                        lineNumber: 209,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M16 17H8"
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 182,
+                        lineNumber: 210,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                lineNumber: 167,
+                lineNumber: 195,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
         label: "Gerar Documento",
@@ -736,6 +799,7 @@ function Sidebar() {
     const { isCollapsed, toggleCollapse } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$contexts$2f$sidebar$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSidebar"])();
     // ✅ ESTADO LOCAL PARA CONEXÃO (Substituindo o contexto antigo)
     const [isWhatsAppConnected, setIsWhatsAppConnected] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isWhatsAppSyncing, setIsWhatsAppSyncing] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createClient"])();
     // ✅ EFEITO: Escuta o status do banco em tempo real
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
@@ -744,8 +808,10 @@ function Sidebar() {
             const fetchStatus = {
                 "Sidebar.useEffect.fetchStatus": async ()=>{
                     const { data } = await supabase.from("instance_settings").select("status").eq("id", 1).single();
+                    const status = data?.status;
+                    setIsWhatsAppSyncing(status === "syncing");
                     // "syncing" também é considerado conectado
-                    setIsWhatsAppConnected(data?.status === "connected" || data?.status === "syncing");
+                    setIsWhatsAppConnected(status === "connected" || status === "syncing");
                 }
             }["Sidebar.useEffect.fetchStatus"];
             fetchStatus();
@@ -758,6 +824,7 @@ function Sidebar() {
             }, {
                 "Sidebar.useEffect.channel": (payload)=>{
                     const status = payload.new.status;
+                    setIsWhatsAppSyncing(status === "syncing");
                     // "syncing" também é considerado conectado
                     setIsWhatsAppConnected(status === "connected" || status === "syncing");
                 }
@@ -805,7 +872,7 @@ function Sidebar() {
     const canAccessUsers = user?.cargo === "Administrador" || user?.cargo === "Desenvolvedor";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipProvider"], {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
-            className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("fixed left-0 top-0 h-screen bg-neutral-900 text-neutral-200 p-6 flex flex-col transition-all duration-300 ease-in-out z-40", isCollapsed ? "w-[88px]" : "w-[280px]"),
+            className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("fixed left-0 top-0 h-screen bg-neutral-900 text-neutral-200 p-4 flex flex-col transition-all duration-300 ease-in-out z-40", isCollapsed ? "w-[56px]" : "w-[180px]"),
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "absolute -right-3 top-6 z-10",
@@ -815,27 +882,27 @@ function Sidebar() {
                         className: "h-6 w-6 rounded-full bg-black/80 backdrop-blur-sm border-neutral-700 hover:bg-black shadow-lg",
                         onClick: toggleCollapse,
                         children: isCollapsed ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
-                            className: "h-3 w-3"
+                            className: "w-5 h-5"
                         }, void 0, false, {
                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                            lineNumber: 283,
+                            lineNumber: 315,
                             columnNumber: 28
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$left$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronLeft$3e$__["ChevronLeft"], {
-                            className: "h-3 w-3"
+                            className: "w-5 h-5"
                         }, void 0, false, {
                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                            lineNumber: 283,
+                            lineNumber: 315,
                             columnNumber: 67
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 277,
+                        lineNumber: 309,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                    lineNumber: 276,
-                    columnNumber: 9
+                    lineNumber: 308,
+                    columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "mb-8",
@@ -846,7 +913,7 @@ function Sidebar() {
                                 children: "Sistema de OS"
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 290,
+                                lineNumber: 322,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -854,7 +921,7 @@ function Sidebar() {
                                 children: "Gestão de Ordens"
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 291,
+                                lineNumber: 323,
                                 columnNumber: 15
                             }, this)
                         ]
@@ -863,12 +930,12 @@ function Sidebar() {
                         children: "OS"
                     }, void 0, false, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 294,
+                        lineNumber: 326,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                    lineNumber: 287,
+                    lineNumber: 319,
                     columnNumber: 9
                 }, this),
                 user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -884,7 +951,7 @@ function Sidebar() {
                                         alt: avatarAlt
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 303,
+                                        lineNumber: 335,
                                         columnNumber: 19
                                     }, this),
                                     !user.foto_perfil && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarFallback"], {
@@ -892,13 +959,13 @@ function Sidebar() {
                                         children: avatarFallback
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 305,
+                                        lineNumber: 337,
                                         columnNumber: 21
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 302,
+                                lineNumber: 334,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -909,7 +976,7 @@ function Sidebar() {
                                         children: getFirstName(user.nome)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 309,
+                                        lineNumber: 341,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -917,7 +984,7 @@ function Sidebar() {
                                         children: user.email
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 310,
+                                        lineNumber: 342,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -925,19 +992,19 @@ function Sidebar() {
                                         children: user.cargo
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 311,
+                                        lineNumber: 343,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 308,
+                                lineNumber: 340,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 301,
+                        lineNumber: 333,
                         columnNumber: 15
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Avatar"], {
                         className: "w-10 h-10 border-2 border-neutral-700",
@@ -947,7 +1014,7 @@ function Sidebar() {
                                 alt: avatarAlt
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 316,
+                                lineNumber: 348,
                                 columnNumber: 17
                             }, this),
                             !user.foto_perfil && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarFallback"], {
@@ -955,25 +1022,25 @@ function Sidebar() {
                                 children: avatarFallback
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 318,
+                                lineNumber: 350,
                                 columnNumber: 19
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 315,
+                        lineNumber: 347,
                         columnNumber: 15
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                    lineNumber: 299,
+                    lineNumber: 331,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
                     className: "space-y-2 flex-1",
                     children: [
                         menuItems.map((item)=>{
-                            const Icon = item.icon === "whatsapp" ? isWhatsAppConnected ? WhatsAppIcon : WhatsAppDisconnectedIcon : item.icon === "googledrive" ? null : item.icon;
+                            const Icon = item.icon === "whatsapp" ? isWhatsAppSyncing ? WhatsAppSyncingIcon : isWhatsAppConnected ? WhatsAppIcon : WhatsAppDisconnectedIcon : item.icon === "googledrive" ? null : item.icon;
                             const isActive = pathname === item.href;
                             const linkElement = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 href: item.href,
@@ -983,31 +1050,31 @@ function Sidebar() {
                                         className: "w-5 h-5 flex-shrink-0 flex items-center justify-center",
                                         children: typeof Icon === "function" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {}, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 349,
+                                            lineNumber: 383,
                                             columnNumber: 49
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
                                             className: "w-5 h-5"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 349,
+                                            lineNumber: 383,
                                             columnNumber: 60
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 348,
+                                        lineNumber: 382,
                                         columnNumber: 17
                                     }, this),
                                     !isCollapsed && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: item.label
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 351,
+                                        lineNumber: 385,
                                         columnNumber: 34
                                     }, this)
                                 ]
                             }, item.href, true, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 338,
+                                lineNumber: 372,
                                 columnNumber: 15
                             }, this);
                             if (isCollapsed) {
@@ -1019,7 +1086,7 @@ function Sidebar() {
                                             children: linkElement
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 358,
+                                            lineNumber: 392,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -1029,18 +1096,18 @@ function Sidebar() {
                                                 children: item.label
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                lineNumber: 360,
+                                                lineNumber: 394,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 359,
+                                            lineNumber: 393,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, item.href, true, {
                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                    lineNumber: 357,
+                                    lineNumber: 391,
                                     columnNumber: 17
                                 }, this);
                             }
@@ -1062,26 +1129,26 @@ function Sidebar() {
                                                     className: "w-5 h-5 flex-shrink-0",
                                                     children: isDocumentosOpen || isDocumentosHovered ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FolderOpenIcon, {}, void 0, false, {
                                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                        lineNumber: 385,
+                                                        lineNumber: 419,
                                                         columnNumber: 66
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FolderClosedIcon, {}, void 0, false, {
                                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                        lineNumber: 385,
+                                                        lineNumber: 419,
                                                         columnNumber: 87
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                    lineNumber: 384,
+                                                    lineNumber: 418,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                lineNumber: 373,
+                                                lineNumber: 407,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 372,
+                                            lineNumber: 406,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -1091,18 +1158,18 @@ function Sidebar() {
                                                 children: "Documentos"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                lineNumber: 390,
+                                                lineNumber: 424,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 389,
+                                            lineNumber: 423,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                    lineNumber: 371,
+                                    lineNumber: 405,
                                     columnNumber: 15
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>setIsDocumentosOpen(!isDocumentosOpen),
@@ -1114,16 +1181,16 @@ function Sidebar() {
                                             className: "w-5 h-5 flex-shrink-0",
                                             children: isDocumentosOpen || isDocumentosHovered ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FolderOpenIcon, {}, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                lineNumber: 405,
+                                                lineNumber: 439,
                                                 columnNumber: 62
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FolderClosedIcon, {}, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                lineNumber: 405,
+                                                lineNumber: 439,
                                                 columnNumber: 83
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 404,
+                                            lineNumber: 438,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1131,20 +1198,20 @@ function Sidebar() {
                                             children: "Documentos"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 407,
+                                            lineNumber: 441,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
-                                            className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("w-4 h-4 transition-transform", isDocumentosOpen && "rotate-180")
+                                            className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("w-5 h-5 transition-transform", isDocumentosOpen && "rotate-180")
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 408,
+                                            lineNumber: 442,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                    lineNumber: 394,
+                                    lineNumber: 428,
                                     columnNumber: 15
                                 }, this),
                                 isDocumentosOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1162,25 +1229,25 @@ function Sidebar() {
                                                             href: subItem.href,
                                                             className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("flex items-center justify-center px-4 py-2 rounded-lg transition-all", "hover:bg-white/10", isSubActive && "bg-white/10 text-white font-medium"),
                                                             children: SubIcon && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "w-4 h-4 flex-shrink-0",
+                                                                className: "w-5 h-5 flex-shrink-0",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SubIcon, {}, void 0, false, {
                                                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                                    lineNumber: 432,
-                                                                    columnNumber: 33
+                                                                    lineNumber: 466,
+                                                                    columnNumber: 35
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                                lineNumber: 431,
-                                                                columnNumber: 31
+                                                                lineNumber: 465,
+                                                                columnNumber: 33
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                            lineNumber: 422,
+                                                            lineNumber: 456,
                                                             columnNumber: 27
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                        lineNumber: 421,
+                                                        lineNumber: 455,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -1190,18 +1257,18 @@ function Sidebar() {
                                                             children: subItem.label
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                            lineNumber: 438,
+                                                            lineNumber: 472,
                                                             columnNumber: 27
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                        lineNumber: 437,
+                                                        lineNumber: 471,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, subItem.href, true, {
                                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                lineNumber: 420,
+                                                lineNumber: 454,
                                                 columnNumber: 23
                                             }, this);
                                         }
@@ -1210,40 +1277,40 @@ function Sidebar() {
                                             className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("flex items-center gap-3 px-4 py-2 rounded-lg transition-all text-sm", "hover:bg-white/10", isSubActive && "bg-white/10 text-white font-medium"),
                                             children: [
                                                 SubIcon && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "w-4 h-4 flex-shrink-0",
+                                                    className: "w-5 h-5 flex-shrink-0",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SubIcon, {}, void 0, false, {
                                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                        lineNumber: 456,
+                                                        lineNumber: 490,
                                                         columnNumber: 27
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                    lineNumber: 455,
+                                                    lineNumber: 489,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: subItem.label
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                    lineNumber: 459,
+                                                    lineNumber: 493,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, subItem.href, true, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 445,
+                                            lineNumber: 479,
                                             columnNumber: 21
                                         }, this);
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                    lineNumber: 413,
+                                    lineNumber: 447,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                            lineNumber: 369,
+                            lineNumber: 403,
                             columnNumber: 11
                         }, this),
                         canAccessDatabase && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -1259,22 +1326,22 @@ function Sidebar() {
                                                 className: "w-5 h-5 flex-shrink-0",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DatabaseIcon, {}, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                    lineNumber: 483,
+                                                    lineNumber: 517,
                                                     columnNumber: 25
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                lineNumber: 482,
+                                                lineNumber: 516,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 472,
+                                            lineNumber: 506,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 471,
+                                        lineNumber: 505,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -1284,18 +1351,18 @@ function Sidebar() {
                                             children: "Banco de Dados"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 488,
+                                            lineNumber: 522,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 487,
+                                        lineNumber: 521,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 470,
+                                lineNumber: 504,
                                 columnNumber: 17
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 href: "/banco-de-dados",
@@ -1305,25 +1372,25 @@ function Sidebar() {
                                         className: "w-5 h-5 flex-shrink-0",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DatabaseIcon, {}, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 502,
+                                            lineNumber: 536,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 501,
+                                        lineNumber: 535,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Banco de Dados"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 504,
+                                        lineNumber: 538,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 492,
+                                lineNumber: 526,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false),
@@ -1342,22 +1409,22 @@ function Sidebar() {
                                                     className: "w-5 h-5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                    lineNumber: 525,
+                                                    lineNumber: 559,
                                                     columnNumber: 25
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                                lineNumber: 524,
+                                                lineNumber: 558,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 515,
+                                            lineNumber: 549,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 514,
+                                        lineNumber: 548,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -1367,18 +1434,18 @@ function Sidebar() {
                                             children: "Usuários"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 530,
+                                            lineNumber: 564,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 529,
+                                        lineNumber: 563,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 513,
+                                lineNumber: 547,
                                 columnNumber: 17
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 href: "/usuarios",
@@ -1390,32 +1457,32 @@ function Sidebar() {
                                             className: "w-5 h-5"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                            lineNumber: 543,
+                                            lineNumber: 577,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 542,
+                                        lineNumber: 576,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Usuários"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 545,
+                                        lineNumber: 579,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 534,
+                                lineNumber: 568,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                    lineNumber: 325,
+                    lineNumber: 357,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1432,17 +1499,17 @@ function Sidebar() {
                                         className: "w-5 h-5 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                        lineNumber: 565,
+                                        lineNumber: 599,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                    lineNumber: 556,
+                                    lineNumber: 590,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 555,
+                                lineNumber: 589,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TooltipContent"], {
@@ -1452,18 +1519,18 @@ function Sidebar() {
                                     children: "Ajustes"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                    lineNumber: 569,
+                                    lineNumber: 603,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 568,
+                                lineNumber: 602,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 554,
+                        lineNumber: 588,
                         columnNumber: 13
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                         href: "/ajustes",
@@ -1473,55 +1540,57 @@ function Sidebar() {
                                 className: "w-5 h-5 flex-shrink-0"
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 581,
+                                lineNumber: 615,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "Ajustes"
                             }, void 0, false, {
                                 fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                                lineNumber: 582,
+                                lineNumber: 616,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                        lineNumber: 573,
+                        lineNumber: 607,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-                    lineNumber: 552,
+                    lineNumber: 586,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-            lineNumber: 270,
+            lineNumber: 302,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/frontend-ii/components/Sidebar.tsx",
-        lineNumber: 269,
+        lineNumber: 301,
         columnNumber: 5
     }, this);
 }
-_s(Sidebar, "yMs/ChEpTPPfw7tNjMsE/1aOcoE=", false, function() {
+_s(Sidebar, "cZpLyPmFk3UCioe2tZFi9NCjJjE=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"],
         __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$contexts$2f$user$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useUser"],
         __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$contexts$2f$sidebar$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSidebar"]
     ];
 });
-_c6 = Sidebar;
-var _c, _c1, _c2, _c3, _c4, _c5, _c6;
+_c8 = Sidebar;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8;
 __turbopack_context__.k.register(_c, "FolderClosedIcon");
 __turbopack_context__.k.register(_c1, "FolderOpenIcon");
 __turbopack_context__.k.register(_c2, "BookMarkedIcon");
 __turbopack_context__.k.register(_c3, "DatabaseIcon");
-__turbopack_context__.k.register(_c4, "WhatsAppIcon");
-__turbopack_context__.k.register(_c5, "WhatsAppDisconnectedIcon");
-__turbopack_context__.k.register(_c6, "Sidebar");
+__turbopack_context__.k.register(_c4, "UsersIcon");
+__turbopack_context__.k.register(_c5, "WhatsAppIcon");
+__turbopack_context__.k.register(_c6, "WhatsAppSyncingIcon");
+__turbopack_context__.k.register(_c7, "WhatsAppDisconnectedIcon");
+__turbopack_context__.k.register(_c8, "Sidebar");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -2023,7 +2092,7 @@ function AppLayoutContent({ children }) {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2d$ii$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
                 className: "flex-1 transition-all duration-300 ease-in-out",
                 style: {
-                    marginLeft: isCollapsed ? "88px" : "280px"
+                    marginLeft: isCollapsed ? "60px" : "184px"
                 },
                 children: children
             }, void 0, false, {
