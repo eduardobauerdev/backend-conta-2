@@ -169,99 +169,99 @@ export function ChatHistoryDialog({ open, onOpenChange, chatId, chatName }: Chat
       case "assignment_created":
         return (
           <span className="flex flex-wrap items-center gap-1">
-            <UserBadge name={performed_by_name} color={event_data.performed_by_cor} /> atribuiu o chat para{" "}
-            <UserBadge name={event_data.assigned_to_name} color={event_data.assigned_to_cor} />
+            <UserBadge name={performed_by_name} color={event_data?.performed_by_cor} /> atribuiu o chat para{" "}
+            <UserBadge name={event_data?.assigned_to_name} color={event_data?.assigned_to_cor} />
           </span>
         )
       case "assignment_transferred":
         return (
           <span className="flex flex-wrap items-center gap-1">
-            <UserBadge name={performed_by_name} color={event_data.performed_by_cor} /> transferiu de{" "}
-            <UserBadge name={event_data.from_user_name} color={event_data.from_user_cor} /> para{" "}
-            <UserBadge name={event_data.to_user_name} color={event_data.to_user_cor} />
+            <UserBadge name={performed_by_name} color={event_data?.performed_by_cor} /> transferiu de{" "}
+            <UserBadge name={event_data?.from_user_name} color={event_data?.from_user_cor} /> para{" "}
+            <UserBadge name={event_data?.to_user_name} color={event_data?.to_user_cor} />
           </span>
         )
       case "assignment_removed":
         return (
           <span className="flex flex-wrap items-center gap-1">
-            <UserBadge name={performed_by_name} color={event_data.performed_by_cor} /> removeu a atribuição de{" "}
-            <UserBadge name={event_data.removed_user_name} color={event_data.removed_user_cor} />
+            <UserBadge name={performed_by_name} color={event_data?.performed_by_cor} /> removeu a atribuição de{" "}
+            <UserBadge name={event_data?.removed_user_name} color={event_data?.removed_user_cor} />
           </span>
         )
       case "note_created":
         return (
           <span className="flex flex-wrap items-center gap-1">
-            <UserBadge name={performed_by_name} color={event_data.performed_by_cor} /> criou uma nota
+            <UserBadge name={performed_by_name} color={event_data?.performed_by_cor} /> criou uma nota
           </span>
         )
       case "note_updated":
         return (
           <span className="flex flex-wrap items-center gap-1">
-            <UserBadge name={performed_by_name} color={event_data.performed_by_cor} /> atualizou a nota
+            <UserBadge name={performed_by_name} color={event_data?.performed_by_cor} /> atualizou a nota
           </span>
         )
       case "etiqueta_added":
         return (
           <span className="flex flex-wrap items-center gap-1">
-            <UserBadge name={performed_by_name} color={event_data.performed_by_cor} /> adicionou a etiqueta{" "}
+            <UserBadge name={performed_by_name} color={event_data?.performed_by_cor} /> adicionou a etiqueta{" "}
             <Badge
               variant="outline"
               className="text-xs ml-1"
               style={{
-                backgroundColor: event_data.etiqueta_cor,
-                color: getContrastTextColor(event_data.etiqueta_cor || "#000000"),
-                borderColor: event_data.etiqueta_cor,
+                backgroundColor: event_data?.etiqueta_cor,
+                color: getContrastTextColor(event_data?.etiqueta_cor || "#000000"),
+                borderColor: event_data?.etiqueta_cor,
               }}
             >
-              {event_data.etiqueta_nome}
+              {event_data?.etiqueta_nome}
             </Badge>
           </span>
         )
       case "etiqueta_removed":
         return (
           <span className="flex flex-wrap items-center gap-1">
-            <UserBadge name={performed_by_name} color={event_data.performed_by_cor} /> removeu a etiqueta{" "}
+            <UserBadge name={performed_by_name} color={event_data?.performed_by_cor} /> removeu a etiqueta{" "}
             <Badge
               variant="outline"
               className="text-xs ml-1 line-through"
               style={{
-                backgroundColor: event_data.etiqueta_cor,
-                color: getContrastTextColor(event_data.etiqueta_cor || "#000000"),
-                borderColor: event_data.etiqueta_cor,
+                backgroundColor: event_data?.etiqueta_cor,
+                color: getContrastTextColor(event_data?.etiqueta_cor || "#000000"),
+                borderColor: event_data?.etiqueta_cor,
               }}
             >
-              {event_data.etiqueta_nome}
+              {event_data?.etiqueta_nome}
             </Badge>
           </span>
         )
       case "name_changed":
         return (
           <span className="flex flex-wrap items-center gap-1">
-            <UserBadge name={performed_by_name} color={event_data.performed_by_cor} /> alterou o nome de{" "}
-            <span className="line-through text-muted-foreground">{event_data.previous_name}</span> para{" "}
-            <strong>{event_data.new_name}</strong>
+            <UserBadge name={performed_by_name} color={event_data?.performed_by_cor} /> alterou o nome de{" "}
+            <span className="line-through text-muted-foreground">{event_data?.previous_name}</span> para{" "}
+            <strong>{event_data?.new_name}</strong>
           </span>
         )
       case "lead_converted":
         return (
           <span className="flex flex-wrap items-center gap-1">
-            <UserBadge name={performed_by_name} color={event_data.performed_by_cor} /> converteu o lead{" "}
-            <strong>{event_data.lead_nome}</strong> com valor de{" "}
-            <span className="text-emerald-600 font-semibold">R$ {event_data.valor_formatado || event_data.valor}</span>
+            <UserBadge name={performed_by_name} color={event_data?.performed_by_cor} /> converteu o lead{" "}
+            <strong>{event_data?.lead_nome}</strong> com valor de{" "}
+            <span className="text-emerald-600 font-semibold">R$ {event_data?.valor_formatado || event_data?.valor}</span>
           </span>
         )
       case "lead_unconverted":
         return (
           <span className="flex flex-wrap items-center gap-1">
-            <UserBadge name={performed_by_name} color={event_data.performed_by_cor} /> desconverteu o lead{" "}
-            <strong>{event_data.lead_nome}</strong>
-            {event_data.motivo && (
-              <span className="text-muted-foreground"> - Motivo: {event_data.motivo}</span>
+            <UserBadge name={performed_by_name} color={event_data?.performed_by_cor} /> desconverteu o lead{" "}
+            <strong>{event_data?.lead_nome}</strong>
+            {event_data?.motivo && (
+              <span className="text-muted-foreground"> - Motivo: {event_data?.motivo}</span>
             )}
           </span>
         )
       default:
-        return <span className="flex flex-wrap items-center gap-1">Ação realizada por <UserBadge name={performed_by_name} color={event_data.performed_by_cor} /></span>
+        return <span className="flex flex-wrap items-center gap-1">Ação realizada por <UserBadge name={performed_by_name} color={event_data?.performed_by_cor} /></span>
     }
   }
 
@@ -340,7 +340,7 @@ export function ChatHistoryDialog({ open, onOpenChange, chatId, chatName }: Chat
                       {/* Content */}
                       <div className="flex-1 pb-2">
                         <div className="bg-card border rounded-lg p-3 shadow-sm group-hover:shadow-md transition-shadow">
-                          <div className="flex items-start justify-between gap-2 mb-1">
+                          <div className="flex items-start justify-between gap-2 mb-3">
                             <Badge variant="outline" className={`text-[10px] ${badge.color}`}>
                               {badge.label}
                             </Badge>
@@ -352,7 +352,7 @@ export function ChatHistoryDialog({ open, onOpenChange, chatId, chatName }: Chat
                             </span>
                           </div>
 
-                          <p className="text-sm mt-1">{getEventDescription(entry)}</p>
+                          <p className="text-sm">{getEventDescription(entry)}</p>
 
                           {renderEventDetails(entry)}
 

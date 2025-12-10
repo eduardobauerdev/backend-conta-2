@@ -2715,6 +2715,10 @@
     background-color: var(--color-blue-600);
   }
 
+  .bg-blue-900 {
+    background-color: var(--color-blue-900);
+  }
+
   .bg-border {
     background-color: var(--border);
   }

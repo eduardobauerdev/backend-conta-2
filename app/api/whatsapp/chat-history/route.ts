@@ -50,6 +50,61 @@ export async function GET(request: NextRequest) {
       )
     }
 
+    // Helper para buscar cores dos cargos dos usuários
+    const getUserColors = async (userIds: string[]) => {
+      if (!userIds || userIds.length === 0) return {}
+      
+      const uniqueIds = Array.from(new Set(userIds)).filter(Boolean)
+      const { data: profiles } = await supabase
+        .from("perfis")
+        .select("id, cargo")
+        .in("id", uniqueIds)
+
+      if (!profiles) return {}
+
+      const cargos = Array.from(new Set(profiles.map(p => p.cargo).filter(Boolean)))
+      const { data: cargosData } = await supabase
+        .from("cargos")
+        .select("nome, cor")
+        .in("nome", cargos)
+
+      const coresMap: Record<string, string> = {}
+      cargosData?.forEach(c => coresMap[c.nome] = c.cor)
+
+      const usersColorsMap: Record<string, string> = {}
+      profiles.forEach(p => {
+        usersColorsMap[p.id] = p.cargo ? coresMap[p.cargo] : "#6b7280"
+      })
+
+      return usersColorsMap
+    }
+
+    // Coletar todos os IDs de usuários do histórico para buscar cores uma única vez
+    const allUserIds = history?.flatMap(entry => {
+      const ids: string[] = []
+      if (entry.performed_by_id) ids.push(entry.performed_by_id)
+      if (entry.event_data?.assigned_to_id) ids.push(entry.event_data.assigned_to_id)
+      if (entry.event_data?.from_user_id) ids.push(entry.event_data.from_user_id)
+      if (entry.event_data?.to_user_id) ids.push(entry.event_data.to_user_id)
+      if (entry.event_data?.removed_user_id) ids.push(entry.event_data.removed_user_id)
+      return ids
+    }) || []
+
+    const userColors = await getUserColors(allUserIds)
+
+    // Enriquecer histórico com cores dos cargos
+    const enrichedHistory = (history || []).map(entry => ({
+      ...entry,
+      event_data: {
+        ...entry.event_data,
+        performed_by_cor: userColors[entry.performed_by_id],
+        assigned_to_cor: userColors[entry.event_data?.assigned_to_id],
+        from_user_cor: userColors[entry.event_data?.from_user_id],
+        to_user_cor: userColors[entry.event_data?.to_user_id],
+        removed_user_cor: userColors[entry.event_data?.removed_user_id],
+      }
+    }))
+
     // Buscar UUID do chat para cruzar com leads
     const { data: chatData } = await supabase
       .from("chats")
@@ -57,7 +112,7 @@ export async function GET(request: NextRequest) {
       .eq("id", chatId)
       .single()
 
-    let allHistory = [...(history || [])]
+    let allHistory = [...enrichedHistory]
 
     // Se temos UUID do chat, buscar conversões/desconversões do lead vinculado
     if (chatData?.uuid) {
@@ -98,6 +153,7 @@ export async function GET(request: NextRequest) {
               lead_temperatura: conv.lead_temperatura,
               valor: conv.valor,
               valor_formatado: new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(conv.valor),
+              performed_by_cor: userColors[conv.convertido_por_id],
             },
             performed_by_id: conv.convertido_por_id,
             performed_by_name: conv.convertido_por_nome,
@@ -120,6 +176,7 @@ export async function GET(request: NextRequest) {
               lead_interesse: desc.lead_interesse,
               lead_temperatura: desc.lead_temperatura,
               motivo: desc.motivo,
+              performed_by_cor: userColors[desc.desconvertido_por_id],
             },
             performed_by_id: desc.desconvertido_por_id,
             performed_by_name: desc.desconvertido_por_nome,
