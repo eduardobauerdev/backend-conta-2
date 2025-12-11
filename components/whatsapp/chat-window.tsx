@@ -5,11 +5,11 @@ import { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { Send, RefreshCw, Zap, Loader2, Paperclip, X, User, History, UserPlus, Plus, Tag, Pencil, Tags, StickyNote, Copy, Phone, FileText, CheckCircle } from "lucide-react"
+import { Send, RefreshCw, Zap, Loader2, Paperclip, X, User, History, UserPlus, Plus, Tag, Pencil, Tags, StickyNote, Copy, Phone, FileText, CheckCircle, DollarSign, XCircle, Check } from "lucide-react"
 import { QuickRepliesPanel } from "./quick-replies-panel"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger } from "@/components/ui/context-menu"
+import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent, ContextMenuPortal } from "@/components/ui/context-menu"
 import { MessageBubble } from "./message-bubble"
 import { toast } from "sonner"
 import type { Message, ChatAssignmentDB, ChatActivity } from "@/lib/whatsapp-types"
@@ -32,6 +32,9 @@ import { ProfilePictureModal } from "./profile-picture-modal"
 import { DateSeparator, shouldShowDateSeparator } from "./date-separator"
 import type { Etiqueta, EtiquetaSimple } from "@/lib/whatsapp-types"
 import { cn, getContrastTextColor, formatPhoneNumber } from "@/lib/utils"
+import { ConvertLeadDialog } from "@/components/crm/convert-lead-dialog"
+import { UnconvertLeadDialog } from "@/components/crm/unconvert-lead-dialog"
+import type { Lead } from "@/types/crm"
 
 const MESSAGES_PER_PAGE = 20
 const SCROLL_THRESHOLD = 100
@@ -115,6 +118,7 @@ export function ChatWindow({
   const [messages, setMessages] = useState<Message[]>([])
   const [newMessage, setNewMessage] = useState("")
   const [loading, setLoading] = useState(true)
+  const [historyLoading, setHistoryLoading] = useState(true)
   const [sending, setSending] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
   const [quickRepliesOpen, setQuickRepliesOpen] = useState(false)
@@ -126,6 +130,9 @@ export function ChatWindow({
   const [showAssignToUserDialog, setShowAssignToUserDialog] = useState(false)
   const [showAssignPopover, setShowAssignPopover] = useState(false)
   const [availableUsers, setAvailableUsers] = useState<Array<{ id: string; nome: string; cargo: string; cor: string }>>([])
+  // ✅ NOVO ESTADO: Etiquetas Disponíveis carregadas pelo pai
+  const [availableEtiquetas, setAvailableEtiquetas] = useState<Etiqueta[]>([])
+  
   const [assigningUser, setAssigningUser] = useState(false)
   const [showEditNameDialog, setShowEditNameDialog] = useState(false)
   const [showEtiquetasDialog, setShowEtiquetasDialog] = useState(false)
@@ -140,6 +147,13 @@ export function ChatWindow({
 
   // Estado para lead existente
   const [existingLead, setExistingLead] = useState<{ id: string; nome: string; proximo_contato: string | null; temperatura: string; status: string | null } | null>(null)
+
+  // Estado para troca de temperatura via context menu
+  const [changingTemperatura, setChangingTemperatura] = useState(false)
+  
+  // Estado para diálogos de conversão
+  const [showConvertLeadDialog, setShowConvertLeadDialog] = useState(false)
+  const [showUnconvertLeadDialog, setShowUnconvertLeadDialog] = useState(false)
 
   // Estados locais para nome e etiquetas (atualizados via realtime)
   const [chatName, setChatName] = useState<string | null>(initialChatName || null)
@@ -433,9 +447,12 @@ export function ChatWindow({
     setNoteContent(null)
     setHasHistory(false)
     
+    setHistoryLoading(true) // ✅ Reset do loading de histórico
+    
     loadAssignment()
     loadActivities()
     loadAvailableUsers()
+    loadAvailableEtiquetas() // ✅ Carrega etiquetas disponíveis (paralelo)
     checkNotes()
     checkHistory()
     registerActivity("viewing")
@@ -589,6 +606,68 @@ export function ChatWindow({
     }
   }
 
+  // ✅ NOVA FUNÇÃO: Carregar Etiquetas no PAI para evitar delay no botão
+  const loadAvailableEtiquetas = useCallback(async () => {
+    try {
+      const response = await fetch("/api/whatsapp/etiquetas")
+      const data = await response.json()
+      if (data.success) {
+        setAvailableEtiquetas(data.etiquetas || [])
+      }
+    } catch (error) {
+      console.error("Erro ao carregar etiquetas:", error)
+    }
+  }, [])
+
+  // --- TROCAR TEMPERATURA DO LEAD ---
+  async function handleChangeTemperatura(novaTemperatura: string) {
+    if (!existingLead) return
+    
+    try {
+      setChangingTemperatura(true)
+      const currentUserName = getCookie("auth_user_name") || "Sistema"
+      const currentUserId = getCookie("auth_user_id")
+      const temperaturaAnterior = existingLead.temperatura
+      
+      const { error } = await supabase
+        .from('leads')
+        .update({ temperatura: novaTemperatura })
+        .eq('id', existingLead.id)
+      
+      if (error) {
+        toast.error("Erro ao alterar temperatura")
+        return
+      }
+      
+      // Salva no histórico (chat_history)
+      await supabase.from("chat_history").insert({
+        chat_id: chatId,
+        chat_name: safeChatName,
+        event_type: "temperatura_changed",
+        event_data: {
+          lead_id: existingLead.id,
+          lead_nome: existingLead.nome,
+          temperatura_anterior: temperaturaAnterior,
+          temperatura_nova: novaTemperatura
+        },
+        performed_by_id: currentUserId,
+        performed_by_name: currentUserName
+      })
+      
+      toast.success(`Temperatura alterada para ${novaTemperatura}`)
+      
+      // Atualiza o estado local
+      setExistingLead(prev => prev ? { ...prev, temperatura: novaTemperatura } : null)
+      
+      onRefresh()
+    } catch (error) {
+      console.error("Erro ao alterar temperatura:", error)
+      toast.error("Erro ao alterar temperatura")
+    } finally {
+      setChangingTemperatura(false)
+    }
+  }
+
   // --- ATRIBUIR CHAT A USUÁRIO ---
   async function handleAssignUser(userId: string, userName: string) {
     try {
@@ -640,12 +719,14 @@ export function ChatWindow({
 
   async function checkHistory() {
       try {
+          // ✅ Não definimos true aqui pois já é definido no useEffect/mount
           const res = await fetch(`/api/whatsapp/chat-history?chatId=${chatId}`)
           if(res.ok) {
               const data = await res.json()
               if(data.success && data.history?.length > 0) setHasHistory(true)
           }
       } catch (e) { console.error(e) }
+      finally { setHistoryLoading(false) } // ✅ Garante que o loading termine
   }
 
   async function checkNotes() {
@@ -763,16 +844,16 @@ export function ChatWindow({
   // --- RENDER
   // ----------------------------------------------------
 
-  if (loading && offset === 0) {
+  // ✅ CORREÇÃO: Removemos historyLoading daqui para a janela abrir imediatamente
+  if ((loading && offset === 0) || historyLoading) {
     return (
       <div className="flex items-center justify-center h-full">
         <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
       </div>
     )
-  }
-
-  return (
-    <div className="flex flex-col h-full bg-white relative custom-scrollbar">
+  }  return (
+    // 🔥 CORREÇÃO: Adicionado `min-w-0` e `flex-1` para permitir que esta janela encolha e não esmague o ChatList
+    <div className="flex flex-col h-full bg-white relative custom-scrollbar min-w-0 flex-1 overflow-hidden">
       {/* HEADER */}
       <div className="border-b flex-shrink-0">
         {/* Linha 0: Badge de telefone no canto direito */}
@@ -911,48 +992,120 @@ export function ChatWindow({
                   </ContextMenu>
                 )}
                 
-                {/* 2. Badge de temperatura */}
+                {/* 2. Badge de temperatura com context menu */}
                 {existingLead && (
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Badge 
-                          variant="secondary" 
-                          className={cn(
-                            "text-xs px-1.5 h-6 flex items-center gap-1 cursor-pointer rounded-md border",
-                            existingLead.temperatura === "Quente" && "bg-red-100 border-red-300 text-red-700",
-                            existingLead.temperatura === "Morno" && "bg-orange-100 border-orange-300 text-orange-700",
-                            existingLead.temperatura === "Frio" && "bg-blue-100 border-blue-300 text-blue-700"
-                          )}
-                          onClick={handleViewLeadInCRM}
+                  <ContextMenu>
+                    <ContextMenuTrigger asChild>
+                      <div>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Badge 
+                                variant="secondary" 
+                                className={cn(
+                                  "text-xs px-1.5 h-6 flex items-center gap-1 cursor-context-menu rounded-md border",
+                                  existingLead.temperatura === "Quente" && "bg-red-100 border-red-300 text-red-700",
+                                  existingLead.temperatura === "Morno" && "bg-orange-100 border-orange-300 text-orange-700",
+                                  existingLead.temperatura === "Frio" && "bg-blue-100 border-blue-300 text-blue-700"
+                                )}
+                              >
+                                <TemperaturaIcon temperatura={existingLead.temperatura} size={14} />
+                              </Badge>
+                            </TooltipTrigger>
+                            <TooltipContent side="bottom">
+                              <p>{existingLead.temperatura} - Clique com botão direito para alterar</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </ContextMenuTrigger>
+                    <ContextMenuContent className="min-w-32">
+                      {["Quente", "Morno", "Frio"].map((temp) => (
+                        <ContextMenuItem
+                          key={temp}
+                          onClick={() => handleChangeTemperatura(temp)}
+                          disabled={changingTemperatura}
+                          className="cursor-pointer"
                         >
-                          <TemperaturaIcon temperatura={existingLead.temperatura} size={14} />
-                        </Badge>
-                      </TooltipTrigger>
-                      <TooltipContent side="bottom">
-                        <p>{existingLead.temperatura}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                          <div className="flex items-center gap-2 w-full">
+                            <TemperaturaIcon temperatura={temp} size={14} />
+                            <span className="flex-1 text-sm">{temp}</span>
+                            {existingLead.temperatura === temp && (
+                              <Check className="w-4 h-4 text-green-600" />
+                            )}
+                          </div>
+                        </ContextMenuItem>
+                      ))}
+                    </ContextMenuContent>
+                  </ContextMenu>
                 )}
                 
-                {/* 2.5. Badge de Convertido */}
+                {/* 2.5. Badge de Convertido com context menu */}
                 {existingLead?.status === "convertido" && (
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Badge 
-                          variant="secondary" 
-                          className="text-xs px-1.5 h-6 flex items-center gap-1 rounded-md border bg-green-100 border-green-300 text-green-700"
-                        >
-                          <CheckCircle className="w-3.5 h-3.5" />
-                        </Badge>
-                      </TooltipTrigger>
-                      <TooltipContent side="bottom">
-                        <p>Lead Convertido</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  <ContextMenu>
+                    <ContextMenuTrigger asChild>
+                      <div>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Badge 
+                                variant="secondary" 
+                                className="text-xs px-1.5 h-6 flex items-center gap-1 cursor-context-menu rounded-md border bg-green-100 border-green-300 text-green-700"
+                              >
+                                <DollarSign className="w-3.5 h-3.5" />
+                              </Badge>
+                            </TooltipTrigger>
+                            <TooltipContent side="bottom">
+                              <p>Lead Convertido - Clique com botão direito para desconverter</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </ContextMenuTrigger>
+                    <ContextMenuContent className="w-48">
+                      <ContextMenuItem
+                        onClick={() => setShowUnconvertLeadDialog(true)}
+                        className="cursor-pointer bg-orange-50 hover:bg-orange-100 text-orange-600 focus:bg-orange-100 focus:text-orange-600"
+                      >
+                        <XCircle className="w-4 h-4 mr-2 text-orange-600" />
+                        Desconverter Lead
+                      </ContextMenuItem>
+                    </ContextMenuContent>
+                  </ContextMenu>
+                )}
+                
+                {/* 2.6. Badge de Desconvertido com context menu */}
+                {existingLead && existingLead.status !== "convertido" && (
+                  <ContextMenu>
+                    <ContextMenuTrigger asChild>
+                      <div>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Badge 
+                                variant="secondary" 
+                                className="text-xs px-1.5 h-6 flex items-center gap-1 cursor-context-menu rounded-md border bg-gray-100 border-gray-300 text-gray-600"
+                              >
+                                <DollarSign className="w-3.5 h-3.5" />
+                              </Badge>
+                            </TooltipTrigger>
+                            <TooltipContent side="bottom">
+                              <p>Clique com botão direito para converter</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </ContextMenuTrigger>
+                    <ContextMenuContent className="w-48">
+                      <ContextMenuItem
+                        onClick={() => setShowConvertLeadDialog(true)}
+                        className="cursor-pointer bg-green-50 hover:bg-green-100 text-green-600 focus:bg-green-100 focus:text-green-600"
+                      >
+                        <DollarSign className="w-4 h-4 mr-2 text-green-600" />
+                        Converter Lead
+                      </ContextMenuItem>
+                    </ContextMenuContent>
+                  </ContextMenu>
                 )}
                 
                 {/* 3. Etiquetas */}
@@ -1066,114 +1219,125 @@ export function ChatWindow({
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-             <TooltipProvider>
-                 {hasHistory && (
-                    <Tooltip><TooltipTrigger asChild><Button variant="outline" size="sm" className="h-9" onClick={() => setShowHistoryDialog(true)}><History className="w-4 h-4" /></Button></TooltipTrigger><TooltipContent><p>Histórico</p></TooltipContent></Tooltip>
-                 )}
-                 {!chatName || !chatName.trim() ? (
-                   <Tooltip>
-                     <TooltipTrigger asChild>
-                       <Button variant="outline" size="sm" className="h-9" onClick={() => setShowEditNameDialog(true)}>
-                         <Plus className="w-4 h-4 mr-2" /> Adicionar Nome
-                       </Button>
-                     </TooltipTrigger>
-                     <TooltipContent><p>Adicionar nome ao contato</p></TooltipContent>
-                   </Tooltip>
-                 ) : null}
-                 {existingLead ? (
-                   <Tooltip>
-                     <TooltipTrigger asChild>
-                       <Button variant="outline" size="sm" className="h-9" onClick={handleViewLeadInCRM}>
-                         <CRMIcon /> Ver Lead
-                       </Button>
-                     </TooltipTrigger>
-                     <TooltipContent><p>Ver lead no CRM</p></TooltipContent>
-                   </Tooltip>
-                 ) : (
-                   <Tooltip>
-                     <TooltipTrigger asChild>
-                       <Button variant="outline" size="sm" className="h-9" onClick={() => onToggleLeadPanel(!showLeadPanel)}>
-                         <Plus className="w-4 h-4 mr-2" /> Novo Lead
-                       </Button>
-                     </TooltipTrigger>
-                     <TooltipContent><p>Criar Lead</p></TooltipContent>
-                   </Tooltip>
-                 )}
-                 <Popover open={showAssignPopover} onOpenChange={setShowAssignPopover}>
-                   <Tooltip>
-                     <TooltipTrigger asChild>
-                       <PopoverTrigger asChild>
-                         <Button variant="outline" size="sm" className="h-9">
-                           <UserPlus className="w-4 h-4 mr-2" /> Atribuir
+          {/* 🔥 AQUI: Adicionado flex-shrink-0 e flex-nowrap para impedir que botões quebrem ou sumam */}
+          {/* ✅ CORREÇÃO: Envolvemos os botões na verificação !historyLoading */}
+          <div className="flex items-center gap-2 flex-shrink-0 flex-nowrap ml-2">
+             {!historyLoading && (
+               <TooltipProvider>
+                   {hasHistory && (
+                      <Tooltip><TooltipTrigger asChild><Button variant="outline" size="sm" className="h-9" onClick={() => setShowHistoryDialog(true)}><History className="w-4 h-4" /></Button></TooltipTrigger><TooltipContent><p>Histórico</p></TooltipContent></Tooltip>
+                   )}
+                   {!chatName || !chatName.trim() ? (
+                     <Tooltip>
+                       <TooltipTrigger asChild>
+                         <Button variant="outline" size="sm" className="h-9" onClick={() => setShowEditNameDialog(true)}>
+                           <Plus className="w-4 h-4 mr-2" /> Adicionar Nome
                          </Button>
-                       </PopoverTrigger>
+                       </TooltipTrigger>
+                       <TooltipContent><p>Adicionar nome ao contato</p></TooltipContent>
+                     </Tooltip>
+                   ) : null}
+                   {existingLead ? (
+                     <Tooltip>
+                       <TooltipTrigger asChild>
+                         <Button variant="outline" size="sm" className="h-9" onClick={handleViewLeadInCRM}>
+                           <CRMIcon /> Ver Lead
+                         </Button>
+                       </TooltipTrigger>
+                       <TooltipContent><p>Ver lead no CRM</p></TooltipContent>
+                     </Tooltip>
+                   ) : (
+                     <Tooltip>
+                       <TooltipTrigger asChild>
+                         <Button variant="outline" size="sm" className="h-9" onClick={() => onToggleLeadPanel(!showLeadPanel)}>
+                           <Plus className="w-4 h-4 mr-2" /> Novo Lead
+                         </Button>
+                       </TooltipTrigger>
+                       <TooltipContent><p>Criar Lead</p></TooltipContent>
+                     </Tooltip>
+                   )}
+                   <Popover open={showAssignPopover} onOpenChange={setShowAssignPopover}>
+                     <Tooltip>
+                       <TooltipTrigger asChild>
+                         <PopoverTrigger asChild>
+                           <Button variant="outline" size="sm" className="h-9">
+                             <UserPlus className="w-4 h-4 mr-2" /> Atribuir
+                           </Button>
+                         </PopoverTrigger>
+                       </TooltipTrigger>
+                       <TooltipContent><p>Atribuir</p></TooltipContent>
+                     </Tooltip>
+                     <PopoverContent className="w-56 p-2" align="start">
+                       <div className="space-y-1">
+                         {availableUsers.length === 0 ? (
+                           <p className="text-sm text-muted-foreground text-center py-2">Nenhum usuário disponível</p>
+                         ) : (
+                           availableUsers.map((user) => {
+                             const isAssigned = assignment?.assigned_to_id === user.id
+                             const isCurrentUser = userId === user.id
+                             return (
+                               <button
+                                 key={user.id}
+                                 onClick={() => handleAssignUser(user.id, user.nome)}
+                                 disabled={assigningUser}
+                                 className="flex items-center gap-2 w-full px-2 py-1.5 text-sm rounded hover:bg-accent cursor-pointer disabled:opacity-50"
+                               >
+                                 <div
+                                   className="w-3 h-3 rounded"
+                                   style={{ backgroundColor: user.cor }}
+                                 />
+                                 <span className="flex-1 text-left">{user.nome}</span>
+                                 <div className="flex items-center gap-1">
+                                   {isCurrentUser && (
+                                     <span className="text-xs text-blue-600 font-medium">
+                                       Você
+                                     </span>
+                                   )}
+                                   {isAssigned && (
+                                     <span className="text-xs text-blue-600 font-medium flex items-center gap-1">
+                                       <div className="w-2 h-2 rounded-full bg-blue-600" />
+                                       Atual
+                                     </span>
+                                   )}
+                                 </div>
+                               </button>
+                             )
+                           })
+                         )}
+                       </div>
+                     </PopoverContent>
+                   </Popover>
+                   <Tooltip>
+                     <TooltipTrigger asChild>
+                       <div>
+                         {/* ✅ CORREÇÃO: Passando availableTags para evitar fetch interno e delay */}
+                         <TagSelector 
+                            chatId={chatId} 
+                            currentEtiquetaId={chatEtiquetas?.[0]?.id || null} 
+                            currentEtiquetaIds={chatEtiquetas?.map(e => e.id) || []} 
+                            onTagAssigned={onRefresh}
+                            availableTags={availableEtiquetas}
+                         />
+                       </div>
                      </TooltipTrigger>
-                     <TooltipContent><p>Atribuir</p></TooltipContent>
+                     <TooltipContent><p>Adicionar etiqueta</p></TooltipContent>
                    </Tooltip>
-                   <PopoverContent className="w-56 p-2" align="start">
-                     <div className="space-y-1">
-                       {availableUsers.length === 0 ? (
-                         <p className="text-sm text-muted-foreground text-center py-2">Nenhum usuário disponível</p>
-                       ) : (
-                         availableUsers.map((user) => {
-                           const isAssigned = assignment?.assigned_to_id === user.id
-                           const isCurrentUser = userId === user.id
-                           return (
-                             <button
-                               key={user.id}
-                               onClick={() => handleAssignUser(user.id, user.nome)}
-                               disabled={assigningUser}
-                               className="flex items-center gap-2 w-full px-2 py-1.5 text-sm rounded hover:bg-accent cursor-pointer disabled:opacity-50"
-                             >
-                               <div
-                                 className="w-3 h-3 rounded"
-                                 style={{ backgroundColor: user.cor }}
-                               />
-                               <span className="flex-1 text-left">{user.nome}</span>
-                               <div className="flex items-center gap-1">
-                                 {isCurrentUser && (
-                                   <span className="text-xs text-blue-600 font-medium">
-                                     Você
-                                   </span>
-                                 )}
-                                 {isAssigned && (
-                                   <span className="text-xs text-blue-600 font-medium flex items-center gap-1">
-                                     <div className="w-2 h-2 rounded-full bg-blue-600" />
-                                     Atual
-                                   </span>
-                                 )}
-                               </div>
-                             </button>
-                           )
-                         })
-                       )}
-                     </div>
-                   </PopoverContent>
-                 </Popover>
-                 <Tooltip>
-                   <TooltipTrigger asChild>
-                     <div>
-                       <TagSelector chatId={chatId} currentEtiquetaId={chatEtiquetas?.[0]?.id || null} currentEtiquetaIds={chatEtiquetas?.map(e => e.id) || []} onTagAssigned={onRefresh} />
-                     </div>
-                   </TooltipTrigger>
-                   <TooltipContent><p>Adicionar etiqueta</p></TooltipContent>
-                 </Tooltip>
-                 <Tooltip>
-                   <TooltipTrigger asChild>
-                     <Button 
-                       variant="outline" 
-                       size="sm" 
-                       className="h-9"
-                       onClick={() => setShowNotesDialog(true)}
-                     >
-                       <StickyNote className="w-4 h-4" />
-                     </Button>
-                   </TooltipTrigger>
-                   <TooltipContent><p>Notas</p></TooltipContent>
-                 </Tooltip>
-                 <Tooltip><TooltipTrigger asChild><Button variant="outline" size="sm" className="h-9" onClick={onRefresh}><RefreshCw className="w-4 h-4" /></Button></TooltipTrigger><TooltipContent><p>Atualizar</p></TooltipContent></Tooltip>
-             </TooltipProvider>
+                   <Tooltip>
+                     <TooltipTrigger asChild>
+                       <Button 
+                         variant="outline" 
+                         size="sm" 
+                         className="h-9"
+                         onClick={() => setShowNotesDialog(true)}
+                       >
+                         <StickyNote className="w-4 h-4" />
+                       </Button>
+                     </TooltipTrigger>
+                     <TooltipContent><p>Notas</p></TooltipContent>
+                   </Tooltip>
+                   <Tooltip><TooltipTrigger asChild><Button variant="outline" size="sm" className="h-9" onClick={onRefresh}><RefreshCw className="w-4 h-4" /></Button></TooltipTrigger><TooltipContent><p>Atualizar</p></TooltipContent></Tooltip>
+               </TooltipProvider>
+             )}
           </div>
         </div>
       </div>
@@ -1296,6 +1460,45 @@ export function ChatWindow({
         imageUrl={profilePictureUrl}
         name={safeChatName}
       />
+
+      {/* Diálogos de conversão de leads */}
+      {existingLead && (
+        <>
+          <ConvertLeadDialog
+            open={showConvertLeadDialog}
+            onOpenChange={setShowConvertLeadDialog}
+            lead={{
+              id: existingLead.id,
+              nome: existingLead.nome,
+              temperatura: existingLead.temperatura as "Quente" | "Morno" | "Frio",
+              status: existingLead.status as "ativo" | "convertido" | null,
+              proximo_contato: existingLead.proximo_contato,
+              chat_uuid: chatUuid,
+            } as Lead}
+            onSuccess={() => {
+              setShowConvertLeadDialog(false)
+              onRefresh()
+            }}
+          />
+
+          <UnconvertLeadDialog
+            open={showUnconvertLeadDialog}
+            onOpenChange={setShowUnconvertLeadDialog}
+            lead={{
+              id: existingLead.id,
+              nome: existingLead.nome,
+              temperatura: existingLead.temperatura as "Quente" | "Morno" | "Frio",
+              status: "convertido",
+              proximo_contato: existingLead.proximo_contato,
+              chat_uuid: chatUuid,
+            } as Lead}
+            onSuccess={() => {
+              setShowUnconvertLeadDialog(false)
+              onRefresh()
+            }}
+          />
+        </>
+      )}
     </div>
   )
 }

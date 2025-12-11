@@ -4,7 +4,7 @@ import type React from "react"
 import { useState, useEffect, useRef, useCallback, useMemo, forwardRef, type ElementRef } from "react" 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
-import { Search, AlertCircle, RefreshCw, Loader2, User, Tag, Pencil, UserPlus, X, Tags, Copy, Phone, Plus, BarChart3, Check, FileText, CheckCircle } from "lucide-react"
+import { Search, AlertCircle, RefreshCw, Loader2, User, Tag, Pencil, UserPlus, X, Tags, Copy, Phone, Plus, BarChart3, Check, FileText, DollarSign, XCircle } from "lucide-react"
 import { cn, getContrastTextColor, formatPhoneNumber } from "@/lib/utils"
 import type { Chat, EtiquetaSimple } from "@/lib/whatsapp-types"
 import { ChatEtiquetasDialog } from "./chat-etiquetas-dialog"
@@ -31,7 +31,10 @@ import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription"
 import { ProfilePictureModal } from "./profile-picture-modal"
 import { ChatHistoryDialog } from "./chat-history-dialog"
 import { History } from "lucide-react"
-import type { Etiqueta } from "@/lib/whatsapp-types" 
+import type { Etiqueta } from "@/lib/whatsapp-types"
+import { ConvertLeadDialog } from "@/components/crm/convert-lead-dialog"
+import { UnconvertLeadDialog } from "@/components/crm/unconvert-lead-dialog"
+import type { Lead } from "@/types/crm" 
 
 // Ícone SVG do CRM (mesmo usado na Sidebar)
 const CRMIcon = ({ className = "w-4 h-4 mr-2" }: { className?: string }) => (
@@ -136,6 +139,9 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
     const [showProfilePictureModal, setShowProfilePictureModal] = useState(false)
     const [profilePictureChat, setProfilePictureChat] = useState<{url: string, name: string} | null>(null)
     const [showHistoryDialog, setShowHistoryDialog] = useState(false)
+    const [showConvertLeadDialog, setShowConvertLeadDialog] = useState(false)
+    const [showUnconvertLeadDialog, setShowUnconvertLeadDialog] = useState(false)
+    const [leadForConversion, setLeadForConversion] = useState<Lead | null>(null)
     
     // Estado para chats com notas (mapa de chatId -> conteúdo da nota)
     const [chatNotes, setChatNotes] = useState<Record<string, string>>({})
@@ -152,7 +158,28 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
     const [hasProfilePictureMap, setHasProfilePictureMap] = useState<{ [chatId: string]: boolean }>({})
 
     // Estado para mapear quais chats têm leads (por telefone e chat_uuid)
-    const [chatLeadsMap, setChatLeadsMap] = useState<{ [key: string]: { id: string; nome: string; temperatura: string; proximo_contato: string | null; status: string | null } }>({})
+    const [chatLeadsMap, setChatLeadsMap] = useState<{ [key: string]: { 
+      id: string; 
+      nome: string; 
+      temperatura: string; 
+      proximo_contato: string | null; 
+      status: string | null;
+      cidade: string | null;
+      interesse: string | null;
+      endereco: string | null;
+      telefone: string | null;
+      cargo: string | null;
+      chat_uuid: string | null;
+      adicionado_por_id: string | null;
+      adicionado_por_nome: string | null;
+      // Dados de conversão
+      valor_conversao: number | null;
+      // Dados de desconversão
+      motivo_desconversao: string | null;
+    } }>({})
+
+    // Estado para troca de temperatura via context menu
+    const [changingTemperatura, setChangingTemperatura] = useState(false)
 
     const scrollContainerRef = (ref as React.RefObject<HTMLDivElement>) || useRef<HTMLDivElement>(null); 
     const isLoadingRef = useRef(false)
@@ -170,10 +197,10 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
             
             const uuids = chatsList.map(c => c.uuid).filter(Boolean) as string[];
             
-            // Constrói a query de forma segura
+            // Constrói a query de forma segura - busca todos os campos do lead
             let query = supabase
                 .from('leads')
-                .select('id, nome, telefone, chat_uuid, temperatura, proximo_contato, status');
+                .select('id, nome, telefone, chat_uuid, temperatura, proximo_contato, status, cidade, interesse, endereco, cargo, adicionado_por_id, adicionado_por_nome');
             
             // Monta o filtro OR dinamicamente
             const orConditions: string[] = [];
@@ -194,17 +221,59 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
             }
             
             if (leads && leads.length > 0) {
-                const leadsMap: { [key: string]: { id: string; nome: string; temperatura: string; proximo_contato: string | null; status: string | null } } = {};
+                // Busca conversões e desconversões para os leads
+                const leadIds = leads.map(l => l.id);
+                
+                const [{ data: conversoes }, { data: desconversoes }] = await Promise.all([
+                    supabase.from('conversoes').select('lead_id, valor').in('lead_id', leadIds).order('created_at', { ascending: false }),
+                    supabase.from('desconversoes').select('lead_id, motivo').in('lead_id', leadIds).order('created_at', { ascending: false })
+                ]);
+                
+                // Monta mapas de conversões e desconversões (mais recente de cada lead)
+                const conversoesMap: Record<string, number> = {};
+                const desconversoesMap: Record<string, string> = {};
+                
+                conversoes?.forEach(c => {
+                    if (!conversoesMap[c.lead_id]) {
+                        conversoesMap[c.lead_id] = c.valor;
+                    }
+                });
+                
+                desconversoes?.forEach(d => {
+                    if (!desconversoesMap[d.lead_id]) {
+                        desconversoesMap[d.lead_id] = d.motivo;
+                    }
+                });
+                
+                const leadsMap: typeof chatLeadsMap = {};
                 leads.forEach(lead => {
+                    const leadData = { 
+                        id: lead.id, 
+                        nome: lead.nome, 
+                        temperatura: lead.temperatura || 'Morno', 
+                        proximo_contato: lead.proximo_contato, 
+                        status: lead.status,
+                        cidade: lead.cidade,
+                        interesse: lead.interesse,
+                        endereco: lead.endereco,
+                        telefone: lead.telefone,
+                        cargo: lead.cargo,
+                        chat_uuid: lead.chat_uuid,
+                        adicionado_por_id: lead.adicionado_por_id,
+                        adicionado_por_nome: lead.adicionado_por_nome,
+                        valor_conversao: conversoesMap[lead.id] || null,
+                        motivo_desconversao: desconversoesMap[lead.id] || null
+                    };
+                    
                     // Mapeia por telefone (limpo)
                     if (lead.telefone) {
                         const cleanPhone = lead.telefone.replace(/\D/g, '');
-                        leadsMap[cleanPhone] = { id: lead.id, nome: lead.nome, temperatura: lead.temperatura || 'Morno', proximo_contato: lead.proximo_contato, status: lead.status };
-                        leadsMap[lead.telefone] = { id: lead.id, nome: lead.nome, temperatura: lead.temperatura || 'Morno', proximo_contato: lead.proximo_contato, status: lead.status };
+                        leadsMap[cleanPhone] = leadData;
+                        leadsMap[lead.telefone] = leadData;
                     }
                     // Mapeia por chat_uuid
                     if (lead.chat_uuid) {
-                        leadsMap[lead.chat_uuid] = { id: lead.id, nome: lead.nome, temperatura: lead.temperatura || 'Morno', proximo_contato: lead.proximo_contato, status: lead.status };
+                        leadsMap[lead.chat_uuid] = leadData;
                     }
                 });
                 setChatLeadsMap(prev => ({ ...prev, ...leadsMap }));
@@ -353,6 +422,59 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
             setAssigningEtiqueta(false)
         }
     }, [onRefresh])
+
+    // --- TROCAR TEMPERATURA DO LEAD ---
+    const handleChangeTemperatura = useCallback(async (leadId: string, chatId: string, chatName: string, temperaturaAnterior: string, novaTemperatura: string) => {
+        try {
+            setChangingTemperatura(true)
+            const currentUserName = getCookie("auth_user_name") || "Sistema"
+            const currentUserId = getCookie("auth_user_id")
+            
+            const { error } = await supabase
+                .from('leads')
+                .update({ temperatura: novaTemperatura })
+                .eq('id', leadId)
+            
+            if (error) {
+                toast.error("Erro ao alterar temperatura")
+                return
+            }
+            
+            // Salva no histórico (chat_history)
+            await supabase.from("chat_history").insert({
+                chat_id: chatId,
+                chat_name: chatName,
+                event_type: "temperatura_changed",
+                event_data: {
+                    lead_id: leadId,
+                    temperatura_anterior: temperaturaAnterior,
+                    temperatura_nova: novaTemperatura
+                },
+                performed_by_id: currentUserId,
+                performed_by_name: currentUserName
+            })
+            
+            toast.success(`Temperatura alterada para ${novaTemperatura}`)
+            
+            // Atualiza o mapa local
+            setChatLeadsMap(prev => {
+                const newMap = { ...prev }
+                Object.keys(newMap).forEach(key => {
+                    if (newMap[key]?.id === leadId) {
+                        newMap[key] = { ...newMap[key], temperatura: novaTemperatura }
+                    }
+                })
+                return newMap
+            })
+            
+            onRefresh?.()
+        } catch (error) {
+            console.error("Erro ao alterar temperatura:", error)
+            toast.error("Erro ao alterar temperatura")
+        } finally {
+            setChangingTemperatura(false)
+        }
+    }, [supabase, onRefresh])
 
     // --- SETUP INICIAL ---
     useEffect(() => {
@@ -552,6 +674,49 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
             console.log("[Realtime] Atualizando atribuições map com:", Object.keys(newAssignmentsMap))
             mutate(ATTR_CACHE_KEY, newAssignmentsMap, false)
           }
+        })
+        .subscribe()
+
+      return () => {
+        supabase.removeChannel(channel)
+      }
+    }, [supabase])
+
+    // --- REALTIME PARA MUDANÇAS DE STATUS DE LEADS (Conversão/Desconversão) ---
+    useEffect(() => {
+      const channel = supabase
+        .channel('public:leads')
+        .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'leads' }, (payload) => {
+          const updatedLead = payload.new as any
+          
+          // Atualiza o mapa de leads localmente
+          setChatLeadsMap(prev => {
+            const newMap = { ...prev }
+            
+            // Atualiza pelas chaves conhecidas (telefone e uuid)
+            Object.keys(newMap).forEach(key => {
+              if (newMap[key]?.id === updatedLead.id) {
+                newMap[key] = {
+                  ...newMap[key],
+                  id: updatedLead.id,
+                  nome: updatedLead.nome,
+                  temperatura: updatedLead.temperatura || 'Morno',
+                  proximo_contato: updatedLead.proximo_contato,
+                  status: updatedLead.status,
+                  cidade: updatedLead.cidade,
+                  interesse: updatedLead.interesse,
+                  endereco: updatedLead.endereco,
+                  telefone: updatedLead.telefone,
+                  cargo: updatedLead.cargo,
+                  chat_uuid: updatedLead.chat_uuid,
+                  adicionado_por_id: updatedLead.adicionado_por_id,
+                  adicionado_por_nome: updatedLead.adicionado_por_nome
+                }
+              }
+            })
+            
+            return newMap
+          })
         })
         .subscribe()
 
@@ -801,7 +966,8 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
       }
 
     return (
-      <div className={cn("flex flex-col h-full bg-background border-r transition-all duration-300 custom-scrollbar", shrink ? "w-[220px] min-w-[180px] max-w-[240px]" : "w-[380px] min-w-[320px] max-w-[400px]")}> 
+      <div className={cn("flex flex-col h-full bg-background border-r transition-all duration-300 custom-scrollbar", // Aumentei a largura mínima do shrink para 280px/300px
+shrink ? "w-[300px] min-w-[280px] max-w-[320px]" : "w-[380px] min-w-[320px] max-w-[400px]")}> 
         {/* HEADER */}
         <div className="flex flex-col border-b bg-background z-10 sticky top-0">
           <div className="p-3 pb-2">
@@ -881,11 +1047,16 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                           className={cn(
                             "w-full flex items-center gap-3 px-3 py-3 transition-all duration-200 text-left",
                             selectedChatId === chat.id
-                              ? "bg-primary/15 border-l-4 border-primary hover:bg-primary/20 animate-border-slide"
+                              ? isConverted
+                                ? "bg-green-200 dark:bg-green-800/60 border-l-4 border-green-700 hover:bg-green-300"
+                                : chatLead?.status === "ativo" && chatLead?.motivo_desconversao
+                                  ? "bg-orange-200 dark:bg-orange-800/60 border-l-4 border-orange-600 hover:bg-orange-300"
+                                  : "bg-blue-200 dark:bg-blue-800/60 border-l-4 border-primary hover:bg-blue-300"
                               : isConverted
-                                ? "bg-green-100 dark:bg-green-900/40 border-l-4 border-green-600 hover:bg-green-200 dark:hover:bg-green-900/60"
-                                : "hover:bg-primary/10"
-                            // Removido destaque visual para chats apenas com mensagem nova
+                                ? "bg-green-50 dark:bg-green-900/40 border-l-4 border-green-600 hover:bg-blue-100 dark:hover:bg-blue-900/30"
+                                : chatLead?.status === "ativo" && chatLead?.motivo_desconversao
+                                  ? "bg-orange-50 dark:bg-orange-900/30 border-l-4 border-orange-400 hover:bg-blue-100 dark:hover:bg-blue-900/30"
+                                  : "hover:bg-blue-100 dark:hover:bg-blue-900/30"
                           )}
                         >
                           <Avatar 
@@ -944,70 +1115,119 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                                     </Tooltip>
                                   </TooltipProvider>
                                 )}
-                                {/* 2. Badge de etiquetas */}
+                                {/* 2. Badge de etiquetas com context menu */}
                                 {hasEtiquetas && (
-                                  <TooltipProvider>
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Badge 
-                                          variant="secondary" 
-                                          className="text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-md border bg-gray-100 border-gray-300 text-gray-700"
-                                          onClick={(e) => {
-                                            e.stopPropagation()
-                                            setContextMenuChat(chat)
-                                            setShowEtiquetasDialog(true)
-                                          }}
-                                        >
-                                          <Tag className="w-3.5 h-3.5" />
-                                          {chat.etiquetas!.length > 1 && <span className="text-xs">{chat.etiquetas!.length}</span>}
-                                        </Badge>
-                                      </TooltipTrigger>
-                                      <TooltipContent side="top" className="max-w-[200px] p-1.5">
-                                        <div className="flex flex-wrap gap-1 items-center">
-                                          {chat.etiquetas!.map(etiqueta => (
-                                            <Badge
-                                              key={etiqueta.id}
-                                              variant="secondary"
-                                              className="text-xs px-2 py-0.5 flex items-center gap-1 rounded-md border"
-                                              style={{ 
-                                                backgroundColor: etiqueta.cor, 
-                                                borderColor: etiqueta.cor, 
-                                                color: getContrastTextColor(etiqueta.cor) 
-                                              }}
-                                            >
-                                              <Tag className="w-3.5 h-3.5" />
-                                              {etiqueta.nome}
-                                            </Badge>
-                                          ))}
-                                        </div>
-                                      </TooltipContent>
-                                    </Tooltip>
-                                  </TooltipProvider>
+                                  <ContextMenu>
+                                    <ContextMenuTrigger asChild>
+                                      <div onClick={(e) => e.stopPropagation()} className="flex-shrink-0">
+                                        <TooltipProvider>
+                                          <Tooltip>
+                                            <TooltipTrigger asChild>
+                                              <Badge 
+                                                variant="secondary" 
+                                                className="text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-md border bg-gray-100 border-gray-300 text-gray-700"
+                                              >
+                                                <Tag className="w-3.5 h-3.5" />
+                                                {chat.etiquetas!.length > 1 && <span className="text-xs">{chat.etiquetas!.length}</span>}
+                                              </Badge>
+                                            </TooltipTrigger>
+                                            <TooltipContent side="top" className="max-w-[200px] p-1.5">
+                                              <div className="flex flex-wrap gap-1 items-center">
+                                                {chat.etiquetas!.map(etiqueta => (
+                                                  <Badge
+                                                    key={etiqueta.id}
+                                                    variant="secondary"
+                                                    className="text-xs px-2 py-0.5 flex items-center gap-1 rounded-md border"
+                                                    style={{ 
+                                                      backgroundColor: etiqueta.cor, 
+                                                      borderColor: etiqueta.cor, 
+                                                      color: getContrastTextColor(etiqueta.cor) 
+                                                    }}
+                                                  >
+                                                    <Tag className="w-3.5 h-3.5" />
+                                                    {etiqueta.nome}
+                                                  </Badge>
+                                                ))}
+                                              </div>
+                                            </TooltipContent>
+                                          </Tooltip>
+                                        </TooltipProvider>
+                                      </div>
+                                    </ContextMenuTrigger>
+                                    <ContextMenuContent className="min-w-48">
+                                      {availableEtiquetas.map((etiqueta) => {
+                                        const isSelected = chat.etiquetas?.some(e => e.id === etiqueta.id) || false
+                                        return (
+                                          <ContextMenuItem
+                                            key={etiqueta.id}
+                                            onClick={() => handleAssignEtiqueta(chat.id, etiqueta.id, isSelected)}
+                                            disabled={assigningEtiqueta}
+                                            className="cursor-pointer"
+                                          >
+                                            <div className="flex items-center gap-2 w-full">
+                                              <div
+                                                className="w-3 h-3 rounded"
+                                                style={{ backgroundColor: etiqueta.cor }}
+                                              />
+                                              <span className="flex-1 text-sm">{etiqueta.nome}</span>
+                                              {isSelected && (
+                                                <Check className="w-4 h-4 text-green-600" />
+                                              )}
+                                            </div>
+                                          </ContextMenuItem>
+                                        )
+                                      })}
+                                    </ContextMenuContent>
+                                  </ContextMenu>
                                 )}
-                                {/* 3. Badge de temperatura */}
+                                {/* 3. Badge de temperatura com context menu */}
                                 {chatLead && (
-                                  <TooltipProvider>
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Badge 
-                                          variant="secondary" 
-                                          className={cn(
-                                            "text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-md border",
-                                            chatLead.temperatura === "Quente" && "bg-red-100 border-red-300 text-red-700",
-                                            chatLead.temperatura === "Morno" && "bg-orange-100 border-orange-300 text-orange-700",
-                                            chatLead.temperatura === "Frio" && "bg-blue-100 border-blue-300 text-blue-700"
-                                          )}
+                                  <ContextMenu>
+                                    <ContextMenuTrigger asChild>
+                                      <div onClick={(e) => e.stopPropagation()} className="flex-shrink-0">
+                                        <TooltipProvider>
+                                          <Tooltip>
+                                            <TooltipTrigger asChild>
+                                              <Badge 
+                                                variant="secondary" 
+                                                className={cn(
+                                                  "text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-md border",
+                                                  chatLead.temperatura === "Quente" && "bg-red-100 border-red-300 text-red-700",
+                                                  chatLead.temperatura === "Morno" && "bg-orange-100 border-orange-300 text-orange-700",
+                                                  chatLead.temperatura === "Frio" && "bg-blue-100 border-blue-300 text-blue-700"
+                                                )}
+                                              >
+                                                <TemperaturaIcon temperatura={chatLead.temperatura} size={14} />
+                                              </Badge>
+                                            </TooltipTrigger>
+                                            <TooltipContent side="top">
+                                              <p>{chatLead.temperatura}</p>
+                                            </TooltipContent>
+                                          </Tooltip>
+                                        </TooltipProvider>
+                                      </div>
+                                    </ContextMenuTrigger>
+                                    <ContextMenuContent className="min-w-32">
+                                      {["Quente", "Morno", "Frio"].map((temp) => (
+                                        <ContextMenuItem
+                                          key={temp}
+                                          onClick={() => handleChangeTemperatura(chatLead.id, chat.id, chat.name || chat.phone || chat.id, chatLead.temperatura, temp)}
+                                          disabled={changingTemperatura}
+                                          className="cursor-pointer"
                                         >
-                                          <TemperaturaIcon temperatura={chatLead.temperatura} size={14} />
-                                        </Badge>
-                                      </TooltipTrigger>
-                                      <TooltipContent side="top">
-                                        <p>{chatLead.temperatura}</p>
-                                      </TooltipContent>
-                                    </Tooltip>
-                                  </TooltipProvider>
+                                          <div className="flex items-center gap-2 w-full">
+                                            <TemperaturaIcon temperatura={temp} size={14} />
+                                            <span className="flex-1 text-sm">{temp}</span>
+                                            {chatLead.temperatura === temp && (
+                                              <Check className="w-4 h-4 text-green-600" />
+                                            )}
+                                          </div>
+                                        </ContextMenuItem>
+                                      ))}
+                                    </ContextMenuContent>
+                                  </ContextMenu>
                                 )}
-                                {/* 3.5. Badge de Convertido */}
+                                {/* 3.5. Badge de Convertido com valor */}
                                 {isConverted && (
                                   <TooltipProvider>
                                     <Tooltip>
@@ -1016,11 +1236,29 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                                           variant="secondary" 
                                           className="text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 rounded-md border bg-green-100 border-green-300 text-green-700"
                                         >
-                                          <CheckCircle className="w-3.5 h-3.5" />
+                                          <DollarSign className="w-3.5 h-3.5" />
                                         </Badge>
                                       </TooltipTrigger>
                                       <TooltipContent side="top">
-                                        <p>Lead Convertido</p>
+                                        <p>Convertido{chatLead?.valor_conversao ? `: R$ ${chatLead.valor_conversao.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}` : ''}</p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TooltipProvider>
+                                )}
+                                {/* 3.6. Badge de Desconvertido */}
+                                {chatLead && chatLead.status === "ativo" && chatLead.motivo_desconversao && (
+                                  <TooltipProvider>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <Badge 
+                                          variant="secondary" 
+                                          className="text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 rounded-md border bg-orange-100 border-orange-300 text-orange-700"
+                                        >
+                                          <XCircle className="w-3.5 h-3.5" />
+                                        </Badge>
+                                      </TooltipTrigger>
+                                      <TooltipContent side="top" className="max-w-[250px]">
+                                        <p>Desconvertido: {chatLead.motivo_desconversao.substring(0, 100)}{chatLead.motivo_desconversao.length > 100 ? '...' : ''}</p>
                                       </TooltipContent>
                                     </Tooltip>
                                   </TooltipProvider>
@@ -1053,7 +1291,35 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                                         </TooltipProvider>
                                       </div>
                                     </ContextMenuTrigger>
-                                    <ContextMenuContent className="w-48">
+                                    <ContextMenuContent className="w-56">
+                                      {/* Submenu para mover atribuição */}
+                                      <ContextMenuSub>
+                                        <ContextMenuSubTrigger className="cursor-pointer">
+                                          <UserPlus className="w-4 h-4 mr-2" />
+                                          Mover atribuição
+                                        </ContextMenuSubTrigger>
+                                        <ContextMenuPortal>
+                                          <ContextMenuSubContent className="min-w-48">
+                                            {availableUsers.filter(u => u.id !== assignment.assigned_to_id).map((assignUser) => (
+                                              <ContextMenuItem
+                                                key={assignUser.id}
+                                                onClick={() => handleAssignUser(chat.id, chat.name || chat.phone || chat.id, assignUser.id, assignUser.nome)}
+                                                disabled={assigningUser}
+                                                className="cursor-pointer"
+                                              >
+                                                <div className="flex items-center gap-2 w-full">
+                                                  <div
+                                                    className="w-3 h-3 rounded"
+                                                    style={{ backgroundColor: assignUser.cor }}
+                                                  />
+                                                  <span className="flex-1 text-sm">{assignUser.nome}</span>
+                                                </div>
+                                              </ContextMenuItem>
+                                            ))}
+                                          </ContextMenuSubContent>
+                                        </ContextMenuPortal>
+                                      </ContextMenuSub>
+                                      <ContextMenuSeparator />
                                       <ContextMenuItem
                                         onClick={async (e) => {
                                           e.stopPropagation()
@@ -1233,7 +1499,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
 
                         <ContextMenuSeparator />
 
-                        {/* Novo Lead / Ver Lead */}
+                        {/* Novo Lead / Ver Lead - ANTES da conversão */}
                         {chatLead ? (
                           <ContextMenuItem 
                             onClick={() => {
@@ -1262,6 +1528,65 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                             Novo Lead
                           </ContextMenuItem>
                         )}
+
+                        <ContextMenuSeparator />
+
+                        {/* Converter/Desconverter Lead - SEMPRE POR ÚLTIMO */}
+                        {chatLead ? (
+                          <>
+                            {chatLead.status === "convertido" ? (
+                              <ContextMenuItem 
+                                onClick={() => {
+                                  setLeadForConversion({
+                                    id: chatLead.id,
+                                    nome: chatLead.nome,
+                                    cidade: chatLead.cidade,
+                                    interesse: chatLead.interesse,
+                                    endereco: chatLead.endereco,
+                                    telefone: chatLead.telefone,
+                                    cargo: chatLead.cargo,
+                                    temperatura: chatLead.temperatura as "Quente" | "Morno" | "Frio",
+                                    status: "convertido",
+                                    chat_uuid: chatLead.chat_uuid,
+                                    adicionado_por_id: chatLead.adicionado_por_id || '',
+                                    adicionado_por_nome: chatLead.adicionado_por_nome || '',
+                                    proximo_contato: chatLead.proximo_contato
+                                  } as Lead)
+                                  setShowUnconvertLeadDialog(true)
+                                }}
+                                className="cursor-pointer bg-orange-50 hover:bg-orange-100 text-orange-600 focus:bg-orange-100 focus:text-orange-600"
+                              >
+                                <XCircle className="w-4 h-4 mr-2 text-orange-600" />
+                                Desconverter
+                              </ContextMenuItem>
+                            ) : (
+                              <ContextMenuItem 
+                                onClick={() => {
+                                  setLeadForConversion({
+                                    id: chatLead.id,
+                                    nome: chatLead.nome,
+                                    cidade: chatLead.cidade,
+                                    interesse: chatLead.interesse,
+                                    endereco: chatLead.endereco,
+                                    telefone: chatLead.telefone,
+                                    cargo: chatLead.cargo,
+                                    temperatura: chatLead.temperatura as "Quente" | "Morno" | "Frio",
+                                    status: chatLead.status as "ativo" | "convertido" | null,
+                                    chat_uuid: chatLead.chat_uuid,
+                                    adicionado_por_id: chatLead.adicionado_por_id || '',
+                                    adicionado_por_nome: chatLead.adicionado_por_nome || '',
+                                    proximo_contato: chatLead.proximo_contato
+                                  } as Lead)
+                                  setShowConvertLeadDialog(true)
+                                }}
+                                className="cursor-pointer bg-green-50 hover:bg-green-100 text-green-600 focus:bg-green-100 focus:text-green-600"
+                              >
+                                <DollarSign className="w-4 h-4 mr-2 text-green-600" />
+                                Converter
+                              </ContextMenuItem>
+                            )}
+                          </>
+                        ) : null}
                       </ContextMenuContent>
                     </ContextMenu>
                   )
@@ -1378,6 +1703,29 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
             chatName={contextMenuChat.name || contextMenuChat.phone || contextMenuChat.id}
           />
         )}
+
+        {/* Diálogos de conversão de leads */}
+        <ConvertLeadDialog
+          open={showConvertLeadDialog}
+          onOpenChange={setShowConvertLeadDialog}
+          lead={leadForConversion}
+          onSuccess={() => {
+            setShowConvertLeadDialog(false)
+            setLeadForConversion(null)
+            onRefresh?.()
+          }}
+        />
+
+        <UnconvertLeadDialog
+          open={showUnconvertLeadDialog}
+          onOpenChange={setShowUnconvertLeadDialog}
+          lead={leadForConversion}
+          onSuccess={() => {
+            setShowUnconvertLeadDialog(false)
+            setLeadForConversion(null)
+            onRefresh?.()
+          }}
+        />
       </div>
     )
   }

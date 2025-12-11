@@ -5,7 +5,7 @@ import { CSS } from "@dnd-kit/utilities"
 import { useRouter } from "next/navigation"
 import type { Lead } from "@/types/crm"
 import { cn } from "@/lib/utils"
-import { Phone, MessageCircle, MapPin, FileText, RefreshCw, Users, MoreHorizontal, CheckCircle, XCircle, Eye, ArrowRightLeft, Trash2, Pencil, User, Tag, StickyNote, X, Tags, UserPlus, Check } from 'lucide-react'
+import { Phone, MessageCircle, MapPin, FileText, RefreshCw, Users, MoreHorizontal, CheckCircle, XCircle, Eye, ArrowRightLeft, Trash2, Pencil, User, Tag, StickyNote, X, Tags, UserPlus, Check, DollarSign } from 'lucide-react'
 import { toast } from "sonner"
 import {
   ContextMenu,
@@ -447,7 +447,7 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
 
             {lead.status === "convertido" && (
               <Badge className="mt-1 text-xs flex items-center gap-1.5 w-fit bg-green-100 text-green-700 border-green-300 rounded-md">
-                <CheckCircle className="w-3.5 h-3.5" />
+                <DollarSign className="w-3.5 h-3.5" />
                 <span>Convertido</span>
               </Badge>
             )}
@@ -653,7 +653,7 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
               onSelect={() => onConvert?.()}
               className="text-green-600 focus:text-green-600 focus:bg-green-50"
             >
-              <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
+              <DollarSign className="w-4 h-4 mr-2 text-green-600" />
               Converter
             </ContextMenuItem>
           )

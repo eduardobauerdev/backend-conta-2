@@ -90,6 +90,32 @@ export function QuickLeadForm({ chatId, chatUuid, chatName, onSuccess, onCancel 
     checkExistingLead()
   }, [chatId, chatUuid, supabase])
 
+  // Busca o nome mais atualizado do chat (para evitar nome desatualizado)
+  useEffect(() => {
+    async function loadCurrentChatName() {
+      try {
+        const { data: chatData } = await supabase
+          .from("chats")
+          .select("name")
+          .eq("id", chatId)
+          .single()
+        
+        if (chatData?.name && chatData.name.trim()) {
+          setNome(chatData.name)
+        } else if (chatName) {
+          setNome(chatName)
+        }
+      } catch {
+        // Se falhar, usa o nome passado como prop
+        if (chatName) {
+          setNome(chatName)
+        }
+      }
+    }
+    
+    loadCurrentChatName()
+  }, [chatId, chatName, supabase])
+
   // Busca notas existentes do chat
   useEffect(() => {
     async function loadChatNotes() {
@@ -205,12 +231,33 @@ export function QuickLeadForm({ chatId, chatUuid, chatName, onSuccess, onCancel 
       }
     }
 
+    // Salva no histórico de leads (lead_logs)
     await supabase.from("lead_logs").insert({
+      lead_id: leadData.id,
       usuario_id: user.id,
       usuario_nome: user.nome,
       acao: "criado",
       detalhes: `Lead "${nome}" criado via WhatsApp`,
     })
+
+    // Salva no histórico do chat (chat_history) se tiver chatUuid
+    if (chatUuid) {
+      await supabase.from("chat_history").insert({
+        chat_id: chatId,
+        chat_name: chatName,
+        event_type: "lead_created",
+        event_data: {
+          lead_id: leadData.id,
+          lead_nome: nome,
+          lead_cidade: cidade.trim(),
+          lead_interesse: interesseFormatado,
+          lead_telefone: telefone.trim() || null,
+          lead_temperatura: temperatura
+        },
+        performed_by_id: user.id,
+        performed_by_name: user.nome
+      })
+    }
 
     setIsSubmitting(false)
     onSuccess()

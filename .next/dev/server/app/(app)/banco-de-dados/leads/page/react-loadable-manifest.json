@@ -1,11 +1,11 @@
 {
-  "[project]/frontend-ii/components/whatsapp/chat-window.tsx [app-client] (ecmascript, next/dynamic entry)": {
-    "id": "[project]/frontend-ii/components/whatsapp/chat-window.tsx [app-client] (ecmascript, next/dynamic entry)",
+  "[project]/components/whatsapp/chat-window.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/components/whatsapp/chat-window.tsx [app-client] (ecmascript, next/dynamic entry)",
     "files": [
-      "static/chunks/frontend-ii_lib_supabase_client_ts_d56d1541._.js",
-      "static/chunks/frontend-ii_664b8ac4._.js",
-      "static/chunks/ead89_ea7711e2._.js",
-      "static/chunks/frontend-ii_components_whatsapp_chat-window_tsx_f3a07973._.js"
+      "static/chunks/lib_supabase_client_ts_379f3757._.js",
+      "static/chunks/_28427848._.js",
+      "static/chunks/node_modules_1ada6f1b._.js",
+      "static/chunks/components_whatsapp_chat-window_tsx_5db3b6e8._.js"
     ]
   }
 }

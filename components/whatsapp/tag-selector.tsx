@@ -17,16 +17,22 @@ interface TagSelectorProps {
   currentEtiquetaId?: string | null
   currentEtiquetaIds?: string[]
   onTagAssigned?: () => void
+  availableTags?: Etiqueta[]
 }
 
-export function TagSelector({ chatId, currentEtiquetaId, currentEtiquetaIds = [], onTagAssigned }: TagSelectorProps) {
-  const [etiquetas, setEtiquetas] = useState<Etiqueta[]>([])
-  const [loading, setLoading] = useState(false)
+export function TagSelector({ chatId, currentEtiquetaId, currentEtiquetaIds = [], onTagAssigned, availableTags }: TagSelectorProps) {
+  const [etiquetas, setEtiquetas] = useState<Etiqueta[]>(availableTags || [])
+  const [loading, setLoading] = useState(!availableTags)
   const [assigning, setAssigning] = useState(false)
 
   useEffect(() => {
-    loadEtiquetas()
-  }, [])
+    if (!availableTags) {
+      loadEtiquetas()
+    } else {
+      setEtiquetas(availableTags)
+      setLoading(false)
+    }
+  }, [availableTags])
 
   async function loadEtiquetas() {
     try {

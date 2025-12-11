@@ -207,21 +207,21 @@ export default function WhatsAppPage() {
         </div>
       ) : (
         <div className="flex-1 flex gap-4 min-h-0 overflow-hidden">
-            {/* Container 1: Lista de Chats */}
-            <Card className={cn("flex flex-col overflow-hidden flex-shrink-0 transition-all duration-300", showLeadPanel && !isCollapsed ? "w-[220px] min-w-[180px] max-w-[240px]" : "w-[380px] min-w-[320px] max-w-[400px]") }>
+            {/* Container 1: Lista de Chats - CORRIGIDO: Largura fixa, nunca encolhe */}
+            <Card className="flex flex-col overflow-hidden flex-shrink-0 w-[380px] min-w-[320px] max-w-[400px] transition-all duration-300">
             <ChatList
               ref={chatListRef}
               onSelectChat={handleSelectChat}
               selectedChatId={selectedChatId}
               refreshTrigger={refreshTrigger}
-              shrink={showLeadPanel && !isCollapsed}
+              shrink={false}
               onOpenNewLead={(chat) => {
                 setShowLeadPanel(true)
               }}
             />
             </Card>
 
-            {/* Container 2: Mensagens do Chat */}
+            {/* Container 2: Mensagens do Chat - Flex-1 faz ele ocupar o espaço restante ou encolher se necessário */}
             <Card
             className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out min-w-0 flex-1"
             >

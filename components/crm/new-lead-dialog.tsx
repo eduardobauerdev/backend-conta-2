@@ -157,6 +157,7 @@ export function NewLeadDialog({ open, onOpenChange, onSuccess, weekStart }: NewL
     }
 
     await supabase.from("lead_logs").insert({
+      lead_id: leadData && leadData.length > 0 ? leadData[0].id : null,
       usuario_id: user.id,
       usuario_nome: user.nome,
       acao: "criado",

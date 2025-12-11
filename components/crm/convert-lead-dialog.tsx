@@ -16,7 +16,7 @@ import { useUser } from "@/contexts/user-context"
 import { createClient } from "@/lib/supabase/client"
 import { toast } from "sonner"
 import type { Lead } from "@/types/crm"
-import { CheckCircle, DollarSign, Loader2 } from "lucide-react"
+import { DollarSign, Loader2 } from "lucide-react"
 
 type ConvertLeadDialogProps = {
   open: boolean
@@ -165,7 +165,7 @@ export function ConvertLeadDialog({ open, onOpenChange, lead, onSuccess }: Conve
       <DialogContent className="sm:max-w-[425px] border-green-200 bg-gradient-to-br from-green-50/50 to-white">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-green-700">
-            <CheckCircle className="w-5 h-5" />
+            <DollarSign className="w-5 h-5" />
             Converter Lead
           </DialogTitle>
           <DialogDescription>
@@ -238,7 +238,7 @@ export function ConvertLeadDialog({ open, onOpenChange, lead, onSuccess }: Conve
               </>
             ) : (
               <>
-                <CheckCircle className="w-4 h-4 mr-2" />
+                <DollarSign className="w-4 h-4 mr-2" />
                 Confirmar Conversão
               </>
             )}
