@@ -500,26 +500,26 @@ export function ViewLeadDialog({ open, onOpenChange, lead, onEdit, onLeadUpdated
 
             {/* Botões de ação */}
             <div className="flex flex-wrap gap-2">
-              <Button variant="outline" size="sm" onClick={handleShowHistory} className="gap-2">
-                <History className="w-4 h-4" />
-                Histórico
-              </Button>
-              <Button variant="outline" size="sm" onClick={handleShowNotes} className="gap-2">
-                <StickyNote className="w-4 h-4" />
-                Notas
-              </Button>
-              {onEdit && (
-                <Button variant="outline" size="sm" onClick={handleEdit} className="gap-2">
-                  <Pencil className="w-4 h-4" />
-                  Editar
-                </Button>
-              )}
               {(lead.chat_uuid || lead.telefone) && (
                 <Button variant="outline" size="sm" onClick={handleVerChat} className="gap-2">
                   <WhatsAppIcon />
                   Ver chat
                 </Button>
               )}
+              {onEdit && (
+                <Button variant="outline" size="sm" onClick={handleEdit} className="gap-2">
+                  <Pencil className="w-4 h-4" />
+                  Editar
+                </Button>
+              )}
+              <Button variant="outline" size="sm" onClick={handleShowNotes} className="gap-2">
+                <StickyNote className="w-4 h-4" />
+                Notas
+              </Button>
+              <Button variant="outline" size="sm" onClick={handleShowHistory} className="gap-2">
+                <History className="w-4 h-4" />
+                Histórico
+              </Button>
             </div>
 
             <Separator />

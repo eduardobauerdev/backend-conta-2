@@ -209,7 +209,7 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
           )}
         >
           <div className="flex flex-col h-full">
-            {/* Nome do lead + Badge de temperatura */}
+            {/* Nome do lead + Badge de atribuição */}
             <div className="flex items-center gap-2 mb-3">
               {!isDragging && (
               <TooltipProvider>
@@ -232,71 +232,71 @@ export function LeadCard({ lead, onClick, onView, onMove, onDelete, onConvert, o
                   <span className="truncate">{getPrimeiroESegundoNome(lead.nome)}</span>
                 </h4>
               )}
-              {/* Badge de temperatura padronizado */}
-              <TooltipProvider>
-                <Tooltip delayDuration={200}>
-                  <TooltipTrigger asChild>
-                    <Badge 
-                      variant="secondary" 
-                      className={`text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-md border ${getTemperaturaBadgeClasses()}`}
+              {/* Badge de atribuição ao lado do nome */}
+              {assignment && (
+                <ContextMenu>
+                  <ContextMenuTrigger asChild>
+                    <div onClick={(e) => e.stopPropagation()} className="flex-shrink-0">
+                      <TooltipProvider>
+                        <Tooltip delayDuration={200}>
+                          <TooltipTrigger asChild>
+                            <Badge 
+                              variant="secondary" 
+                              className="text-[11px] px-1.5 h-6 flex items-center gap-1 cursor-pointer rounded-md border"
+                              style={{ 
+                                backgroundColor: (assignment.assigned_to_color || "#6b7280") + '33', 
+                                color: assignment.assigned_to_color || "#6b7280", 
+                                borderColor: assignment.assigned_to_color || "#6b7280" 
+                              }}
+                            >
+                              <User className="w-3.5 h-3.5" />
+                              <span className="max-w-[50px] truncate">{assignment.assigned_to_name.split(' ')[0]}</span>
+                            </Badge>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{assignment.assigned_to_name} - {assignment.assigned_to_cargo || ''}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                  </ContextMenuTrigger>
+                  <ContextMenuContent className="w-48">
+                    <ContextMenuItem
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        onRemoveAssignment?.()
+                      }}
+                      className="cursor-pointer text-destructive focus:text-destructive"
                     >
-                      <TemperaturaIcon temperatura={lead.temperatura} size={14} />
-                    </Badge>
-                  </TooltipTrigger>
-                  <TooltipContent side="top">
-                    <p className="text-xs">{lead.temperatura}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+                      <X className="w-4 h-4 mr-2" />
+                      Remover atribuição
+                    </ContextMenuItem>
+                  </ContextMenuContent>
+                </ContextMenu>
+              )}
             </div>
             
-            {/* Linha de badges: Atribuição à esquerda, etiquetas e notas à direita */}
-            {(assignment || (etiquetas && etiquetas.length > 0) || hasNotes) && (
+            {/* Linha de badges: temperatura, etiquetas e notas */}
+            {((etiquetas && etiquetas.length > 0) || hasNotes || lead.temperatura) && (
               <div className="flex items-center gap-1.5 mb-2 flex-wrap">
-                {/* Badge de atribuição (estilo moderno com cor do cargo) */}
-                {assignment && (
-                  <ContextMenu>
-                    <ContextMenuTrigger asChild>
-                      <div onClick={(e) => e.stopPropagation()} className="flex-shrink-0">
-                        <TooltipProvider>
-                          <Tooltip delayDuration={200}>
-                            <TooltipTrigger asChild>
-                              <Badge 
-                                variant="secondary" 
-                                className="text-[11px] px-1.5 h-6 flex items-center gap-1 cursor-pointer rounded-md border"
-                                style={{ 
-                                  backgroundColor: (assignment.assigned_to_color || "#6b7280") + '33', 
-                                  color: assignment.assigned_to_color || "#6b7280", 
-                                  borderColor: assignment.assigned_to_color || "#6b7280" 
-                                }}
-                              >
-                                <User className="w-3.5 h-3.5" />
-                                <span className="max-w-[50px] truncate">{assignment.assigned_to_name.split(' ')[0]}</span>
-                              </Badge>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{assignment.assigned_to_name} - {assignment.assigned_to_cargo || ''}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
-                    </ContextMenuTrigger>
-                    <ContextMenuContent className="w-48">
-                      <ContextMenuItem
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          onRemoveAssignment?.()
-                        }}
-                        className="cursor-pointer text-destructive focus:text-destructive"
+                {/* Badge de temperatura padronizado */}
+                <TooltipProvider>
+                  <Tooltip delayDuration={200}>
+                    <TooltipTrigger asChild>
+                      <Badge 
+                        variant="secondary" 
+                        className={`text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-md border ${getTemperaturaBadgeClasses()}`}
                       >
-                        <X className="w-4 h-4 mr-2" />
-                        Remover atribuição
-                      </ContextMenuItem>
-                    </ContextMenuContent>
-                  </ContextMenu>
-                )}
+                        <TemperaturaIcon temperatura={lead.temperatura} size={14} />
+                      </Badge>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">
+                      <p className="text-xs">{lead.temperatura}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
                 
-                {/* Badges de etiquetas ao lado do badge de atribuição */}
+                {/* Badges de etiquetas */}
                 {etiquetas && etiquetas.length > 0 && (
                   <>
                     {user?.show_all_tags ? (

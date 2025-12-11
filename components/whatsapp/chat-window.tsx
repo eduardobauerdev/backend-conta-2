@@ -146,7 +146,7 @@ export function ChatWindow({
   const userDataCache = useRef<Record<string, { nome: string | null; cargo: string | null; color: string | null }>>({})
 
   // Estado para lead existente
-  const [existingLead, setExistingLead] = useState<{ id: string; nome: string; proximo_contato: string | null; temperatura: string; status: string | null } | null>(null)
+  const [existingLead, setExistingLead] = useState<{ id: string; nome: string; proximo_contato: string | null; temperatura: string; status: string | null; motivo_desconversao: string | null } | null>(null)
 
   // Estado para troca de temperatura via context menu
   const [changingTemperatura, setChangingTemperatura] = useState(false)
@@ -217,7 +217,23 @@ export function ChatWindow({
         const { data } = await query.limit(1).single()
         
         if (data) {
-          setExistingLead({ ...data, temperatura: data.temperatura || 'Morno', status: data.status || null })
+          // Buscar desconversão se existir
+          let motivo_desconversao = null
+          if (data.status === "ativo") {
+            const { data: desconversao } = await supabase
+              .from('desconversoes')
+              .select('motivo')
+              .eq('lead_id', data.id)
+              .order('created_at', { ascending: false })
+              .limit(1)
+              .single()
+            
+            if (desconversao) {
+              motivo_desconversao = desconversao.motivo
+            }
+          }
+          
+          setExistingLead({ ...data, temperatura: data.temperatura || 'Morno', status: data.status || null, motivo_desconversao })
         } else {
           setExistingLead(null)
         }
@@ -242,7 +258,7 @@ export function ChatWindow({
           schema: 'public',
           table: 'leads',
         },
-        (payload) => {
+        async (payload) => {
           // Verifica se o lead é relacionado a este chat
           const newRecord = payload.new as any
           const oldRecord = payload.old as any
@@ -253,12 +269,29 @@ export function ChatWindow({
             const matchesTelefone = newRecord.telefone === telefoneNum
             
             if (matchesChatUuid || matchesTelefone) {
+              // Busca motivo_desconversao se status for ativo
+              let motivo_desconversao = null
+              if (newRecord.status === "ativo") {
+                const { data: desconversao } = await supabase
+                  .from('desconversoes')
+                  .select('motivo')
+                  .eq('lead_id', newRecord.id)
+                  .order('created_at', { ascending: false })
+                  .limit(1)
+                  .single()
+                
+                if (desconversao) {
+                  motivo_desconversao = desconversao.motivo
+                }
+              }
+              
               setExistingLead({
                 id: newRecord.id,
                 nome: newRecord.nome,
                 proximo_contato: newRecord.proximo_contato,
                 temperatura: newRecord.temperatura || 'Morno',
-                status: newRecord.status || null
+                status: newRecord.status || null,
+                motivo_desconversao
               })
             }
           } else if (payload.eventType === 'DELETE') {
@@ -1074,8 +1107,8 @@ export function ChatWindow({
                   </ContextMenu>
                 )}
                 
-                {/* 2.6. Badge de Desconvertido com context menu */}
-                {existingLead && existingLead.status !== "convertido" && (
+                {/* 2.6. Badge de Desconvertido com context menu - mostra apenas se foi desconvertido */}
+                {existingLead && existingLead.status === "ativo" && existingLead.motivo_desconversao && (
                   <ContextMenu>
                     <ContextMenuTrigger asChild>
                       <div>
@@ -1084,13 +1117,13 @@ export function ChatWindow({
                             <TooltipTrigger asChild>
                               <Badge 
                                 variant="secondary" 
-                                className="text-xs px-1.5 h-6 flex items-center gap-1 cursor-context-menu rounded-md border bg-gray-100 border-gray-300 text-gray-600"
+                                className="text-xs px-1.5 h-6 flex items-center gap-1 cursor-context-menu rounded-md border bg-orange-100 border-orange-300 text-orange-700"
                               >
-                                <DollarSign className="w-3.5 h-3.5" />
+                                <XCircle className="w-3.5 h-3.5" />
                               </Badge>
                             </TooltipTrigger>
-                            <TooltipContent side="bottom">
-                              <p>Clique com botão direito para converter</p>
+                            <TooltipContent side="bottom" className="max-w-[250px]">
+                              <p>Desconvertido: {existingLead.motivo_desconversao.substring(0, 100)}{existingLead.motivo_desconversao.length > 100 ? '...' : ''}</p>
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>

@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Filter, Plus, X, User, Thermometer, Phone, Tag, CheckCircle } from 'lucide-react'
+import { Filter, Plus, X, User, Thermometer, Phone, Tag, DollarSign, XCircle } from 'lucide-react'
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { getContrastTextColor } from "@/lib/utils"
+import { TemperaturaIcon } from "@/components/ui/temperatura-icon"
 
 export interface FilterRule {
   id: string
@@ -148,7 +149,7 @@ export function FilterPanel({ vendedores, acoes, etiquetas = [], onFiltersChange
                     )}
                     <SelectItem value="conversao">
                       <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4" />
+                        <DollarSign className="w-4 h-4" />
                         Conversão
                       </div>
                     </SelectItem>
@@ -182,9 +183,24 @@ export function FilterPanel({ vendedores, acoes, etiquetas = [], onFiltersChange
                       <SelectValue placeholder="Selecione temperatura..." />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Quente">Quente</SelectItem>
-                      <SelectItem value="Morno">Morno</SelectItem>
-                      <SelectItem value="Frio">Frio</SelectItem>
+                      <SelectItem value="Quente">
+                        <div className="flex items-center gap-2">
+                          <TemperaturaIcon temperatura="Quente" size={12} className="text-red-500" />
+                          <span className="text-red-600">Quente</span>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="Morno">
+                        <div className="flex items-center gap-2">
+                          <TemperaturaIcon temperatura="Morno" size={12} className="text-orange-500" />
+                          <span className="text-orange-600">Morno</span>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="Frio">
+                        <div className="flex items-center gap-2">
+                          <TemperaturaIcon temperatura="Frio" size={12} className="text-blue-500" />
+                          <span className="text-blue-600">Frio</span>
+                        </div>
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 )}
@@ -220,7 +236,7 @@ export function FilterPanel({ vendedores, acoes, etiquetas = [], onFiltersChange
                         <SelectItem key={etiqueta.id} value={etiqueta.id}>
                           <div className="flex items-center gap-2">
                             <div 
-                              className="w-3 h-3 rounded" 
+                              className="w-3 h-3 rounded-sm" 
                               style={{ backgroundColor: etiqueta.cor }}
                             />
                             {etiqueta.nome}
@@ -248,14 +264,14 @@ export function FilterPanel({ vendedores, acoes, etiquetas = [], onFiltersChange
                     <SelectContent>
                       <SelectItem value="convertido">
                         <div className="flex items-center gap-2">
-                          <CheckCircle className="w-4 h-4 text-green-500" />
-                          Convertido
+                          <DollarSign className="w-4 h-4 text-green-500" />
+                          <span className="text-green-600">Convertido</span>
                         </div>
                       </SelectItem>
                       <SelectItem value="nao_convertido">
                         <div className="flex items-center gap-2">
-                          <X className="w-4 h-4 text-muted-foreground" />
-                          Não convertido
+                          <XCircle className="w-4 h-4 text-orange-500" />
+                          <span className="text-orange-600">Desconvertido</span>
                         </div>
                       </SelectItem>
                     </SelectContent>

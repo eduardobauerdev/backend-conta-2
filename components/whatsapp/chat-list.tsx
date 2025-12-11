@@ -30,6 +30,7 @@ import { AssignToUserDialog } from "./assign-to-user-dialog"
 import { useRealtimeSubscription } from "@/hooks/use-realtime-subscription"
 import { ProfilePictureModal } from "./profile-picture-modal"
 import { ChatHistoryDialog } from "./chat-history-dialog"
+import { ChatNotesDialog } from "./chat-notes-dialog"
 import { History } from "lucide-react"
 import type { Etiqueta } from "@/lib/whatsapp-types"
 import { ConvertLeadDialog } from "@/components/crm/convert-lead-dialog"
@@ -139,6 +140,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
     const [showProfilePictureModal, setShowProfilePictureModal] = useState(false)
     const [profilePictureChat, setProfilePictureChat] = useState<{url: string, name: string} | null>(null)
     const [showHistoryDialog, setShowHistoryDialog] = useState(false)
+    const [showNotesDialog, setShowNotesDialog] = useState(false)
     const [showConvertLeadDialog, setShowConvertLeadDialog] = useState(false)
     const [showUnconvertLeadDialog, setShowUnconvertLeadDialog] = useState(false)
     const [leadForConversion, setLeadForConversion] = useState<Lead | null>(null)
@@ -867,6 +869,17 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
     const displayChats = useMemo(() => {
         let filteredChats = chats;
 
+        // 🔧 DEDUPLICAÇÃO: Remove chats duplicados por ID (mantém o primeiro)
+        const seenIds = new Set<string>();
+        filteredChats = filteredChats.filter(chat => {
+            if (seenIds.has(chat.id)) {
+                console.warn(`[DEDUPE] Chat duplicado removido: ${chat.id}`);
+                return false;
+            }
+            seenIds.add(chat.id);
+            return true;
+        });
+
         // Filtro básico (Todas / Minhas)
         if (filterMode === 'mine' && currentUserId && assignmentsMap) {
             filteredChats = filteredChats.filter(chat => {
@@ -1048,15 +1061,15 @@ shrink ? "w-[300px] min-w-[280px] max-w-[320px]" : "w-[380px] min-w-[320px] max-
                             "w-full flex items-center gap-3 px-3 py-3 transition-all duration-200 text-left",
                             selectedChatId === chat.id
                               ? isConverted
-                                ? "bg-green-200 dark:bg-green-800/60 border-l-4 border-green-700 hover:bg-green-300"
+                                ? "bg-green-200 dark:bg-green-800/60 border-l-4 border-green-700"
                                 : chatLead?.status === "ativo" && chatLead?.motivo_desconversao
-                                  ? "bg-orange-200 dark:bg-orange-800/60 border-l-4 border-orange-600 hover:bg-orange-300"
-                                  : "bg-blue-200 dark:bg-blue-800/60 border-l-4 border-primary hover:bg-blue-300"
+                                  ? "bg-orange-200 dark:bg-orange-800/60 border-l-4 border-orange-600"
+                                  : "bg-blue-200 dark:bg-blue-800/60 border-l-4 border-primary"
                               : isConverted
-                                ? "bg-green-50 dark:bg-green-900/40 border-l-4 border-green-600 hover:bg-blue-100 dark:hover:bg-blue-900/30"
+                                ? "bg-green-50 dark:bg-green-900/40 border-l-4 border-green-600 hover:bg-green-200 dark:hover:bg-green-800/60"
                                 : chatLead?.status === "ativo" && chatLead?.motivo_desconversao
-                                  ? "bg-orange-50 dark:bg-orange-900/30 border-l-4 border-orange-400 hover:bg-blue-100 dark:hover:bg-blue-900/30"
-                                  : "hover:bg-blue-100 dark:hover:bg-blue-900/30"
+                                  ? "bg-orange-50 dark:bg-orange-900/30 border-l-4 border-orange-400 hover:bg-orange-200 dark:hover:bg-orange-800/60"
+                                  : "hover:bg-blue-200 dark:hover:bg-blue-800/60"
                           )}
                         >
                           <Avatar 
@@ -1093,7 +1106,7 @@ shrink ? "w-[300px] min-w-[280px] max-w-[320px]" : "w-[380px] min-w-[320px] max-
                               <p className="font-semibold truncate flex-1 min-w-0">{chat.name || chat.phone || chat.id.split('@')[0]}</p>
                               {/* Badges alinhados à direita - Ordem: notas, etiquetas, temperatura, atribuição */}
                               <div className="flex items-center gap-1.5 flex-shrink-0">
-                                {/* 1. Badge de nota */}
+                                {/* 1. Badge de nota - clique abre modal de notas */}
                                 {hasNote && (
                                   <TooltipProvider>
                                     <Tooltip>
@@ -1103,7 +1116,8 @@ shrink ? "w-[300px] min-w-[280px] max-w-[320px]" : "w-[380px] min-w-[320px] max-
                                           className="text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-md border bg-yellow-100 border-yellow-300 text-yellow-700"
                                           onClick={(e) => {
                                             e.stopPropagation()
-                                            onSelectChat(chat)
+                                            setContextMenuChat(chat)
+                                            setShowNotesDialog(true)
                                           }}
                                         >
                                           <FileText className="w-3.5 h-3.5" />
@@ -1115,7 +1129,7 @@ shrink ? "w-[300px] min-w-[280px] max-w-[320px]" : "w-[380px] min-w-[320px] max-
                                     </Tooltip>
                                   </TooltipProvider>
                                 )}
-                                {/* 2. Badge de etiquetas com context menu */}
+                                {/* 2. Badge de etiquetas - clique abre context menu */}
                                 {hasEtiquetas && (
                                   <ContextMenu>
                                     <ContextMenuTrigger asChild>
@@ -1227,41 +1241,105 @@ shrink ? "w-[300px] min-w-[280px] max-w-[320px]" : "w-[380px] min-w-[320px] max-
                                     </ContextMenuContent>
                                   </ContextMenu>
                                 )}
-                                {/* 3.5. Badge de Convertido com valor */}
+                                {/* 3.5. Badge de Convertido - clique abre context menu para desconverter */}
                                 {isConverted && (
-                                  <TooltipProvider>
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Badge 
-                                          variant="secondary" 
-                                          className="text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 rounded-md border bg-green-100 border-green-300 text-green-700"
-                                        >
-                                          <DollarSign className="w-3.5 h-3.5" />
-                                        </Badge>
-                                      </TooltipTrigger>
-                                      <TooltipContent side="top">
-                                        <p>Convertido{chatLead?.valor_conversao ? `: R$ ${chatLead.valor_conversao.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}` : ''}</p>
-                                      </TooltipContent>
-                                    </Tooltip>
-                                  </TooltipProvider>
+                                  <ContextMenu>
+                                    <ContextMenuTrigger asChild>
+                                      <div onClick={(e) => e.stopPropagation()} className="flex-shrink-0">
+                                        <TooltipProvider>
+                                          <Tooltip>
+                                            <TooltipTrigger asChild>
+                                              <Badge 
+                                                variant="secondary" 
+                                                className="text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-md border bg-green-100 border-green-300 text-green-700"
+                                              >
+                                                <DollarSign className="w-3.5 h-3.5" />
+                                              </Badge>
+                                            </TooltipTrigger>
+                                            <TooltipContent side="top">
+                                              <p>Convertido{chatLead?.valor_conversao ? `: R$ ${chatLead.valor_conversao.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}` : ''}</p>
+                                            </TooltipContent>
+                                          </Tooltip>
+                                        </TooltipProvider>
+                                      </div>
+                                    </ContextMenuTrigger>
+                                    <ContextMenuContent className="w-48">
+                                      <ContextMenuItem
+                                        onClick={() => {
+                                          setLeadForConversion({
+                                            id: chatLead!.id,
+                                            nome: chatLead!.nome,
+                                            cidade: chatLead!.cidade,
+                                            interesse: chatLead!.interesse,
+                                            endereco: chatLead!.endereco,
+                                            telefone: chatLead!.telefone,
+                                            cargo: chatLead!.cargo,
+                                            temperatura: chatLead!.temperatura as "Quente" | "Morno" | "Frio",
+                                            status: "convertido",
+                                            chat_uuid: chatLead!.chat_uuid,
+                                            adicionado_por_id: chatLead!.adicionado_por_id || '',
+                                            adicionado_por_nome: chatLead!.adicionado_por_nome || '',
+                                            proximo_contato: chatLead!.proximo_contato
+                                          } as Lead)
+                                          setShowUnconvertLeadDialog(true)
+                                        }}
+                                        className="cursor-pointer bg-orange-50 hover:bg-orange-100 text-orange-600 focus:bg-orange-100 focus:text-orange-600"
+                                      >
+                                        <XCircle className="w-4 h-4 mr-2 text-orange-600" />
+                                        Desconverter Lead
+                                      </ContextMenuItem>
+                                    </ContextMenuContent>
+                                  </ContextMenu>
                                 )}
-                                {/* 3.6. Badge de Desconvertido */}
+                                {/* 3.6. Badge de Desconvertido - clique abre context menu para converter */}
                                 {chatLead && chatLead.status === "ativo" && chatLead.motivo_desconversao && (
-                                  <TooltipProvider>
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Badge 
-                                          variant="secondary" 
-                                          className="text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 rounded-md border bg-orange-100 border-orange-300 text-orange-700"
-                                        >
-                                          <XCircle className="w-3.5 h-3.5" />
-                                        </Badge>
-                                      </TooltipTrigger>
-                                      <TooltipContent side="top" className="max-w-[250px]">
-                                        <p>Desconvertido: {chatLead.motivo_desconversao.substring(0, 100)}{chatLead.motivo_desconversao.length > 100 ? '...' : ''}</p>
-                                      </TooltipContent>
-                                    </Tooltip>
-                                  </TooltipProvider>
+                                  <ContextMenu>
+                                    <ContextMenuTrigger asChild>
+                                      <div onClick={(e) => e.stopPropagation()} className="flex-shrink-0">
+                                        <TooltipProvider>
+                                          <Tooltip>
+                                            <TooltipTrigger asChild>
+                                              <Badge 
+                                                variant="secondary" 
+                                                className="text-xs px-1.5 h-6 flex items-center gap-1 flex-shrink-0 cursor-pointer rounded-md border bg-orange-100 border-orange-300 text-orange-700"
+                                              >
+                                                <XCircle className="w-3.5 h-3.5" />
+                                              </Badge>
+                                            </TooltipTrigger>
+                                            <TooltipContent side="top" className="max-w-[250px]">
+                                              <p>Desconvertido: {chatLead.motivo_desconversao.substring(0, 100)}{chatLead.motivo_desconversao.length > 100 ? '...' : ''}</p>
+                                            </TooltipContent>
+                                          </Tooltip>
+                                        </TooltipProvider>
+                                      </div>
+                                    </ContextMenuTrigger>
+                                    <ContextMenuContent className="w-48">
+                                      <ContextMenuItem
+                                        onClick={() => {
+                                          setLeadForConversion({
+                                            id: chatLead.id,
+                                            nome: chatLead.nome,
+                                            cidade: chatLead.cidade,
+                                            interesse: chatLead.interesse,
+                                            endereco: chatLead.endereco,
+                                            telefone: chatLead.telefone,
+                                            cargo: chatLead.cargo,
+                                            temperatura: chatLead.temperatura as "Quente" | "Morno" | "Frio",
+                                            status: chatLead.status as "ativo" | "convertido" | null,
+                                            chat_uuid: chatLead.chat_uuid,
+                                            adicionado_por_id: chatLead.adicionado_por_id || '',
+                                            adicionado_por_nome: chatLead.adicionado_por_nome || '',
+                                            proximo_contato: chatLead.proximo_contato
+                                          } as Lead)
+                                          setShowConvertLeadDialog(true)
+                                        }}
+                                        className="cursor-pointer bg-green-50 hover:bg-green-100 text-green-600 focus:bg-green-100 focus:text-green-600"
+                                      >
+                                        <DollarSign className="w-4 h-4 mr-2 text-green-600" />
+                                        Converter Lead
+                                      </ContextMenuItem>
+                                    </ContextMenuContent>
+                                  </ContextMenu>
                                 )}
                                 {/* 4. Badge de atribuição (estilo moderno com cor do cargo) */}
                                 {assignment && (
@@ -1701,6 +1779,23 @@ shrink ? "w-[300px] min-w-[280px] max-w-[320px]" : "w-[380px] min-w-[320px] max-
             }}
             chatId={contextMenuChat.id}
             chatName={contextMenuChat.name || contextMenuChat.phone || contextMenuChat.id}
+          />
+        )}
+
+        {/* Modal de notas */}
+        {contextMenuChat && (
+          <ChatNotesDialog
+            open={showNotesDialog}
+            onOpenChange={(open) => {
+              setShowNotesDialog(open)
+              if (!open) setContextMenuChat(null)
+            }}
+            chatId={contextMenuChat.id}
+            chatName={contextMenuChat.name || contextMenuChat.phone || contextMenuChat.id}
+            onNotesChange={() => {
+              // Recarrega notas após alteração
+              loadChatNotes([contextMenuChat.id])
+            }}
           />
         )}
 

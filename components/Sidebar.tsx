@@ -6,6 +6,7 @@ import { Settings, ChevronLeft, ChevronRight, ChevronDown, Users, Radio } from "
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useUser } from "@/contexts/user-context"
+import { usePermissions } from "@/hooks/use-permissions"
 import { useSidebar } from "@/contexts/sidebar-context"
 // import { useWhatsApp } from "@/contexts/whatsapp-context" // Removido para usar direto do banco
 import React, { useEffect, useState } from "react"
@@ -231,6 +232,7 @@ const documentosSubmenu = [
 export function Sidebar() {
   const pathname = usePathname()
   const { user } = useUser()
+  const { permissions } = usePermissions()
   const { isCollapsed, toggleCollapse } = useSidebar()
   
   // ✅ ESTADO LOCAL PARA CONEXÃO (Substituindo o contexto antigo)
@@ -293,9 +295,6 @@ export function Sidebar() {
   const avatarSrc = React.useMemo(() => user?.foto_perfil || undefined, [user?.foto_perfil])
   const avatarAlt = React.useMemo(() => user?.nome || "", [user?.nome])
   const avatarFallback = React.useMemo(() => (user?.nome ? user.nome.charAt(0).toUpperCase() : "?"), [user?.nome])
-
-  const canAccessDatabase = user?.cargo === "Administrador" || user?.cargo === "Desenvolvedor"
-  const canAccessUsers = user?.cargo === "Administrador" || user?.cargo === "Desenvolvedor"
 
   return (
     <TooltipProvider>
@@ -498,7 +497,7 @@ export function Sidebar() {
             )}
           </div>
 
-          {canAccessDatabase && (
+          {permissions.can_access_database && (
             <>
               {isCollapsed ? (
                 <Tooltip delayDuration={0}>
@@ -541,7 +540,7 @@ export function Sidebar() {
             </>
           )}
 
-          {canAccessUsers && (
+          {permissions.can_access_users && (
             <>
               {isCollapsed ? (
                 <Tooltip delayDuration={0}>

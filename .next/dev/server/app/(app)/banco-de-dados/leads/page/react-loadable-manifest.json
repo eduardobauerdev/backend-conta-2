@@ -3,9 +3,9 @@
     "id": "[project]/components/whatsapp/chat-window.tsx [app-client] (ecmascript, next/dynamic entry)",
     "files": [
       "static/chunks/lib_supabase_client_ts_379f3757._.js",
-      "static/chunks/_28427848._.js",
-      "static/chunks/node_modules_1ada6f1b._.js",
-      "static/chunks/components_whatsapp_chat-window_tsx_5db3b6e8._.js"
+      "static/chunks/_76792564._.js",
+      "static/chunks/node_modules_0e923bac._.js",
+      "static/chunks/components_whatsapp_chat-window_tsx_a9748c23._.js"
     ]
   }
 }

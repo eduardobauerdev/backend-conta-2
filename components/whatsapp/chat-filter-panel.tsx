@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { Filter, X, Plus, Tag, User, UserX, Flame, Coffee, Snowflake, Users, CheckCircle } from "lucide-react"
+import { Filter, X, Plus, Tag, User, UserX, Users, CheckCircle, Thermometer, XCircle, DollarSign } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
+import { useUser } from "@/contexts/user-context"
 import type { Etiqueta } from "@/lib/whatsapp-types"
+import { TemperaturaIcon } from "@/components/ui/temperatura-icon"
 
-export type FilterType = "etiqueta" | "atribuicao" | "lead" | "temperatura" | "conversao"
+export type FilterType = "etiqueta" | "atribuicao" | "temperatura" | "lead" | "conversao"
 
 export interface ChatFilterRule {
   id: string
@@ -26,12 +28,20 @@ interface ChatFilterPanelProps {
 interface UserProfile {
   id: string
   nome: string | null
+  cargo: string | null
+  cor: string
 }
+
+// Ícones de temperatura (SVG thermometer)
+const ThermometerIcon = ({ className = "w-3 h-3" }: { className?: string }) => (
+  <Thermometer className={className} />
+)
 
 export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelProps) {
   const [open, setOpen] = useState(false)
   const [etiquetas, setEtiquetas] = useState<Etiqueta[]>([])
   const [users, setUsers] = useState<UserProfile[]>([])
+  const { user: currentUser } = useUser()
   const supabase = createClient()
 
   useEffect(() => {
@@ -47,13 +57,31 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
 
     if (etiquetasData) setEtiquetas(etiquetasData)
 
-    // Carregar usuários
+    // Carregar usuários com cores de cargo
     const { data: usersData } = await supabase
       .from("perfis")
-      .select("id, nome")
+      .select("id, nome, cargo")
       .order("nome")
 
-    if (usersData) setUsers(usersData)
+    if (usersData) {
+      // Buscar cores dos cargos
+      const cargos = Array.from(new Set(usersData.map(u => u.cargo).filter(Boolean) as string[]))
+      const { data: cargosData } = await supabase
+        .from("cargos")
+        .select("nome, cor")
+        .in("nome", cargos)
+
+      const coresMap: Record<string, string> = {}
+      cargosData?.forEach(c => coresMap[c.nome] = c.cor)
+
+      const usersWithColor = usersData.map(u => ({
+        id: u.id,
+        nome: u.nome,
+        cargo: u.cargo,
+        cor: u.cargo ? (coresMap[u.cargo] || "#6b7280") : "#6b7280"
+      }))
+      setUsers(usersWithColor)
+    }
   }
 
   function addFilter() {
@@ -178,16 +206,15 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
                         Atribuição
                       </div>
                     </SelectItem>
-                    <SelectItem value="lead">
-                      <div className="flex items-center gap-2">
-                        <Users className="w-3 h-3" />
-                        Lead
-                      </div>
-                    </SelectItem>
                     <SelectItem value="temperatura">
                       <div className="flex items-center gap-2">
-                        <Flame className="w-3 h-3" />
+                        <ThermometerIcon className="w-3 h-3" />
                         Temperatura
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="lead">
+                      <div className="flex items-center gap-2">
+                        Lead
                       </div>
                     </SelectItem>
                     <SelectItem value="conversao">
@@ -213,7 +240,7 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
                         <SelectItem key={etiqueta.id} value={etiqueta.id}>
                           <div className="flex items-center gap-2">
                             <div
-                              className="w-3 h-3 rounded-full"
+                              className="w-3 h-3 rounded-sm"
                               style={{ backgroundColor: etiqueta.cor }}
                             />
                             {etiqueta.nome}
@@ -239,15 +266,65 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
                       <SelectValue placeholder="Selecione um usuário" />
                     </SelectTrigger>
                     <SelectContent>
-                      {users.map((user) => (
-                        <SelectItem key={user.id} value={user.id}>
-                          {user.nome || "Sem nome"}
-                        </SelectItem>
-                      ))}
+                      {[...users]
+                        .sort((a, b) => {
+                          // Você primeiro
+                          if (currentUser?.id === a.id && currentUser?.id !== b.id) return -1
+                          if (currentUser?.id !== a.id && currentUser?.id === b.id) return 1
+                          return 0
+                        })
+                        .map((user) => {
+                          const isCurrentUser = currentUser?.id === user.id
+                          return (
+                            <SelectItem key={user.id} value={user.id}>
+                              <div className="flex items-center gap-2 w-full">
+                                <div
+                                  className="w-3 h-3 rounded-sm"
+                                  style={{ backgroundColor: user.cor }}
+                                />
+                                <span className="flex-1">{user.nome || "Sem nome"}</span>
+                                {isCurrentUser && (
+                                  <span className="text-xs text-blue-600 font-medium">Você</span>
+                                )}
+                              </div>
+                            </SelectItem>
+                          )
+                        })}
                       <SelectItem value="sem_atribuicao">
                         <div className="flex items-center gap-2">
                           <UserX className="w-3 h-3 text-muted-foreground" />
                           <span className="text-muted-foreground">Sem atribuição</span>
+                        </div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+
+                {filter.type === "temperatura" && (
+                  <Select
+                    value={filter.value}
+                    onValueChange={(val) => updateFilterValue(filter.id, val)}
+                  >
+                    <SelectTrigger className="flex-1 h-8">
+                      <SelectValue placeholder="Selecione" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Quente">
+                        <div className="flex items-center gap-2">
+                          <TemperaturaIcon temperatura="Quente" size={12} className="text-red-500" />
+                          <span className="text-red-600">Quente</span>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="Morno">
+                        <div className="flex items-center gap-2">
+                          <TemperaturaIcon temperatura="Morno" size={12} className="text-orange-500" />
+                          <span className="text-orange-600">Morno</span>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="Frio">
+                        <div className="flex items-center gap-2">
+                          <TemperaturaIcon temperatura="Frio" size={12} className="text-blue-500" />
+                          <span className="text-blue-600">Frio</span>
                         </div>
                       </SelectItem>
                     </SelectContent>
@@ -269,37 +346,6 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
                   </Select>
                 )}
 
-                {filter.type === "temperatura" && (
-                  <Select
-                    value={filter.value}
-                    onValueChange={(val) => updateFilterValue(filter.id, val)}
-                  >
-                    <SelectTrigger className="flex-1 h-8">
-                      <SelectValue placeholder="Selecione" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Quente">
-                        <div className="flex items-center gap-2">
-                          <Flame className="w-3 h-3 text-red-500" />
-                          Quente
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="Morno">
-                        <div className="flex items-center gap-2">
-                          <Coffee className="w-3 h-3 text-orange-500" />
-                          Morno
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="Frio">
-                        <div className="flex items-center gap-2">
-                          <Snowflake className="w-3 h-3 text-blue-500" />
-                          Frio
-                        </div>
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                )}
-
                 {filter.type === "conversao" && (
                   <Select
                     value={filter.value}
@@ -311,14 +357,14 @@ export function ChatFilterPanel({ filters, onFiltersChange }: ChatFilterPanelPro
                     <SelectContent>
                       <SelectItem value="convertido">
                         <div className="flex items-center gap-2">
-                          <CheckCircle className="w-3 h-3 text-green-500" />
-                          Convertido
+                          <DollarSign className="w-3 h-3 text-green-500" />
+                          <span className="text-green-600">Convertido</span>
                         </div>
                       </SelectItem>
                       <SelectItem value="nao_convertido">
                         <div className="flex items-center gap-2">
-                          <X className="w-3 h-3 text-muted-foreground" />
-                          Não convertido
+                          <XCircle className="w-3 h-3 text-orange-500" />
+                          <span className="text-orange-600">Desconvertido</span>
                         </div>
                       </SelectItem>
                     </SelectContent>

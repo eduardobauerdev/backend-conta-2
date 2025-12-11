@@ -2,5 +2,5 @@
   "version": 3,
   "sources": [],
   "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Edu%20Bauer/Desktop/FRONTE%20RECENTE/frontend-ii/app/%28app%29/banco-de-dados/leads/loading.tsx"],"sourcesContent":["export default function Loading() {\r\n  return null\r\n}\r\n"],"names":[],"mappings":";;;;AAAe,SAAS;IACtB,OAAO;AACT","debugId":null}}]
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Jarvis/OneDrive/%C3%81rea%20de%20Trabalho/front/frontend-ii/app/%28app%29/banco-de-dados/leads/loading.tsx"],"sourcesContent":["export default function Loading() {\r\n  return null\r\n}\r\n"],"names":[],"mappings":";;;;AAAe,SAAS;IACtB,OAAO;AACT","debugId":null}}]
 }

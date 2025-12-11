@@ -18,6 +18,7 @@ import type { Lead } from "@/types/crm"
 import { toast } from "sonner"
 import { AdminPasswordDialog } from "@/components/database/admin-password-dialog"
 import { AssignSellerDialog } from "@/components/database/assign-seller-dialog"
+import { TemperaturaIcon } from "@/components/ui/temperatura-icon"
 import { DeleteLeadsConfirmDialog } from "@/components/database/delete-leads-confirm-dialog"
 import { EditLeadDialog } from "@/components/database/edit-lead-dialog"
 import { LeadHistoryDialog } from "@/components/database/lead-history-dialog"
@@ -694,9 +695,24 @@ export default function LeadsTablePage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">Todas</SelectItem>
-                    <SelectItem value="Quente">Quente</SelectItem>
-                    <SelectItem value="Morno">Morno</SelectItem>
-                    <SelectItem value="Frio">Frio</SelectItem>
+                    <SelectItem value="Quente">
+                      <div className="flex items-center gap-2">
+                        <TemperaturaIcon temperatura="Quente" size={12} className="text-red-500" />
+                        <span>Quente</span>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="Morno">
+                      <div className="flex items-center gap-2">
+                        <TemperaturaIcon temperatura="Morno" size={12} className="text-orange-500" />
+                        <span>Morno</span>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="Frio">
+                      <div className="flex items-center gap-2">
+                        <TemperaturaIcon temperatura="Frio" size={12} className="text-blue-500" />
+                        <span>Frio</span>
+                      </div>
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>

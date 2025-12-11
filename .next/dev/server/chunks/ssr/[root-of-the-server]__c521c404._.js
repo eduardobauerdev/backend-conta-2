@@ -4004,12 +4004,12 @@ function LeadsTablePage() {
                 className: "w-8 h-8"
             }, void 0, false, {
                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                lineNumber: 608,
+                lineNumber: 609,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-            lineNumber: 607,
+            lineNumber: 608,
             columnNumber: 7
         }, this);
     }
@@ -4020,12 +4020,12 @@ function LeadsTablePage() {
                 className: "w-8 h-8"
             }, void 0, false, {
                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                lineNumber: 616,
+                lineNumber: 617,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-            lineNumber: 615,
+            lineNumber: 616,
             columnNumber: 7
         }, this);
     }
@@ -4040,7 +4040,7 @@ function LeadsTablePage() {
                         children: "Banco de Dados - Leads"
                     }, void 0, false, {
                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                        lineNumber: 624,
+                        lineNumber: 625,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4048,13 +4048,13 @@ function LeadsTablePage() {
                         children: "Visualização completa com filtros avançados e ações em massa"
                     }, void 0, false, {
                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                        lineNumber: 625,
+                        lineNumber: 626,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                lineNumber: 623,
+                lineNumber: 624,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4070,7 +4070,7 @@ function LeadsTablePage() {
                                         className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 631,
+                                        lineNumber: 632,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -4080,13 +4080,13 @@ function LeadsTablePage() {
                                         className: "pl-10"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 632,
+                                        lineNumber: 633,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                lineNumber: 630,
+                                lineNumber: 631,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4102,7 +4102,7 @@ function LeadsTablePage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 640,
+                                        lineNumber: 641,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4114,7 +4114,7 @@ function LeadsTablePage() {
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 649,
+                                                lineNumber: 650,
                                                 columnNumber: 15
                                             }, this),
                                             "Filtros",
@@ -4123,25 +4123,25 @@ function LeadsTablePage() {
                                                 children: Object.values(filters).filter((v)=>v !== "all" && v !== "").length
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 652,
+                                                lineNumber: 653,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 644,
+                                        lineNumber: 645,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                lineNumber: 639,
+                                lineNumber: 640,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                        lineNumber: 629,
+                        lineNumber: 630,
                         columnNumber: 9
                     }, this),
                     showFilters && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4155,7 +4155,7 @@ function LeadsTablePage() {
                                         children: "Filtros Avançados"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 663,
+                                        lineNumber: 664,
                                         columnNumber: 15
                                     }, this),
                                     hasActiveFilters && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4168,20 +4168,20 @@ function LeadsTablePage() {
                                                 className: "w-3 h-3"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 666,
+                                                lineNumber: 667,
                                                 columnNumber: 19
                                             }, this),
                                             "Limpar Filtros"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 665,
+                                        lineNumber: 666,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                lineNumber: 662,
+                                lineNumber: 663,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4195,7 +4195,7 @@ function LeadsTablePage() {
                                                 children: "Vendedor"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 673,
+                                                lineNumber: 674,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -4210,12 +4210,12 @@ function LeadsTablePage() {
                                                             placeholder: "Todos"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                            lineNumber: 676,
+                                                            lineNumber: 677,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 675,
+                                                        lineNumber: 676,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -4225,7 +4225,7 @@ function LeadsTablePage() {
                                                                 children: "Todos"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 679,
+                                                                lineNumber: 680,
                                                                 columnNumber: 21
                                                             }, this),
                                                             sellers.map((seller)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4233,25 +4233,25 @@ function LeadsTablePage() {
                                                                     children: seller.nome
                                                                 }, seller.id, false, {
                                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                    lineNumber: 681,
+                                                                    lineNumber: 682,
                                                                     columnNumber: 23
                                                                 }, this))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 678,
+                                                        lineNumber: 679,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 674,
+                                                lineNumber: 675,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 672,
+                                        lineNumber: 673,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4262,7 +4262,7 @@ function LeadsTablePage() {
                                                 children: "Temperatura"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 690,
+                                                lineNumber: 691,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -4277,12 +4277,12 @@ function LeadsTablePage() {
                                                             placeholder: "Todas"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                            lineNumber: 693,
+                                                            lineNumber: 694,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 692,
+                                                        lineNumber: 693,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -4292,7 +4292,7 @@ function LeadsTablePage() {
                                                                 children: "Todas"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 696,
+                                                                lineNumber: 697,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4300,7 +4300,7 @@ function LeadsTablePage() {
                                                                 children: "Quente"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 697,
+                                                                lineNumber: 698,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4308,7 +4308,7 @@ function LeadsTablePage() {
                                                                 children: "Morno"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 698,
+                                                                lineNumber: 699,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4316,25 +4316,25 @@ function LeadsTablePage() {
                                                                 children: "Frio"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 699,
+                                                                lineNumber: 700,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 695,
+                                                        lineNumber: 696,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 691,
+                                                lineNumber: 692,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 689,
+                                        lineNumber: 690,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4345,7 +4345,7 @@ function LeadsTablePage() {
                                                 children: "Interesse"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 705,
+                                                lineNumber: 706,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -4357,13 +4357,13 @@ function LeadsTablePage() {
                                                     })
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 706,
+                                                lineNumber: 707,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 704,
+                                        lineNumber: 705,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4374,7 +4374,7 @@ function LeadsTablePage() {
                                                 children: "Cadastrados em"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 714,
+                                                lineNumber: 715,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -4389,12 +4389,12 @@ function LeadsTablePage() {
                                                             placeholder: "Todos"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                            lineNumber: 717,
+                                                            lineNumber: 718,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 716,
+                                                        lineNumber: 717,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -4404,7 +4404,7 @@ function LeadsTablePage() {
                                                                 children: "Todos os períodos"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 720,
+                                                                lineNumber: 721,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4412,7 +4412,7 @@ function LeadsTablePage() {
                                                                 children: "Últimos 7 dias"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 721,
+                                                                lineNumber: 722,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4420,7 +4420,7 @@ function LeadsTablePage() {
                                                                 children: "Últimos 30 dias"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 722,
+                                                                lineNumber: 723,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4428,7 +4428,7 @@ function LeadsTablePage() {
                                                                 children: "Últimos 60 dias"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 723,
+                                                                lineNumber: 724,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4436,25 +4436,25 @@ function LeadsTablePage() {
                                                                 children: "Últimos 90 dias"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 724,
+                                                                lineNumber: 725,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 719,
+                                                        lineNumber: 720,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 715,
+                                                lineNumber: 716,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 713,
+                                        lineNumber: 714,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4465,7 +4465,7 @@ function LeadsTablePage() {
                                                 children: "Sem contato há"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 730,
+                                                lineNumber: 731,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -4480,12 +4480,12 @@ function LeadsTablePage() {
                                                             placeholder: "Todos"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                            lineNumber: 733,
+                                                            lineNumber: 734,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 732,
+                                                        lineNumber: 733,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -4495,7 +4495,7 @@ function LeadsTablePage() {
                                                                 children: "Todos"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 736,
+                                                                lineNumber: 737,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4503,7 +4503,7 @@ function LeadsTablePage() {
                                                                 children: "Mais de 30 dias"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 737,
+                                                                lineNumber: 738,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4511,7 +4511,7 @@ function LeadsTablePage() {
                                                                 children: "Mais de 60 dias"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 738,
+                                                                lineNumber: 739,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4519,25 +4519,25 @@ function LeadsTablePage() {
                                                                 children: "Mais de 90 dias"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 739,
+                                                                lineNumber: 740,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 735,
+                                                        lineNumber: 736,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 731,
+                                                lineNumber: 732,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 729,
+                                        lineNumber: 730,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4548,7 +4548,7 @@ function LeadsTablePage() {
                                                 children: "Atribuição"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 745,
+                                                lineNumber: 746,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -4563,12 +4563,12 @@ function LeadsTablePage() {
                                                             placeholder: "Todas"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                            lineNumber: 748,
+                                                            lineNumber: 749,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 747,
+                                                        lineNumber: 748,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -4578,7 +4578,7 @@ function LeadsTablePage() {
                                                                 children: "Todas"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 751,
+                                                                lineNumber: 752,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4586,7 +4586,7 @@ function LeadsTablePage() {
                                                                 children: "Com atribuição"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 752,
+                                                                lineNumber: 753,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4594,7 +4594,7 @@ function LeadsTablePage() {
                                                                 children: "Sem atribuição"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 753,
+                                                                lineNumber: 754,
                                                                 columnNumber: 21
                                                             }, this),
                                                             sellers.map((seller)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4602,25 +4602,25 @@ function LeadsTablePage() {
                                                                     children: seller.nome
                                                                 }, seller.id, false, {
                                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                    lineNumber: 755,
+                                                                    lineNumber: 756,
                                                                     columnNumber: 23
                                                                 }, this))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 750,
+                                                        lineNumber: 751,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 746,
+                                                lineNumber: 747,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 744,
+                                        lineNumber: 745,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4631,7 +4631,7 @@ function LeadsTablePage() {
                                                 children: "Etiqueta"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 764,
+                                                lineNumber: 765,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -4646,12 +4646,12 @@ function LeadsTablePage() {
                                                             placeholder: "Todas"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                            lineNumber: 767,
+                                                            lineNumber: 768,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 766,
+                                                        lineNumber: 767,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -4661,7 +4661,7 @@ function LeadsTablePage() {
                                                                 children: "Todas"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 770,
+                                                                lineNumber: 771,
                                                                 columnNumber: 21
                                                             }, this),
                                                             etiquetas.map((etiqueta)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4669,7 +4669,7 @@ function LeadsTablePage() {
                                                                     children: etiqueta.nome
                                                                 }, etiqueta.id, false, {
                                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                    lineNumber: 772,
+                                                                    lineNumber: 773,
                                                                     columnNumber: 23
                                                                 }, this)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4677,25 +4677,25 @@ function LeadsTablePage() {
                                                                 children: "Sem etiqueta"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 776,
+                                                                lineNumber: 777,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 769,
+                                                        lineNumber: 770,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 765,
+                                                lineNumber: 766,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 763,
+                                        lineNumber: 764,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4706,7 +4706,7 @@ function LeadsTablePage() {
                                                 children: "Notas"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 782,
+                                                lineNumber: 783,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -4721,12 +4721,12 @@ function LeadsTablePage() {
                                                             placeholder: "Todas"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                            lineNumber: 785,
+                                                            lineNumber: 786,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 784,
+                                                        lineNumber: 785,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -4736,7 +4736,7 @@ function LeadsTablePage() {
                                                                 children: "Todas"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 788,
+                                                                lineNumber: 789,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4744,7 +4744,7 @@ function LeadsTablePage() {
                                                                 children: "Com notas"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 789,
+                                                                lineNumber: 790,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4752,25 +4752,25 @@ function LeadsTablePage() {
                                                                 children: "Sem notas"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 790,
+                                                                lineNumber: 791,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 787,
+                                                        lineNumber: 788,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 783,
+                                                lineNumber: 784,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 781,
+                                        lineNumber: 782,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4781,7 +4781,7 @@ function LeadsTablePage() {
                                                 children: "Histórico"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 796,
+                                                lineNumber: 797,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -4796,12 +4796,12 @@ function LeadsTablePage() {
                                                             placeholder: "Todos"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                            lineNumber: 799,
+                                                            lineNumber: 800,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 798,
+                                                        lineNumber: 799,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -4811,7 +4811,7 @@ function LeadsTablePage() {
                                                                 children: "Todos"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 802,
+                                                                lineNumber: 803,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4819,7 +4819,7 @@ function LeadsTablePage() {
                                                                 children: "Nunca atribuídos"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 803,
+                                                                lineNumber: 804,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -4827,37 +4827,37 @@ function LeadsTablePage() {
                                                                 children: "Já atribuídos"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 804,
+                                                                lineNumber: 805,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 801,
+                                                        lineNumber: 802,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 797,
+                                                lineNumber: 798,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 795,
+                                        lineNumber: 796,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                lineNumber: 671,
+                                lineNumber: 672,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                        lineNumber: 661,
+                        lineNumber: 662,
                         columnNumber: 11
                     }, this),
                     selectedLeads.size > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4874,7 +4874,7 @@ function LeadsTablePage() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                lineNumber: 814,
+                                lineNumber: 815,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4890,14 +4890,14 @@ function LeadsTablePage() {
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 820,
+                                                lineNumber: 821,
                                                 columnNumber: 17
                                             }, this),
                                             "Atribuir Vendedor"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 819,
+                                        lineNumber: 820,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4910,14 +4910,14 @@ function LeadsTablePage() {
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 824,
+                                                lineNumber: 825,
                                                 columnNumber: 17
                                             }, this),
                                             "Exportar Excel"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 823,
+                                        lineNumber: 824,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4930,32 +4930,32 @@ function LeadsTablePage() {
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 828,
+                                                lineNumber: 829,
                                                 columnNumber: 17
                                             }, this),
                                             "Deletar"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 827,
+                                        lineNumber: 828,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                lineNumber: 818,
+                                lineNumber: 819,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                        lineNumber: 813,
+                        lineNumber: 814,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                lineNumber: 628,
+                lineNumber: 629,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4976,12 +4976,12 @@ function LeadsTablePage() {
                                                 className: "w-4 h-4 rounded border-neutral-300 cursor-pointer"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 842,
+                                                lineNumber: 843,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 841,
+                                            lineNumber: 842,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -4996,18 +4996,18 @@ function LeadsTablePage() {
                                                         className: "w-3 h-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 857,
+                                                        lineNumber: 858,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 850,
+                                                lineNumber: 851,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 849,
+                                            lineNumber: 850,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -5022,18 +5022,18 @@ function LeadsTablePage() {
                                                         className: "w-3 h-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 868,
+                                                        lineNumber: 869,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 861,
+                                                lineNumber: 862,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 860,
+                                            lineNumber: 861,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -5048,32 +5048,32 @@ function LeadsTablePage() {
                                                         className: "w-3 h-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 879,
+                                                        lineNumber: 880,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 872,
+                                                lineNumber: 873,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 871,
+                                            lineNumber: 872,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableHead"], {
                                             children: "Interesse"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 882,
+                                            lineNumber: 883,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableHead"], {
                                             children: "Telefone"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 883,
+                                            lineNumber: 884,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -5088,18 +5088,18 @@ function LeadsTablePage() {
                                                         className: "w-3 h-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 892,
+                                                        lineNumber: 893,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 885,
+                                                lineNumber: 886,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 884,
+                                            lineNumber: 885,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -5114,25 +5114,25 @@ function LeadsTablePage() {
                                                         className: "w-3 h-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 903,
+                                                        lineNumber: 904,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 896,
+                                                lineNumber: 897,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 895,
+                                            lineNumber: 896,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableHead"], {
                                             children: "Ação"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 906,
+                                            lineNumber: 907,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -5147,18 +5147,18 @@ function LeadsTablePage() {
                                                         className: "w-3 h-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 915,
+                                                        lineNumber: 916,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                lineNumber: 908,
+                                                lineNumber: 909,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 907,
+                                            lineNumber: 908,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -5166,18 +5166,18 @@ function LeadsTablePage() {
                                             children: "Ações"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 918,
+                                            lineNumber: 919,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                    lineNumber: 840,
+                                    lineNumber: 841,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                lineNumber: 839,
+                                lineNumber: 840,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableBody"], {
@@ -5203,12 +5203,12 @@ function LeadsTablePage() {
                                                         className: "w-4 h-4 rounded border-neutral-300 cursor-pointer"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 929,
+                                                        lineNumber: 930,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                    lineNumber: 928,
+                                                    lineNumber: 929,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -5216,7 +5216,7 @@ function LeadsTablePage() {
                                                     children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$date$2d$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["formatDate"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$date$2d$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["parseISO"])(lead.created_at), "dd/MM/yyyy HH:mm")
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                    lineNumber: 944,
+                                                    lineNumber: 945,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -5225,14 +5225,14 @@ function LeadsTablePage() {
                                                     children: lead.nome
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                    lineNumber: 947,
+                                                    lineNumber: 948,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableCell"], {
                                                     children: lead.cidade || "-"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                    lineNumber: 953,
+                                                    lineNumber: 954,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -5240,21 +5240,21 @@ function LeadsTablePage() {
                                                     children: lead.interesse || "-"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                    lineNumber: 954,
+                                                    lineNumber: 955,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableCell"], {
                                                     children: lead.telefone || "-"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                    lineNumber: 955,
+                                                    lineNumber: 956,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableCell"], {
                                                     children: lead.adicionado_por_nome
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                    lineNumber: 956,
+                                                    lineNumber: 957,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -5263,12 +5263,12 @@ function LeadsTablePage() {
                                                         children: lead.temperatura
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 958,
+                                                        lineNumber: 959,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                    lineNumber: 957,
+                                                    lineNumber: 958,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -5276,7 +5276,7 @@ function LeadsTablePage() {
                                                     children: lead.acao || "-"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                    lineNumber: 960,
+                                                    lineNumber: 961,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -5287,26 +5287,26 @@ function LeadsTablePage() {
                                                                 className: "w-3 h-3 mr-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 964,
+                                                                lineNumber: 965,
                                                                 columnNumber: 25
                                                             }, this),
                                                             "Convertido"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 963,
+                                                        lineNumber: 964,
                                                         columnNumber: 23
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
                                                         className: `${getStatusColor(lead.status)} rounded-sm`,
                                                         children: "Ativo"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 968,
+                                                        lineNumber: 969,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                    lineNumber: 961,
+                                                    lineNumber: 962,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -5325,12 +5325,12 @@ function LeadsTablePage() {
                                                                     className: "w-4 h-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                    lineNumber: 980,
+                                                                    lineNumber: 981,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 973,
+                                                                lineNumber: 974,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5343,31 +5343,31 @@ function LeadsTablePage() {
                                                                         className: "w-4 h-4"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                        lineNumber: 983,
+                                                                        lineNumber: 984,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     "Editar"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                                lineNumber: 982,
+                                                                lineNumber: 983,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                        lineNumber: 972,
+                                                        lineNumber: 973,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                                    lineNumber: 971,
+                                                    lineNumber: 972,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, lead.id, true, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 923,
+                                            lineNumber: 924,
                                             columnNumber: 17
                                         }, this)),
                                     filteredAndSortedLeads.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TableRow"], {
@@ -5377,34 +5377,34 @@ function LeadsTablePage() {
                                             children: "Nenhum lead encontrado"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                            lineNumber: 992,
+                                            lineNumber: 993,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                        lineNumber: 991,
+                                        lineNumber: 992,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                                lineNumber: 921,
+                                lineNumber: 922,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                        lineNumber: 838,
+                        lineNumber: 839,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                    lineNumber: 837,
+                    lineNumber: 838,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                lineNumber: 836,
+                lineNumber: 837,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$database$2f$admin$2d$password$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AdminPasswordDialog"], {
@@ -5414,7 +5414,7 @@ function LeadsTablePage() {
                 action: adminAction === "assign" ? "atribuir leads a um vendedor" : adminAction === "export" ? "exportar leads" : "deletar leads"
             }, void 0, false, {
                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                lineNumber: 1002,
+                lineNumber: 1003,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$database$2f$assign$2d$seller$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AssignSellerDialog"], {
@@ -5427,7 +5427,7 @@ function LeadsTablePage() {
                 }
             }, void 0, false, {
                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                lineNumber: 1015,
+                lineNumber: 1016,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$database$2f$delete$2d$leads$2d$confirm$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DeleteLeadsConfirmDialog"], {
@@ -5437,7 +5437,7 @@ function LeadsTablePage() {
                 onConfirm: deleteLeads
             }, void 0, false, {
                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                lineNumber: 1025,
+                lineNumber: 1026,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$database$2f$edit$2d$lead$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["EditLeadDialog"], {
@@ -5447,7 +5447,7 @@ function LeadsTablePage() {
                 onSuccess: fetchAllLeads
             }, void 0, false, {
                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                lineNumber: 1032,
+                lineNumber: 1033,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$database$2f$lead$2d$history$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["LeadHistoryDialog"], {
@@ -5457,7 +5457,7 @@ function LeadsTablePage() {
                 leadName: selectedLeadForHistory?.nome || ""
             }, void 0, false, {
                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                lineNumber: 1039,
+                lineNumber: 1040,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$database$2f$view$2d$lead$2d$details$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ViewLeadDetailsDialog"], {
@@ -5466,13 +5466,13 @@ function LeadsTablePage() {
                 lead: viewingLead
             }, void 0, false, {
                 fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-                lineNumber: 1046,
+                lineNumber: 1047,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/(app)/banco-de-dados/leads/page.tsx",
-        lineNumber: 622,
+        lineNumber: 623,
         columnNumber: 5
     }, this);
 }
