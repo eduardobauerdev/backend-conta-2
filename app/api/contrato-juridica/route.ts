@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { generateCallbackId } from "@/lib/callback-store"
+import { DocxToPdfProcessor, ContratoJuridicaData } from "@/lib/document-generator/docx-to-pdf"
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -15,69 +15,78 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
     
-    const callbackId = generateCallbackId()
+    console.log('[ContratoJuridica] Gerando contrato DOCX para:', body.nome_contratante)
     
-    const url = new URL(request.url)
-    const baseUrl = `${url.protocol}//${url.host}`
-    const callbackUrl = `${baseUrl}/api/callback/contrato-juridica`
-    
-    console.log("[v0] Enviando contrato jurídica com callbackId:", callbackId)
-    console.log("[v0] URL de callback completa:", callbackUrl)
-
-    try {
-      const response = await fetch("https://edubauerdev.app.n8n.cloud/webhook-test/contrado-juridica-inova-inox", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...body,
-          callbackId,
-          webhookUrl: callbackUrl // Enviando como webhookUrl para o n8n
-        }),
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: "Unknown error" }))
-        
-        console.log("[v0] N8N webhook não disponível (status:", response.status, "):", errorData.message)
-        console.log("[v0] Dados do contrato capturados:", body)
-        
-        return NextResponse.json({ 
-          success: true, 
-          webhookAvailable: false,
-          message: "Contrato registrado com sucesso. O webhook do n8n está temporariamente indisponível.",
-          data: body 
-        }, { headers: corsHeaders })
-      }
-
-      const data = await response.json().catch(() => ({}))
-      console.log("[v0] Contrato enviado com sucesso ao n8n")
-      console.log("[v0] Resposta do n8n:", data)
-      
-      return NextResponse.json({ 
-        success: true, 
-        webhookAvailable: true,
-        callbackId,
-        driveLink: data.driveLink || data.link || data.url || null,
-        data 
-      }, { headers: corsHeaders })
-    } catch (webhookError) {
-      console.log("[v0] Erro de conexão com webhook n8n:", webhookError)
-      console.log("[v0] Dados do contrato capturados:", body)
-      
-      return NextResponse.json({ 
-        success: true, 
-        webhookAvailable: false,
-        message: "Contrato registrado com sucesso. O webhook do n8n está temporariamente indisponível.",
-        data: body 
-      }, { headers: corsHeaders })
+    // Preparar dados no formato esperado
+    const data: ContratoJuridicaData = {
+      tipo_projeto: body.tipo_projeto || '',
+      nome_contratante: body.nome_contratante || '',
+      telefone_contratante: body.telefone_contratante || '',
+      endereco_contratante: body.endereco_contratante || '',
+      cpf_contratante: body.cpf_contratante || '',
+      forma_pagamento_nao_parcelado: body.forma_pagamento_nao_parcelado || '',
+      valor_produtos_instalacao: body.valor_produtos_instalacao || '',
+      valor_entrada: body.valor_entrada || '',
+      valor_desconto: body.valor_desconto || '',
+      quantidade_parcelas: body.quantidade_parcelas || '',
+      forma_pagamento_parcelas: body.forma_pagamento_parcelas || '',
+      observacao_pagamento: body.observacao_pagamento || '',
+      data_emissao_contrato: body.data_emissao_contrato || new Date().toISOString(),
+      valor_parcelas: body.valor_parcelas || '',
+      valor_total_extenso: body.valor_total_extenso || '',
+      valor_final: body.valor_final || '',
+      foto_orcamento_base64: body.foto_orcamento_base64,
+      // Campos específicos de pessoa jurídica
+      cnpj_contratante: body.cnpj_contratante || '',
+      nome_representante: body.nome_representante || '',
+      cargo_representante: body.cargo_representante || '',
+      cpf_representante: body.cpf_representante || '',
+      telefone_representante: body.telefone_representante || ''
     }
-  } catch (error) {
-    console.error("[v0] Erro ao processar requisição:", error)
-    return NextResponse.json({ 
+    
+    // Validar dados obrigatórios
+    const validation = DocxToPdfProcessor.validateContratoJuridica(data)
+    if (!validation.valid) {
+      return NextResponse.json({
+        success: false,
+        error: `Campos obrigatórios ausentes: ${validation.missing.join(', ')}`
+      }, { status: 400, headers: corsHeaders })
+    }
+    
+    // Gerar DOCX a partir do template
+    try {
+      const docxBuffer = await DocxToPdfProcessor.gerarContratoJuridica(
+        'public/templates/contrato-juridica.docx',
+        data
+      )
+      
+      const filename = `contrato-${data.nome_contratante.replace(/\s+/g, '-').toLowerCase()}.docx`
+      
+      console.log('[ContratoJuridica] Contrato DOCX gerado com sucesso:', filename)
+      
+      // Retornar DOCX para download
+      return new NextResponse(docxBuffer, {
+        headers: {
+          ...corsHeaders,
+          'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+          'Content-Disposition': `attachment; filename="${filename}"`,
+          'Content-Length': docxBuffer.length.toString(),
+        }
+      })
+      
+    } catch (templateError: any) {
+      console.error('[ContratoJuridica] Erro ao processar template:', templateError)
+      return NextResponse.json({
+        success: false,
+        error: `Erro ao processar template DOCX: ${templateError.message}. Certifique-se de que o arquivo contrato-juridica.docx existe em /public/templates/`
+      }, { status: 500, headers: corsHeaders })
+    }
+    
+  } catch (error: any) {
+    console.error('[ContratoJuridica] Erro geral:', error)
+    return NextResponse.json({
       success: false,
-      error: "Erro ao processar contrato" 
+      error: error.message || 'Erro ao gerar contrato'
     }, { status: 500, headers: corsHeaders })
   }
 }

@@ -15,7 +15,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
     
-    console.log('[ContratoFisica] Gerando contrato DOCX para:', body.nome_contratante)
+    console.log('[ContratoFisica] Gerando contrato para:', body.nome_contratante)
     
     // Preparar dados no formato esperado
     const data: ContratoFisicaData = {
@@ -48,36 +48,27 @@ export async function POST(request: Request) {
     }
     
     // Gerar DOCX a partir do template
-    try {
-      const docxBuffer = await DocxToPdfProcessor.gerarContratoFisica(
-        'public/templates/contrato-fisica.docx',
-        data
-      )
-      
-      const filename = `contrato-${data.nome_contratante.replace(/\s+/g, '-').toLowerCase()}.docx`
-      
-      console.log('[ContratoFisica] Contrato DOCX gerado com sucesso:', filename)
-      
-      // Retornar DOCX para download
-      return new NextResponse(docxBuffer, {
-        headers: {
-          ...corsHeaders,
-          'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          'Content-Disposition': `attachment; filename="${filename}"`,
-          'Content-Length': docxBuffer.length.toString(),
-        }
-      })
-      
-    } catch (templateError: any) {
-      console.error('[ContratoFisica] Erro ao processar template:', templateError)
-      return NextResponse.json({
-        success: false,
-        error: `Erro ao processar template DOCX: ${templateError.message}. Certifique-se de que o arquivo contrato-fisica.docx existe em /public/templates/`
-      }, { status: 500, headers: corsHeaders })
-    }
+    const docxBuffer = await DocxToPdfProcessor.gerarContratoFisica(
+      'public/templates/contrato-fisica.docx',
+      data
+    )
+    
+    const filename = `contrato-${data.nome_contratante.replace(/\s+/g, '-').toLowerCase()}.docx`
+    
+    console.log('[ContratoFisica] Contrato gerado com sucesso:', filename)
+    
+    // Retornar DOCX para download
+    return new NextResponse(docxBuffer, {
+      headers: {
+        ...corsHeaders,
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'Content-Disposition': `attachment; filename="${filename}"`,
+        'Content-Length': docxBuffer.length.toString(),
+      }
+    })
     
   } catch (error: any) {
-    console.error('[ContratoFisica] Erro geral:', error)
+    console.error('[ContratoFisica] Erro:', error)
     return NextResponse.json({
       success: false,
       error: error.message || 'Erro ao gerar contrato'

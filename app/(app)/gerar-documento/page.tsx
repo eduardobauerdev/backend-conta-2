@@ -97,6 +97,11 @@ export default function GerarDocumentoPage() {
     setShowPreview(true)
   }
 
+  const handleDocumentGenerated = (result: any) => {
+    console.log("[DocumentGen] Documento gerado:", result)
+    // Aqui você pode adicionar lógica adicional como salvar no histórico, etc.
+  }
+
   // useEffect(() => {
   //   if (!isAuthenticated()) {
   //     router.push('/login')

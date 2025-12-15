@@ -1,5 +1,13 @@
 import { NextResponse } from "next/server"
-import { generateCallbackId } from "@/lib/callback-store"
+import { DocumentGenerator, initializeTemplates } from "@/templates"
+import { createServerClient } from "@/lib/supabase/server"
+
+// Garantir que templates estejam sempre inicializados
+try {
+  initializeTemplates()
+} catch (error) {
+  console.error('[API] Erro ao inicializar templates:', error)
+}
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -15,66 +23,61 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
     
-    const callbackId = generateCallbackId()
+    console.log("[DocumentGen] Gerando ordem de serviço:", body)
     
-    const url = new URL(request.url)
-    const baseUrl = `${url.protocol}//${url.host}`
-    const callbackUrl = `${baseUrl}/api/callback/ordem-servico`
-    
-    console.log("[v0] Enviando ordem de serviço com callbackId:", callbackId)
-    console.log("[v0] URL de callback completa:", callbackUrl)
-
+    // Gerar documento usando o sistema local
     try {
-      const response = await fetch("https://edubauerdev.app.n8n.cloud/webhook-test/ordem-servico-inova-inox", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const result = await DocumentGenerator.generateDocument({
+        templateId: 'ordem-servico',
+        data: {
           ...body,
-          callbackId,
-          webhookUrl: callbackUrl // Enviando como webhookUrl para o n8n
-        }),
+          cidade: body.cidade || 'Cidade não informada'
+        },
+        format: 'html',
+        filename: `ordem_servico_${body.cliente || 'cliente'}_${new Date().toISOString().split('T')[0]}`
       })
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: "Unknown error" }))
-        
-        console.log("[v0] N8N webhook não disponível (status:", response.status, "):", errorData.message)
-        console.log("[v0] Dados da ordem capturados:", body)
-        
-        return NextResponse.json({ 
-          success: true, 
-          webhookAvailable: false,
-          message: "Ordem registrada com sucesso. O webhook do n8n está temporariamente indisponível.",
-          data: body 
-        }, { headers: corsHeaders })
+      
+      console.log("[DocumentGen] Ordem de serviço gerada com sucesso")
+      
+      // Salvar no banco de dados (opcional)
+      try {
+        const supabase = await createServerClient()
+        await supabase.from('ordens_servico').insert({
+          cliente: body.cliente,
+          vendedor: body.vendedor,
+          tipo_os: body.tipo_os,
+          dados: body,
+          documento_html: result.html,
+          created_at: new Date().toISOString()
+        })
+      } catch (dbError) {
+        console.log("[DocumentGen] Aviso: Não foi possível salvar no banco:", dbError)
       }
-
-      const data = await response.json().catch(() => ({}))
-      console.log("[v0] Ordem enviada com sucesso ao n8n")
-      console.log("[v0] Resposta do n8n:", data)
       
       return NextResponse.json({ 
         success: true, 
-        webhookAvailable: true,
-        callbackId,
-        driveLink: data.driveLink || data.link || data.url || null,
-        data 
+        message: "Ordem de serviço gerada com sucesso!",
+        document: {
+          html: result.html,
+          filename: result.filename
+        },
+        data: body,
+        generatedLocally: true
       }, { headers: corsHeaders })
-    } catch (webhookError) {
-      console.log("[v0] Erro de conexão com webhook n8n:", webhookError)
-      console.log("[v0] Dados da ordem capturados:", body)
+      
+    } catch (docError: any) {
+      console.error("[DocumentGen] Erro ao gerar documento:", docError)
       
       return NextResponse.json({ 
         success: true, 
-        webhookAvailable: false,
-        message: "Ordem registrada com sucesso. O webhook do n8n está temporariamente indisponível.",
-        data: body 
+        message: "Dados salvos, mas houve erro na geração do documento: " + docError.message,
+        data: body,
+        documentError: docError.message
       }, { headers: corsHeaders })
     }
+    
   } catch (error) {
-    console.error("[v0] Erro ao processar requisição:", error)
+    console.error("[DocumentGen] Erro ao processar requisição:", error)
     return NextResponse.json({ 
       success: false,
       error: "Erro ao processar ordem de serviço" 

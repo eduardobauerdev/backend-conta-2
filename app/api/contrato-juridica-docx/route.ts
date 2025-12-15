@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { DocxToPdfProcessor, ContratoFisicaData } from "@/lib/document-generator/docx-to-pdf"
+import { DocxToPdfProcessor, ContratoJuridicaData } from "@/lib/document-generator/docx-to-pdf"
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -15,10 +15,10 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
     
-    console.log('[ContratoFisica] Gerando contrato DOCX para:', body.nome_contratante)
+    console.log('[ContratoJuridica] Gerando contrato para:', body.nome_contratante)
     
     // Preparar dados no formato esperado
-    const data: ContratoFisicaData = {
+    const data: ContratoJuridicaData = {
       tipo_projeto: body.tipo_projeto || '',
       nome_contratante: body.nome_contratante || '',
       telefone_contratante: body.telefone_contratante || '',
@@ -35,11 +35,17 @@ export async function POST(request: Request) {
       valor_parcelas: body.valor_parcelas || '',
       valor_total_extenso: body.valor_total_extenso || '',
       valor_final: body.valor_final || '',
-      foto_orcamento_base64: body.foto_orcamento_base64
+      foto_orcamento_base64: body.foto_orcamento_base64,
+      // Campos específicos de pessoa jurídica
+      cnpj_contratante: body.cnpj_contratante || '',
+      nome_representante: body.nome_representante || '',
+      cargo_representante: body.cargo_representante || '',
+      cpf_representante: body.cpf_representante || '',
+      telefone_representante: body.telefone_representante || ''
     }
     
     // Validar dados obrigatórios
-    const validation = DocxToPdfProcessor.validateContratoFisica(data)
+    const validation = DocxToPdfProcessor.validateContratoJuridica(data)
     if (!validation.valid) {
       return NextResponse.json({
         success: false,
@@ -48,36 +54,27 @@ export async function POST(request: Request) {
     }
     
     // Gerar DOCX a partir do template
-    try {
-      const docxBuffer = await DocxToPdfProcessor.gerarContratoFisica(
-        'public/templates/contrato-fisica.docx',
-        data
-      )
-      
-      const filename = `contrato-${data.nome_contratante.replace(/\s+/g, '-').toLowerCase()}.docx`
-      
-      console.log('[ContratoFisica] Contrato DOCX gerado com sucesso:', filename)
-      
-      // Retornar DOCX para download
-      return new NextResponse(docxBuffer, {
-        headers: {
-          ...corsHeaders,
-          'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          'Content-Disposition': `attachment; filename="${filename}"`,
-          'Content-Length': docxBuffer.length.toString(),
-        }
-      })
-      
-    } catch (templateError: any) {
-      console.error('[ContratoFisica] Erro ao processar template:', templateError)
-      return NextResponse.json({
-        success: false,
-        error: `Erro ao processar template DOCX: ${templateError.message}. Certifique-se de que o arquivo contrato-fisica.docx existe em /public/templates/`
-      }, { status: 500, headers: corsHeaders })
-    }
+    const docxBuffer = await DocxToPdfProcessor.gerarContratoJuridica(
+      'public/templates/contrato-juridica.docx',
+      data
+    )
+    
+    const filename = `contrato-${data.nome_contratante.replace(/\s+/g, '-').toLowerCase()}.docx`
+    
+    console.log('[ContratoJuridica] Contrato gerado com sucesso:', filename)
+    
+    // Retornar DOCX para download
+    return new NextResponse(docxBuffer, {
+      headers: {
+        ...corsHeaders,
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'Content-Disposition': `attachment; filename="${filename}"`,
+        'Content-Length': docxBuffer.length.toString(),
+      }
+    })
     
   } catch (error: any) {
-    console.error('[ContratoFisica] Erro geral:', error)
+    console.error('[ContratoJuridica] Erro:', error)
     return NextResponse.json({
       success: false,
       error: error.message || 'Erro ao gerar contrato'

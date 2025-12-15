@@ -7,7 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useState, useRef, useEffect } from "react"
-import { Upload, ImageIcon, X, CheckCircle2, AlertTriangle, ExternalLink, Loader2, Eraser, Copy, Code } from 'lucide-react'
+import { Upload, ImageIcon, X, CheckCircle2, AlertTriangle, ExternalLink, Loader2, Eraser, Copy, Code, Eye, FileSearch } from 'lucide-react'
 import { getDriveLinks } from "@/lib/drive-links-store"
 
 const numberToWordsFull = (num: number): string => {
@@ -203,6 +203,10 @@ export function ContratoForm({
   const [submittedPayload, setSubmittedPayload] = useState<any>(null)
   const [showCopyToast, setShowCopyToast] = useState(false)
   const [countdown, setCountdown] = useState(10)
+  const [showPreviewModal, setShowPreviewModal] = useState(false)
+  const [previewData, setPreviewData] = useState<any>(null)
+  const [templateAnalysis, setTemplateAnalysis] = useState<any>(null)
+  const [isLoadingPreview, setIsLoadingPreview] = useState(false)
 
   useEffect(() => {
     const today = new Date()
@@ -397,6 +401,72 @@ export function ContratoForm({
     }
   }
 
+  // Função para gerar preview dos dados
+  const handlePreview = async () => {
+    setIsLoadingPreview(true)
+    
+    try {
+      // Calcular valores como no submit
+      const valorProdutosNum = parseCurrency(contratoData.valor_produtos_instalacao)
+      const valorDescontoNum = parseCurrency(contratoData.valor_desconto)
+      const valorFinalNumero = valorProdutosNum - valorDescontoNum
+      const quantidadeParcelas = Number.parseInt(contratoData.quantidade_parcelas) || 1
+      const valorParcelasNumero = valorFinalNumero / quantidadeParcelas
+
+      const valorFinalFormatted = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(valorFinalNumero)
+
+      const valorParcelasFormatted = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(valorParcelasNumero)
+
+      const valorTotalExtenso = numberToWordsFull(valorFinalNumero)
+
+      const dados = {
+        tipo_projeto: contratoData.tipo_projeto,
+        nome_contratante: contratoData.nome,
+        telefone_contratante: contratoData.telefone,
+        endereco_contratante: contratoData.endereco_contrato,
+        cpf_contratante: contratoData.cpf,
+        forma_pagamento_nao_parcelado: contratoData.forma_pagamento,
+        valor_produtos_instalacao: contratoData.valor_produtos_instalacao,
+        valor_entrada: contratoData.valor_entrada || "",
+        valor_desconto: contratoData.valor_desconto || "",
+        quantidade_parcelas: contratoData.quantidade_parcelas || "1",
+        forma_pagamento_parcelas: contratoData.forma_pagamento_parcelas || "",
+        observacao_pagamento: contratoData.observacao_pagamento || "",
+        data_emissao_contrato: contratoData.data_emissao_contrato,
+        valor_final: valorFinalFormatted,
+        valor_total_extenso: valorTotalExtenso,
+        valor_parcelas: valorParcelasFormatted,
+      }
+
+      // Buscar análise do template
+      const templateRes = await fetch('/api/contrato-preview?tipo=fisica')
+      const templateData = await templateRes.json()
+      setTemplateAnalysis(templateData)
+
+      // Buscar preview dos dados
+      const previewRes = await fetch('/api/contrato-preview', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tipo: 'fisica', dados })
+      })
+      const preview = await previewRes.json()
+      setPreviewData(preview)
+
+      setShowPreviewModal(true)
+    } catch (error) {
+      console.error('Erro ao gerar preview:', error)
+      alert('Erro ao gerar pré-visualização')
+    } finally {
+      setIsLoadingPreview(false)
+    }
+  }
+
   const handleSubmit = async () => {
     // Validate required fields
     const newErrors: Record<string, string> = {}
@@ -487,7 +557,7 @@ export function ContratoForm({
     setCountdown(10)
 
     try {
-      console.log("[v0] Enviando contrato pessoa física para n8n...")
+      console.log("[v0] Gerando contrato pessoa física DOCX...")
       console.log("[v0] Payload:", JSON.stringify(payload, null, 2))
       
       const response = await fetch("/api/contrato-fisica", {
@@ -498,16 +568,45 @@ export function ContratoForm({
         body: JSON.stringify(payload),
       })
 
-      const result = await response.json()
-      console.log("[v0] Resposta da API:", result)
+      // Verificar se a resposta é um arquivo DOCX ou JSON de erro
+      const contentType = response.headers.get('content-type') || ''
+      
+      if (contentType.includes('application/vnd.openxmlformats-officedocument')) {
+        // É um arquivo DOCX - fazer download
+        const blob = await response.blob()
+        const url = URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.href = url
+        
+        // Extrair nome do arquivo do header ou usar padrão
+        const disposition = response.headers.get('content-disposition')
+        let filename = `contrato-${payload.nome_contratante?.replace(/\s+/g, '-') || 'cliente'}.docx`
+        if (disposition) {
+          const match = disposition.match(/filename="?([^"]+)"?/)
+          if (match) filename = match[1]
+        }
+        
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(url)
+        
+        console.log("[v0] Contrato DOCX baixado com sucesso:", filename)
+      } else {
+        // É uma resposta JSON (provavelmente erro)
+        const result = await response.json()
+        console.log("[v0] Resposta da API:", result)
 
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || "Erro ao enviar contrato")
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || "Erro ao gerar contrato")
+        }
       }
 
-      console.log("[v0] Contrato enviado com sucesso!")
+      console.log("[v0] Contrato gerado com sucesso!")
     } catch (error) {
-      console.error("[v0] Erro ao enviar contrato:", error)
+      console.error("[v0] Erro ao gerar contrato:", error)
+      alert("❌ Erro ao gerar contrato. Por favor, tente novamente.")
     } finally {
       const countdownInterval = setInterval(() => {
         setCountdown((prev) => {
@@ -1068,16 +1167,162 @@ export function ContratoForm({
           />
         </div>
 
-        <div className="pt-4">
-          <Button
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-            className="w-full bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-2 px-4 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? "Gerando contrato..." : "Gerar Contrato"}
-          </Button>
+        <div className="pt-4 space-y-3">
+          <div className="flex gap-3">
+            <Button
+              onClick={handlePreview}
+              disabled={isLoadingPreview}
+              variant="outline"
+              className="flex-1 border-neutral-300 hover:bg-neutral-100 text-neutral-700 font-medium py-2 px-4 rounded-md transition-colors disabled:opacity-50"
+            >
+              {isLoadingPreview ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Analisando...
+                </>
+              ) : (
+                <>
+                  <Eye className="w-4 h-4 mr-2" />
+                  Pré-visualizar
+                </>
+              )}
+            </Button>
+            <Button
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+              className="flex-1 bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-2 px-4 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? "Gerando contrato..." : "Gerar Contrato"}
+            </Button>
+          </div>
         </div>
       </Card>
+
+      {/* Modal de Pré-visualização */}
+      {showPreviewModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="relative bg-white rounded-2xl shadow-2xl w-[90%] max-w-4xl max-h-[90vh] overflow-hidden">
+            <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <FileSearch className="w-5 h-5 text-blue-600" />
+                <h3 className="text-lg font-semibold">Pré-visualização do Contrato</h3>
+              </div>
+              <button
+                onClick={() => setShowPreviewModal(false)}
+                className="text-neutral-400 hover:text-neutral-600 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-140px)] space-y-6">
+              {/* Status do Template */}
+              {templateAnalysis && (
+                <div className={`p-4 rounded-lg border-2 ${
+                  templateAnalysis.analysis?.missingInTemplate?.length > 0 
+                    ? 'bg-yellow-50 border-yellow-300' 
+                    : templateAnalysis.analysis?.hasBrokenPlaceholders 
+                    ? 'bg-orange-50 border-orange-300'
+                    : 'bg-green-50 border-green-300'
+                }`}>
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <FileSearch className="w-4 h-4" />
+                    Análise do Template
+                  </h4>
+                  <p className="text-sm mb-2">{templateAnalysis.hint}</p>
+                  
+                  {templateAnalysis.analysis?.placeholdersFound?.length > 0 ? (
+                    <div className="text-xs text-neutral-600">
+                      <p className="font-medium">Placeholders encontrados no template:</p>
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {templateAnalysis.analysis.placeholdersFound.map((p: string) => (
+                          <span key={p} className="bg-white px-2 py-0.5 rounded border">
+                            {`{${p}}`}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-sm text-red-600 font-medium">
+                      ⚠️ Nenhum placeholder {`{variavel}`} encontrado no template!
+                      O template deve usar a sintaxe {`{nome_contratante}`} para as variáveis.
+                    </p>
+                  )}
+                  
+                  {templateAnalysis.analysis?.missingInTemplate?.length > 0 && (
+                    <div className="mt-2 text-xs">
+                      <p className="font-medium text-yellow-700">Variáveis esperadas não encontradas:</p>
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {templateAnalysis.analysis.missingInTemplate.map((p: string) => (
+                          <span key={p} className="bg-yellow-100 px-2 py-0.5 rounded text-yellow-800">
+                            {`{${p}}`}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Preview dos Dados */}
+              {previewData?.preview && (
+                <div className="bg-neutral-50 p-4 rounded-lg border">
+                  <h4 className="font-semibold mb-3 flex items-center gap-2">
+                    <Code className="w-4 h-4" />
+                    Dados que serão inseridos no contrato
+                  </h4>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    {previewData.preview.resumo.camposPreenchidos.map(({ campo, valor }: { campo: string, valor: string }) => (
+                      <div key={campo} className="flex items-start gap-2 text-sm bg-white p-2 rounded border">
+                        <span className="text-neutral-500 font-mono text-xs">{`{${campo}}`}</span>
+                        <span className="text-neutral-400">→</span>
+                        <span className="text-neutral-900 font-medium flex-1 truncate" title={valor}>
+                          {valor || '(vazio)'}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {previewData.preview.resumo.camposVazios.length > 0 && (
+                    <div className="mt-4 p-3 bg-yellow-50 rounded border border-yellow-200">
+                      <p className="text-sm text-yellow-700 font-medium">
+                        Campos vazios ({previewData.preview.resumo.vazios}):
+                      </p>
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {previewData.preview.resumo.camposVazios.map((campo: string) => (
+                          <span key={campo} className="text-xs bg-yellow-100 px-2 py-0.5 rounded">
+                            {campo}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            <div className="sticky bottom-0 bg-white border-t px-6 py-4 flex justify-end gap-3">
+              <Button
+                variant="outline"
+                onClick={() => setShowPreviewModal(false)}
+              >
+                Fechar
+              </Button>
+              <Button
+                onClick={() => {
+                  setShowPreviewModal(false)
+                  handleSubmit()
+                }}
+                disabled={isSubmitting}
+                className="bg-neutral-900 hover:bg-neutral-800"
+              >
+                Gerar Contrato
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {submittedPayload && (
         <Card className="bg-neutral-50 border-2 border-neutral-300 p-4 mt-4">
