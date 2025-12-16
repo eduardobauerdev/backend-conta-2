@@ -54,7 +54,18 @@ export async function POST(request: Request) {
         data
       )
       
-      const filename = `contrato-${data.nome_contratante.replace(/\s+/g, '-').toLowerCase()}.docx`
+      // Formato: Contrato - Nome do Cliente + Data
+      const dataFormatada = new Date(data.data_emissao_contrato).toLocaleDateString('pt-BR').replace(/\//g, '-')
+      
+      // Sanitizar nome para remover caracteres especiais
+      const nomeSanitizado = data.nome_contratante
+        .normalize('NFD') // Decompor caracteres acentuados
+        .replace(/[\u0300-\u036f]/g, '') // Remover marcas diacríticas
+        .replace(/[^a-zA-Z0-9\s-]/g, '') // Remover caracteres especiais exceto espaços e hífens
+        .replace(/\s+/g, ' ') // Normalizar espaços múltiplos
+        .trim()
+      
+      const filename = `Contrato - ${nomeSanitizado} ${dataFormatada}.docx`
       
       console.log('[ContratoFisica] Contrato DOCX gerado com sucesso:', filename)
       
@@ -63,7 +74,7 @@ export async function POST(request: Request) {
         headers: {
           ...corsHeaders,
           'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          'Content-Disposition': `attachment; filename="${filename}"`,
+          'Content-Disposition': `attachment; filename="${encodeURIComponent(filename)}"; filename*=UTF-8''${encodeURIComponent(filename)}`,
           'Content-Length': docxBuffer.length.toString(),
         }
       })

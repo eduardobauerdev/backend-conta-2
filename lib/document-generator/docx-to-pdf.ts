@@ -1,11 +1,9 @@
 /**
- * Processador de templates DOCX para gerar PDFs
- * Baseado no fluxo N8N existente
+ * Processador de templates DOCX para gerar documentos
+ * Usando easy-template-x (gratuito e com suporte a imagens)
  */
 
-import Docxtemplater from 'docxtemplater'
-import PizZip from 'pizzip'
-import { PDFDocument } from 'pdf-lib'
+import { TemplateHandler, MimeType } from 'easy-template-x'
 
 export interface ContratoFisicaData {
   tipo_projeto: string
@@ -53,22 +51,66 @@ export class DocxToPdfProcessor {
   }
 
   /**
-   * Prepara dados para substituição no template
+   * Detecta o formato da imagem a partir do base64
    */
-  private static prepareData(data: ContratoFisicaData | ContratoJuridicaData): Record<string, string> {
-    const prepared: Record<string, string> = {}
+  private static detectImageFormat(base64: string): MimeType {
+    if (base64.startsWith('data:image/png')) return MimeType.Png
+    if (base64.startsWith('data:image/jpeg') || base64.startsWith('data:image/jpg')) return MimeType.Jpeg
+    if (base64.startsWith('data:image/gif')) return MimeType.Gif
+    if (base64.startsWith('data:image/bmp')) return MimeType.Bmp
+    if (base64.startsWith('data:image/svg')) return MimeType.Svg
+    // Default para PNG se não conseguir detectar
+    return MimeType.Png
+  }
+
+  /**
+   * Prepara dados para substituição no template
+   * easy-template-x usa formato especial para imagens
+   */
+  private static prepareData(data: ContratoFisicaData | ContratoJuridicaData): Record<string, any> {
+    const prepared: Record<string, any> = {}
     
     for (const [key, value] of Object.entries(data)) {
       // Formatar data especialmente
       if (key === 'data_emissao_contrato') {
         prepared[key] = this.formatDate(value as string)
       }
-      // Ignorar foto (será processada separadamente)
+      // Processar foto: converter para formato easy-template-x
       else if (key === 'foto_orcamento_base64') {
-        continue
+        if (value) {
+          try {
+            const base64String = value as string
+            
+            // Detectar formato da imagem
+            const format = this.detectImageFormat(base64String)
+            
+            // Remover prefixo data:image/...;base64, se houver
+            const base64Data = base64String.replace(/^data:image\/\w+;base64,/, '')
+            
+            // Converter base64 para Buffer
+            const buffer = Buffer.from(base64Data, 'base64')
+            
+            if (buffer.length > 0) {
+              // Formato especial do easy-template-x para imagens
+              prepared['foto_orcamento'] = {
+                _type: 'image',
+                source: buffer,
+                format: format,
+                width: 400,  // Largura em pixels
+                height: 300, // Altura em pixels
+                altText: 'Foto do orçamento'
+              }
+              console.log('[DocxToPdf] Imagem preparada:', buffer.length, 'bytes, formato:', format)
+            } else {
+              console.log('[DocxToPdf] Buffer vazio, imagem não será inserida')
+            }
+          } catch (error) {
+            console.error('[DocxToPdf] Erro ao processar imagem:', error)
+          }
+        }
       }
       // Outros campos
-      else {
+      else if (key !== 'foto_orcamento_base64') {
         prepared[key] = value ? String(value) : ''
       }
     }
@@ -82,7 +124,7 @@ export class DocxToPdfProcessor {
   }
 
   /**
-   * Processa template DOCX com find & replace
+   * Processa template DOCX com find & replace usando easy-template-x
    * O template deve usar {variavel} para os placeholders
    */
   static async processDocxTemplate(
@@ -90,74 +132,38 @@ export class DocxToPdfProcessor {
     data: ContratoFisicaData | ContratoJuridicaData
   ): Promise<Buffer> {
     try {
-      // Carregar template
-      const zip = new PizZip(templateBuffer)
-      
-      // DEBUG: Verificar conteúdo do template
-      const documentXml = zip.file('word/document.xml')?.asText() || ''
-      const placeholderRegex = /\{([^}]+)\}/g
-      const foundPlaceholders: string[] = []
-      let match
-      while ((match = placeholderRegex.exec(documentXml)) !== null) {
-        if (!foundPlaceholders.includes(match[1])) {
-          foundPlaceholders.push(match[1])
-        }
-      }
-      console.log('[DocxToPdf] Placeholders encontrados no template:', foundPlaceholders)
-      
-      // Criar documento com docxtemplater
-      // Usa {variavel} como delimitadores padrão
-      const doc = new Docxtemplater(zip, {
-        paragraphLoop: true,
-        linebreaks: true,
-        nullGetter: () => '', // Retorna string vazia para valores nulos
-        delimiters: {
-          start: '{',
-          end: '}'
-        }
-      })
+      // Criar handler do easy-template-x
+      const handler = new TemplateHandler()
       
       // Preparar dados
       const preparedData = this.prepareData(data)
       
       console.log('[DocxToPdf] Dados preparados para substituição:')
       for (const [key, value] of Object.entries(preparedData)) {
-        console.log(`  ${key}: "${value?.substring(0, 50)}${value?.length > 50 ? '...' : ''}"`)
-      }
-      
-      // Verificar quais placeholders serão substituídos
-      const willBeReplaced = foundPlaceholders.filter(p => preparedData[p] !== undefined)
-      const willNotBeReplaced = foundPlaceholders.filter(p => preparedData[p] === undefined)
-      console.log('[DocxToPdf] Placeholders que serão substituídos:', willBeReplaced)
-      if (willNotBeReplaced.length > 0) {
-        console.warn('[DocxToPdf] ⚠️ Placeholders sem dados:', willNotBeReplaced)
-      }
-      
-      // Substituir variáveis
-      doc.setData(preparedData)
-      
-      try {
-        doc.render()
-        console.log('[DocxToPdf] ✅ Template renderizado com sucesso!')
-      } catch (error: any) {
-        console.error('[DocxToPdf] Erro ao renderizar template:', error)
-        if (error.properties?.errors) {
-          const errorDetails = error.properties.errors
-            .map((e: any) => `${e.message} em ${e.part}`)
-            .join(', ')
-          throw new Error(`Erro no template DOCX: ${errorDetails}`)
+        if (value && typeof value === 'object' && value._type === 'image') {
+          console.log(`  ${key}: [Imagem: ${value.source.length} bytes, ${value.format}]`)
+        } else if (typeof value === 'string') {
+          console.log(`  ${key}: "${value?.substring(0, 50)}${value?.length > 50 ? '...' : ''}"`)
+        } else {
+          console.log(`  ${key}: ${value}`)
         }
-        throw error
       }
       
-      // Gerar buffer do DOCX preenchido
-      const buffer = doc.getZip().generate({
-        type: 'nodebuffer',
-        compression: 'DEFLATE',
-        mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-      })
+      // Processar template
+      console.log('[DocxToPdf] Processando template com easy-template-x...')
+      const doc = await handler.process(templateBuffer, preparedData)
       
-      return buffer as Buffer
+      console.log('[DocxToPdf] ✅ Template processado com sucesso!')
+      
+      // Converter Blob/ArrayBuffer para Buffer
+      if (doc instanceof Blob) {
+        const arrayBuffer = await doc.arrayBuffer()
+        return Buffer.from(arrayBuffer)
+      } else if (doc instanceof ArrayBuffer) {
+        return Buffer.from(doc)
+      } else {
+        return Buffer.from(doc as any)
+      }
       
     } catch (error: any) {
       console.error('[DocxToPdf] Erro ao processar template:', error)
@@ -167,19 +173,11 @@ export class DocxToPdfProcessor {
 
   /**
    * Converte DOCX para PDF usando conversão client-side
-   * Nota: Como não podemos usar LibreOffice no servidor Next.js facilmente,
-   * retornamos o DOCX e deixamos o cliente abrir em janela de impressão
    */
   static async convertDocxToPdf(
     docxBuffer: Buffer,
     filename: string = 'document.pdf'
   ): Promise<{ success: boolean; docxBuffer: Buffer; message: string }> {
-    // Por enquanto, retornamos o DOCX
-    // O cliente pode:
-    // 1. Baixar o DOCX
-    // 2. Abrir em nova janela e usar Print to PDF
-    // 3. Ou usar API externa de conversão
-    
     return {
       success: true,
       docxBuffer,
@@ -199,7 +197,10 @@ export class DocxToPdfProcessor {
     
     try {
       const fullPath = path.join(process.cwd(), templatePath)
+      console.log('[DocxToPdf] Carregando template:', fullPath)
+      
       const templateBuffer = await fs.readFile(fullPath)
+      console.log('[DocxToPdf] Template carregado:', templateBuffer.length, 'bytes')
       
       const docxBuffer = await this.processDocxTemplate(templateBuffer, data)
       
@@ -223,7 +224,10 @@ export class DocxToPdfProcessor {
     
     try {
       const fullPath = path.join(process.cwd(), templatePath)
+      console.log('[DocxToPdf] Carregando template:', fullPath)
+      
       const templateBuffer = await fs.readFile(fullPath)
+      console.log('[DocxToPdf] Template carregado:', templateBuffer.length, 'bytes')
       
       const docxBuffer = await this.processDocxTemplate(templateBuffer, data)
       

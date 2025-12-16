@@ -75,8 +75,22 @@ export async function POST(request: Request) {
       formattedData
     )
     
-    // Determinar nome do arquivo
-    const outputFilename = filename || `${templateId}_${new Date().toISOString().split('T')[0]}.docx`
+    // Determinar nome do arquivo baseado no tipo de documento
+    let outputFilename = filename
+    
+    if (!outputFilename) {
+      const dataFormatada = new Date().toLocaleDateString('pt-BR').replace(/\//g, '-')
+      
+      if (templateId === 'ordem-servico') {
+        // Formato: Numero da ordem + Nome do cliente + Data
+        const numeroOrdem = data.numero_ordem || data.numeroOrdem || 'OS'
+        const cliente = data.cliente || data.nome_cliente || 'Cliente'
+        outputFilename = `${numeroOrdem} ${cliente} ${dataFormatada}.docx`
+      } else {
+        // Para outros tipos, usar formato padrão
+        outputFilename = `${templateId}_${dataFormatada}.docx`
+      }
+    }
     
     console.log('[DocxAPI] Documento gerado com sucesso:', outputFilename)
     

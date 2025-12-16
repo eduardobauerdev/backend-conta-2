@@ -728,6 +728,7 @@ export function OrdemForm({ onSave }: OrdemFormProps) {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="max-w-3xl mx-auto">
         <Card className="bg-white border-2 border-neutral-300 shadow-sm rounded-xl p-6 space-y-4">
           <h2 className="text-lg font-semibold">Cabeçalho</h2>
           <p className="text-sm text-neutral-600">Informações básicas do cliente e da ordem de serviço</p>
@@ -889,26 +890,48 @@ export function OrdemForm({ onSave }: OrdemFormProps) {
             />
           </div>
         </Card>
+        </div>
 
+        {/* Container para os 3 ambientes lado a lado */}
+        <div className={`grid grid-cols-1 gap-6 ${
+          formData.ambientes.length === 1 ? 'lg:grid-cols-1 max-w-3xl mx-auto' :
+          formData.ambientes.length === 2 ? 'lg:grid-cols-2 max-w-5xl mx-auto' :
+          'lg:grid-cols-3'
+        }`}>
         {formData.ambientes.map((ambiente, ambienteIndex) => (
-          <div key={ambienteIndex} className="space-y-6">
-            <Card className="bg-white border-2 border-neutral-300 shadow-sm rounded-xl p-6 space-y-4">
+          <div key={ambienteIndex} className="space-y-4">
+            <Card className="bg-white border-2 border-neutral-300 shadow-sm rounded-xl p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-lg font-semibold">Ambiente {ambienteIndex + 1}</h2>
-                  <p className="text-sm text-neutral-600">Detalhes do ambiente onde será realizado o serviço</p>
+                  <h2 className="text-base font-semibold">Ambiente {ambienteIndex + 1}</h2>
+                  <p className="text-xs text-neutral-600">Detalhes do ambiente</p>
                 </div>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleRemoveAmbiente(ambienteIndex)}
-                  disabled={formData.ambientes.length === 1}
-                  className="border-2 border-red-500 text-red-600 hover:bg-red-50 disabled:opacity-30"
-                >
-                  <X className="w-4 h-4 mr-1" />
-                  Remover ambiente
-                </Button>
+                <div className="flex items-center gap-2">
+                  {formData.ambientes.length < 3 && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={handleAddAmbiente}
+                      className="border-2 border-neutral-400 hover:bg-neutral-100 bg-transparent"
+                    >
+                      <Plus className="w-4 h-4 mr-1" />
+                      Adicionar
+                    </Button>
+                  )}
+                  {ambienteIndex !== 0 && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleRemoveAmbiente(ambienteIndex)}
+                      className="border-2 border-red-500 text-red-600 hover:bg-red-50"
+                    >
+                      <X className="w-4 h-4 mr-1" />
+                      Remover
+                    </Button>
+                  )}
+                </div>
               </div>
               <Separator />
 
@@ -1389,20 +1412,7 @@ export function OrdemForm({ onSave }: OrdemFormProps) {
             </Card>
           </div>
         ))}
-
-        {formData.ambientes.length < 3 && (
-          <Card className="bg-neutral-50 border-2 border-dashed border-neutral-300 shadow-sm rounded-xl p-6">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleAddAmbiente}
-              className="w-full border-2 border-neutral-400 hover:bg-neutral-100 bg-transparent"
-            >
-              <Plus className="w-5 h-5 mr-2" />
-              Adicionar Ambiente
-            </Button>
-          </Card>
-        )}
+        </div>
 
         <div className="flex justify-end pt-2">
           <Button type="submit" size="lg" className="bg-neutral-900 hover:bg-neutral-800">

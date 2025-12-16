@@ -50,6 +50,8 @@
     "cors": "2.8.5",
     "date-fns": "latest",
     "docxtemplater": "^3.67.6",
+    "docxtemplater-image-module-free": "^1.1.1",
+    "easy-template-x": "^7.0.3",
     "embla-carousel-react": "latest",
     "express": "5.1.0",
     "html2canvas": "^1.4.1",

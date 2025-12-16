@@ -120,6 +120,7 @@ export default function GerarDocumentoPage() {
           <p className="text-neutral-600 mt-2">Selecione o tipo de documento que deseja gerar</p>
         </div>
 
+        <div className="max-w-3xl mx-auto">
         <Card className="p-6 border-2 border-neutral-300">
           <h2 className="text-lg font-semibold mb-4">Tipo de Documento</h2>
           <div className="flex flex-wrap gap-6">
@@ -195,6 +196,7 @@ export default function GerarDocumentoPage() {
             </div>
           )}
         </Card>
+        </div>
 
         {gerarContrato && tipoContrato && (
           <>

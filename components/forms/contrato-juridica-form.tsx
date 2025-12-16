@@ -917,7 +917,8 @@ export function ContratoJuridicaForm({
         </button>
       )}
 
-      <Card className="bg-neutral-50 border-2 border-neutral-300 p-4 space-y-4">
+      <div className="max-w-3xl mx-auto">
+      <Card className="bg-neutral-50 border-2 border-neutral-300 p-6 space-y-4">
         <h3 className="text-base font-semibold text-neutral-900">Dados do Contrato - Pessoa Jurídica</h3>
 
         {driveLink && (
@@ -1523,7 +1524,7 @@ export function ContratoJuridicaForm({
       )}
 
       {submittedPayload && (
-        <Card className="bg-neutral-50 border-2 border-neutral-300 p-4 mt-4">
+        <Card className="bg-neutral-50 border-2 border-neutral-300 p-6 mt-4">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <Code className="w-5 h-5 text-neutral-700" />
@@ -1550,6 +1551,7 @@ export function ContratoJuridicaForm({
         </Card>
       )}
 
+      </div>
     </>
   )
 }

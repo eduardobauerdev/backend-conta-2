@@ -81,7 +81,16 @@ Forma de pagamento: {forma_pagamento_parcelas}
 Observações: {observacao_pagamento}
 
 Data de emissão: {data_emissao_contrato}
+
+IMAGEM DO ORÇAMENTO
+{foto_orcamento}
 ```
+
+**IMPORTANTE sobre a imagem:**
+- Use `{foto_orcamento}` para inserir a imagem do orçamento
+- A imagem será inserida automaticamente quando o usuário enviar uma foto
+- A imagem terá 600x400 pixels por padrão
+- Deixe a chave em uma linha separada para melhor visualização
 
 #### CONTRATO PESSOA JURÍDICA (`contrato-juridica.docx`)
 
