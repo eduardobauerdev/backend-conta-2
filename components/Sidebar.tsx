@@ -8,11 +8,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useUser } from "@/contexts/user-context"
 import { usePermissions } from "@/hooks/use-permissions"
 import { useSidebar } from "@/contexts/sidebar-context"
-// import { useWhatsApp } from "@/contexts/whatsapp-context" // Removido para usar direto do banco
 import React, { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { createClient } from "@/lib/supabase/client" // ✅ Importando Supabase
 
 const FolderClosedIcon = () => (
   <svg
@@ -235,47 +233,34 @@ export function Sidebar() {
   const { permissions } = usePermissions()
   const { isCollapsed, toggleCollapse } = useSidebar()
   
-  // ✅ ESTADO LOCAL PARA CONEXÃO (Substituindo o contexto antigo)
+  // ✅ ESTADO LOCAL PARA CONEXÃO (Busca do backend via API)
   const [isWhatsAppConnected, setIsWhatsAppConnected] = useState(false)
-  const [isWhatsAppSyncing, setIsWhatsAppSyncing] = useState(false)
-  const supabase = createClient()
 
-  // ✅ EFEITO: Escuta o status do banco em tempo real
+  // ✅ EFEITO: Busca status da API em polling
   useEffect(() => {
-    // 1. Busca status inicial
-    const fetchStatus = async () => {
-        const { data } = await supabase
-            .from("instance_settings")
-            .select("status")
-            .eq("id", 1)
-            .single()
-        
-        const status = data?.status
-        setIsWhatsAppSyncing(status === "syncing")
-        // "syncing" também é considerado conectado
-        setIsWhatsAppConnected(status === "connected" || status === "syncing")
-    }
-    fetchStatus()
-
-    // 2. Escuta mudanças
-    const channel = supabase
-        .channel("sidebar_status")
-        .on(
-            "postgres_changes",
-            { event: "UPDATE", schema: "public", table: "instance_settings", filter: "id=eq.1" },
-            (payload) => {
-                const status = payload.new.status
-                setIsWhatsAppSyncing(status === "syncing")
-                // "syncing" também é considerado conectado
-                setIsWhatsAppConnected(status === "connected" || status === "syncing")
+    const checkStatus = async () => {
+        try {
+            const response = await fetch('/api/whatsapp/status')
+            const data = await response.json()
+            
+            if (data.success && data.connected) {
+                setIsWhatsAppConnected(true)
+            } else {
+                setIsWhatsAppConnected(false)
             }
-        )
-        .subscribe()
-
-    return () => {
-        supabase.removeChannel(channel)
+        } catch (error) {
+            console.error("Erro ao verificar status:", error)
+            setIsWhatsAppConnected(false)
+        }
     }
-  }, [supabase])
+    
+    checkStatus()
+    
+    // Polling a cada 15 segundos
+    const intervalId = setInterval(checkStatus, 15000)
+    
+    return () => clearInterval(intervalId)
+  }, [])
 
 
   const isInDocumentosSection = documentosSubmenu.some((sub) => pathname === sub.href)
@@ -357,9 +342,7 @@ export function Sidebar() {
           {menuItems.map((item) => {
             const Icon =
               item.icon === "whatsapp"
-                ? isWhatsAppSyncing
-                  ? WhatsAppSyncingIcon
-                  : isWhatsAppConnected
+                ? isWhatsAppConnected
                     ? WhatsAppIcon
                     : WhatsAppDisconnectedIcon
                 : item.icon === "googledrive"

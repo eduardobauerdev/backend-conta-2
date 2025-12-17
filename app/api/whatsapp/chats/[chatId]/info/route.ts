@@ -13,7 +13,7 @@ export async function GET(request: NextRequest, { params }: { params: { chatId: 
     }
 
     // Fazer requisição para o Railway
-    const response = await fetch(`${config.server_url}/chats/${encodeURIComponent(params.chatId)}/info`)
+    const response = await fetch(`${config.server_url}/api/chats/${encodeURIComponent(params.chatId)}/info`)
 
     if (!response.ok) {
       throw new Error("Falha ao buscar informações do chat")

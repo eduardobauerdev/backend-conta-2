@@ -20,36 +20,27 @@ export function QRScanner({ onConnected }: QRScannerProps) {
   
   const supabase = createClient()
 
-  // 1. Escuta Realtime do Status (Mantido em instance_settings onde o backend escreve)
+  // 1. Verifica status inicial via API e mantém polling
   useEffect(() => {
-    const fetchInitialState = async () => {
+    const checkStatus = async () => {
       try {
-        const { data } = await supabase
-          .from('instance_settings')
-          .select('qr_code, status')
-          .eq('id', 1)
-          .single();
+        const response = await fetch("/api/whatsapp/status")
+        const data = await response.json()
 
-        if (data) {
-          if (data.status === 'qr' && data.qr_code) {
-            setQrImage(data.qr_code);
-            setSessionActive(true);
-            setIsSyncing(false);
-          } else if (data.status === 'syncing') {
-            setIsSyncing(true);
-            setSessionActive(false);
-            setQrImage(null);
-          } else if (data.status === 'connected') {
-            onConnected();
-          }
+        if (data.success && data.connected) {
+          onConnected()
         }
       } catch (error) {
-        console.error("Erro ao buscar estado inicial:", error);
+        console.error("Erro ao verificar status:", error)
       }
-    };
+    }
     
-    fetchInitialState();
+    checkStatus()
+    
+    // Polling a cada 5 segundos para verificar se conectou
+    const intervalId = setInterval(checkStatus, 5000)
 
+    // Também mantém realtime do Supabase para updates do QR code
     const channel = supabase
       .channel('qr_scanner_updates')
       .on(
@@ -58,15 +49,7 @@ export function QRScanner({ onConnected }: QRScannerProps) {
         (payload) => {
           const newData = payload.new;
           
-          if (newData.status === 'connected') {
-            toast.success("Conectado com sucesso!");
-            onConnected();
-          } else if (newData.status === 'syncing') {
-            setIsSyncing(true);
-            setSessionActive(false);
-            setQrImage(null);
-            setLoading(false);
-          } else if (newData.status === 'qr' && newData.qr_code) {
+          if (newData.status === 'qr' && newData.qr_code) {
             setQrImage(newData.qr_code);
             setLoading(false);
             setSessionActive(true);
@@ -82,69 +65,142 @@ export function QRScanner({ onConnected }: QRScannerProps) {
       .subscribe();
 
     return () => {
+      clearInterval(intervalId)
       supabase.removeChannel(channel);
     };
   }, [onConnected, supabase]);
 
-  // ✅ FUNÇÃO AUXILIAR: Busca a URL na tabela whatsapp_config
-  async function getBackendUrl() {
-    // Pega a primeira linha da configuração
+  // ✅ Função auxiliar: Busca a URL da API na tabela whatsapp_config
+  async function getBackendUrl(): Promise<string> {
     const { data, error } = await supabase
-        .from('whatsapp_config')
-        .select('server_url')
-        .limit(1)
-        .single();
+      .from('whatsapp_config')
+      .select('server_url')
+      .limit(1)
+      .single();
     
     if (error || !data?.server_url) {
-        throw new Error("URL da API não encontrada em 'whatsapp_config'.");
+      throw new Error("Configure a 'URL da API do WhatsApp' nas configurações primeiro.");
     }
     
-    // Remove barra no final se houver para evitar url mal formada
+    // Remove barra no final se houver
     return data.server_url.replace(/\/$/, "");
   }
 
-  // 2. Iniciar Sessão (Usa a URL do banco)
+  // 2. Iniciar Sessão - Chama diretamente o backend usando a URL do banco
   async function startSession() {
     try {
       setLoading(true);
       setQrImage(null);
       
-      const baseUrl = await getBackendUrl();
-      const url = `${baseUrl}/session/connect`;
+      // Busca a URL do backend no banco de dados
+      const backendUrl = await getBackendUrl();
       
-      console.log(`[QRScanner] Chamando API em: ${url}`);
-
-      const response = await fetch(url, { 
-        method: "POST" 
+      console.log(`[QRScanner] Backend URL (do banco): ${backendUrl}`);
+      
+      // 1. Primeiro inicializa a conexão (POST /api/initialize)
+      const initUrl = `${backendUrl}/api/initialize`;
+      console.log(`[QRScanner] Inicializando: ${initUrl}`);
+      
+      const initResponse = await fetch(initUrl, { 
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
       });
       
-      if (!response.ok) {
-          const errorText = await response.text(); 
-          throw new Error(errorText || "Falha ao iniciar");
+      if (!initResponse.ok) {
+        const errorData = await initResponse.json().catch(() => ({}));
+        throw new Error(errorData.message || `Erro ao inicializar: ${initResponse.status}`);
       }
       
-      toast.info("Iniciando servidor...", {
-        description: "Aguarde o QR Code aparecer."
+      const initData = await initResponse.json();
+      console.log('[QRScanner] Resposta initialize:', initData);
+      
+      // Se já está conectado, não precisa de QR
+      if (initData.connected) {
+        toast.success("WhatsApp já está conectado!");
+        onConnected();
+        setLoading(false);
+        return;
+      }
+      
+      // 2. Aguarda um pouco e busca o QR Code (GET /api/qr)
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      const qrUrl = `${backendUrl}/api/qr`;
+      console.log(`[QRScanner] Buscando QR: ${qrUrl}`);
+      
+      const qrResponse = await fetch(qrUrl, { 
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
       });
+      
+      if (!qrResponse.ok) {
+        const errorData = await qrResponse.json().catch(() => ({}));
+        throw new Error(errorData.message || `Erro ao obter QR: ${qrResponse.status}`);
+      }
+      
+      const qrData = await qrResponse.json();
+      console.log('[QRScanner] Resposta QR:', qrData);
+      
+      // Extrai o QR Code da resposta
+      const qrCode = qrData.qr || qrData.qrCode || qrData.qr_code;
+      
+      if (qrCode) {
+        setQrImage(qrCode);
+        setSessionActive(true);
+        setLoading(false);
+        toast.success("QR Code gerado!", {
+          description: "Escaneie com seu WhatsApp"
+        });
+      } else if (qrData.connected) {
+        toast.success("WhatsApp já está conectado!");
+        onConnected();
+        setLoading(false);
+      } else {
+        toast.info("Aguardando QR Code...", {
+          description: "O QR Code será exibido em breve."
+        });
+      }
       
     } catch (error: any) {
       console.error("[QRScanner] Erro:", error);
-      toast.error(error.message || "Erro de conexão.");
+      
+      let errorMessage = error.message || "Erro desconhecido";
+      
+      if (error.message?.includes("URL da API")) {
+        errorMessage = "Configure a URL da API do WhatsApp em Ajustes";
+      } else if (error.message?.includes("fetch") || error.message?.includes("Failed")) {
+        errorMessage = "Não foi possível conectar ao backend. Verifique se está rodando.";
+      }
+      
+      toast.error("Erro ao gerar QR Code", {
+        description: errorMessage,
+        duration: 5000
+      });
       setLoading(false);
     }
   }
 
-  // 3. Cancelar Sessão
+  // 3. Cancelar Sessão - Chama diretamente o backend
   async function stopSession() {
     try {
-        const baseUrl = await getBackendUrl();
-        await fetch(`${baseUrl}/session/disconnect`, { method: "POST" });
-        
-        setSessionActive(false);
-        setQrImage(null);
-        toast.info("Sessão cancelada.");
-    } catch (e) {
-        toast.error("Erro ao cancelar.");
+      const backendUrl = await getBackendUrl();
+      const logoutUrl = `${backendUrl}/api/logout`;
+      
+      console.log(`[QRScanner] Logout: ${logoutUrl}`);
+      
+      await fetch(logoutUrl, { 
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+      });
+      
+      setSessionActive(false);
+      setQrImage(null);
+      toast.info("Sessão cancelada.");
+    } catch (e: any) {
+      console.error("[QRScanner] Erro ao cancelar:", e);
+      toast.error("Erro ao cancelar.", {
+        description: e.message || "Tente novamente"
+      });
     }
   }
 
@@ -217,9 +273,8 @@ export function QRScanner({ onConnected }: QRScannerProps) {
                 Este código expira se não for lido em 5 minutos.
             </p>
             <Button 
-                variant="destructive" 
                 variant="outline" 
-                className="w-full text-destructive hover:text-destructive hover:bg-destructive/10"
+                className="w-full text-destructive hover:text-destructive hover:bg-destructive/10 border-destructive"
                 onClick={stopSession}
             >
                 Cancelar Sessão

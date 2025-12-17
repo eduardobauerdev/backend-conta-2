@@ -4,7 +4,7 @@ import type React from "react"
 import { useState, useEffect, useRef, useCallback, useMemo, forwardRef, type ElementRef } from "react" 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
-import { Search, AlertCircle, RefreshCw, Loader2, User, Tag, Pencil, UserPlus, X, Tags, Copy, Phone, Plus, BarChart3, Check, FileText, DollarSign, XCircle } from "lucide-react"
+import { Search, AlertCircle, RefreshCw, Loader2, User, Tag, Pencil, UserPlus, X, Tags, Copy, Phone, Plus, BarChart3, Check, FileText, DollarSign, XCircle, MessageSquare, Inbox, Archive } from "lucide-react"
 import { cn, getContrastTextColor, formatPhoneNumber } from "@/lib/utils"
 import type { Chat, EtiquetaSimple } from "@/lib/whatsapp-types"
 import { ChatEtiquetasDialog } from "./chat-etiquetas-dialog"
@@ -95,8 +95,8 @@ interface ChatListProps {
 // URL do Backend para imagens (Proxy)
 const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "https://backend-sobt.onrender.com";
 
-const INITIAL_BATCH_SIZE = 20
-const SUBSEQUENT_BATCH_SIZE = 10
+const INITIAL_BATCH_SIZE = 50
+const SUBSEQUENT_BATCH_SIZE = 50
 const SCROLL_THRESHOLD = 100
 
 type ChatListHandle = ElementRef<"div">; 
@@ -116,7 +116,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
     const [searchQuery, setSearchQuery] = useState("")
     const [debouncedSearch, setDebouncedSearch] = useState("") 
     
-    const [filterMode, setFilterMode] = useState<"all" | "mine">("all")
+    const [filterMode, setFilterMode] = useState<"all" | "mine" | "archived">("all")
     const [currentUserId, setCurrentUserId] = useState<string | null>(null)
     const [isAuthLoaded, setIsAuthLoaded] = useState(false)
     
@@ -570,9 +570,10 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
                             name: newChat.name || '',
                             phone: newChat.phone || newChat.id.split('@')[0],
                             lastMessage: newChat.last_message,
-                            lastMessageTime: newChat.last_message_time,
+                            lastMessageTime: normalizeTimestamp(newChat.last_message_time),
                             unreadCount: newChat.unread_count || 0,
                             pictureUrl: newChat.image_url,
+                            archived: !!newChat.archived,
                             etiqueta_ids: etiquetaIds,
                             etiquetas: etiquetas,
                         };
@@ -728,7 +729,7 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
     }, [supabase])
 
 
-    // ✅ FUNÇÃO PRINCIPAL: CARREGAR CHATS DO BANCO
+    // ✅ FUNÇÃO PRINCIPAL: CARREGAR CHATS DO BACKEND (Baileys)
     async function loadChats(currentOffset: number, isInitial = false) {
       if (isLoadingRef.current) return
       isLoadingRef.current = true
@@ -737,42 +738,44 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
 
       try {
         const limit = isInitial ? INITIAL_BATCH_SIZE : SUBSEQUENT_BATCH_SIZE
-        const rangeEnd = currentOffset + limit - 1
 
-        let query = supabase
-            .from('chat_last_message_view')
-            .select('*', { count: 'exact' })
-            .eq('is_archived', false)
-            .not('id', 'ilike', '%@g.us') 
-            .order('last_message_timestamp', { ascending: false })
-            .range(currentOffset, rangeEnd)
-
+        // Monta query string para o backend
+        const params = new URLSearchParams()
+        params.set('limit', String(limit))
+        params.set('offset', String(currentOffset))
         if (debouncedSearch) {
-            query = query.or(`name.ilike.%${debouncedSearch}%,id.ilike.%${debouncedSearch}%`)
+          params.set('search', debouncedSearch)
         }
 
-        const { data, error, count } = await query
+        // Busca chats do backend via API route
+        const response = await fetch(`/api/whatsapp/chats?${params.toString()}`)
+        const result = await response.json()
 
-        if (error) {
-          console.error("❌ ERRO Supabase:", error)
-          throw error
+        if (!result.success) {
+          console.error("❌ ERRO Backend:", result.message)
+          throw new Error(result.message || "Erro ao carregar chats")
         }
 
-        // Coleta todos os IDs de etiquetas de todos os chats (agora usa array etiqueta_ids)
+        const chatsData = result.chats || []
+        const totalCount = result.total || chatsData.length
+
+        // Busca etiquetas do banco para enriquecer os chats
         const allEtiquetaIds: string[] = [];
         const chatEtiquetaIdsMap: Record<string, string[]> = {};
         
-        (data || []).forEach(c => {
+        chatsData.forEach((c: any) => {
+          // Normaliza o ID
+          const chatId = typeof c.id === 'string' ? c.id : (c.id?._serialized || c.id?.user || String(c.id))
           const ids: string[] = c.etiqueta_ids || [];
-          chatEtiquetaIdsMap[c.id] = ids;
-          ids.forEach(id => {
+          chatEtiquetaIdsMap[chatId] = ids;
+          ids.forEach((id: string) => {
             if (!allEtiquetaIds.includes(id)) {
               allEtiquetaIds.push(id);
             }
           });
         });
 
-        // Busca dados de todas as etiquetas da tabela whatsapp_etiquetas
+        // Busca dados de etiquetas do Supabase (metadados locais)
         let etiquetasDataMap: Record<string, EtiquetaSimple> = {};
         if (allEtiquetaIds.length > 0) {
           const { data: etiquetasData } = await supabase
@@ -787,26 +790,40 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
           }
         }
 
-        const newChats: Chat[] = (data || []).map(c => {
-            // Monta array de etiquetas na ordem correta
-            const etiquetas: EtiquetaSimple[] = (chatEtiquetaIdsMap[c.id] || [])
+        // Formata os chats recebidos do backend
+        const newChats: Chat[] = chatsData.map((c: any) => {
+            // Normaliza o ID (pode vir como string ou objeto)
+            const chatId = typeof c.id === 'string' ? c.id : (c.id?._serialized || c.id?.user || String(c.id))
+            const chatIdMap = chatEtiquetaIdsMap[chatId] || chatEtiquetaIdsMap[c.id] || []
+            
+            const etiquetas: EtiquetaSimple[] = chatIdMap
               .map(id => etiquetasDataMap[id])
               .filter(Boolean);
             
             return {
-              id: c.id,
-              uuid: c.uuid,  // UUID interno estável
-              name: c.name,
-              phone: c.phone || c.id.split('@')[0],  // telefone formatado
-              lastMessage: c.last_message,
-              lastMessageTime: c.last_message_timestamp ? Number(c.last_message_timestamp) : c.last_message_time,
-              unreadCount: c.unread_count,
-              pictureUrl: c.image_url,
+              id: chatId,
+              uuid: c.uuid,
+              name: c.name || c.pushName || '',
+              phone: c.phone || (typeof chatId === 'string' && chatId.includes('@') ? chatId.split('@')[0] : chatId),
+              lastMessage: typeof c.lastMessage === 'string' 
+                ? c.lastMessage 
+                : (c.lastMessage?.body || c.last_message?.body || c.last_message || ''),
+              lastMessageTime: normalizeTimestamp(c.timestamp || c.lastMessageTime || c.lastMessage?.timestamp || c.last_message_time),
+              unreadCount: c.unreadCount || c.unread_count || 0,
+              pictureUrl: c.profilePicUrl || c.pictureUrl || c.image_url,
+              archived: !!c.archived,
               etiquetas: etiquetas,
             };
+        }).sort((a, b) => {
+          // Ordena por lastMessageTime em ordem decrescente (mais recente primeiro)
+          // Chats sem mensagem (timestamp 0) vão para o final
+          if (a.lastMessageTime === 0 && b.lastMessageTime === 0) return 0
+          if (a.lastMessageTime === 0) return 1
+          if (b.lastMessageTime === 0) return -1
+          return b.lastMessageTime - a.lastMessageTime
         });
 
-        const hasMoreData = count ? (currentOffset + newChats.length) < count : false
+        const hasMoreData = (currentOffset + newChats.length) < totalCount
 
         if (isInitial) {
             setChats(newChats)
@@ -849,11 +866,38 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
       [offset, hasMore, loading]
     )
 
+    // Helper para normalizar timestamps (pode vir como número, objeto ou string)
+    function normalizeTimestamp(timestamp: any): number {
+      if (!timestamp) return 0
+      
+      // Se for objeto com propriedades low/high (formato Long do backend)
+      if (typeof timestamp === 'object' && timestamp.low !== undefined) {
+        return timestamp.low * 1000 // Converte segundos para milissegundos
+      }
+      
+      // Se for string, converte para número
+      if (typeof timestamp === 'string') {
+        const parsed = parseInt(timestamp, 10)
+        return isNaN(parsed) ? 0 : parsed
+      }
+      
+      // Se for número, retorna direto
+      if (typeof timestamp === 'number') {
+        // Se for em segundos (menor que ano 3000), converte para milissegundos
+        return timestamp < 10000000000 ? timestamp * 1000 : timestamp
+      }
+      
+      return 0
+    }
+
     // Formatação visual de data
     function formatTime(timestamp: number | null) {
       if (!timestamp || timestamp <= 0) return ""
       
-      const date = new Date(timestamp)
+      // Garante que está em milissegundos
+      const ts = timestamp < 10000000000 ? timestamp * 1000 : timestamp
+      
+      const date = new Date(ts)
       if (date.getFullYear() < 2000) return "" // Filtra datas inválidas/antigas
 
       const now = new Date()
@@ -880,12 +924,23 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
             return true;
         });
 
-        // Filtro básico (Todas / Minhas)
-        if (filterMode === 'mine' && currentUserId && assignmentsMap) {
+        // 🔍 DEBUG: Mostra quantos chats arquivados existem
+        const archivedCount = filteredChats.filter(c => c.archived).length;
+        console.log(`📊 Total de chats: ${filteredChats.length}, Arquivados: ${archivedCount}, Modo: ${filterMode}`);
+
+        // Filtro básico (Todas / Minhas / Arquivadas)
+        if (filterMode === 'all') {
+            // Não exibe conversas arquivadas em "Todas"
+            filteredChats = filteredChats.filter(chat => !chat.archived);
+        } else if (filterMode === 'mine' && currentUserId && assignmentsMap) {
+            // Não exibe conversas arquivadas em "Minhas"
             filteredChats = filteredChats.filter(chat => {
                 const assignment = assignmentsMap[chat.id];
-                return assignment && assignment.assigned_to_id === currentUserId;
+                return assignment && assignment.assigned_to_id === currentUserId && !chat.archived;
             });
+        } else if (filterMode === 'archived') {
+            // Exibe apenas conversas arquivadas
+            filteredChats = filteredChats.filter(chat => chat.archived);
         }
 
         // Filtros avançados
@@ -1000,17 +1055,28 @@ shrink ? "w-[300px] min-w-[280px] max-w-[320px]" : "w-[380px] min-w-[320px] max-
               variant={filterMode === 'all' ? "secondary" : "ghost"} 
               size="sm" 
               onClick={() => setFilterMode('all')}
-              className={cn("flex-1 h-7 text-xs font-medium transition-all", filterMode === 'all' && "bg-secondary shadow-sm")}
+              className={cn("flex-1 h-8 text-sm font-medium transition-all", filterMode === 'all' && "bg-secondary shadow-sm")}
             >
+              <MessageSquare className="w-4 h-4 mr-1.5" />
               Todas
             </Button>
             <Button 
               variant={filterMode === 'mine' ? "secondary" : "ghost"} 
               size="sm" 
               onClick={() => setFilterMode('mine')}
-              className={cn("flex-1 h-7 text-xs font-medium transition-all", filterMode === 'mine' && "bg-secondary shadow-sm")}
+              className={cn("flex-1 h-8 text-sm font-medium transition-all", filterMode === 'mine' && "bg-secondary shadow-sm")}
             >
+              <Inbox className="w-4 h-4 mr-1.5" />
               Minhas
+            </Button>
+            <Button 
+              variant={filterMode === 'archived' ? "secondary" : "ghost"} 
+              size="sm" 
+              onClick={() => setFilterMode('archived')}
+              className={cn("flex-1 h-8 text-sm font-medium transition-all", filterMode === 'archived' && "bg-secondary shadow-sm")}
+            >
+              <Archive className="w-4 h-4 mr-1.5" />
+              Arquivadas
             </Button>
             <ChatFilterPanel 
               filters={advancedFilters} 
@@ -1028,7 +1094,11 @@ shrink ? "w-[300px] min-w-[280px] max-w-[320px]" : "w-[380px] min-w-[320px] max-
           {displayChats.length === 0 ? (
             <div className="p-6 text-center space-y-3 flex flex-col items-center">
               <p className="text-muted-foreground text-sm">
-                {filterMode === 'mine' ? "Você não tem conversas atribuídas" : "Nenhuma conversa encontrada"}
+                {filterMode === 'mine' 
+                  ? "Você não tem conversas atribuídas" 
+                  : filterMode === 'archived'
+                    ? "Nenhuma conversa arquivada"
+                    : "Nenhuma conversa encontrada"}
               </p>
             </div>
           ) : (
@@ -1036,9 +1106,8 @@ shrink ? "w-[300px] min-w-[280px] max-w-[320px]" : "w-[380px] min-w-[320px] max-
               <div className="py-1">
                 {displayChats.map((chat) => {
                   const assignment = assignmentsMap?.[chat.id]
-                  // 🔥 PROXY DE IMAGEM: Aponta para o seu backend no Render
-                  // Isso garante que a imagem carregue mesmo se o link do WA expirar ou tiver CORS
-                  const profilePicture = `${BACKEND_URL}/chats/avatar/${chat.id}`
+                  // Usa a foto do WhatsApp CDN se disponível, senão fallback para proxy do backend
+                  const profilePicture = chat.pictureUrl || `${BACKEND_URL}/chats/avatar/${chat.id}`
 
                   // Determina se tem etiquetas
                   const hasEtiquetas = chat.etiquetas && chat.etiquetas.length > 0
@@ -1058,7 +1127,7 @@ shrink ? "w-[300px] min-w-[280px] max-w-[320px]" : "w-[380px] min-w-[320px] max-
                         <button
                           onClick={() => onSelectChat(chat)}
                           className={cn(
-                            "w-full flex items-center gap-3 px-3 py-3 transition-all duration-200 text-left",
+                            "w-full flex items-center gap-3 px-3 py-3 transition-all duration-75 text-left",
                             selectedChatId === chat.id
                               ? isConverted
                                 ? "bg-green-200 dark:bg-green-800/60 border-l-4 border-green-700"

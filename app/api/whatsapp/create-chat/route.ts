@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     const formattedPhone = phone.replace(/\D/g, "") // Remove non-digits
     const chatId = formattedPhone.includes("@") ? formattedPhone : `${formattedPhone}@c.us`
 
-    const targetUrl = joinUrl(config.server_url, "chats/send")
+    const targetUrl = joinUrl(config.server_url, "api/chats/send")
 
     const response = await fetch(targetUrl, {
       method: "POST",

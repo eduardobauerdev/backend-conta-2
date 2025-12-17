@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     const arrayBuffer = await file.arrayBuffer()
     const base64 = Buffer.from(arrayBuffer).toString("base64")
 
-    const targetUrl = joinUrl(config.server_url, "chats/send-media")
+    const targetUrl = joinUrl(config.server_url, "api/chats/send-media")
 
     const response = await fetch(targetUrl, {
       method: "POST",

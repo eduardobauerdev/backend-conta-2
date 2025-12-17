@@ -196,9 +196,10 @@ export function ChatWindow({
     }
     // 4. Fallback para o ID original ou "Contato"
     return chatId || "Contato"
-  })()
+  })() 
   const telefone = chatTelefone || (chatId?.includes('@') ? chatId.split('@')[0] : chatId) || ""
-  const profilePictureUrl = `${BACKEND_URL}/chats/avatar/${chatId}`;
+  // Usa a foto passada como prop, ou fallback para a URL do backend
+  const profilePictureUrl = chatPicture || `${BACKEND_URL}/chats/avatar/${chatId}`;
 
   // Verifica se existe lead vinculado ao chat
   useEffect(() => {
@@ -321,38 +322,8 @@ export function ChatWindow({
   // --- REALTIME SUBSCRIPTIONS
   // ----------------------------------------------------
 
-  useRealtimeSubscription({
-    table: "messages",
-    filter: `chat_id=eq.${chatId}`,
-    onInsert: (newMsgRow: any) => {
-      const newMessage: Message = {
-        id: newMsgRow.id,
-        body: newMsgRow.content || "",
-        timestamp: Number(newMsgRow.timestamp),
-        from: newMsgRow.sender_id || "Desconhecido",
-        to: newMsgRow.chat_id,
-        fromMe: newMsgRow.from_me,
-        type: newMsgRow.type || "text",
-        hasMedia: newMsgRow.has_media,
-        ack: newMsgRow.ack || 0,
-        mediaUrl: newMsgRow.has_media ? `${BACKEND_URL}/media/${chatId}/${newMsgRow.id}` : null,
-        mimeType: newMsgRow.media_meta?.mimetype,
-        caption: null
-      }
-
-      setMessages((prev) => {
-        if (prev.some(m => m.id === newMessage.id)) return prev;
-        return [...prev, newMessage]
-      });
-      
-      if (newMessage.fromMe || isNearBottom()) {
-          setTimeout(() => scrollToBottom("smooth"), 100);
-      }
-    },
-    onUpdate: (updatedRow: any) => {
-        setMessages(prev => prev.map(m => m.id === updatedRow.id ? { ...m, ack: updatedRow.ack } : m))
-    }
-  })
+  // TODO: Implementar WebSocket para receber mensagens novas do backend em tempo real
+  // Por enquanto, as mensagens novas aparecerão apenas ao recarregar ou fazer polling
 
   useRealtimeSubscription({
     table: "chat_activity",
@@ -533,6 +504,30 @@ export function ChatWindow({
   // --- DATA LOADING
   // ----------------------------------------------------
 
+  // Helper para normalizar timestamps (pode vir como número, objeto ou string)
+  function normalizeTimestamp(timestamp: any): number {
+    if (!timestamp) return 0
+    
+    // Se for objeto com propriedades low/high (formato Long do backend)
+    if (typeof timestamp === 'object' && timestamp.low !== undefined) {
+      return timestamp.low * 1000 // Converte segundos para milissegundos
+    }
+    
+    // Se for string, converte para número
+    if (typeof timestamp === 'string') {
+      const parsed = parseInt(timestamp, 10)
+      return isNaN(parsed) ? 0 : parsed
+    }
+    
+    // Se for número, retorna direto
+    if (typeof timestamp === 'number') {
+      // Se for em segundos (menor que ano 3000), converte para milissegundos
+      return timestamp < 10000000000 ? timestamp * 1000 : timestamp
+    }
+    
+    return 0
+  }
+
   async function loadMessages(currentOffset: number, isInitial = false) {
     if (isLoadingRef.current) return
     isLoadingRef.current = true
@@ -541,32 +536,41 @@ export function ChatWindow({
       if (isInitial) setLoading(true)
       else setLoadingMore(true)
 
-      const rangeEnd = currentOffset + MESSAGES_PER_PAGE - 1
+      // Busca mensagens do backend via API route
+      const params = new URLSearchParams()
+      params.set('limit', String(MESSAGES_PER_PAGE))
+      params.set('offset', String(currentOffset))
 
-      const { data, error, count } = await supabase
-        .from('messages')
-        .select('*', { count: 'exact' })
-        .eq('chat_id', chatId)
-        .order('timestamp', { ascending: false })
-        .range(currentOffset, rangeEnd)
+      const response = await fetch(`/api/whatsapp/messages/${chatId}?${params.toString()}`)
+      const result = await response.json()
 
-      if (error) throw error
+      if (!result.success) {
+        throw new Error(result.message || "Erro ao carregar mensagens")
+      }
 
-      if (data) {
-        const normalizedMessages: Message[] = data.map((msg: any) => ({
-          id: msg.id,
-          body: msg.content || "",
-          timestamp: Number(msg.timestamp),
-          from: msg.sender_id || "Desconhecido",
-          to: msg.chat_id,
-          fromMe: msg.from_me,
-          type: msg.type || "text",
-          hasMedia: msg.has_media,
-          ack: msg.ack || 0,
-          mediaUrl: msg.has_media ? `${BACKEND_URL}/media/${chatId}/${msg.id}` : null,
-          mimeType: msg.media_meta?.mimetype || null,
-          caption: null,
-        })).reverse()
+      const messagesData = result.messages || []
+      const totalCount = result.total || messagesData.length
+
+      if (messagesData.length > 0) {
+        const normalizedMessages: Message[] = messagesData.map((msg: any) => {
+          // Normaliza o ID da mensagem (pode ser string ou objeto)
+          const messageId = typeof msg.id === 'string' ? msg.id : (msg.id?._serialized || msg.id?.id || String(msg.id))
+          
+          return {
+            id: messageId,
+            body: msg.body || msg.content || "",
+            timestamp: normalizeTimestamp(msg.timestamp),
+            from: msg.from || msg.sender_id || "Desconhecido",
+            to: msg.to || msg.chat_id || chatId,
+            fromMe: msg.fromMe ?? msg.from_me ?? false,
+            type: msg.type || "text",
+            hasMedia: msg.hasMedia ?? msg.has_media ?? false,
+            ack: msg.ack || 0,
+            mediaUrl: (msg.hasMedia || msg.has_media) ? `${BACKEND_URL}/media/${chatId}/${messageId}` : msg.mediaUrl || null,
+            mimeType: msg.mimeType || msg.media_meta?.mimetype || null,
+            caption: msg.caption || null,
+          }
+        })
 
         if (isInitial) {
           setMessages(normalizedMessages)
@@ -580,14 +584,16 @@ export function ChatWindow({
           setMessages((prev) => [...normalizedMessages, ...prev])
         }
 
-        const hasMoreData = count ? (currentOffset + data.length) < count : false
+        const hasMoreData = (currentOffset + messagesData.length) < totalCount
         setHasMore(hasMoreData)
-        setOffset(prev => prev + data.length)
+        setOffset(prev => prev + messagesData.length)
+      } else {
+        setHasMore(false)
       }
 
     } catch (error) {
       console.error("Erro msgs:", error)
-      toast.error("Erro ao carregar.")
+      toast.error("Erro ao carregar mensagens.")
     } finally {
       setLoading(false)
       setLoadingMore(false)

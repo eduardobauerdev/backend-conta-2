@@ -1,20 +1,33 @@
 import { NextResponse } from "next/server"
+import { createServerClient } from "@/lib/supabase/server"
+
+// Helper para buscar URL do backend do banco
+async function getBackendUrl(): Promise<string | null> {
+  const supabase = await createServerClient()
+  const { data } = await supabase
+    .from('whatsapp_config')
+    .select('server_url')
+    .limit(1)
+    .single()
+  
+  return data?.server_url?.replace(/\/$/, "") || null
+}
 
 export async function POST() {
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+    const backendUrl = await getBackendUrl()
 
-    if (!apiUrl) {
+    if (!backendUrl) {
       return NextResponse.json(
         {
           success: false,
-          message: "API não configurada. Configure a URL do servidor em Ajustes.",
+          message: "Configure a URL da API do WhatsApp nas configurações",
         },
         { status: 400 },
       )
     }
 
-    const response = await fetch(`${apiUrl}/disconnect`, {
+    const response = await fetch(`${backendUrl}/api/logout`, {
       method: "POST",
     })
 

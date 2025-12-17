@@ -17,6 +17,7 @@ export interface Chat {
   unreadCount: number
   pictureUrl?: string | null
   profilePic?: string | null
+  archived?: boolean  // Indica se a conversa está arquivada
   // IDs das etiquetas (do banco - array de UUIDs)
   etiqueta_ids?: string[]
   // Array de etiquetas resolvidas (com nome e cor)

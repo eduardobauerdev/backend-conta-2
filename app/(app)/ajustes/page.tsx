@@ -150,48 +150,36 @@ export default function AjustesPage() {
   const { user, refreshUser } = useUser()
   const supabase = createClient()
 
-  // ✅ ESTADO DE CONEXÃO LOCAL (Lendo do Banco)
+  // ✅ ESTADO DE CONEXÃO LOCAL (Lendo da API)
   const [isWhatsAppConnected, setIsWhatsAppConnected] = useState(false)
-  const [isSyncing, setIsSyncing] = useState(false)
   
-  // ✅ LISTENERS DE REALTIME
+  // ✅ POLLING DO STATUS
   useEffect(() => {
-      // 1. Busca status inicial
-      const fetchStatus = async () => {
-          const { data } = await supabase
-              .from("instance_settings")
-              .select("status")
-              .eq("id", 1)
-              .single()
-          
-          const status = data?.status
-          setIsSyncing(status === "syncing")
-          // "syncing" também é considerado conectado
-          setIsWhatsAppConnected(status === "connected" || status === "syncing")
-      }
-      fetchStatus()
-
-      // 2. Escuta mudanças em tempo real
-      const channel = supabase
-          .channel("settings_page_status")
-          .on(
-              "postgres_changes",
-              { event: "UPDATE", schema: "public", table: "instance_settings", filter: "id=eq.1" },
-              (payload) => {
-                  const status = payload.new.status
-                  setIsSyncing(status === "syncing")
-                  // "syncing" também é considerado conectado
-                  setIsWhatsAppConnected(status === "connected" || status === "syncing")
+      const checkStatus = async () => {
+          try {
+              const response = await fetch('/api/whatsapp/status')
+              const data = await response.json()
+              
+              if (data.success && data.connected) {
+                  setIsWhatsAppConnected(true)
                   // Se conectar, fecha o QR automaticamente
-                  if (status === "connected" || status === "syncing") setShowQR(false)
+                  setShowQR(false)
+              } else {
+                  setIsWhatsAppConnected(false)
               }
-          )
-          .subscribe()
-
-      return () => {
-          supabase.removeChannel(channel)
+          } catch (error) {
+              console.error("Erro ao verificar status:", error)
+              setIsWhatsAppConnected(false)
+          }
       }
-  }, [supabase])
+      
+      checkStatus()
+      
+      // Polling a cada 10 segundos
+      const intervalId = setInterval(checkStatus, 10000)
+      
+      return () => clearInterval(intervalId)
+  }, [])
 
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
   const [loading, setLoading] = useState(true)
@@ -1374,25 +1362,17 @@ export default function AjustesPage() {
 
           {activeTab === "whatsapp" && (
             <div className="relative">
-              {/* Badge de sincronização no canto superior direito */}
-              {isSyncing && (
-                <div className="absolute -top-2 right-0 z-10">
-                  <div className="flex items-center gap-2 px-3 py-1.5 bg-green-100 border border-green-300 rounded-full shadow-sm">
-                    <Radio className="w-3.5 h-3.5 text-green-600 animate-pulse" />
-                    <span className="text-xs font-medium text-green-700">Sincronizando</span>
+              {/* Container de status conectado */}
+              {isWhatsAppConnected && (
+                <Card className="p-6 mb-6 flex flex-col items-center text-center gap-4 bg-green-50/50 border-green-200 border-2">
+                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+                    <CheckCircle2 className="w-8 h-8 text-green-600" />
                   </div>
-                </div>
-              )}
-
-              {/* Container grande de sincronização */}
-              {isSyncing && (
-                <Card className="p-8 mb-6 flex flex-col items-center text-center gap-6 bg-green-50/50 border-green-200 border-2">
-                  <SyncAnimation />
                   
                   <div className="space-y-2">
-                    <h2 className="text-xl font-semibold text-green-800">Sincronizando mensagens</h2>
+                    <h2 className="text-xl font-semibold text-green-800">WhatsApp Conectado</h2>
                     <p className="text-sm text-green-600 max-w-sm mx-auto">
-                      Seu WhatsApp foi conectado com sucesso! Estamos carregando suas conversas...
+                      Seu WhatsApp está conectado e funcionando!
                     </p>
                   </div>
 

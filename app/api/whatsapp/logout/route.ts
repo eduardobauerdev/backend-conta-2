@@ -1,74 +1,59 @@
 import { NextResponse } from "next/server"
 import { createServerClient } from "@/lib/supabase/server"
 
-function joinUrl(base: string, path: string): string {
-  const cleanBase = base.replace(/\/+$/, "")
-  const cleanPath = path.replace(/^\/+/, "")
-  return `${cleanBase}/${cleanPath}`
+// Helper para buscar URL do backend do banco
+async function getBackendUrl(): Promise<string | null> {
+  const supabase = await createServerClient()
+  const { data } = await supabase
+    .from('whatsapp_config')
+    .select('server_url')
+    .limit(1)
+    .single()
+  
+  return data?.server_url?.replace(/\/$/, "") || null
 }
 
+// Proxy para o backend - POST /api/logout
 export async function POST() {
   try {
-    const supabase = await createServerClient()
-
-    const { data: config, error: configError } = await supabase.from("whatsapp_config").select("*").single()
-
-    if (configError || !config || !config.server_url) {
-      console.error("[v0] ❌ Configuração do WhatsApp não encontrada:", configError)
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Configure a URL do servidor WhatsApp nas configurações primeiro",
-        },
-        { status: 400 },
-      )
+    const backendUrl = await getBackendUrl()
+    
+    if (!backendUrl) {
+      return NextResponse.json({
+        success: false,
+        message: "Configure a URL da API do WhatsApp nas configurações"
+      })
     }
 
-    const logoutUrl = joinUrl(config.server_url, "logout")
+    const logoutUrl = `${backendUrl}/api/logout`
+
+    console.log("[API /logout] Desconectando:", logoutUrl)
 
     const response = await fetch(logoutUrl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
+      headers: { "Content-Type": "application/json" }
     })
 
-    const contentType = response.headers.get("content-type")
-    if (contentType?.includes("text/html")) {
-      const htmlText = await response.text()
-      console.error("[v0] ❌ Backend retornou HTML em vez de JSON:", htmlText.substring(0, 200))
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "A rota /logout não existe no backend ou retornou erro. Verifique se o servidor está configurado corretamente.",
-        },
-        { status: 502 },
-      )
-    }
-
     if (!response.ok) {
-      let errorMessage = "Erro ao desconectar do WhatsApp"
-
-      try {
-        const errorData = await response.json()
-        errorMessage = errorData.message || errorMessage
-        console.error("[v0] ❌ Erro do backend:", errorData)
-      } catch {
-        const errorText = await response.text()
-        console.error("[v0] ❌ Resposta do backend (não-JSON):", errorText)
-        errorMessage = "Resposta inválida do servidor"
-      }
-
-      return NextResponse.json({ success: false, message: errorMessage }, { status: response.status })
+      const errorData = await response.json().catch(() => ({}))
+      return NextResponse.json({
+        success: false,
+        message: errorData.message || "Erro ao desconectar"
+      })
     }
 
-    try {
-      const data = await response.json()
-      return NextResponse.json(data)
-    } catch (error) {
-      console.error("[v0] ❌ Resposta do backend não é JSON válido:", error)
+    const data = await response.json()
+    return NextResponse.json(data)
+    
+  } catch (error) {
+    console.error("[API /logout] Erro:", error)
+    return NextResponse.json({
+      success: false,
+      message: "Erro ao desconectar do WhatsApp"
+    })
+  }
+}
+
       return NextResponse.json({ success: false, message: "Resposta inválida do servidor" }, { status: 500 })
     }
   } catch (error) {

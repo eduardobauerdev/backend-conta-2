@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Unplug, CheckCircle2, QrCode, Loader2, Check, Radio } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { createClient } from "@/lib/supabase/client"
 
 interface ConnectionStatusProps {
   onStatusChange?: (connected: boolean) => void
@@ -35,8 +34,10 @@ export function ConnectionStatus({ onStatusChange }: ConnectionStatusProps) {
   const [state, setState] = useState<{
     connected: boolean
     phone: string | null
-    status: string // 'connected' | 'disconnected' | 'qr'
+    status: string
     loading: boolean
+    uptime?: number
+    memory?: { chats: number; messages: number }
   }>({
     connected: false,
     phone: null,
@@ -44,70 +45,48 @@ export function ConnectionStatus({ onStatusChange }: ConnectionStatusProps) {
     loading: true,
   })
 
-  const supabase = createClient()
-
   useEffect(() => {
-    // 1. Busca o status inicial no banco
+    // 1. Busca o status inicial da API
     const fetchInitialStatus = async () => {
       try {
-        const { data } = await supabase
-          .from("instance_settings")
-          .select("*")
-          .eq("id", 1)
-          .single()
+        const response = await fetch("/api/whatsapp/status")
+        const data = await response.json()
 
-        if (data) {
-          updateState(data)
+        if (data.success && data.connected) {
+          setState({
+            connected: true,
+            phone: data.phoneNumber,
+            status: "connected",
+            loading: false,
+            uptime: data.uptime,
+            memory: data.memory,
+          })
+          if (onStatusChange) onStatusChange(true)
         } else {
-          setState(prev => ({ ...prev, loading: false }))
+          setState({
+            connected: false,
+            phone: null,
+            status: "disconnected",
+            loading: false,
+          })
+          if (onStatusChange) onStatusChange(false)
         }
       } catch (error) {
         console.error("Erro ao buscar status:", error)
-        setState(prev => ({ ...prev, loading: false }))
+        setState(prev => ({ ...prev, loading: false, connected: false }))
+        if (onStatusChange) onStatusChange(false)
       }
     }
 
     fetchInitialStatus()
 
-    // 2. Inscreve-se para atualizações em tempo real
-    const channel = supabase
-      .channel("connection_status_badge")
-      .on(
-        "postgres_changes",
-        {
-          event: "UPDATE",
-          schema: "public",
-          table: "instance_settings",
-          filter: "id=eq.1",
-        },
-        (payload) => {
-          const newData = payload.new
-          updateState(newData)
-        }
-      )
-      .subscribe()
+    // 2. Polling a cada 10 segundos para atualizar status
+    const intervalId = setInterval(fetchInitialStatus, 10000)
 
     return () => {
-      supabase.removeChannel(channel)
+      clearInterval(intervalId)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  // Atualiza o estado local com base nos dados do banco
-  const updateState = (data: any) => {
-    // "syncing" também é considerado conectado (está conectado, apenas sincronizando mensagens)
-    const isConnected = data.status === "connected" || data.status === "syncing"
-    
-    setState({
-      connected: isConnected,
-      phone: data.phone,
-      status: data.status,
-      loading: false,
-    })
-
-    // Notifica componente pai se necessário
-    if (onStatusChange) onStatusChange(isConnected)
-  }
+  }, [onStatusChange])
 
   // --- RENDERIZAÇÃO ---
 

@@ -1,11 +1,14 @@
 "use client"
 
 import type React from "react"
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useState, useCallback } from "react"
+import { whatsappCache } from "@/lib/whatsapp-cache"
 
 interface WhatsAppContextType {
   isConnected: boolean
   setIsConnected: (connected: boolean) => void
+  refreshChats: () => void
+  sendMessage: (chatId: string, message: string) => Promise<void>
 }
 
 const WhatsAppContext = createContext<WhatsAppContextType | undefined>(undefined)
@@ -13,40 +16,46 @@ const WhatsAppContext = createContext<WhatsAppContextType | undefined>(undefined
 export function WhatsAppProvider({ children }: { children: React.ReactNode }) {
   const [isConnected, setIsConnected] = useState(false)
 
-  useEffect(() => {
-    async function checkInitialStatus() {
-      try {
-        const response = await fetch("/api/whatsapp/status")
-
-        // Se a resposta não for ok, não considerar como erro crítico
-        if (!response.ok) {
-          setIsConnected(false)
-          return
-        }
-
+  // Carregar chats via HTTP
+  const refreshChats = useCallback(async () => {
+    try {
+      const response = await fetch("/api/whatsapp/chats")
+      if (response.ok) {
         const data = await response.json()
-
-        // Atualizar estado baseado na resposta
-        if (data.success && data.connected) {
-          setIsConnected(true)
-        } else {
-          setIsConnected(false)
+        if (data.success && data.chats) {
+          whatsappCache.setChats(data.chats)
         }
-      } catch (error) {
-        // Falha silenciosa - WhatsApp não configurado ainda
-        setIsConnected(false)
       }
+    } catch (error) {
+      console.error("[WhatsApp] Erro ao carregar chats:", error)
     }
-
-    checkInitialStatus()
-
-    // Polling a cada 30 segundos
-    const interval = setInterval(checkInitialStatus, 30000)
-
-    return () => clearInterval(interval)
   }, [])
 
-  return <WhatsAppContext.Provider value={{ isConnected, setIsConnected }}>{children}</WhatsAppContext.Provider>
+  // Enviar mensagem via HTTP
+  const sendMessage = useCallback(async (chatId: string, message: string) => {
+    const response = await fetch("/api/whatsapp/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chatId, message }),
+    })
+
+    if (!response.ok) {
+      throw new Error("Erro ao enviar mensagem")
+    }
+  }, [])
+
+  return (
+    <WhatsAppContext.Provider
+      value={{
+        isConnected,
+        setIsConnected,
+        refreshChats,
+        sendMessage,
+      }}
+    >
+      {children}
+    </WhatsAppContext.Provider>
+  )
 }
 
 export function useWhatsApp() {

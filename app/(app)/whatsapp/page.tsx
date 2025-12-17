@@ -15,7 +15,6 @@ import { QuickLeadForm } from "@/components/whatsapp/quick-lead-form"
 import { toast } from "sonner"
 import { NewContactDialog } from "@/components/whatsapp/new-contact-dialog"
 import type { Chat } from "@/lib/whatsapp-types"
-import { createClient } from "@/lib/supabase/client"
 import { cn } from "@/lib/utils"
 import { useSidebar } from "@/contexts/sidebar-context"
 
@@ -33,96 +32,52 @@ export default function WhatsAppPage() {
   const [refreshTrigger, setRefreshTrigger] = useState(0)
   const [isConnected, setIsConnected] = useState(false)
   const [isChecking, setIsChecking] = useState(true)
-  const [isSyncing, setIsSyncing] = useState(false)
   const [showLeadPanel, setShowLeadPanel] = useState(false)
   const [selectedChat, setSelectedChat] = useState<Chat | null>(null)
   const chatListRef = useRef<any>(null)
-  const supabase = createClient()
 
   useEffect(() => {
       const checkStatus = async () => {
-          const { data } = await supabase.from('instance_settings').select('status').eq('id', 1).single()
-          const status = data?.status
-          
-          if (status === 'syncing') {
-              setIsSyncing(true)
+          try {
+              const response = await fetch('/api/whatsapp/status')
+              const data = await response.json()
+              
+              if (data.success && data.connected) {
+                  setIsConnected(true)
+              } else {
+                  setIsConnected(false)
+              }
+          } catch (error) {
+              console.error("Erro ao verificar status:", error)
               setIsConnected(false)
-          } else if (status === 'connected') {
-              setIsConnected(true)
-              setIsSyncing(false)
-          } else {
-              setIsConnected(false)
-              setIsSyncing(false)
+          } finally {
+              setIsChecking(false)
           }
-          
-          setIsChecking(false)
       }
+      
       checkStatus()
       
-      // Realtime para mudanças no status
-      const channel = supabase
-          .channel('whatsapp-status')
-          .on(
-              'postgres_changes',
-              { event: 'UPDATE', schema: 'public', table: 'instance_settings', filter: 'id=eq.1' },
-              (payload) => {
-                  const status = payload.new.status
-                  
-                  if (status === 'syncing') {
-                      setIsSyncing(true)
-                      setIsConnected(false)
-                  } else if (status === 'connected') {
-                      setIsConnected(true)
-                      setIsSyncing(false)
-                  } else {
-                      setIsConnected(false)
-                      setIsSyncing(false)
-                  }
-              }
-          )
-          .subscribe()
-
-      return () => {
-          supabase.removeChannel(channel)
-      }
-  }, [supabase])
+      // Polling a cada 10 segundos
+      const intervalId = setInterval(checkStatus, 10000)
+      
+      return () => clearInterval(intervalId)
+      return () => clearInterval(intervalId)
+  }, [])
 
   // Navegar para o chat quando vem por parâmetro de URL
   useEffect(() => {
     async function findAndSelectChat() {
-      if ((!isConnected && !isSyncing) || isChecking) return
+      if (!isConnected || isChecking) return
       
-      if (chatUuidParam) {
-        // Busca chat pelo UUID
-        const { data } = await supabase
-          .from("chat_last_message_view")
-          .select("*")
-          .eq("uuid", chatUuidParam)
-          .single()
-        
-        if (data) {
-          handleSelectChat(data as Chat)
-          // Limpa o parâmetro da URL
-          window.history.replaceState({}, '', '/whatsapp')
-        }
-      } else if (telefoneParam) {
-        // Busca chat pelo telefone
-        const { data } = await supabase
-          .from("chat_last_message_view")
-          .select("*")
-          .or(`id.eq.${telefoneParam}@s.whatsapp.net,telefone.eq.${telefoneParam}`)
-          .limit(1)
-          .single()
-        
-        if (data) {
-          handleSelectChat(data as Chat)
-          window.history.replaceState({}, '', '/whatsapp')
-        }
+      // TODO: Implementar busca de chat pelo UUID/telefone via backend
+      if (chatUuidParam || telefoneParam) {
+        toast.info("Funcionalidade de busca por link será implementada")
+        window.history.replaceState({}, '', '/whatsapp')
       }
     }
     
     findAndSelectChat()
-  }, [chatUuidParam, telefoneParam, isConnected, isSyncing, isChecking, supabase])
+  }, [chatUuidParam, telefoneParam, isConnected, isChecking])
 
   function handleSelectChat(chat: Chat) {
     setSelectedChatId(chat.id)
@@ -147,7 +102,7 @@ export default function WhatsAppPage() {
           <h1 className="text-3xl font-bold text-balance">WhatsApp Business</h1>
         </div>
         
-        {(isConnected || isSyncing) && (
+        {isConnected && (
             <div className="flex items-center gap-3 justify-end">
             {isConnected && (
                 <NewContactDialog
@@ -165,21 +120,7 @@ export default function WhatsAppPage() {
         )}
       </div>
 
-      {isSyncing ? (
-        <div className="flex-1 flex items-center justify-center">
-            <Card className="w-full max-w-md p-12 flex flex-col items-center text-center gap-6 bg-green-50/50 border-green-200">
-                <SyncAnimation />
-                
-                <div className="space-y-2">
-                    <h2 className="text-xl font-semibold text-green-800">Sincronizando mensagens</h2>
-                    <p className="text-sm text-green-600 max-w-xs mx-auto">
-                        Seu WhatsApp foi conectado com sucesso! Estamos carregando suas conversas...
-                    </p>
-                </div>
-
-            </Card>
-        </div>
-      ) : !isConnected ? (
+      {!isConnected ? (
         <div className="flex-1 flex items-center justify-center">
             <Card className="w-full max-w-md p-12 flex flex-col items-center text-center gap-6 border-2 border-dashed border-neutral-300 bg-neutral-50/50">
                 <div className="p-6 bg-white rounded-full shadow-sm border border-neutral-200">
@@ -230,8 +171,8 @@ export default function WhatsAppPage() {
                 chatId={selectedChatId}
                 chatUuid={selectedChat?.uuid || null}
                 chatName={selectedChatName}
-                // 🔥 AQUI: Passamos a URL do proxy diretamente para o filho
-                chatPicture={`${BACKEND_URL}/chats/avatar/${selectedChatId}`}
+                // Usa a foto do chat ou fallback para o proxy do backend
+                chatPicture={selectedChat?.pictureUrl || null}
                 chatTelefone={selectedChat?.phone || null}
                 chatEtiquetas={selectedChat?.etiquetas || []}
                 onRefresh={handleRefreshChats}
