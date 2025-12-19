@@ -590,6 +590,70 @@ const ChatList = forwardRef<ChatListHandle, ChatListProps>(
         };
     }, [supabase]);
 
+    // --- REALTIME: Ouve mensagens novas via evento customizado do WebSocket ---
+    useEffect(() => {
+        const handleNewMessage = (event: CustomEvent) => {
+            const { chatId, message } = event.detail;
+            
+            if (!chatId || chatId.includes("@g.us")) return;
+            
+            const messageBody = message.body || message.content || message.conversation || "";
+            const messageTime = normalizeTimestamp(message.timestamp || Date.now());
+            const isFromMe = message.fromMe ?? false;
+            
+            setChats((prevChats) => {
+                const chatIndex = prevChats.findIndex(c => c.id === chatId);
+                
+                if (chatIndex === -1) {
+                    // Chat não está na lista, não faz nada (será carregado no próximo refresh)
+                    return prevChats;
+                }
+                
+                // Atualiza o chat existente com a nova mensagem
+                const existingChat = prevChats[chatIndex];
+                const updatedChat: Chat = {
+                    ...existingChat,
+                    lastMessage: messageBody,
+                    lastMessageTime: messageTime,
+                    // Se a mensagem não é do usuário e o chat não está selecionado, incrementa unread
+                    unreadCount: !isFromMe && existingChat.id !== selectedChatId 
+                        ? (existingChat.unreadCount || 0) + 1 
+                        : existingChat.unreadCount
+                };
+                
+                // Remove o chat da posição atual e coloca no topo
+                const filtered = prevChats.filter(c => c.id !== chatId);
+                return [updatedChat, ...filtered];
+            });
+            
+            // Atualiza o cache SWR também
+            mutate(CHAT_LIST_CACHE_KEY, (currentChats: Chat[] | undefined) => {
+                if (!currentChats) return currentChats;
+                
+                const chatIndex = currentChats.findIndex(c => c.id === chatId);
+                if (chatIndex === -1) return currentChats;
+                
+                const existingChat = currentChats[chatIndex];
+                const updatedChat: Chat = {
+                    ...existingChat,
+                    lastMessage: messageBody,
+                    lastMessageTime: messageTime,
+                    unreadCount: !isFromMe && existingChat.id !== selectedChatId 
+                        ? (existingChat.unreadCount || 0) + 1 
+                        : existingChat.unreadCount
+                };
+                
+                const filtered = currentChats.filter(c => c.id !== chatId);
+                return [updatedChat, ...filtered];
+            }, { revalidate: false });
+        };
+        
+        window.addEventListener('whatsapp:new_message' as any, handleNewMessage);
+        return () => {
+            window.removeEventListener('whatsapp:new_message' as any, handleNewMessage);
+        };
+    }, [selectedChatId]);
+
     // --- FUNÇÃO HELPER: Construir mapa de atribuições ---
     const buildAssignmentsMap = async (assignments: any[]) => {
       try {
